@@ -6,6 +6,8 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
+<meta name="author" content="KT Wong">
+<meta name="dcterms.date" content="2025-07-29">
 
 <title>MSDA_Bootcamp</title>
 <style>
@@ -100,6 +102,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     "search-label": "Search"
   }
 }</script>
+<script src="site_libs/kePrint-0.0.1/kePrint.js"></script>
+
+<link href="site_libs/lightable-0.0.1/lightable.css" rel="stylesheet">
+
 
 
 <link rel="stylesheet" href="styles.css">
@@ -141,22 +147,40 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-        
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul class="collapse">
+  <li><a href="#schedule" id="toc-schedule" class="nav-link active" data-scroll-target="#schedule">Schedule</a></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">MSDA_Bootcamp</h1>
+<div class="quarto-title-block"><div><h1 class="title">MSDA_Bootcamp</h1><button type="button" class="btn code-tools-button dropdown-toggle" id="quarto-code-tools-menu" data-bs-toggle="dropdown" aria-expanded="false"><i class="bi"></i> Code</button><ul class="dropdown-menu dropdown-menu-end" aria-labelelledby="quarto-code-tools-menu"><li><a id="quarto-show-all-code" class="dropdown-item" href="javascript:void(0)" role="button">Show All Code</a></li><li><a id="quarto-hide-all-code" class="dropdown-item" href="javascript:void(0)" role="button">Hide All Code</a></li><li><hr class="dropdown-divider"></li><li><a id="quarto-view-source" class="dropdown-item" href="javascript:void(0)" role="button">View Source</a></li></ul></div></div>
 </div>
 
 
 
 <div class="quarto-title-meta">
 
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>KT Wong </p>
+          </div>
+  </div>
     
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">July 29, 2025</p>
+    </div>
+  </div>
   
     
   </div>
@@ -166,16 +190,196 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<p>This is a Quarto website.</p>
-<p>To learn more about Quarto websites visit <a href="https://quarto.org/docs/websites" class="uri">https://quarto.org/docs/websites</a>.</p>
+<section id="schedule" class="level2">
+<h2 class="anchored" data-anchor-id="schedule">Schedule</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span> <span class="sc">+</span> <span class="dv">1</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] 2</code></pre>
-</div>
-</div>
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(lubridate)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(knitr)</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(kableExtra)</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Define the schedule data</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>schedule <span class="ot">&lt;-</span> <span class="fu">tibble</span>(</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>  <span class="at">Date =</span> <span class="fu">c</span>(<span class="st">"2025-08-26"</span>, <span class="st">"2025-08-26"</span>, <span class="st">"2025-08-27"</span>, <span class="st">"2025-08-28"</span>, <span class="st">"2025-08-29"</span>,</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>           <span class="st">"2025-08-29"</span>),</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>  <span class="at">Time =</span> <span class="fu">c</span>(<span class="st">"09:30 AM - 12:20 PM"</span>, <span class="st">"14:00 pm - 16:50 PM"</span>, <span class="st">"14:00 PM - 16:50 PM"</span>,</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>           <span class="st">"14:00 AM - 16:50 PM"</span>, <span class="st">"09:30 AM - 12:20 PM"</span>, <span class="st">"14:00 AM - 16:50 PM"</span>),</span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>  <span class="at">Topic =</span> <span class="fu">c</span>(<span class="st">"Welcome, Overview and Review of Calculus"</span>,</span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>            <span class="st">"Review of Linear Algebra"</span>,</span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>            <span class="st">"Introduction to R (and RStudio)"</span>,</span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>            <span class="st">"Data Visualization with ggplot2"</span>,</span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>            <span class="st">"Data Wrangling with tidyverse"</span>,</span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>            <span class="st">"Elements of Probability and Statistics"</span>)</span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a><span class="co"># Convert Date to a more readable format</span></span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a>schedule <span class="ot">&lt;-</span> schedule <span class="sc">%&gt;%</span></span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">Date =</span> <span class="fu">format</span>(<span class="fu">as.Date</span>(Date), <span class="st">"%B %d, %Y"</span>))</span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a><span class="co"># Create the table</span></span>
+<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a><span class="fu">kable</span>(schedule, <span class="at">format =</span> <span class="st">"html"</span>, <span class="at">table.attr =</span> <span class="st">"class='table table-striped'"</span>,</span>
+<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a>      <span class="at">col.names =</span> <span class="fu">c</span>(<span class="st">"Date"</span>, <span class="st">"Time"</span>, <span class="st">"Topic"</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kable_styling</span>(<span class="at">full_width =</span> F, <span class="at">position =</span> <span class="st">"left"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a>  <span class="fu">add_header_above</span>(<span class="fu">c</span>(<span class="st">"Schedule"</span> <span class="ot">=</span> <span class="dv">3</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<table class="table table-striped caption-top table-sm small" data-quarto-postprocess="true">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th colspan="3" data-quarto-table-cell-role="th" style="text-align: center; border-bottom: hidden; padding-bottom: 0; padding-left: 3px; padding-right: 3px;"><div style="border-bottom: 1px solid #ddd; padding-bottom: 5px; ">
+Schedule
+</div></th>
+</tr>
+<tr class="odd">
+<th style="text-align: left;" data-quarto-table-cell-role="th">Date</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">Time</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">Topic</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">August 26, 2025</td>
+<td style="text-align: left;">09:30 AM - 12:20 PM</td>
+<td style="text-align: left;">Welcome, Overview and Review of Calculus</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">August 26, 2025</td>
+<td style="text-align: left;">14:00 pm - 16:50 PM</td>
+<td style="text-align: left;">Review of Linear Algebra</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">August 27, 2025</td>
+<td style="text-align: left;">14:00 PM - 16:50 PM</td>
+<td style="text-align: left;">Introduction to R (and RStudio)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">August 28, 2025</td>
+<td style="text-align: left;">14:00 AM - 16:50 PM</td>
+<td style="text-align: left;">Data Visualization with ggplot2</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">August 29, 2025</td>
+<td style="text-align: left;">09:30 AM - 12:20 PM</td>
+<td style="text-align: left;">Data Wrangling with tidyverse</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">August 29, 2025</td>
+<td style="text-align: left;">14:00 AM - 16:50 PM</td>
+<td style="text-align: left;">Elements of Probability and Statistics</td>
+</tr>
+</tbody>
+</table>
 
 
+</div>
+</div>
+<pre><code>
+
+
+
+
+
+:::{#quarto-navigation-envelope .hidden}
+[MSDA_Bootcamp]{.hidden .quarto-markdown-envelope-contents render-id="quarto-int-sidebar-title"}
+[MSDA_Bootcamp]{.hidden .quarto-markdown-envelope-contents render-id="quarto-int-navbar-title"}
+[Home]{.hidden .quarto-markdown-envelope-contents render-id="quarto-int-navbar:Home"}
+[/index.html]{.hidden .quarto-markdown-envelope-contents render-id="quarto-int-navbar:/index.html"}
+[About]{.hidden .quarto-markdown-envelope-contents render-id="quarto-int-navbar:About"}
+[/about.html]{.hidden .quarto-markdown-envelope-contents render-id="quarto-int-navbar:/about.html"}
+:::
+
+
+
+:::{#quarto-meta-markdown .hidden}
+[MSDA_Bootcamp]{.hidden .quarto-markdown-envelope-contents render-id="quarto-metatitle"}
+[MSDA_Bootcamp]{.hidden .quarto-markdown-envelope-contents render-id="quarto-twittercardtitle"}
+[MSDA_Bootcamp]{.hidden .quarto-markdown-envelope-contents render-id="quarto-ogcardtitle"}
+[MSDA_Bootcamp]{.hidden .quarto-markdown-envelope-contents render-id="quarto-metasitename"}
+[]{.hidden .quarto-markdown-envelope-contents render-id="quarto-twittercarddesc"}
+[]{.hidden .quarto-markdown-envelope-contents render-id="quarto-ogcardddesc"}
+:::
+
+
+
+
+&lt;!-- --&gt;
+
+::: {.quarto-embedded-source-code}
+```````````````````{.markdown shortcodes="false"}
+---
+title: "MSDA_Bootcamp"
+author: "KT Wong"
+date: "`r Sys.Date()`"
+format:
+  html:
+    toc: true
+    toc-depth: 2
+    code-fold: true
+    code-tools: true
+    self-contained: false
+    fig-width: 8
+    fig-height: 6
+    fig-cap: "Figure"
+    fig-align: center
+    
+execute:
+    echo: true
+    warning: false
+    message: false
+    error: false
+    cache: true
+
+---
+
+## Schedule
+
+quarto-executable-code-5450563D
+
+```r
+library(tidyverse)
+library(lubridate)
+library(knitr)
+library(kableExtra)
+
+# Define the schedule data
+
+schedule &lt;- tibble(
+  Date = c("2025-08-26", "2025-08-26", "2025-08-27", "2025-08-28", "2025-08-29",
+           "2025-08-29"),
+  Time = c("09:30 AM - 12:20 PM", "14:00 pm - 16:50 PM", "14:00 PM - 16:50 PM",
+           "14:00 AM - 16:50 PM", "09:30 AM - 12:20 PM", "14:00 AM - 16:50 PM"),
+  Topic = c("Welcome, Overview and Review of Calculus",
+            "Review of Linear Algebra",
+            "Introduction to R (and RStudio)",
+            "Data Visualization with ggplot2",
+            "Data Wrangling with tidyverse",
+            "Elements of Probability and Statistics")
+)
+
+# Convert Date to a more readable format
+schedule &lt;- schedule %&gt;%
+  mutate(Date = format(as.Date(Date), "%B %d, %Y"))
+
+# Create the table
+
+kable(schedule, format = "html", table.attr = "class='table table-striped'",
+      col.names = c("Date", "Time", "Topic")) %&gt;%
+  kable_styling(full_width = F, position = "left") %&gt;%
+  add_header_above(c("Schedule" = 3))
+</code></pre>
+<pre><code>
+</code></pre>
+<p>:::</p>
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
@@ -267,6 +471,57 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       container: window.document.getElementById('quarto-embedded-source-code-modal')
     });
     clipboardModal.on('success', onCopySuccess);
+  }
+  const viewSource = window.document.getElementById('quarto-view-source') ||
+                     window.document.getElementById('quarto-code-tools-source');
+  if (viewSource) {
+    const sourceUrl = viewSource.getAttribute("data-quarto-source-url");
+    viewSource.addEventListener("click", function(e) {
+      if (sourceUrl) {
+        // rstudio viewer pane
+        if (/\bcapabilities=\b/.test(window.location)) {
+          window.open(sourceUrl);
+        } else {
+          window.location.href = sourceUrl;
+        }
+      } else {
+        const modal = new bootstrap.Modal(document.getElementById('quarto-embedded-source-code-modal'));
+        modal.show();
+      }
+      return false;
+    });
+  }
+  function toggleCodeHandler(show) {
+    return function(e) {
+      const detailsSrc = window.document.querySelectorAll(".cell > details > .sourceCode");
+      for (let i=0; i<detailsSrc.length; i++) {
+        const details = detailsSrc[i].parentElement;
+        if (show) {
+          details.open = true;
+        } else {
+          details.removeAttribute("open");
+        }
+      }
+      const cellCodeDivs = window.document.querySelectorAll(".cell > .sourceCode");
+      const fromCls = show ? "hidden" : "unhidden";
+      const toCls = show ? "unhidden" : "hidden";
+      for (let i=0; i<cellCodeDivs.length; i++) {
+        const codeDiv = cellCodeDivs[i];
+        if (codeDiv.classList.contains(fromCls)) {
+          codeDiv.classList.remove(fromCls);
+          codeDiv.classList.add(toCls);
+        } 
+      }
+      return false;
+    }
+  }
+  const hideAllCode = window.document.getElementById("quarto-hide-all-code");
+  if (hideAllCode) {
+    hideAllCode.addEventListener("click", toggleCodeHandler(false));
+  }
+  const showAllCode = window.document.getElementById("quarto-show-all-code");
+  if (showAllCode) {
+    showAllCode.addEventListener("click", toggleCodeHandler(true));
   }
     var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
     var mailtoRegex = new RegExp(/^mailto:/);
