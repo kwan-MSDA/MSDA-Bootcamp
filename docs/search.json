@@ -145,5 +145,425 @@
     "title": "MSDA Bootcamp Notes",
     "section": "",
     "text": "Slides\n\n\n\n\nCalculus\nLinear Algebra"
+  },
+  {
+    "objectID": "Linear_Algebra_slimversion.html#outline",
+    "href": "Linear_Algebra_slimversion.html#outline",
+    "title": "Linear Algebra",
+    "section": "Outline",
+    "text": "Outline\n\nVectors\nMatrix operations\nLinear Transformation\nSystem of Linear Equations\nVector Spaces\nEigenvalues and Eigenvectors\nApplications for calculus"
+  },
+  {
+    "objectID": "Linear_Algebra_slimversion.html#vectors",
+    "href": "Linear_Algebra_slimversion.html#vectors",
+    "title": "Linear Algebra",
+    "section": "Vectors",
+    "text": "Vectors\n\nA vector of length \\(n\\) is just a sequence of \\(n\\) numbers\n\n\\(x=(x_1, \\ldots, x_n)\\) or\n\\(x=\\begin{bmatrix}x_1, \\ldots, x_n\\end{bmatrix}\\)\n\nvectors in 2-D space"
+  },
+  {
+    "objectID": "Linear_Algebra_slimversion.html#vectors-1",
+    "href": "Linear_Algebra_slimversion.html#vectors-1",
+    "title": "Linear Algebra",
+    "section": "Vectors",
+    "text": "Vectors\n\nrow vector\n\n\n\\[\nu=\\begin{bmatrix} 1 & 0 \\end{bmatrix}\n\\]\n\ncolumn vector\n\n\n\n\\[\nv=\\begin{bmatrix} 1 \\\\ 0 \\end{bmatrix}\n\\]\n\n\\(v=u^T\\)"
+  },
+  {
+    "objectID": "Linear_Algebra_slimversion.html#vector-operations",
+    "href": "Linear_Algebra_slimversion.html#vector-operations",
+    "title": "Linear Algebra",
+    "section": "Vector Operations",
+    "text": "Vector Operations\n\naddition and subtraction\n\ndo the operation element-by-element\ncheck the dimension of the vectors"
+  },
+  {
+    "objectID": "Linear_Algebra_slimversion.html#vector-operations-1",
+    "href": "Linear_Algebra_slimversion.html#vector-operations-1",
+    "title": "Linear Algebra",
+    "section": "Vector Operations",
+    "text": "Vector Operations\n\nvector multiplication\n\nmultiply vectors with scalars\ndot product (inner product)"
+  },
+  {
+    "objectID": "Linear_Algebra_slimversion.html#vector-operations-2",
+    "href": "Linear_Algebra_slimversion.html#vector-operations-2",
+    "title": "Linear Algebra",
+    "section": "Vector Operations",
+    "text": "Vector Operations\nThe dot product of vectors \\(x,y \\in \\mathbb R^n\\) is defined as\n\\[\n\\begin{array}{rl}\nx^\\top y &= {\\color{red}{x_1 y_1}} + {\\color{blue}{x_2 y_2}} + \\cdots + x_n y_n \\\\\n&= \\sum_{i=1}^n x_i y_i\n\\end{array}\n\\]\n\nthe dot product could be written as \\(x \\cdot y\\) or \\(x'y\\)\nthe dot product could be expressed in cosine form\n\n\n\\[\nx \\cdot y = \\|x\\| \\|y\\| \\cos \\theta\n\\]"
+  },
+  {
+    "objectID": "Linear_Algebra_slimversion.html#matrix-algebra",
+    "href": "Linear_Algebra_slimversion.html#matrix-algebra",
+    "title": "Linear Algebra",
+    "section": "Matrix Algebra",
+    "text": "Matrix Algebra\n\nwhat is a matrix?\n\na matrix is a rectangular array of numbers\n\\(A_{m \\times n} = \\begin{bmatrix} a_{11} & a_{12} & \\cdots & a_{1n} \\\\ a_{21} & a_{22} & \\cdots & a_{2n} \\\\ \\vdots & \\vdots & \\ddots & \\vdots \\\\ a_{m1} & a_{m2} & \\cdots & a_{mn} \\end{bmatrix}\\)"
+  },
+  {
+    "objectID": "Linear_Algebra_slimversion.html#matrix-algebra-1",
+    "href": "Linear_Algebra_slimversion.html#matrix-algebra-1",
+    "title": "Linear Algebra",
+    "section": "Matrix Algebra",
+    "text": "Matrix Algebra\n\nmatrix addition and subtraction\n\n\\(A_{m \\times n} \\pm B_{m \\times n} = C_{m \\times n}\\)\n\ne.g. \\(A = \\begin{bmatrix} 1 & 2 \\\\ 3 & 4 \\end{bmatrix}\\), \\(B = \\begin{bmatrix} 5 & 6 \\\\ 7 & 8 \\end{bmatrix}\\), \\(A+B = \\begin{bmatrix} 6 & 8 \\\\ 10 & 12 \\end{bmatrix}\\)\n\ncheck the dimension of the matrices\n\nIn general,\n\n\n\\[\nA + B =\n\\begin{bmatrix}\n    a_{11} & \\cdots & a_{1k} \\\\\n    \\vdots & \\vdots & \\vdots \\\\\n    a_{n1} & \\cdots & a_{nk}\n\\end{bmatrix} +\n\\begin{bmatrix}\n    b_{11} & \\cdots & b_{1k} \\\\\n    \\vdots & \\vdots & \\vdots \\\\\n    b_{n1} & \\cdots & b_{nk}\n\\end{bmatrix} =\n\\begin{bmatrix}\n    a_{11} + b_{11} &  \\cdots & a_{1k} + b_{1k} \\\\\n    \\vdots & \\vdots & \\vdots \\\\\n    a_{n1} + b_{n1} &  \\cdots & a_{nk} + b_{nk}\n\\end{bmatrix}\n\\]"
+  },
+  {
+    "objectID": "Linear_Algebra_slimversion.html#matrix-algebra-2",
+    "href": "Linear_Algebra_slimversion.html#matrix-algebra-2",
+    "title": "Linear Algebra",
+    "section": "Matrix Algebra",
+    "text": "Matrix Algebra\n\nscale multiplication\n\nIn general for a number \\(\\gamma\\) and any matrix \\(A\\),\n\n\n\n\\[\n\\gamma A =\n\\gamma\n\\begin{bmatrix}\n    a_{11} &  \\cdots & a_{1k} \\\\\n    \\vdots & \\vdots  & \\vdots \\\\\n    a_{n1} &  \\cdots & a_{nk}\n\\end{bmatrix} :=\n\\begin{bmatrix}\n    \\gamma a_{11} & \\cdots & \\gamma a_{1k} \\\\\n    \\vdots & \\vdots & \\vdots \\\\\n    \\gamma a_{n1} & \\cdots & \\gamma a_{nk}\n\\end{bmatrix}\n\\]"
+  },
+  {
+    "objectID": "Linear_Algebra_slimversion.html#matrix-multiplication",
+    "href": "Linear_Algebra_slimversion.html#matrix-multiplication",
+    "title": "Linear Algebra",
+    "section": "Matrix multiplication",
+    "text": "Matrix multiplication\n\nThe rule for matrix multiplication generalizes the idea of inner products\n\nIf \\(A\\) is \\(n \\times k\\) and \\(B\\) is \\(j \\times m\\), then to multiply \\(A\\) and \\(B\\)\n\nany requirement on the dimensions of \\(A\\) and \\(B\\) for the matrix multiplication?\nwhat will be dimension of the resulting matrix \\(A B\\)\n\n\nHere’s an example of a \\(2 \\times 2\\) matrix multiplied by a \\(2 \\times 1\\) vector\n\n\n\\[\nAx =\n\\begin{bmatrix}\n    \\color{red}{a_{11}} & \\color{red}{a_{12}} \\\\\n    a_{21} & a_{22}\n\\end{bmatrix}\n\\begin{bmatrix}\n    \\color{red}{x_1} \\\\\n    \\color{red}{x_2}\n\\end{bmatrix}\n=\n\\begin{bmatrix}\n    \\color{red}{a_{11}x_1 + a_{12}x_2} \\\\\n    a_{21}x_1 + a_{22}x_2\n\\end{bmatrix}\n\\]\n\nHere is a simple illustration of multiplication of two matrices\n\n\n\n\\[\nAB =\n\\begin{bmatrix}\n    a_{11} & a_{12} \\\\\n    \\color{red}{a_{21}} & \\color{red}{a_{22}} \\\\\n\\end{bmatrix}\n\\begin{bmatrix}\n    b_{11} & \\color{red}{b_{12}} \\\\\n    b_{21} & \\color{red}{b_{22}} \\\\\n\\end{bmatrix} :=\n\\begin{bmatrix}\n    a_{11}b_{11} + a_{12}b_{21} & a_{11}b_{12} + a_{12}b_{22} \\\\\n    a_{21}b_{11} + a_{22}b_{21} & \\color{red}{a_{21}b_{12} + a_{22}b_{22}}\n\\end{bmatrix}\n\\]"
+  },
+  {
+    "objectID": "Linear_Algebra_slimversion.html#matrix-multiplication-1",
+    "href": "Linear_Algebra_slimversion.html#matrix-multiplication-1",
+    "title": "Linear Algebra",
+    "section": "Matrix multiplication",
+    "text": "Matrix multiplication\n\nNotice that \\(AB \\neq BA\\) in general\nThere are many tutorials to help you further visualize this operation, like this one\nOne important special case is the identity matrix, which has ones on the principal diagonal and zero elsewhere:\n\n\n\\[\n    I =\n    \\begin{bmatrix}\n        1 & \\cdots & 0 \\\\\n        \\vdots & \\ddots & \\vdots \\\\\n        0 &  \\cdots & 1\n    \\end{bmatrix}\n\\]\n\nExecises:\n\nif \\(A\\) is \\(n \\times k\\) and \\(I\\) is the \\(k \\times k\\) identity matrix, then \\(AI = A\\)\nif \\(I\\) is the \\(n \\times n\\) identity matrix, then \\(IA = A\\)"
+  },
+  {
+    "objectID": "Linear_Algebra_slimversion.html#exercise",
+    "href": "Linear_Algebra_slimversion.html#exercise",
+    "title": "Linear Algebra",
+    "section": "Exercise",
+    "text": "Exercise\n\\[\nY=\\begin{bmatrix} 3 & 1 & -2 \\\\ 6 & 3 & 4 \\end{bmatrix}\n, \\quad X=\\begin{bmatrix} 4 & 2 \\\\ 3 & 0 \\\\ 1 & 2 \\end{bmatrix}\n\\]\n\nWhat are the dimensions of the matrices \\(X\\) and \\(Y\\)?\nHow to multiply \\(Y\\) and \\(X\\) to yield a \\(3 \\times 3\\) matrix? Compute it\nHow to multiply \\(Y\\) and \\(X\\) to yield a \\(2 \\times 2\\) matrix? Compute it"
+  },
+  {
+    "objectID": "Linear_Algebra_slimversion.html#linear-transformation",
+    "href": "Linear_Algebra_slimversion.html#linear-transformation",
+    "title": "Linear Algebra",
+    "section": "Linear Transformation",
+    "text": "Linear Transformation\nMatrics as Mapping\n\nEach \\(n \\times k\\) matrix \\(A\\) can be identified with a function \\(f(x) = Ax\\) that maps \\(x \\in \\mathbb R ^k\\) into \\(y = Ax \\in \\mathbb R ^n\\)\n\nthese kinds of functions have a special property: they are linear\n\nA function \\(f \\colon \\mathbb R ^k \\to \\mathbb R ^n\\) is called linear if\n\nfor all \\(x, y \\in \\mathbb R\\) and all scalars \\(\\alpha, \\beta\\), we have\n\n\n\n\\[\nf(\\alpha x + \\beta y) = \\alpha f(x) + \\beta f(y)\n\\]\n\n\nit can be shown that \\(f\\) is linear if and only if there exists a matrix \\(A\\) such that \\(f(x) = Ax\\) for all \\(x\\)"
+  },
+  {
+    "objectID": "Linear_Algebra_slimversion.html#linear-transformation-1",
+    "href": "Linear_Algebra_slimversion.html#linear-transformation-1",
+    "title": "Linear Algebra",
+    "section": "Linear Transformation",
+    "text": "Linear Transformation\nSome examples\nWe consider how a given matrix transforms in \\(\\mathbb R ^2\\)\nLet \\(\\begin{bmatrix} 2 & 1 \\\\ -1 & 1 \\end{bmatrix}\\)\n\n\n\nit transforms the vector \\(x = \\begin{bmatrix} 1 \\\\ 3 \\end{bmatrix}\\) to the vector \\(y = \\begin{bmatrix} 5 \\\\ 2 \\end{bmatrix}\\) through the matrix multiplication\n\n\n\\[\\begin{bmatrix}\n        2 & 1 \\\\\n        -1 & 1\n    \\end{bmatrix}\n    \\begin{bmatrix}\n        1 \\\\\n        3\n    \\end{bmatrix}\\]\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nEx: with the same vector \\(x\\), now, the matrix becomes \\(A = \\begin{bmatrix} 1 & 2 \\\\ 3 & 4 \\end{bmatrix}\\), what will be the \\(y\\)?"
+  },
+  {
+    "objectID": "Linear_Algebra_slimversion.html#linear-transformation-2",
+    "href": "Linear_Algebra_slimversion.html#linear-transformation-2",
+    "title": "Linear Algebra",
+    "section": "Linear Transformation",
+    "text": "Linear Transformation\nSome examples - Scaling\n\n\nA matrix of the form\n\\[\n    \\begin{bmatrix}\n        \\alpha & 0\n        \\\\ 0 & \\beta\n    \\end{bmatrix}\n\\]\nscales vectors across the x-axis by a factor \\(\\alpha\\) and along the y-axis by a factor \\(\\beta\\).\n\na simple example where \\(\\alpha = \\beta = 3\\)"
+  },
+  {
+    "objectID": "Linear_Algebra_slimversion.html#linear-transformation-3",
+    "href": "Linear_Algebra_slimversion.html#linear-transformation-3",
+    "title": "Linear Algebra",
+    "section": "Linear Transformation",
+    "text": "Linear Transformation\nSome examples - Shearing\n\n\nA “shear” matrix of the form\n\\[\n    \\begin{bmatrix}\n        1 & \\lambda \\\\\n        0 & 1\n    \\end{bmatrix}\n\\]\nstretches vectors along the x-axis by an amount proportional to the y-coordinate of a point"
+  },
+  {
+    "objectID": "Linear_Algebra_slimversion.html#linear-transformation-4",
+    "href": "Linear_Algebra_slimversion.html#linear-transformation-4",
+    "title": "Linear Algebra",
+    "section": "Linear Transformation",
+    "text": "Linear Transformation\nSome examples - Rotation\n\n\nA matrix of the form\n\\[\n    \\begin{bmatrix}\n        \\cos \\theta & \\sin \\theta\n        \\\\ - \\sin \\theta & \\cos \\theta\n    \\end{bmatrix}\n\\]\nis called a rotation matrix\n\nThis matrix rotates vectors clockwise by an angle \\(\\theta\\)\n\n45 degree clockwise rotation"
+  },
+  {
+    "objectID": "Linear_Algebra_slimversion.html#linear-transformation-5",
+    "href": "Linear_Algebra_slimversion.html#linear-transformation-5",
+    "title": "Linear Algebra",
+    "section": "Linear Transformation",
+    "text": "Linear Transformation\nSome examples - Permutation\n\n\nThe permutation matrix\n\\[\n    \\begin{bmatrix}\n        0 & 1 \\\\\n        1 & 0\n    \\end{bmatrix}\n\\] interchanges the coordinates of a vector"
+  },
+  {
+    "objectID": "Linear_Algebra_slimversion.html#matrix-multiplication-as-composition",
+    "href": "Linear_Algebra_slimversion.html#matrix-multiplication-as-composition",
+    "title": "Linear Algebra",
+    "section": "Matrix multiplication as composition",
+    "text": "Matrix multiplication as composition\nLinear compositions\nConsider the two matrices\n\\[\n    A =\n        \\begin{bmatrix}\n            0 & 1 \\\\\n            -1 & 0\n        \\end{bmatrix}\n        \\quad \\text{and} \\quad\n    B =\n        \\begin{bmatrix}\n            1 & 2 \\\\\n            0 & 1\n        \\end{bmatrix}\n\\]\nWhat will the output be when we try to obtain \\(ABx\\) for some \\(2 \\times 1\\) vector \\(x\\)?\n\\[\n\\color{red}{\\underbrace{\n\\color{black}{\\begin{bmatrix}\n  0 & 1 \\\\\n-1 & 0\n\\end{bmatrix}}\n}_{\\textstyle A} }\n\\color{red}{\\underbrace{\n\\color{black}{\\begin{bmatrix}\n  1 & 2 \\\\\n  0 & 1\n\\end{bmatrix}}\n}_{\\textstyle B}}\n\\color{red}{\\overbrace{\n\\color{black}{\\begin{bmatrix}\n  1 \\\\\n  3\n\\end{bmatrix}}\n}^{\\textstyle x}}\n\\rightarrow\n\\color{red}{\\underbrace{\n\\color{black}{\\begin{bmatrix}\n  0 & 1 \\\\\n  -1 & -2\n\\end{bmatrix}}\n}_{\\textstyle AB}}\n\\color{red}{\\overbrace{\n\\color{black}{\\begin{bmatrix}\n  1 \\\\\n  3\n\\end{bmatrix}}\n}^{\\textstyle x}}\n\\rightarrow\n\\color{red}{\\overbrace{\n\\color{black}{\\begin{bmatrix}\n  3 \\\\\n  -7\n\\end{bmatrix}}\n}^{\\textstyle y}}\n\\]"
+  },
+  {
+    "objectID": "Linear_Algebra_slimversion.html#matrix-multiplication-as-composition-1",
+    "href": "Linear_Algebra_slimversion.html#matrix-multiplication-as-composition-1",
+    "title": "Linear Algebra",
+    "section": "Matrix multiplication as composition",
+    "text": "Matrix multiplication as composition\nLinear compositions\n\\[\n\\color{red}{\\underbrace{\n\\color{black}{\\begin{bmatrix}\n  0 & 1 \\\\\n-1 & 0\n\\end{bmatrix}}\n}_{\\textstyle A} }\n\\color{red}{\\underbrace{\n\\color{black}{\\begin{bmatrix}\n  1 & 2 \\\\\n  0 & 1\n\\end{bmatrix}}\n}_{\\textstyle B}}\n\\color{red}{\\overbrace{\n\\color{black}{\\begin{bmatrix}\n  1 \\\\\n  3\n\\end{bmatrix}}\n}^{\\textstyle x}}\n\\rightarrow\n\\color{red}{\\underbrace{\n\\color{black}{\\begin{bmatrix}\n  0 & 1 \\\\\n  -1 & 0\n\\end{bmatrix}}\n}_{\\textstyle A}}\n\\color{red}{\\overbrace{\n\\color{black}{\\begin{bmatrix}\n  7 \\\\\n  3\n\\end{bmatrix}}\n}^{\\textstyle Bx}}\n\\rightarrow\n\\color{red}{\\overbrace{\n\\color{black}{\\begin{bmatrix}\n  3 \\\\\n  -7\n\\end{bmatrix}}\n}^{\\textstyle y}}\n\\]\n\nWe can observe that applying the transformation \\(AB\\) on the vector \\(x\\) is the same as first applying \\(B\\) on \\(x\\) and then applying \\(A\\) on the vector \\(Bx\\).\nthe matrix product \\(AB\\) is the composition of the matrix transformations \\(A\\) and \\(B\\)\n\nfirst apply transformation \\(B\\) and then transformation \\(A\\)\n\n\n\n\nWhen we matrix multiply an \\(n \\times m\\) matrix \\(A\\) with an \\(m \\times k\\) matrix \\(B\\) the obtained matrix product is an \\(n \\times k\\) matrix \\(AB\\)\n\nThus, if \\(A\\) and \\(B\\) are transformations such that \\(A \\colon \\mathbb{R}^m \\to\n\\mathbb{R}^n\\) and \\(B \\colon \\mathbb{R}^k \\to \\mathbb{R}^m\\), then \\(AB\\) transforms \\(\\mathbb{R}^k\\) to \\(\\mathbb{R}^n\\).\n\n\nnotice that \\(AB\\) is generally not equal to \\(BA\\)"
+  },
+  {
+    "objectID": "Linear_Algebra_slimversion.html#matrix-multiplication-as-composition-2",
+    "href": "Linear_Algebra_slimversion.html#matrix-multiplication-as-composition-2",
+    "title": "Linear Algebra",
+    "section": "Matrix multiplication as composition",
+    "text": "Matrix multiplication as composition\nLinear compositions - examples\n\nLet \\(A\\) be the \\(90^{\\circ}\\) clockwise rotation matrix given by \\(\\begin{bmatrix} 0 & 1 \\\\ -1 & 0 \\end{bmatrix}\\)\nLet \\(B\\) be a shear matrix along the x-axis given by \\(\\begin{bmatrix} 1 & 2 \\\\ 0 & 1 \\end{bmatrix}\\)\nvisualize how a grid of points changes when we apply the transformation \\(AB\\) and then compare it with the transformation \\(BA\\)"
+  },
+  {
+    "objectID": "Linear_Algebra_slimversion.html#matrix-multiplication-as-composition-3",
+    "href": "Linear_Algebra_slimversion.html#matrix-multiplication-as-composition-3",
+    "title": "Linear Algebra",
+    "section": "Matrix multiplication as composition",
+    "text": "Matrix multiplication as composition\nLinear compositions - examples\nShear then rotate"
+  },
+  {
+    "objectID": "Linear_Algebra_slimversion.html#matrix-multiplication-as-composition-4",
+    "href": "Linear_Algebra_slimversion.html#matrix-multiplication-as-composition-4",
+    "title": "Linear Algebra",
+    "section": "Matrix multiplication as composition",
+    "text": "Matrix multiplication as composition\nLinear compositions - examples\nRotate then shear\n\n\n\n\n\n\n\n\n\n\nit demonstrates that the transformation \\(AB\\) is not the same as the transformation \\(BA\\)"
+  },
+  {
+    "objectID": "Linear_Algebra_slimversion.html#matrix-multiplication-as-composition-5",
+    "href": "Linear_Algebra_slimversion.html#matrix-multiplication-as-composition-5",
+    "title": "Linear Algebra",
+    "section": "Matrix multiplication as composition",
+    "text": "Matrix multiplication as composition\nLinear compositions - Iterating on a fixed map\nIn economics, we are often interested in analyzing behavior where we repeatedly apply a fixed matrix\nFor example, given a vector \\(v\\) and a matrix \\(A\\), we are interested in studying the sequence\n\\[\n    v, \\quad\n    Av, \\quad\n    AAv = A^2v, \\quad \\ldots\n\\]"
+  },
+  {
+    "objectID": "Linear_Algebra_slimversion.html#matrix-multiplication-as-composition-6",
+    "href": "Linear_Algebra_slimversion.html#matrix-multiplication-as-composition-6",
+    "title": "Linear Algebra",
+    "section": "Matrix multiplication as composition",
+    "text": "Matrix multiplication as composition\nLinear compositions - Iterating on a fixed map\n\nExample of a sequence of iterates \\((A^k v)_{k \\geq 0}\\) under map \\(A=\\begin{bmatrix} \\sqrt{3}+1 & -2 \\\\ 1 & \\sqrt{3}-1  \\end{bmatrix}\\)\nlet \\(v = (-3, -3)\\)\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nHere with each iteration the vectors get shorter, i.e., move closer to the origin\nIn this case, repeatedly multiplying a vector by \\(A\\) makes the vector “spiral in”"
+  },
+  {
+    "objectID": "Linear_Algebra_slimversion.html#matrix-multiplication-as-composition-7",
+    "href": "Linear_Algebra_slimversion.html#matrix-multiplication-as-composition-7",
+    "title": "Linear Algebra",
+    "section": "Matrix multiplication as composition",
+    "text": "Matrix multiplication as composition\nLinear compositions - Iterating on a fixed map\n\nExample of a sequence of iterates \\((A^k v)_{k \\geq 0}\\) under map \\(A=\\begin{bmatrix} \\sqrt{3}+1 & -2 \\\\ 1 & \\sqrt{3}-1  \\end{bmatrix}\\)\nlet \\(v = (2.5, 0)\\)\n\n\n\n\n\n\n\n\n\n\n\n\n\nIn this case, repeatedly multiplying a vector by \\(A\\) simply “rotates it around an ellipse”"
+  },
+  {
+    "objectID": "Linear_Algebra_slimversion.html#matrix-multiplication-as-composition-8",
+    "href": "Linear_Algebra_slimversion.html#matrix-multiplication-as-composition-8",
+    "title": "Linear Algebra",
+    "section": "Matrix multiplication as composition",
+    "text": "Matrix multiplication as composition\nLinear compositions - Iterating on a fixed map\n\nExample of a sequence of iterates \\((A^k v)_{k \\geq 0}\\) under map \\(A=\\begin{bmatrix} \\sqrt{3}+1 & -2 \\\\ 1 & \\sqrt{3}-1  \\end{bmatrix}\\)\nlet \\(v = (-1, -0.25)\\)\n\n\n\n\n\n\n\n\n\n\n\n\n\nIn this case, repeatedly multiplying a vector by \\(A\\) makes the vector “spiral out”"
+  },
+  {
+    "objectID": "Linear_Algebra_slimversion.html#system-of-linear-equations",
+    "href": "Linear_Algebra_slimversion.html#system-of-linear-equations",
+    "title": "Linear Algebra",
+    "section": "System of Linear Equations",
+    "text": "System of Linear Equations\n\nTwo equations in two unknowns\n\n\n\\[\n\\begin{aligned}\n    y_1 = a x_1 + b x_2 \\\\\n    y_2 = c x_1 + d x_2\n\\end{aligned}\n\\]\n\nHow we solve it?\n\nsubstitution and elimination\n\nLet us work on a simple example\n\n\n\n\\[\\begin{aligned}\n    3x + 5y &= 7 \\\\\n    x - 2y &= 3\n    \n\\end{aligned}\\]\n\nwhat are \\(x\\) and \\(y\\)?"
+  },
+  {
+    "objectID": "Linear_Algebra_slimversion.html#general-linear-systems",
+    "href": "Linear_Algebra_slimversion.html#general-linear-systems",
+    "title": "Linear Algebra",
+    "section": "General linear systems",
+    "text": "General linear systems\nA more general version looks as follows\n\\[\n\\begin{matrix}\n    a_{11} x_1 & + & a_{12} x_2 & + & \\cdots & + & a_{1n} x_n & = & b_1 \\\\\n    \\vdots & & \\vdots & & & & \\vdots & & \\vdots \\\\\n    a_{n1} x_1 & + & a_{n2} x_2 & + & \\cdots & + & a_{nn} x_n & = & b_n\n\\end{matrix}\n\\]\n\nThe objective here is to solve for the “unknowns” \\(x_1, \\ldots, x_n\\)\nWe take as given the coefficients \\(a_{11}, \\ldots, a_{nn}\\) and constants \\(b_1, \\ldots, b_n\\)\nthis is a setting where the number of unknowns equals the number of equations\n\nthis is the case where we are most likely to find a well-defined solution\n\n\n\n\n(The other cases are referred to as overdetermined and underdetermined systems of equations)"
+  },
+  {
+    "objectID": "Linear_Algebra_slimversion.html#solving-systems-of-equations",
+    "href": "Linear_Algebra_slimversion.html#solving-systems-of-equations",
+    "title": "Linear Algebra",
+    "section": "Solving systems of equations",
+    "text": "Solving systems of equations\n\\[\nA x = b\n    \\quad \\text{where} \\quad\n    A =\n    \\begin{bmatrix}\n        a_{11} &  \\cdots & a_{1n} \\\\\n        \\vdots & \\vdots  & \\vdots \\\\\n        a_{n1} &  \\cdots & a_{nn}\n    \\end{bmatrix}\n    \\quad \\text{and} \\quad\n    b =\n    \\begin{bmatrix}\n        b_1 \\\\\n        \\vdots \\\\\n        b_n\n    \\end{bmatrix}\n\\] - find a vector \\(x \\in \\mathbb R^n\\) that solves the equations, taking \\(b\\) and \\(A\\) as given"
+  },
+  {
+    "objectID": "Linear_Algebra_slimversion.html#some-examples-1",
+    "href": "Linear_Algebra_slimversion.html#some-examples-1",
+    "title": "Linear Algebra",
+    "section": "Some examples",
+    "text": "Some examples\nConsider the system of equations given by\n\n\n\\[\n\\begin{aligned}\n    x + 3y &= 3 \\\\\n    2x + 6y &= -8\n\\end{aligned}\n\\]\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nthe rows of \\(A\\) are called linearly dependent"
+  },
+  {
+    "objectID": "Linear_Algebra_slimversion.html#some-examples-2",
+    "href": "Linear_Algebra_slimversion.html#some-examples-2",
+    "title": "Linear Algebra",
+    "section": "Some examples",
+    "text": "Some examples\nConsider the system of equations given by\n\\[\n\\begin{aligned}\n    x - 2y &= -4 \\\\\n    -2x + 4y &= 8\n\\end{aligned}\n\\]\nAny vector \\(v = (x,y)\\) such that \\(x = 2y - 4\\) will solve the above system\nSince we can find infinite such vectors this system has infinitely many solutions\nThis is because the rows of the corresponding matrix are linearly dependent"
+  },
+  {
+    "objectID": "Linear_Algebra_slimversion.html#nonsingular-matrices",
+    "href": "Linear_Algebra_slimversion.html#nonsingular-matrices",
+    "title": "Linear Algebra",
+    "section": "Nonsingular matrices",
+    "text": "Nonsingular matrices\n\nA square matrix \\(A\\) is nonsingular if and only if the rows and columns of \\(A\\) are linearly independent\nTo every square matrix we can assign a unique number called the determinant.\nFor \\(2 \\times 2\\) matrices, the determinant is given by,\n\n\n\\[\n\\begin{bmatrix}\n    \\color{red}{a} & \\color{blue}{b} \\\\\n    \\color{blue}{c} & \\color{red}{d}\n\\end{bmatrix}\n=\n{\\color{red}{ad}} - {\\color{blue}{bc}}\n\\]\n\n\nthe determinant of a \\(3 \\times 3\\) matrix\n\n\n\\[\ndet \\begin{bmatrix}\n    a & b & c \\\\\n    d & e & f \\\\\n    g & h & i\n\\end{bmatrix}\n= a(ei - fh) - b(di - fg) + c(dh - eg)\n\\]\n\n\nIf the determinant of \\(A\\) is not zero, then we say that \\(A\\) is nonsingular\n\n\n\nThe determinant of a \\(2 \\times 2\\) matrix is also the area of the parallelogram spanned by the column vectors\nThe determinant of a \\(2 \\times 2\\) matrix is also the factor by which the matrix scales the area of any set of points in the plane\n\nif the determinant is negative, the matrix also flips the orientation of the plane\nif the determinant is zero, the matrix collapses the plane to a line or lower-dimensional space\nif the determinant is one, the matrix preserves the area of the plane\nif the determinant is greater than one, the matrix expands the area of the plane\nif the determinant is less than one, the matrix shrinks the area of the plane\n\n\n\n#| echo: false\n#| results: hide\n#| out-height: 88%\n\nimport matplotlib.pyplot as plt\nimport numpy as np\n\nfig, ax = plt.subplots()\n\n# Draw the unit square\nsquare = np.array([[0, 1, 1, 0, 0], [0, 0, 1, 1, 0]])\nax.plot(square[0], square[1], 'b-', lw=2, alpha=0.6)\n\n# Draw the unit square transformed by a matrix\nA = np.array([[1, 2], [2, 1]])\ntransformed_square = A @ square\nax.plot(transformed_square[0], transformed_square[1], 'r-', lw=2, alpha=0.6)\n\n# Annotate the plot\nax.text(0.5, 0.5, r'$1$', fontsize=14)\nax.text(1.5, 1.5, r'$2$', fontsize=14)\nax.text(1.5, 0.5, r'$3$', fontsize=14)\nax.text(0.5, 1.5, r'$4$', fontsize=14)\n\nax.set(xlim=(0, 3), ylim=(0, 3))\n\n[(0.0, 3.0), (0.0, 3.0)]\n\nax.set_xticks([])\n\n[]\n\nax.set_yticks([])\n\n[]\n\nplt.show()"
+  },
+  {
+    "objectID": "Linear_Algebra_slimversion.html#nonsingular-matrices-1",
+    "href": "Linear_Algebra_slimversion.html#nonsingular-matrices-1",
+    "title": "Linear Algebra",
+    "section": "Nonsingular matrices",
+    "text": "Nonsingular matrices\n\na square matrix \\(A\\) has a nonzero determinant, if and only if it possesses an inverse matrix \\(A^{-1}\\), with the property that \\(A A^{-1} =A^{-1} A = I\\).\nAs a consequence, if we pre-multiply both sides of \\(Ax = b\\) by \\(A^{-1}\\), we get\n\n\n\\[\nx = A^{-1} b\n\\]\nThis is the solution to \\(Ax = b\\) — the solution we are looking for\n\nA more detailed explanation of matrix inverse can be found here"
+  },
+  {
+    "objectID": "Linear_Algebra_slimversion.html#when-the-matrices-have-more-rows-than-columns",
+    "href": "Linear_Algebra_slimversion.html#when-the-matrices-have-more-rows-than-columns",
+    "title": "Linear Algebra",
+    "section": "When the matrices have more rows than columns",
+    "text": "When the matrices have more rows than columns\n\\(A_{n \\times k}\\) matrix with \\(n &gt; k\\)\n\nthis is important in many settings, including linear regression\nGiven arbitrary \\(y \\in \\mathbb R ^n\\), we seek an \\(x \\in \\mathbb R ^k\\) such that \\(y = Ax\\)\n\nthe existence of a solution is highly unlikely\n\nfocusing on the case where the columns of \\(A\\) are linearly independent.\n\nthe span of the columns of \\(A\\) is a \\(k\\)-dimensional subspace of \\(\\mathbb R ^n\\).\n\n\n\n\nThis span is very “unlikely” to contain arbitrary \\(y \\in \\mathbb R ^n\\).\nTo see why, recall the figure above, where $ k=2 $ and \\(n=3\\).\nImagine an arbitrarily chosen $ y R ^3 $, located somewhere in that three-dimensional space.\nWhat’s the likelihood that \\(y\\) lies in the span of \\(\\{a_1, a_2\\}\\) (i.e., the two dimensional plane through these points)?\nIn a sense, it must be very small, since this plane has zero “thickness”.\n\n\n\nin the \\(n &gt; k\\) case we usually give up on existence\n\ninstead, seek the best approximation, looking for \\(x\\) that makes the distance \\(\\| y - Ax\\|\\) as small as possible\none can use either calculus or the theory of orthogonal projections"
+  },
+  {
+    "objectID": "Linear_Algebra_slimversion.html#when-the-matrices-have-more-rows-than-columns-1",
+    "href": "Linear_Algebra_slimversion.html#when-the-matrices-have-more-rows-than-columns-1",
+    "title": "Linear Algebra",
+    "section": "When the matrices have more rows than columns",
+    "text": "When the matrices have more rows than columns\n\\(A_{n \\times k}\\) matrix with \\(n &lt; k\\)\n\nthere are either no solutions or infinitely many — in other words, uniqueness never holds\nFor example, consider the case where \\(k=3\\) and \\(n=2\\)\n\nthe columns of \\(A\\) consists of 3 vectors in \\(\\mathbb R ^2\\)\nthis set can never be linearly independent\nhence, one column is a linear combination of the other two\nlet’s say that \\(a_1 = \\alpha a_2 + \\beta a_3\\)\nthen if \\(y = Ax = x_1 a_1 + x_2 a_2 + x_3 a_3\\), we can also write\n\n\n\n\\[\ny\n= x_1 (\\alpha a_2 + \\beta a_3) + x_2 a_2 + x_3 a_3\n= (x_1 \\alpha + x_2) a_2 + (x_1 \\beta + x_3) a_3\n\\]"
+  },
+  {
+    "objectID": "Linear_Algebra_slimversion.html#positive-definite-matrices",
+    "href": "Linear_Algebra_slimversion.html#positive-definite-matrices",
+    "title": "Linear Algebra",
+    "section": "Positive Definite Matrices",
+    "text": "Positive Definite Matrices\nLet \\(A\\) be a symmetric \\(n \\times n\\) matrix\n\n\\(A\\) is\n\npositive definite if \\(x' A x &gt; 0\\) for every \\(x \\in \\mathbb R ^n \\setminus \\{0\\}\\)\n\npositive semi-definite or nonnegative definite if \\(x' A x \\geq 0\\) for every \\(x \\in \\mathbb R ^n\\)\n\nAnalogous definitions exist for negative definite and negative semi-definite matrices\nif \\(A\\) is positive definite, then all of its eigenvalues are strictly positive\n\nhence \\(A\\) is invertible (with positive definite inverse)"
+  },
+  {
+    "objectID": "Linear_Algebra_slimversion.html#references",
+    "href": "Linear_Algebra_slimversion.html#references",
+    "title": "Linear Algebra",
+    "section": "References",
+    "text": "References\n\n\nStachurski, John. 2016. A Primer in Econometric Theory. Cambridge, Massachusetts: The MIT Press."
+  },
+  {
+    "objectID": "Calculus_slimversion.html#outline",
+    "href": "Calculus_slimversion.html#outline",
+    "title": "Maths - Calculus",
+    "section": "Outline",
+    "text": "Outline\n\nFunctions\nLimits\nDerivatives\nOptimization\nHigher-order derivatives\nSome common rules\nPartial derivatives\nIntegrals\nConstraint optimization"
+  },
+  {
+    "objectID": "Calculus_slimversion.html#functions",
+    "href": "Calculus_slimversion.html#functions",
+    "title": "Maths - Calculus",
+    "section": "Functions",
+    "text": "Functions\n\nWhat is a function?\n\ndomain\nrange\nmapping\n\nWhat is not a function?"
+  },
+  {
+    "objectID": "Calculus_slimversion.html#limits",
+    "href": "Calculus_slimversion.html#limits",
+    "title": "Maths - Calculus",
+    "section": "Limits",
+    "text": "Limits\n\nWhat is a limit?\n\nidea of a slope\n\nDoes it always exist?\nIs it unique?"
+  },
+  {
+    "objectID": "Calculus_slimversion.html#derivatives",
+    "href": "Calculus_slimversion.html#derivatives",
+    "title": "Maths - Calculus",
+    "section": "Derivatives",
+    "text": "Derivatives\n\nWhat is Derivative?\n\nslope of a function\nrate of change\n\nwhy learning it?\n\noptimization\neconomics\nstatistics\nmachine learning\ndeep learning\n\nreminder about notation\n\n\\(\\frac{df(x)}{dx}\\)\n\\(\\frac{df}{dx}\\)\n\\(f'(x)\\)\n\\(\\frac{d}{dx}f(x)\\)\n\\(\\frac{d}{dx}f\\)"
+  },
+  {
+    "objectID": "Calculus_slimversion.html#optimization",
+    "href": "Calculus_slimversion.html#optimization",
+    "title": "Maths - Calculus",
+    "section": "Optimization",
+    "text": "Optimization\n\nHow to find the maximum or minimum of a function?\n\nlet us think about a quadratic function, \\(y=ax^2+bx+c\\)\n\n\n\n\nHow to find out the maximum or minimum of a function?\n\nfirst-order condition\ncritical points"
+  },
+  {
+    "objectID": "Calculus_slimversion.html#higher-order-derviatives",
+    "href": "Calculus_slimversion.html#higher-order-derviatives",
+    "title": "Maths - Calculus",
+    "section": "Higher-order derviatives",
+    "text": "Higher-order derviatives\n\nsecond-order derivative\n\nconcave\nconvex\ninflection point\n\nthird-order derivative\nn-th order derivative\nlocal vs global maximum/minimum\n\n\n\nOptimizing functions. Taking the first derivative and setting it equal to 0 gives us either a minimum or maximum. The second derivative allows us to discern between the two.\nhigher-order derivatives can be used to construct useful approximations (i.e. Taylor’s approximation) to complex functions that are important in understanding the properties of various statistical estimators."
+  },
+  {
+    "objectID": "Calculus_slimversion.html#some-common-rules-of-derivatives",
+    "href": "Calculus_slimversion.html#some-common-rules-of-derivatives",
+    "title": "Maths - Calculus",
+    "section": "Some common rules of derivatives",
+    "text": "Some common rules of derivatives\n\nHow to calculate Derivative?\n\npower rule\n\n\\(\\frac{dx^n}{dx}=nx^{n-1}\\)\n\nproduct rule\n\n\\(\\frac{d}{dx}f(x)g(x)=f'(x)g(x) +f(x)g'(x)\\)\n\nquotient rule\n\n\\(\\frac{d}{dx}\\frac{f(x)}{g(x)}=\\frac{f'(x)g(x)-f(x)g'(x)}{(g(x))^2}\\)\n\nchain rule\n\n\\(\\frac{d}{dx}f(g(x))=f'(g(x))g'(x)\\)\n\nspecial rules for logs and exponents\n\n\\(\\frac{d}{dx}\\ln(x)=\\frac{1}{x}\\)\n\\(\\frac{d}{dx}e^{x}=e^{x}\\)\n\n\n\n\n\n\\(\\frac{d}{dx}\\ln(f(x))=\\frac{f'(x)}{f(x)}\\)\n\\(\\frac{d}{dx}e^{f(x)}=f'(x)e^{f(x)}\\)"
+  },
+  {
+    "objectID": "Calculus_slimversion.html#exercises",
+    "href": "Calculus_slimversion.html#exercises",
+    "title": "Maths - Calculus",
+    "section": "Exercises:",
+    "text": "Exercises:\n\n\\(\\frac{d}{dx}(6x^3+5)\\)\n\\(\\frac{d}{dx}\\sqrt{(5x^3+3x+5)}\\)\nlet \\(h(x)=2x+3; g(x)=5x^2+3x\\), let \\(f(x)=h(x)*g(x)\\), \\(\\frac{df(x)}{dx}\\)\nlet \\(p(x)=\\frac{h(x)}{g(x)}\\), \\(\\frac{dp(x)}{dx}\\)\n\\(\\frac{d(g(h(x)))}{dx}\\)\n\\(\\frac{d}{dx}\\ln(x^6+8)\\)\n\\(\\frac{d}{dx}e^{6x+3}\\)\n\\(\\frac{d}{dx}x^3e^{x}\\)"
+  },
+  {
+    "objectID": "Calculus_slimversion.html#partial-derviatives",
+    "href": "Calculus_slimversion.html#partial-derviatives",
+    "title": "Maths - Calculus",
+    "section": "Partial derviatives",
+    "text": "Partial derviatives\n\nWhat is a partial derivative?\n\nLet \\(z=f(x,y)\\)\n\\(\\frac{\\partial f}{\\partial x}\\)\n\\(\\frac{\\partial f}{\\partial y}\\)\n\nExercise:\n\nlet \\(f(x,y)=x^2 y^3+3x+2y\\)\nfind \\(\\frac{\\partial f}{\\partial x}\\) and \\(\\frac{\\partial f}{\\partial y}\\)"
+  },
+  {
+    "objectID": "Calculus_slimversion.html#integrals",
+    "href": "Calculus_slimversion.html#integrals",
+    "title": "Maths - Calculus",
+    "section": "Integrals",
+    "text": "Integrals\n\nWhat is an integral?\n\narea under the curve\nanti-derivative\n\nNotation\n\n\\(\\int^b_a f(x)dx\\)\n\\(\\int_X f(x)dx\\)\n\nWe are most interested in the concept rather than actual (hand) calculation of the integrals"
+  },
+  {
+    "objectID": "Calculus_slimversion.html#constraint-optimization",
+    "href": "Calculus_slimversion.html#constraint-optimization",
+    "title": "Maths - Calculus",
+    "section": "Constraint optimization",
+    "text": "Constraint optimization\n\nWhat is constraint optimization?\n\noptimization with constraints\nLagrange multiplier\n\nThe idea is to optimize a function subject to some constraints\nThe problem can be stated as:\n\nmaximize \\(f(x,y)\\) subject to \\(g(x,y)=0\\)\nminimize \\(f(x,y)\\) subject to \\(g(x,y)=0\\)"
+  },
+  {
+    "objectID": "Calculus_slimversion.html#constraint-optimization-1",
+    "href": "Calculus_slimversion.html#constraint-optimization-1",
+    "title": "Maths - Calculus",
+    "section": "Constraint optimization",
+    "text": "Constraint optimization\n\nlet us learn some economics\nin economics, a consumer faces the problem of maximizing her utility subject to the income constraint:\n\n\n\\[\n\\max_{x_1,x_2} u(x_1,x_2) \\quad s.t. \\; p_1x_1 + p_2x_2=y\n\\]\n\nwe can visualize and “solve” the problem using graph"
+  },
+  {
+    "objectID": "Calculus_slimversion.html#constraint-optimization-2",
+    "href": "Calculus_slimversion.html#constraint-optimization-2",
+    "title": "Maths - Calculus",
+    "section": "Constraint optimization",
+    "text": "Constraint optimization\n\nthe optimal solution is at the point where the budget line is tangent to the indifference curve\n\n\n\\[\n\\frac{MU_1}{MU_2}=\\frac{p_1}{p_2}\n\\]\n\\(\\quad\\) where \\(MU_1\\) and \\(MU_2\\) are the marginal utilities of good 1 and good 2 respectively\n\nwe can solve this problem using the “identity”\n\n\n\n\\[\nu(x_1, x^U_2(x_1))=\\bar{u}\n\\]\n\nwe need to solve two equations simultaneously"
+  },
+  {
+    "objectID": "Calculus_slimversion.html#constraint-optimization-3",
+    "href": "Calculus_slimversion.html#constraint-optimization-3",
+    "title": "Maths - Calculus",
+    "section": "Constraint optimization",
+    "text": "Constraint optimization\n\nthe Lagrange multiplier is a method to solve the optimization problem with constraints\nthe Lagrange function is defined as:\n\n\n\\[\nL(x_1,x_2,\\lambda)=u(x_1,x_2)+\\lambda(y-(p_1x_1+p_2x_2))\n\\]\n\nthe first-order conditions are\n\n\n\n\\[\n\\begin{align*}\n\\frac{\\partial u}{\\partial x_1} - \\lambda p_1 &=0 \\\\\n\\frac{\\partial u}{\\partial x_2} - \\lambda p_2 &=0 \\\\\ny-(p_1x_1+p_2x_2) &=0\n\\end{align*}\n\\]"
+  },
+  {
+    "objectID": "Calculus_slimversion.html#constraint-optimization-4",
+    "href": "Calculus_slimversion.html#constraint-optimization-4",
+    "title": "Maths - Calculus",
+    "section": "Constraint optimization",
+    "text": "Constraint optimization\n\nthe Lagrange multiplier could be interpreted as the “marginal utility of income” in our example\nin economics, the Lagrange multiplier could be interpreted as the “shadow price” of the constraint\n\ne.g. the Lagrange multiplier could be interpreted as the “marginal cost” in production optimization\n\nReminder: the Lagrange multiplier could be zero, positive or negative\nthe Lagrange multiplier could be used in very general optimization problems\n\n\n\\[\n\\max_{x_1, \\dots, x_n} f(x_1,\\dots, x_n) \\quad s.t. \\; g_i(x_1,\\dots, x_n)=c_i, \\quad i=1,\\dots,m\n\\]"
+  },
+  {
+    "objectID": "Calculus_slimversion.html#references",
+    "href": "Calculus_slimversion.html#references",
+    "title": "Maths - Calculus",
+    "section": "References",
+    "text": "References\n\n\nChiang, Alpha, Chung-i, and Kevin. Wainwright. 2005. Fundamental Methods of Mathematical Economics. 4th ed. / [rev. by] Kevin Wainwright. New York: McGraw-Hill.\n\n\nSimon, Carl P., and Lawrence. Blume. 1994. Mathematics for Economists. 1st ed. New York ; W.W. Norton."
+  },
+  {
+    "objectID": "bootcamp_python/Lib/site-packages/soupsieve-2.7.dist-info/licenses/LICENSE.html",
+    "href": "bootcamp_python/Lib/site-packages/soupsieve-2.7.dist-info/licenses/LICENSE.html",
+    "title": "Welcome to HKU MSDA Bootcamp 2025",
+    "section": "",
+    "text": "MIT License\nCopyright (c) 2018 - 2025 Isaac Muse isaacmuse@gmail.com\nPermission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the “Software”), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:\nThe above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.\nTHE SOFTWARE IS PROVIDED “AS IS”, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE."
+  },
+  {
+    "objectID": "bootcamp_python/Lib/site-packages/pyzmq-27.0.0.dist-info/licenses/LICENSE.html",
+    "href": "bootcamp_python/Lib/site-packages/pyzmq-27.0.0.dist-info/licenses/LICENSE.html",
+    "title": "Welcome to HKU MSDA Bootcamp 2025",
+    "section": "",
+    "text": "BSD 3-Clause License\nCopyright (c) 2009-2012, Brian Granger, Min Ragan-Kelley\nAll rights reserved.\nRedistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:\n\nRedistributions of source code must retain the above copyright notice, this list of conditions and the following disclaimer.\nRedistributions in binary form must reproduce the above copyright notice, this list of conditions and the following disclaimer in the documentation and/or other materials provided with the distribution.\nNeither the name of the copyright holder nor the names of its contributors may be used to endorse or promote products derived from this software without specific prior written permission.\n\nTHIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS “AS IS” AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE."
+  },
+  {
+    "objectID": "bootcamp_python/Lib/site-packages/idna-3.10.dist-info/LICENSE.html",
+    "href": "bootcamp_python/Lib/site-packages/idna-3.10.dist-info/LICENSE.html",
+    "title": "Welcome to HKU MSDA Bootcamp 2025",
+    "section": "",
+    "text": "BSD 3-Clause License\nCopyright (c) 2013-2024, Kim Davies and contributors. All rights reserved.\nRedistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:\n\nRedistributions of source code must retain the above copyright notice, this list of conditions and the following disclaimer.\nRedistributions in binary form must reproduce the above copyright notice, this list of conditions and the following disclaimer in the documentation and/or other materials provided with the distribution.\nNeither the name of the copyright holder nor the names of its contributors may be used to endorse or promote products derived from this software without specific prior written permission.\n\nTHIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS “AS IS” AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE."
+  },
+  {
+    "objectID": "bootcamp_python/Lib/site-packages/httpcore-1.0.9.dist-info/licenses/LICENSE.html",
+    "href": "bootcamp_python/Lib/site-packages/httpcore-1.0.9.dist-info/licenses/LICENSE.html",
+    "title": "Welcome to HKU MSDA Bootcamp 2025",
+    "section": "",
+    "text": "Copyright © 2020, Encode OSS Ltd. All rights reserved.\nRedistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:\n\nRedistributions of source code must retain the above copyright notice, this list of conditions and the following disclaimer.\nRedistributions in binary form must reproduce the above copyright notice, this list of conditions and the following disclaimer in the documentation and/or other materials provided with the distribution.\nNeither the name of the copyright holder nor the names of its contributors may be used to endorse or promote products derived from this software without specific prior written permission.\n\nTHIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS “AS IS” AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE."
+  },
+  {
+    "objectID": "bootcamp_python/Lib/site-packages/httpx-0.28.1.dist-info/licenses/LICENSE.html",
+    "href": "bootcamp_python/Lib/site-packages/httpx-0.28.1.dist-info/licenses/LICENSE.html",
+    "title": "Welcome to HKU MSDA Bootcamp 2025",
+    "section": "",
+    "text": "Copyright © 2019, Encode OSS Ltd. All rights reserved.\nRedistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:\n\nRedistributions of source code must retain the above copyright notice, this list of conditions and the following disclaimer.\nRedistributions in binary form must reproduce the above copyright notice, this list of conditions and the following disclaimer in the documentation and/or other materials provided with the distribution.\nNeither the name of the copyright holder nor the names of its contributors may be used to endorse or promote products derived from this software without specific prior written permission.\n\nTHIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS “AS IS” AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE."
+  },
+  {
+    "objectID": "bootcamp_python/Lib/site-packages/seaborn-0.13.2.dist-info/LICENSE.html",
+    "href": "bootcamp_python/Lib/site-packages/seaborn-0.13.2.dist-info/LICENSE.html",
+    "title": "Welcome to HKU MSDA Bootcamp 2025",
+    "section": "",
+    "text": "Copyright (c) 2012-2023, Michael L. Waskom All rights reserved.\nRedistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:\n\nRedistributions of source code must retain the above copyright notice, this list of conditions and the following disclaimer.\nRedistributions in binary form must reproduce the above copyright notice, this list of conditions and the following disclaimer in the documentation and/or other materials provided with the distribution.\nNeither the name of the project nor the names of its contributors may be used to endorse or promote products derived from this software without specific prior written permission.\n\nTHIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS “AS IS” AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE."
   }
 ]
