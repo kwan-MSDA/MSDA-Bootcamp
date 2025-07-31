@@ -4,7 +4,7 @@
     "href": "index.html",
     "title": "MSDA Bootcamp 2025",
     "section": "",
-    "text": "Date\nTime\nTopic\n\n\n\n\nAugust 26, 2025\n09:30 - 12:20\nOverview and Review of Calculus\n\n\nAugust 26, 2025\n14:00 - 16:50\nReview of Linear Algebra\n\n\nAugust 27, 2025\n14:00 - 16:50\nIntroduction to R (and RStudio)\n\n\nAugust 28, 2025\n14:00 - 16:50\nData Visualization with ggplot2\n\n\nAugust 29, 2025\n09:30 - 12:20\nData Wrangling with tidyverse\n\n\nAugust 29, 2025\n14:00 - 16:50\nElements of Probability and Statistics"
+    "text": "This course covers essential mathematical foundations for data analytics, including Calculus and Linear Algebra. Explore the materials below to get started."
   },
   {
     "objectID": "about.html",
@@ -17,8 +17,8 @@
     "objectID": "index.html#schedule",
     "href": "index.html#schedule",
     "title": "MSDA Bootcamp 2025",
-    "section": "",
-    "text": "Date\nTime\nTopic\n\n\n\n\nAugust 26, 2025\n09:30 - 12:20\nOverview and Review of Calculus\n\n\nAugust 26, 2025\n14:00 - 16:50\nReview of Linear Algebra\n\n\nAugust 27, 2025\n14:00 - 16:50\nIntroduction to R (and RStudio)\n\n\nAugust 28, 2025\n14:00 - 16:50\nData Visualization with ggplot2\n\n\nAugust 29, 2025\n09:30 - 12:20\nData Wrangling with tidyverse\n\n\nAugust 29, 2025\n14:00 - 16:50\nElements of Probability and Statistics"
+    "section": "Schedule",
+    "text": "Schedule\n\n\n\n\n\nDate\nTime\nTopic\n\n\n\n\nAugust 26, 2025\n09:30 - 12:20\nOverview and Review of Calculus\n\n\nAugust 26, 2025\n14:00 - 16:50\nReview of Linear Algebra\n\n\nAugust 27, 2025\n14:00 - 16:50\nIntroduction to R (and RStudio)\n\n\nAugust 28, 2025\n14:00 - 16:50\nData Visualization with ggplot2\n\n\nAugust 29, 2025\n09:30 - 12:20\nData Wrangling with tidyverse\n\n\nAugust 29, 2025\n14:00 - 16:50\nElements of Probability and Statistics"
   },
   {
     "objectID": "slides.html",
@@ -2630,5 +2630,12 @@
     "title": "Maths - Calculus",
     "section": "References",
     "text": "References\n\n\nChiang, Alpha, Chung-i, and Kevin. Wainwright. 2005. Fundamental Methods of Mathematical Economics. 4th ed. / [rev. by] Kevin Wainwright. New York: McGraw-Hill.\n\n\nSimon, Carl P., and Lawrence. Blume. 1994. Mathematics for Economists. 1st ed. New York ; W.W. Norton."
+  },
+  {
+    "objectID": "index.html#welcome-to-msda-bootcamp",
+    "href": "index.html#welcome-to-msda-bootcamp",
+    "title": "MSDA Bootcamp 2025",
+    "section": "",
+    "text": "This course covers essential mathematical foundations for data analytics, including Calculus and Linear Algebra. Explore the materials below to get started."
   }
 ]
