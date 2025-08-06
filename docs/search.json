@@ -3582,5 +3582,208 @@
     "title": "MSDA_Bootcamp",
     "section": "",
     "text": "This is a Quarto website.\nTo learn more about Quarto websites visit https://quarto.org/docs/websites.\n\n\n[1] 2"
+  },
+  {
+    "objectID": "R_introduction_v3.html#introduction",
+    "href": "R_introduction_v3.html#introduction",
+    "title": "R - An Introduction",
+    "section": "Introduction",
+    "text": "Introduction\n\nR is a programming language and software environment for statistical computing and graphics\n\nwidely used in academia and industry\nfor data analysis, statistical modeling, and visualization\nfor machine learning, data mining, and big data analysis\nfor reproducible research and scientific computing\n\nR is an implementation of the S programming language\n\nS was developed at Bell Laboratories by John Chambers and colleagues\nS was designed for data analysis and graphics\nS was the precursor to the commercial statistical software package S-PLUS"
+  },
+  {
+    "objectID": "R_introduction_v3.html#introduction-1",
+    "href": "R_introduction_v3.html#introduction-1",
+    "title": "R - An Introduction",
+    "section": "Introduction",
+    "text": "Introduction\n\nR was created by Ross Ihaka and Robert Gentleman at the University of Auckland, New Zealand\n\nnamed partly after the first names of the first two R authors and partly as a play on the name of S\na GNU project, a free software movement initiated by Richard Stallman in 1983\nfreely available under the GNU General Public License\na large number of packages available"
+  },
+  {
+    "objectID": "R_introduction_v3.html#introduction-2",
+    "href": "R_introduction_v3.html#introduction-2",
+    "title": "R - An Introduction",
+    "section": "Introduction",
+    "text": "Introduction\n\ntidyverse is a collection of R packages designed for data science\n\ntidyverse packages share an underlying design philosophy, grammar, and data structures\ntidyverse packages are designed to work together\n\nfocus on the tidyverse\n\nmainly because it is easier to understand\ndo most data manipulation we need in social science research with these tools\n\nA good reference for tidyverse is the book by Wickham (2019)\n\nR for Data Science"
+  },
+  {
+    "objectID": "R_introduction_v3.html#introduction-3",
+    "href": "R_introduction_v3.html#introduction-3",
+    "title": "R - An Introduction",
+    "section": "Introduction",
+    "text": "Introduction\n\nfor quick reference, visit Posit Primers on Data Science\n\nR Basics\nTransform Tables\nVisualize Data\n\nfor more specific topics, visit Data Science\n\nData Wrangling\nData Visualization\nModelling\n\nwe use cover some base R functions first, then move on to the tidyverse"
+  },
+  {
+    "objectID": "R_introduction_v3.html#basic-arithmetic",
+    "href": "R_introduction_v3.html#basic-arithmetic",
+    "title": "R - An Introduction",
+    "section": "Basic Arithmetic",
+    "text": "Basic Arithmetic\n\nR can be regarded as a calculator\n\nit recognizes all of the standard arithmetic operators\n\n\n\n\n\nCode\n# Basic arithmetic operations in R\n\n1+2 \n\n6-7 \n\n5/2 \n\n2^3\n\n2+5*2^3\n\n3*(4+5) \n\n(3+4)*5\n\nsqrt(4)\n\n\n\nmodulo operators (integer division & remainder)\n\n\n\n\n\nCode\n# Modulo operators in R\n\n5 %/% 2  # integer division\n5 %% 2   # remainder\n\n100 %/% 60 ## How many whole hours in 100 minutes?\n\n100 %% 60 ## How many minutes are left over?\n\n\n\n\nIn RStudio, you can start a new script using the dropdown menu File &gt; New File &gt; R Script\nuse your R script to save finalized commands\n\ntype in the console to practice and debug, then use the script to save what worked\n\nR scripts allow you to save comments, or annotations, to your code\n\nanything following the # symbol in a script will not be treated like an R command—essentially, R will skip over it"
+  },
+  {
+    "objectID": "R_introduction_v3.html#logic",
+    "href": "R_introduction_v3.html#logic",
+    "title": "R - An Introduction",
+    "section": "Logic",
+    "text": "Logic\n\nR can also be used for logical operations\n\nit recognizes the standard logical operators\n\n\n\n\n\nCode\n1 &gt; 2\n\n1 &gt; 2 & 1 &gt; 0.5 # The \"&\" stands for \"and\"\n\n1 &gt; 2 | 1 &gt; 0.5 # The \"|\" stands for \"or\" (not a pipe a la the shell)\n\nisTRUE (1 &lt; 2)\n\n\n\nHere are the detailed list of logical operators in R\n\n& and | are used for element-wise logical operations\n&& and || are used for short-circuit logical operations\n\ne.g. 1 &gt; 2 && 1 &gt; 0.5 will return FALSE without evaluating the second condition\n\n! is used for negation (i.e. “not”)\n==, !=, &lt;, &lt;=, &gt;, and &gt;= are used for comparison\n\nHere is further information about logical vectors in R\n\nLogical vectors are vectors that contain only TRUE, FALSE, or NA values\nLogical vectors are often used for subsetting data frames or matrices"
+  },
+  {
+    "objectID": "R_introduction_v3.html#logic-1",
+    "href": "R_introduction_v3.html#logic-1",
+    "title": "R - An Introduction",
+    "section": "Logic",
+    "text": "Logic\n\nOrder of precedence\n\nlogic statements follow a strict order of precedence\nlogical operators (&gt;, ==, etc) are evaluated before Boolean operators (& and |)\n\nfailure to recognise this can lead to unexpected behaviour\n\n\n\n\n\n\nCode\n1 &gt; 0.5 & 2\n\n\n\n\n\n\nCode\n1 &gt; 0.5 & 1 &gt; 2\n\n\n\nLesson: explicit about each component of your logic statement(s)\n\n\n\n2 is converted into as.logical(2)\nas.logical(2) is TRUE because it is not zero\n\n\n\nNegation: !\n\nthis will come in very handy when we start filtering data objects\n\n\n\n\n\n\nCode\nis.na(1:10)\n!is.na(1:10)\n\nNegate(is.na)(1:10)"
+  },
+  {
+    "objectID": "R_introduction_v3.html#logical-operators",
+    "href": "R_introduction_v3.html#logical-operators",
+    "title": "R - An Introduction",
+    "section": "logical operators",
+    "text": "logical operators\n\nValue matching: %in%\n\nwhether an object is contained within (i.e. matches one of) a list of items, use %in%\n\n\n\n\n\nCode\n4 %in% 1:10\n\n4 %in% 5:10\n\n\n\nThere’s no equivalent “not in” command\n\nbut we can create one\n\n\n\n\n\n\nCode\n`%ni%` = Negate(`%in%`) ## The backticks (`) help to specify functions.\n\n4 %ni% 5:10\n\n\n\nEvaluation\n\nuse two equal signs for logical evaluation\n\n\n\n\n\n\nCode\n1 == 1 ## This does.\n\n1 != 2 ## Note the single equal sign when combined with a negation\n\n\n\n\nEvaluation caveat: Floating-point numbers\nWhat do you think will happen if we evaluate 0.1 + 0.2 == 0.3?\n0.1 + 0.2 == 0.3\nProblem: Computers represent numbers as binary (i.e. base 2) floating-points\n\nMore here.\n\nFast and memory efficient, but can lead to unexpected behaviour.\n\n\nSimilar to the way that standard decimal (i.e. base 10) representation can’t precisely capture certain fractions\n\ne.g. \\(\\frac{1}{3} = 0.3333...\\)\n\nSolution: Use all.equal() for evaluating floats (i.e fractions)\n\nall.equal(0.1 + 0.2, 0.3)"
+  },
+  {
+    "objectID": "R_introduction_v3.html#assignment-operators",
+    "href": "R_introduction_v3.html#assignment-operators",
+    "title": "R - An Introduction",
+    "section": "Assignment operators",
+    "text": "Assignment operators\n\nAssignment: &lt;- or =\n\nuse &lt;- for assignment, but = is also acceptable\n&lt;- is the preferred operator in R, but = is more common in other programming languages\n\n\n\n\n\nCode\na &lt;- 10 + 5\na\n\n\n\nnevertheless, we can use = for assignment\n\n\n\n\n\nCode\nb = 10 + 10 \n\nb\n\n\n\n\nan arrow can point in the other direction too (i.e. -&gt;)\nthe following code chunk is equivalent to the previous one, although used much less frequently\n\n\n\nCode\n10 + 5 -&gt; a\n\n\n\nNote that the assigned object must be on the left with “=”"
+  },
+  {
+    "objectID": "R_introduction_v3.html#help",
+    "href": "R_introduction_v3.html#help",
+    "title": "R - An Introduction",
+    "section": "Help",
+    "text": "Help\n\nUse help or ? to get help on a function\n\ne.g. ?mean will give you the documentation for the mean() function\n\nFor more information on a (named) function or object in R, consult the “help” documentation. For example:\n\n\n\n\nCode\nhelp(plot)\n\n?plot \n\n\n\nComments in R are demarcated by #.\nHit Ctrl+Shift+c in RStudio to (un)comment whole sections of highlighted code\nVignettes\n\nfor many packages, you can also try the vignette() function, which will provide an introduction to a package and it’s purpose through a series of helpful examples\n\ne.g. vignette(\"ggplot2\") will give you a detailed introduction to the ggplot2 package\n\n\n\n\n\nsee the Examples section at the bottom of the help file?\n\nYou can run them with the example() function\nTry it: example(plot)"
+  },
+  {
+    "objectID": "R_introduction_v3.html#object-oriented-programming-oop-in-r",
+    "href": "R_introduction_v3.html#object-oriented-programming-oop-in-r",
+    "title": "R - An Introduction",
+    "section": "Object-oriented programming (OOP) in R",
+    "text": "Object-oriented programming (OOP) in R\n\nR is an object-oriented programming language\n\neverything in R is an object\nobjects can be manipulated and transformed using functions\nfunctions are also objects in R\n\nR has three main object classes\n\nvectors\nlists\ndata frames\n\nR also has other object classes, such as matrices, arrays, and factors\nEach object class has its own set of rules (“methods”) for determining valid operations\n\ne.g. you can perform many of the same operations on matrices and data frames\nBut there are some operations that only work on a matrix, and vice versa\nAt the same time, you can (usually) convert an object from one type to another\n\n\n\n\n\nCode\n## Create a small data frame called \"d\".\n\nd = data.frame(x = 1:2, y = 3:4) \n\nd\n\n\n\n\n\n\nCode\n## Convert it to (i.e. create) a matrix call \"m\".\n\nm = as.matrix(d)\n\nm\n\n\n\n\nR can store information as an object with a name of our choice\n\nOnce we have created an object, we just refer to it by name\nwe are using objects as “shortcuts” to some piece of information or data\n\nthere are many different types (or classes) of objects\narithmetic operations like addition and subtraction cannot be used for character strings\nMost obviously, there are actually multiple OOP frameworks in R\n\nS3, S4, R6…\nHadley Wickham’s “Advanced R” provides a very thorough overview of the main ones\n\nBut for our purposes, it is much more helpful to think about\n\nthe shared characteristics of these different systems and\nthe broad implications of OOP in R.\n\n\nWhat we lose in detail, we hopefully gain in perspective\nBut do read Hadley’s book if you get the chance + It’s incredibly helpful (as are all his books)"
+  },
+  {
+    "objectID": "R_introduction_v3.html#object-class-type-and-structure",
+    "href": "R_introduction_v3.html#object-class-type-and-structure",
+    "title": "R - An Introduction",
+    "section": "Object class, type, and structure",
+    "text": "Object class, type, and structure\n\nUse the class, typeof, and str commands if you want understand more about a particular object\n\n\n\n\nCode\nd = data.frame(x = 1:2, y = 3:4) \n\nclass(d) ## Evaluate its class\n\ntypeof(d) ## Evaluate its type\n\nstr(d) ## Show its structure\n\n\n\nwe can inspect/print an object directly in the console\n\ne.g. Type d\n\nThe View() function is also very helpful\n\nthis is the same as clicking on the object in the RStudio Environment pane\ne.g. View(d)\n\n\n\n\nPS — Confused by the fact that typeof(d) returns “list”? See here."
+  },
+  {
+    "objectID": "R_introduction_v3.html#global-environment",
+    "href": "R_introduction_v3.html#global-environment",
+    "title": "R - An Introduction",
+    "section": "Global environment",
+    "text": "Global environment\n\nThe global environment is where all objects are stored\n\nyou can see the global environment in the RStudio Environment pane\nyou can also see the global environment by typing ls() in the console\n\nWorking with multiple objects\n\nyou can create multiple objects in the global environment\nyou can manipulate and transform these objects using functions\nyou can also use the rm() function to remove objects from the global environment\n\nR’s ability to keep multiple objects in memory at the same time is a huge plus when it comes to effective data work\n\ne.g. We can copy an existing data frame, or create new one entirely from scratch - either will exist happily with our existing objects in the global environment\n\n\n\n\n\nCode\nd2 = data.frame(x = rnorm(10), y = runif(10))"
+  },
+  {
+    "objectID": "R_introduction_v3.html#everything-has-a-name",
+    "href": "R_introduction_v3.html#everything-has-a-name",
+    "title": "R - An Introduction",
+    "section": "Everything has a name",
+    "text": "Everything has a name\n\nEvery object in R has a name\n\nyou can use the name to refer to the object in the global environment\nobject names are case sensitive\n\nThe name of our object must follow certain restrictions\n\nit cannot begin with a number\nit should not contain spaces\nspecial characters such as % and $ should not be used\n\nReserved words\n\nwe can assign objects to different names\nHowever, there are a number of special words that are “reserved” in R\n\nThese are are fundamental commands, operators and relations in base R that you cannot (re)assign, even if you wanted to\nSee here for a full list\n\n\n\n\n\n\nyou can also use the name to refer to the object in a function\nfunction itself is an object\n\ne.g. mean is a function that calculates the mean of a vector\nwe can assign it to a new name, e.g. average = mean\nbut we cannot assign it to a reserved word, e.g. if = mean\nthis will lead to an error"
+  },
+  {
+    "objectID": "R_introduction_v3.html#everything-has-a-name-1",
+    "href": "R_introduction_v3.html#everything-has-a-name-1",
+    "title": "R - An Introduction",
+    "section": "Everything has a name",
+    "text": "Everything has a name\n\nSemi-reserved words\n\nthere is a class of words and strings that are called “semi-reserved”\n\n\n\n\n\nCode\nmy_vector = c(1, 2, 5)\nmy_vector\n\n\n\nwhat happens if you type the following?\n\n\n\n\n\nCode\nc = 4\nc(1, 2 ,5)\n\n\n\nR is “smart” enough to distinguish between the variable c = 4 that we created and the built-in function c() that calls for concatenation\nHowever, R won’t always be able to distinguish between conflicting definitions\n\n\n\n\n\nCode\npi\npi = 2\npi\n\n\n\nBottom line: Don’t use (semi-)reserved characters!\n\n\n\nthese are named functions or constants (e.g. pi) that you can re-assign if you really wanted to… but already come with important meanings from base R\nThe c() function is a good example of a semi-reserved character\nArguably the most important semi-reserved character is c(), which we use for concatenation\n\ni.e. creating vectors and binding different objects together"
+  },
+  {
+    "objectID": "R_introduction_v3.html#namespace-conflicts",
+    "href": "R_introduction_v3.html#namespace-conflicts",
+    "title": "R - An Introduction",
+    "section": "Namespace conflicts",
+    "text": "Namespace conflicts\n\nR has a large number of packages, each with its own set of functions\n\nsometimes, different packages have functions with the same name\nthis can lead to “namespace conflicts” where R doesn’t know which function to use\n\ne.g. Look what happens we load the dplyr package\n\n\n\n\nCode\nlibrary(dplyr)\n\n\n\nThe messages that you see about some object being masked from ‘package:X’ are warning you about a namespace conflict\n\ne.g. Both dplyr and the stats package have functions named “filter” and “lag”\n\nWhenever a namespace conflict arises, the most recently loaded package will gain preference\n\nso the filter() function now refers specifically to the dplyr variant\nwhat if we want the stats variant?\n\n\n\n\nThe potential for namespace conflicts is a result of the OOP approach\n\nAlso reflects the fundamental open-source nature of R and the use of external packages\nPeople are free to call their functions whatever they want, so some overlap is only to be expected\n\nTemporarily use stats::filter()\n\nPermanently assign filter = stats::filter"
+  },
+  {
+    "objectID": "R_introduction_v3.html#namespace-conflicts-1",
+    "href": "R_introduction_v3.html#namespace-conflicts-1",
+    "title": "R - An Introduction",
+    "section": "Namespace conflicts",
+    "text": "Namespace conflicts\nTwo common ways to resolve namespace conflicts in R:\n\nUse package::function()\n\n\nWe can explicitly call a conflicted function from a particular package using the package::function() syntax\n\n\n\n\nCode\nstats::filter(1:10, rep(1, 2))\n\n\n\n\n\n\nCode\ndplyr::starwars ## Print the starwars data frame from the dplyr package\n\nscales::comma(c(1000, 1000000)) ## Use the comma function, which comes from the scales package\n\n\n\nAssign function = package::function\n\n\nA more permanent solution is to assign a conflicted function name to a particular package\nThis will hold for the remainder of your current R session, or until you change it back\n\n\n\n\n\nCode\nfilter = stats::filter ## Note the lack of parentheses\nfilter = dplyr::filter ## Change it back again\n\n\n\n\n\nWe can also use :: for more than just conflicted cases\ne.g. Being explicit about where a function (or dataset) comes from can help add clarity to our code\ne.g. dplyr::filter(iris, Species==\"virginica\") is clearer than just filter(iris, Species==\"virginica\")\n\nAnother good rule of thumb is that you want to load your most important packages last\n\ne.g. Load the tidyverse after you’ve already loaded any other packages\n\nUser-side namespace conflicts\n\nA final thing to say about namespace conflicts is that they don’t only arise from loading packages\nThey can arise when users create their own functions with a conflicting name\n\ne.g. If I was naive enough to create a new function called c()"
+  },
+  {
+    "objectID": "R_introduction_v3.html#indexing",
+    "href": "R_introduction_v3.html#indexing",
+    "title": "R - An Introduction",
+    "section": "Indexing",
+    "text": "Indexing\n\nIndexing is a way to access specific elements of an object\n\ne.g. we can access specific elements of a vector, list, or data frame using indexing\n\nThere are two main ways to index objects in R\n\nOption 1: []\n\nThis is the most common way to index objects in R\nIt works for vectors, matrices, data frames, and lists\nIt can be used to access specific elements of an object, or to subset an object\n\nOption 2: $\n\nThis is a special operator that is used to access specific elements of a list or data frame by name\nIt is often used to access columns of a data frame by name\n\n\n\n\n\nIndexing is done using square brackets []\nIndexing can be done using either numeric or logical vectors\n\nNumeric indexing refers to the position of the element in the object\nLogical indexing refers to a logical vector that indicates which elements to keep\n\nIndexing can also be done using names\n\ne.g. we can access specific elements of a data frame using the column names"
+  },
+  {
+    "objectID": "R_introduction_v3.html#indexing-1",
+    "href": "R_introduction_v3.html#indexing-1",
+    "title": "R - An Introduction",
+    "section": "Indexing",
+    "text": "Indexing\n\nuse [] to index objects that we create in R\n\n\n\n\nCode\na = 1:10\na[4] ## Get the 4th element of object \"a\"\na[c(4, 6)] ## Get the 4th and 6th elements\n\n\n\nIt also works on larger arrays (vectors, matrices, data frames, and lists)\n\n\n\n\n\nCode\nlibrary(dplyr)\nstarwars[1, 1] ## Show the cell corresponding to the 1st row & 1st column of the data frame\n\n\n\nWhat does starwars[1:3, 1] give you?\nWhat does starwars[-1, 1] give you?\nwhat if we want to get the 1st column of the data frame?\n\n\n\n\n\nCode\nstarwars[, 1] ## Get the 1st column of the starwars data frame\n\n\n\nwe can use $ to access the columns of a data frame by name\n\n\n\n\n\nCode\nstarwars$name ## Get the \"name\" column of the starwars data frame\n\n\n\n\nWhat if you want to get the names of the columns in a data frame? . . .\n\n\n[1] Indexing in R begins at 1. Not 0 like some languages (e.g. Python and JavaScript)"
+  },
+  {
+    "objectID": "R_introduction_v3.html#indexing-2",
+    "href": "R_introduction_v3.html#indexing-2",
+    "title": "R - An Introduction",
+    "section": "Indexing",
+    "text": "Indexing\n\nlists are a more complex type of array object in R\n\nthey can contain a random assortment of objects that don’t share the same class\n\ne.g. a list can contain a vector, a data frame, and a matrix\nor even lists of lists\n\nlists are very flexible and can be used to store any type of object\n\nThe relevance to indexing is that lists require two square brackets [[]] to index the parent list item and then the standard [] within that parent item\nThis is different from the single square brackets that we use to index vectors, matrices, and data frames\n\nThe double square brackets are used to extract the object itself, rather than a subset of the list"
+  },
+  {
+    "objectID": "R_introduction_v3.html#indexing-3",
+    "href": "R_introduction_v3.html#indexing-3",
+    "title": "R - An Introduction",
+    "section": "Indexing",
+    "text": "Indexing\n\nLet’s look at an example of a list to see how it works in practice\n\nWe’ll use the my_list object, which contains three objects: a character string, a numeric vector, and a data frame\n\nAs before, we have two options for indexing lists\nOption 1: [[ ]]\n\nuse double square brackets to index a list\nthis will return the object itself, rather than a subset of the list\ne.g. my_list[[1]] will return the first object in the list\nwe can also use my_list[[2]][3] to return the third element of the second object\n\n\n\n\n\nCode\nmy_list = list(a = \"hello\", b = c(1,2,3), c = data.frame(x = 1:5, y = 6:10))\n\nmy_list[[1]] \n\nmy_list[[2]][3]"
+  },
+  {
+    "objectID": "R_introduction_v3.html#indexing-4",
+    "href": "R_introduction_v3.html#indexing-4",
+    "title": "R - An Introduction",
+    "section": "Indexing",
+    "text": "Indexing\n\nOption 2: $\n\nlists provide a nice segue to our other indexing operator: $\nLet’s continue with the my_list example\n\n\n\n\n\nCode\nmy_list\n\nmy_list$a\n\nmy_list$c$x\n\n\n\nThe $ form of indexing also works (and in the manner that you probably expect) for other object types in R\n\nIn some cases, you can also combine the two index options\n\n\n\n\n\n\nCode\nmy_list$b[3]\n\nstarwars$name[1]\n\n\n\n\nnote some key differences between the output from this example and that of our previous starwars[1, 1] example\n\nWhat are they?\nHint: Apart from the visual cues, try wrapping each command in str()\n\nThe last thing that I want to say about $ is that it provides another way to avoid the “object not found” problem that we ran into with our earlier regression example\n\ne.g. lm(y ~ x) will not work, but lm(d$y ~ d$x) will work\n\n\n. . .\n\n\nCode\nd = data.frame(x = 1:10, y = 11:20)\n\nlm(y ~ x) \n\nlm(d$y ~ d$x)"
+  },
+  {
+    "objectID": "R_introduction_v3.html#cleaning-up",
+    "href": "R_introduction_v3.html#cleaning-up",
+    "title": "R - An Introduction",
+    "section": "cleaning up",
+    "text": "cleaning up\n\nUse rm() to remove objects from the global environment\n\ne.g. rm(a) will remove the object a from the global environment\n\n\n\n\n\nCode\na = \"hello\"\nb = \"world\"\nrm(a, b)\n\n\n\nuse rm(list = ls()) to remove all objects in your working environment (except packages)\n\nBetter just to start a new R session\n\n\n\n\nbut this is frowned upon\n\n\n\nDetaching packages is more complicated\n\nthere could be many cross-dependencies (i.e. one package depends on, and might even automatically load, another package)\ne.g. detach(package:dplyr)\n\nstill, better just to restart your R session"
+  },
+  {
+    "objectID": "R_introduction_v3.html#removing-plots",
+    "href": "R_introduction_v3.html#removing-plots",
+    "title": "R - An Introduction",
+    "section": "Removing plots",
+    "text": "Removing plots\n\nUse dev.off() to remove the current plot\n\ne.g. dev.off() will remove the current plot from the plotting window\n\nUse graphics.off() to remove all plots\n\n\n\n\nCode\nplot(1:10)\ndev.off()\n\n\n\nRStudio has convenient buttons for clearing your workspace environment and removing (individual) plots"
+  },
+  {
+    "objectID": "R_introduction_v3.html#data-files-loading-and-saving",
+    "href": "R_introduction_v3.html#data-files-loading-and-saving",
+    "title": "R - An Introduction",
+    "section": "Data files: Loading and saving",
+    "text": "Data files: Loading and saving\n\nR can read and write data files in various formats\n\ne.g. CSV, Excel, SPSS, Stata, etc.\nwe will focus on CSV files for now\n\nworking directory\n\nR will look for files in the current working directory\nyou can check the current working directory using getwd()\nyou can change the working directory using setwd()\ne.g. setwd(\"path/to/your/directory\")"
+  },
+  {
+    "objectID": "R_introduction_v3.html#data-files-loading-and-saving-1",
+    "href": "R_introduction_v3.html#data-files-loading-and-saving-1",
+    "title": "R - An Introduction",
+    "section": "Data files: Loading and saving",
+    "text": "Data files: Loading and saving\n\ngo to here to download a sample dataset\nuse read.csv() to read a CSV file into R\n\ne.g. unpop &lt;- read.csv(\"UNpop.csv\")\nthis will read the CSV file and create a data frame called unpop\n\n\n\n\n\nCode\nunpop &lt;- read.csv(\"Downloads/UNpop.csv\")\n\n\n\n\n\n\nCode\nclass(unpop)\n\n\n\nRData can be used to save and load R objects\n\ne.g. save(unpop, file = \"unpop.RData\") will save the unpop data frame as an RData file\nyou can load the RData file using load(\"unpop.RData\")\n\nRData files are useful for saving and loading multiple objects at once\n\n\n\n\n\nCode\nsave(unpop, file = \"unpop.RData\")\n\n\n\n\na data frame is a special type of list where each element is a vector of the same length\n\ndata frames are used to store tabular data, where each column represents a variable and each row represents an observation\n\nR will save the entire workspace as .RData in the working directory without an explicit file name and automatically load it next time we launch\n\nThis is not recommended practice because the .RData file is invisible to users of many operating systems and R will not tell us what objects are loaded unless we explicitly issue the ls() function"
+  },
+  {
+    "objectID": "R_introduction_v3.html#data-files-loading-and-saving-2",
+    "href": "R_introduction_v3.html#data-files-loading-and-saving-2",
+    "title": "R - An Introduction",
+    "section": "Data files: Loading and saving",
+    "text": "Data files: Loading and saving\n\nuseful functions for exploring data frames\n\nnames() to view the names of the columns in a data frame\nnrow() to view the number of rows in a data frame\nncol() to view the number of columns in a data frame\ndim() to view the dimensions of a data frame (number of rows and columns)\nstr() to view the structure of a data frame\nhead() to view the first few rows of a data frame\ntail() to view the last few rows of a data frame\n\nuse write.csv() to write a data frame to a CSV file\n\ne.g. write.csv(unpop, \"UNpop.csv\")\nthis will write the unpop data frame to a CSV file called UNpop.csv"
+  },
+  {
+    "objectID": "R_introduction_v3.html#data-files-loading-and-saving-3",
+    "href": "R_introduction_v3.html#data-files-loading-and-saving-3",
+    "title": "R - An Introduction",
+    "section": "Data files: Loading and saving",
+    "text": "Data files: Loading and saving\n\nload data in other formats\nR can read and write data files in various formats, including SPSS, Stata, and Excel\nforeign package can read and write data files in SPSS, Stata, and other formats\n\nit is part of the base R installation and is widely used for reading and writing data files\n\nhaven package is designed to be fast and efficient\n\nit can read and write data files in SPSS, Stata, and SAS formats\nit is part of the tidyverse and is designed to be fast and efficient\n\nreadr package can read and write data files in CSV, TSV, and other text formats\n\nit is part of the tidyverse and is designed to be fast and efficient\n\nreadxl package can read and write Excel files\nwritexl package can write data frames to Excel files\n\n\n\n\nCode\n#install.packages(\"haven\")\n\nlibrary(\"haven\")\n\n\n\n\n\n\nCode\n# Read Stata file\nurl_stata&lt;-\"https://github.com/kwan-MSDA/MSDA-Bootcamp/blob/main/dataset/UNpop.dta?raw=true\"\nunpop_stata&lt;- read_dta(url_stata)"
+  },
+  {
+    "objectID": "R_introduction_v3.html#references",
+    "href": "R_introduction_v3.html#references",
+    "title": "R - An Introduction",
+    "section": "References",
+    "text": "References\n\n\nImai, Kosuke, and Nora Webb Williams. 2022. Quantitative Social Science : An Introduction in Tidyverse. Princeton, New Jersey: Princeton University Press.\n\n\nWickham, Hadley. 2016. Ggplot2 : Elegrant Graphics for Data Analysis. Second edition. Use r! Switzerland: Springer.\n\n\n———. 2019. Advanced r. Second edition. The r Series. Boca Raton, FL: CRC Press.\n\n\nWickham, Hadley, and Garrett Grolemund. 2023. R for Data Science : Import, Tidy, Transform, Visualize, and Model Data. Second edition. Beijing: O’Reilly."
   }
 ]
