@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 project:
   type: website
   output-dir: docs
@@ -32,3 +33,39 @@ execute:
   error: false
   cache: true
 
+=======
+project:
+  type: website
+  output-dir: docs
+
+website:
+  title: "Welcome to HKU MSDA Bootcamp 2025"
+  navbar:
+    left:
+      - href: index.qmd
+        text: Home
+      - href: slides.qmd
+        text: Slides
+        
+format:
+  html:
+    theme: cosmo
+    css: styles.css
+    toc: true
+    toc-depth: 2
+    code-fold: true
+    code-tools: false
+    self-contained: true
+    fig-width: 8
+    fig-height: 6
+    fig-cap: "Figure"
+    fig-align: center
+
+execute:
+  echo: false
+  warning: false
+  message: false
+  error: false
+  cache: true
+
+>>>>>>> c338513cddfff1ff352a7d8f9d05c03003d38a47
