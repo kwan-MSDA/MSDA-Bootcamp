@@ -25,7 +25,7 @@
     "href": "slides.html",
     "title": "MSDA Bootcamp Notes",
     "section": "",
-    "text": "Slides\n\n\n\n\nCalculus\nLinear Algebra\nIntroduction to R and RStudio\nData Visualization\nData Wrangling\nProbability and Statistics"
+    "text": "Slides\n\n\n\n\nCalculus\nLinear Algebra\nIntroduction to R\nData Visualization\nData Wrangling\nProbability and Statistics"
   },
   {
     "objectID": "Maths - Calculus_slimversion.html#outline",
@@ -1144,8 +1144,8 @@
     "objectID": "R_introduction.html#introduction",
     "href": "R_introduction.html#introduction",
     "title": "R - An Introduction",
-    "section": "Introduction",
-    "text": "Introduction\n\nR is a programming language and software environment for statistical computing and graphics\n\nwidely used in academia and industry\nfor data analysis, statistical modeling, and visualization\nfor machine learning, data mining, and big data analysis\nfor reproducible research and scientific computing\n\nR is an implementation of the S programming language\n\nS was developed at Bell Laboratories by John Chambers and colleagues\nS was designed for data analysis and graphics\nS was the precursor to the commercial statistical software package S-PLUS"
+    "section": "",
+    "text": "R is a programming language and software environment for statistical computing and graphics\n\nwidely used in academia and industry\nfor data analysis, statistical modeling, and visualization\nfor machine learning, data mining, and big data analysis\nfor reproducible research and scientific computing\n\nR is an implementation of the S programming language\n\nS was developed at Bell Laboratories by John Chambers and colleagues\nS was designed for data analysis and graphics\nS was the precursor to the commercial statistical software package S-PLUS"
   },
   {
     "objectID": "R_introduction.html#introduction-1",
@@ -1166,7 +1166,7 @@
     "href": "R_introduction.html#introduction-3",
     "title": "R - An Introduction",
     "section": "Introduction",
-    "text": "Introduction\n\nfor quick reference, visit Posit Primers on Data Science\n\nR Basics\nTransform Tables\nVisualize Data\n\nfor more advanced topics, visit Data Science\n\nData Wrangling\nData Visualization\nModelling\n\nwe use cover some base R functions first, then move on to the tidyverse"
+    "text": "Introduction\n\nfor quick reference, visit Posit Primers on Data Science\n\nR Basics\nTransform Tables\nVisualize Data\n\nfor more specific topics, visit Data Science\n\nData Wrangling\nData Visualization\nModelling\n\nwe use cover some base R functions first, then move on to the tidyverse"
   },
   {
     "objectID": "R_introduction.html#loading-data",
@@ -1712,7 +1712,7 @@
     "href": "R_introduction.html#references",
     "title": "R - An Introduction",
     "section": "References",
-    "text": "References\n\n\nScott, James. 2021. “Data Science in r: A Gentle Introduction.” 2021. https://bookdown.org/jgscott/DSGI/.\n\n\nWickham, Hadley. 2014. “Tidy Data.” Journal of Statistical Software 59 (10): 1–23.\n\n\n———. 2016. Ggplot2 : Elegrant Graphics for Data Analysis. Second edition. Use r! Switzerland: Springer.\n\n\n———. 2019. Advanced r. Second edition. The r Series. Boca Raton, FL: CRC Press.\n\n\nWickham, Hadley, and Garrett Grolemund. 2023. R for Data Science : Import, Tidy, Transform, Visualize, and Model Data. Second edition. Beijing: O’Reilly."
+    "text": "References\n\n\nImai, Kosuke, and Nora Webb Williams. 2022. Quantitative Social Science : An Introduction in Tidyverse. Princeton, New Jersey: Princeton University Press.\n\n\nWickham, Hadley. 2016. Ggplot2 : Elegrant Graphics for Data Analysis. Second edition. Use r! Switzerland: Springer.\n\n\n———. 2019. Advanced r. Second edition. The r Series. Boca Raton, FL: CRC Press.\n\n\nWickham, Hadley, and Garrett Grolemund. 2023. R for Data Science : Import, Tidy, Transform, Visualize, and Model Data. Second edition. Beijing: O’Reilly."
   },
   {
     "objectID": "Probability.html#motivation",
@@ -2637,5 +2637,950 @@
     "title": "MSDA Bootcamp 2025",
     "section": "",
     "text": "This course covers essential mathematical foundations for data analytics, including Calculus and Linear Algebra. Explore the materials below to get started."
+  },
+  {
+    "objectID": "R_introduction.html#basic-arithmetic",
+    "href": "R_introduction.html#basic-arithmetic",
+    "title": "R - An Introduction",
+    "section": "Basic Arithmetic",
+    "text": "Basic Arithmetic\n\nR can be regarded as a calculator\n\nit recognizes all of the standard arithmetic operators\n\n\n. . .\n\n\nCode\n# Basic arithmetic operations in R\n\n1+2 \n\n6-7 \n\n5/2 \n\n2^3\n\n2+5*2^3\n\n3*(4+5) \n\n(3+4)*5\n\nsqrt(4)\n\n\n\nmodulo operators (integer division & remainder)\n\n. . .\n\n\nCode\n# Modulo operators in R\n\n5 %/% 2  # integer division\n5 %% 2   # remainder\n\n100 %/% 60 ## How many whole hours in 100 minutes?\n\n100 %% 60 ## How many minutes are left over?\n\n\n\n\nIn RStudio, you can start a new script using the dropdown menu File &gt; New File &gt; R Script\nuse your R script to save finalized commands\n\ntype in the console to practice and debug, then use the script to save what worked\n\nR scripts allow you to save comments, or annotations, to your code\n\nanything following the # symbol in a script will not be treated like an R command—essentially, R will skip over it"
+  },
+  {
+    "objectID": "R_introduction.html#logic",
+    "href": "R_introduction.html#logic",
+    "title": "R - An Introduction",
+    "section": "Logic",
+    "text": "Logic\n\nR can also be used for logical operations\n\nit recognizes the standard logical operators\n\n\n. . .\n\n\nCode\n1 &gt; 2\n\n1 &gt; 2 & 1 &gt; 0.5 # The \"&\" stands for \"and\"\n\n1 &gt; 2 | 1 &gt; 0.5 # The \"|\" stands for \"or\" (not a pipe a la the shell)\n\nisTRUE (1 &lt; 2)\n\n\n\nHere are the detailed list of logical operators in R\n\n& and | are used for element-wise logical operations\n&& and || are used for short-circuit logical operations\n\ne.g. 1 &gt; 2 && 1 &gt; 0.5 will return FALSE without evaluating the second condition\n\n! is used for negation (i.e. “not”)\n==, !=, &lt;, &lt;=, &gt;, and &gt;= are used for comparison\n\nHere is further information about logical vectors in R\n\nLogical vectors are vectors that contain only TRUE, FALSE, or NA values\nLogical vectors are often used for subsetting data frames or matrices"
+  },
+  {
+    "objectID": "R_introduction.html#logical-operators",
+    "href": "R_introduction.html#logical-operators",
+    "title": "R - An Introduction",
+    "section": "logical operators",
+    "text": "logical operators\n\nValue matching: %in%\n\nwhether an object is contained within (i.e. matches one of) a list of items, use %in%\n\n\n. . .\n\n\nCode\n4 %in% 1:10\n\n4 %in% 5:10\n\n\n\nThere’s no equivalent “not in” command\n\nbut we can create one\n\n\n. . .\n\n\nCode\n`%ni%` = Negate(`%in%`) ## The backticks (`) help to specify functions.\n\n4 %ni% 5:10\n\n\n\nEvaluation\n\nuse two equal signs for logical evaluation\n\n\n. . .\n\n\nCode\n1 == 1 ## This does.\n\n1 != 2 ## Note the single equal sign when combined with a negation\n\n\n\n\nEvaluation caveat: Floating-point numbers\nWhat do you think will happen if we evaluate 0.1 + 0.2 == 0.3?\n0.1 + 0.2 == 0.3\nProblem: Computers represent numbers as binary (i.e. base 2) floating-points\n\nMore here.\n\nFast and memory efficient, but can lead to unexpected behaviour.\n\n\nSimilar to the way that standard decimal (i.e. base 10) representation can’t precisely capture certain fractions\n\ne.g. \\(\\frac{1}{3} = 0.3333...\\)\n\nSolution: Use all.equal() for evaluating floats (i.e fractions)\n\nall.equal(0.1 + 0.2, 0.3)"
+  },
+  {
+    "objectID": "R_introduction.html#assignment",
+    "href": "R_introduction.html#assignment",
+    "title": "R - An Introduction",
+    "section": "Assignment",
+    "text": "Assignment\n\nAssignment: &lt;- or =\n\nuse &lt;- for assignment, but = is also acceptable\n&lt;- is the preferred operator in R, but = is more common in other programming languages\n\n\n\n\n\nCode\na &lt;- 10 + 5\na\n\n\n\nnevertheless, we can use = for assignment\n\n\n\n\n\nCode\nb = 10 + 10 \n\nb\n\n\n\n\nan arrow can point in the other direction too (i.e. -&gt;)\nthe following code chunk is equivalent to the previous one, although used much less frequently\n\n\n\nCode\n10 + 5 -&gt; a\n\n\n\nNote that the assigned object must be on the left with “=”"
+  },
+  {
+    "objectID": "R_introduction.html#help",
+    "href": "R_introduction.html#help",
+    "title": "R - An Introduction",
+    "section": "Help",
+    "text": "Help\n\nUse help or ? to get help on a function\n\ne.g. ?mean will give you the documentation for the mean() function\n\nFor more information on a (named) function or object in R, consult the “help” documentation. For example:\n\n. . .\n\n\nCode\nhelp(plot)\n\n?plot \n\n\n\nComments in R are demarcated by #.\nHit Ctrl+Shift+c in RStudio to (un)comment whole sections of highlighted code\nVignettes\n\nfor many packages, you can also try the vignette() function, which will provide an introduction to a package and it’s purpose through a series of helpful examples\n\ne.g. vignette(\"ggplot2\") will give you a detailed introduction to the ggplot2 package\n\n\n\n\n\nsee the Examples section at the bottom of the help file?\n\nYou can run them with the example() function\nTry it: example(plot)"
+  },
+  {
+    "objectID": "R_introduction.html#object-oriented-programming-in-r",
+    "href": "R_introduction.html#object-oriented-programming-in-r",
+    "title": "R - An Introduction",
+    "section": "Object-oriented programming in R",
+    "text": "Object-oriented programming in R\n\nR is an object-oriented programming language\n\neverything in R is an object\nobjects can be manipulated and transformed using functions\nfunctions are also objects in R\n\nR has three main object classes\n\nvectors\nlists\ndata frames\n\nR also has other object classes, such as matrices, arrays, and factors\nEach object class has its own set of rules (“methods”) for determining valid operations\n\ne.g. you can perform many of the same operations on matrices and data frames\nBut there are some operations that only work on a matrix, and vice versa.\nAt the same time, you can (usually) convert an object from one type to another\n\n\n\n\n\nCode\n## Create a small data frame called \"d\".\n\nd = data.frame(x = 1:2, y = 3:4) \n\nd\n\n\n\n\n\n\nCode\n## Convert it to (i.e. create) a matrix call \"m\".\n\nm = as.matrix(d)\n\nm\n\n\n\n\nthere are many different types (or classes) of objects\nMost obviously, there are actually multiple OOP frameworks in R\n\nS3, S4, R6…\nHadley Wickham’s “Advanced R” provides a very thorough overview of the main ones\n\nBut for our purposes, it is much more helpful to think about\n\nthe shared characteristics of these different systems and\nthe broad implications of OOP in R.\n\n\nWhat we lose in detail, we hopefully gain in perspective\nBut do read Hadley’s book if you get the chance + It’s incredibly helpful (as are all his books)"
+  },
+  {
+    "objectID": "R_introduction.html#object-class-type-and-structure",
+    "href": "R_introduction.html#object-class-type-and-structure",
+    "title": "R - An Introduction",
+    "section": "Object class, type, and structure",
+    "text": "Object class, type, and structure\n\nUse the class, typeof, and str commands if you want understand more about a particular object\n\n. . .\n\n\nCode\nd = data.frame(x = 1:2, y = 3:4) \n\nclass(d) ## Evaluate its class\n\ntypeof(d) ## Evaluate its type\n\nstr(d) ## Show its structure\n\n\n\nwe can inspect/print an object directly in the console\n\ne.g. Type d\n\nThe View() function is also very helpful\n\nthis is the same as clicking on the object in the RStudio Environment pane\ne.g. View(d)\n\n\n\n\nPS — Confused by the fact that typeof(d) returns “list”? See here."
+  },
+  {
+    "objectID": "R_introduction.html#global-environment",
+    "href": "R_introduction.html#global-environment",
+    "title": "R - An Introduction",
+    "section": "Global environment",
+    "text": "Global environment\n\nThe global environment is where all objects are stored\n\nyou can see the global environment in the RStudio Environment pane\nyou can also see the global environment by typing ls() in the console\n\nWorking with multiple objects\n\nyou can create multiple objects in the global environment\nyou can manipulate and transform these objects using functions\nyou can also use the rm() function to remove objects from the global environment\n\nR’s ability to keep multiple objects in memory at the same time is a huge plus when it comes to effective data work\n\ne.g. We can copy an existing data frame, or create new one entirely from scratch - either will exist happily with our existing objects in the global environment\n\n\n. . .\n\n\nCode\nd2 = data.frame(x = rnorm(10), y = runif(10))"
+  },
+  {
+    "objectID": "R_introduction.html#everything-has-a-name",
+    "href": "R_introduction.html#everything-has-a-name",
+    "title": "R - An Introduction",
+    "section": "Everything has a name",
+    "text": "Everything has a name\n\nEvery object in R has a name\n\nyou can use the name to refer to the object in the global environment\nobject names are case sensitive\n\nThe name of our object must follow certain restrictions\n\nit cannot begin with a number\nit should not contain spaces\nspecial characters such as % and $ should not be used\n\nReserved words\n\nwe can assign objects to different names\nHowever, there are a number of special words that are “reserved” in R\n\nThese are are fundamental commands, operators and relations in base R that you cannot (re)assign, even if you wanted to\nSee here for a full list\n\n\n\n. . .\n\n\nyou can also use the name to refer to the object in a function\nfunction itself is an object\n\ne.g. mean is a function that calculates the mean of a vector\nwe can assign it to a new name, e.g. average = mean\nbut we cannot assign it to a reserved word, e.g. if = mean\nthis will lead to an error"
+  },
+  {
+    "objectID": "R_introduction.html#namespace-conflicts",
+    "href": "R_introduction.html#namespace-conflicts",
+    "title": "R - An Introduction",
+    "section": "Namespace conflicts",
+    "text": "Namespace conflicts\n\nR has a large number of packages, each with its own set of functions\n\nsometimes, different packages have functions with the same name\nthis can lead to “namespace conflicts” where R doesn’t know which function to use\n\ne.g. Look what happens we load the dplyr package\n\n. . .\n\n\nCode\nlibrary(dplyr)\n\n\n\nThe messages that you see about some object being masked from ‘package:X’ are warning you about a namespace conflict\n\ne.g. Both dplyr and the stats package have functions named “filter” and “lag”\n\nWhenever a namespace conflict arises, the most recently loaded package will gain preference\n\nso the filter() function now refers specifically to the dplyr variant\nwhat if we want the stats variant?\n\n\n\n\nThe potential for namespace conflicts is a result of the OOP approach\n\nAlso reflects the fundamental open-source nature of R and the use of external packages\nPeople are free to call their functions whatever they want, so some overlap is only to be expected\n\nTemporarily use stats::filter()\n\nPermanently assign filter = stats::filter"
+  },
+  {
+    "objectID": "R_introduction.html#indexing",
+    "href": "R_introduction.html#indexing",
+    "title": "R - An Introduction",
+    "section": "Indexing",
+    "text": "Indexing\n\nIndexing is a way to access specific elements of an object\n\ne.g. we can access specific elements of a vector, list, or data frame using indexing\n\nThere are two main ways to index objects in R\n\nOption 1: []\n\nThis is the most common way to index objects in R\nIt works for vectors, matrices, data frames, and lists\nIt can be used to access specific elements of an object, or to subset an object\n\nOption 2: $\n\nThis is a special operator that is used to access specific elements of a list or data frame by name\nIt is often used to access columns of a data frame by name\n\n\n\n\n\nIndexing is done using square brackets []\nIndexing can be done using either numeric or logical vectors\n\nNumeric indexing refers to the position of the element in the object\nLogical indexing refers to a logical vector that indicates which elements to keep\n\nIndexing can also be done using names\n\ne.g. we can access specific elements of a data frame using the column names"
+  },
+  {
+    "objectID": "R_introduction.html#indexing-1",
+    "href": "R_introduction.html#indexing-1",
+    "title": "R - An Introduction",
+    "section": "Indexing",
+    "text": "Indexing\n\nuse [] to index objects that we create in R\n\n. . .\n\n\nCode\na = 1:10\na[4] ## Get the 4th element of object \"a\"\na[c(4, 6)] ## Get the 4th and 6th elements\n\n\n\nIt also works on larger arrays (vectors, matrices, data frames, and lists)\n\n. . .\n\n\nCode\nlibrary(dplyr)\nstarwars[1, 1] ## Show the cell corresponding to the 1st row & 1st column of the data frame\n\n\n\nWhat does starwars[1:3, 1] give you?\nWhat does starwars[-1, 1] give you?\nwhat if we want to get the 1st column of the data frame?\n\n. . .\n\n\nCode\nstarwars[, 1] ## Get the 1st column of the starwars data frame\n\n\n\nwe can use $ to access the columns of a data frame by name\n\n. . .\n\n\nCode\nstarwars$name ## Get the \"name\" column of the starwars data frame\n\n\n\n\nWhat if you want to get the names of the columns in a data frame? . . .\n\n\n[1] Indexing in R begins at 1. Not 0 like some languages (e.g. Python and JavaScript)"
+  },
+  {
+    "objectID": "R_introduction.html#cleaning-up",
+    "href": "R_introduction.html#cleaning-up",
+    "title": "R - An Introduction",
+    "section": "cleaning up",
+    "text": "cleaning up\n\nUse rm() to remove objects from the global environment\n\ne.g. rm(a) will remove the object a from the global environment\n\n\n. . .\n\n\nCode\na = \"hello\"\nb = \"world\"\nrm(a, b)\n\n\n\nuse rm(list = ls()) to remove all objects in your working environment (except packages)\n\nBetter just to start a new R session\n\n\n\n\nbut this is frowned upon\n\n\n\nDetaching packages is more complicated\n\nthere could be many cross-dependencies (i.e. one package depends on, and might even automatically load, another\ne.g. detach(package:dplyr)\n\nbetter just to restart your R session"
+  },
+  {
+    "objectID": "R_introduction.html#removing-plots",
+    "href": "R_introduction.html#removing-plots",
+    "title": "R - An Introduction",
+    "section": "Removing plots",
+    "text": "Removing plots\n\nUse dev.off() to remove the current plot\n\ne.g. dev.off() will remove the current plot from the plotting window\n\nUse graphics.off() to remove all plots\n\n. . .\n\n\nCode\nplot(1:10)\ndev.off()\n\n\n\nRStudio has convenient buttons for clearing your workspace environment and removing (individual) plots"
+  },
+  {
+    "objectID": "R_introduction.html#logic-1",
+    "href": "R_introduction.html#logic-1",
+    "title": "R - An Introduction",
+    "section": "Logic",
+    "text": "Logic\n\nOrder of precedence\n\nlogic statements follow a strict order of precedence\nlogical operators (&gt;, ==, etc) are evaluated before Boolean operators (& and |)\n\nfailure to recognise this can lead to unexpected behaviour\n\n\n\n. . .\n\n\nCode\n1 &gt; 0.5 & 2\n\n\n. . .\n\n\nCode\n1 &gt; 0.5 & 1 &gt; 2\n\n\n\nLesson: explicit about each component of your logic statement(s)\n\n\n\n2 is converted into as.logical(2)\nas.logical(2) is TRUE because it is not zero\n\n\n\nNegation: !\n\nthis will come in very handy when we start filtering data objects\n\n\n. . .\n\n\nCode\nis.na(1:10)\n!is.na(1:10)\n\nNegate(is.na)(1:10)"
+  },
+  {
+    "objectID": "R_introduction.html#everything-has-a-name-1",
+    "href": "R_introduction.html#everything-has-a-name-1",
+    "title": "R - An Introduction",
+    "section": "Everything has a name",
+    "text": "Everything has a name\n\nSemi-reserved words\n\nthere is a class of words and strings that are called “semi-reserved”\n\n\n. . .\n\n\nCode\nmy_vector = c(1, 2, 5)\nmy_vector\n\n\n\nwhat happens if you type the following?\n\n. . .\n\n\nCode\nc = 4\nc(1, 2 ,5)\n\n\n\nR is “smart” enough to distinguish between the variable c = 4 that we created and the built-in function c() that calls for concatenation\nHowever, R won’t always be able to distinguish between conflicting definitions\n\n. . .\n\n\nCode\npi\npi = 2\npi\n\n\n\nBottom line: Don’t use (semi-)reserved characters!\n\n\n\nthese are named functions or constants (e.g. pi) that you can re-assign if you really wanted to… but already come with important meanings from base R\nThe c() function is a good example of a semi-reserved character\nArguably the most important semi-reserved character is c(), which we use for concatenation\n\ni.e. creating vectors and binding different objects together"
+  },
+  {
+    "objectID": "R_introduction.html#indexing-2",
+    "href": "R_introduction.html#indexing-2",
+    "title": "R - An Introduction",
+    "section": "Indexing",
+    "text": "Indexing\n\nlists are a more complex type of array object in R\n\nthey can contain a random assortment of objects that don’t share the same class\n\ne.g. a list can contain a vector, a data frame, and a matrix\nor even lists of lists\n\nlists are very flexible and can be used to store any type of object\n\nThe relevance to indexing is that lists require two square brackets [[]] to index the parent list item and then the standard [] within that parent item\nThis is different from the single square brackets that we use to index vectors, matrices, and data frames\n\nThe double square brackets are used to extract the object itself, rather than a subset of the list"
+  },
+  {
+    "objectID": "R_introduction.html#assignment-operators",
+    "href": "R_introduction.html#assignment-operators",
+    "title": "R - An Introduction",
+    "section": "Assignment operators",
+    "text": "Assignment operators\n\nAssignment: &lt;- or =\n\nuse &lt;- for assignment, but = is also acceptable\n&lt;- is the preferred operator in R, but = is more common in other programming languages\n\n\n. . .\n\n\nCode\na &lt;- 10 + 5\na\n\n\n\nnevertheless, we can use = for assignment\n\n. . .\n\n\nCode\nb = 10 + 10 \n\nb\n\n\n\n\nan arrow can point in the other direction too (i.e. -&gt;)\nthe following code chunk is equivalent to the previous one, although used much less frequently\n\n\n\nCode\n10 + 5 -&gt; a\n\n\n\nNote that the assigned object must be on the left with “=”"
+  },
+  {
+    "objectID": "R_introduction.html#object-oriented-programming-oop-in-r",
+    "href": "R_introduction.html#object-oriented-programming-oop-in-r",
+    "title": "R - An Introduction",
+    "section": "Object-oriented programming (OOP) in R",
+    "text": "Object-oriented programming (OOP) in R\n\nR is an object-oriented programming language\n\neverything in R is an object\nobjects can be manipulated and transformed using functions\nfunctions are also objects in R\n\nR has three main object classes\n\nvectors\nlists\ndata frames\n\nR also has other object classes, such as matrices, arrays, and factors\nEach object class has its own set of rules (“methods”) for determining valid operations\n\ne.g. you can perform many of the same operations on matrices and data frames\nBut there are some operations that only work on a matrix, and vice versa\nAt the same time, you can (usually) convert an object from one type to another\n\n\n. . .\n\n\nCode\n## Create a small data frame called \"d\".\n\nd = data.frame(x = 1:2, y = 3:4) \n\nd\n\n\n. . .\n\n\nCode\n## Convert it to (i.e. create) a matrix call \"m\".\n\nm = as.matrix(d)\n\nm\n\n\n\n\nR can store information as an object with a name of our choice\n\nOnce we have created an object, we just refer to it by name\nwe are using objects as “shortcuts” to some piece of information or data\n\nthere are many different types (or classes) of objects\narithmetic operations like addition and subtraction cannot be used for character strings\nMost obviously, there are actually multiple OOP frameworks in R\n\nS3, S4, R6…\nHadley Wickham’s “Advanced R” provides a very thorough overview of the main ones\n\nBut for our purposes, it is much more helpful to think about\n\nthe shared characteristics of these different systems and\nthe broad implications of OOP in R.\n\n\nWhat we lose in detail, we hopefully gain in perspective\nBut do read Hadley’s book if you get the chance + It’s incredibly helpful (as are all his books)"
+  },
+  {
+    "objectID": "R_introduction.html#namespace-conflicts-1",
+    "href": "R_introduction.html#namespace-conflicts-1",
+    "title": "R - An Introduction",
+    "section": "Namespace conflicts",
+    "text": "Namespace conflicts\nTwo common ways to resolve namespace conflicts in R:\n\nUse package::function()\n\n\nWe can explicitly call a conflicted function from a particular package using the package::function() syntax\n\n. . .\n\n\nCode\nstats::filter(1:10, rep(1, 2))\n\n\n. . .\n\n\nCode\ndplyr::starwars ## Print the starwars data frame from the dplyr package\n\nscales::comma(c(1000, 1000000)) ## Use the comma function, which comes from the scales package\n\n\n\nAssign function = package::function\n\n\nA more permanent solution is to assign a conflicted function name to a particular package\nThis will hold for the remainder of your current R session, or until you change it back\n\n. . .\n\n\nCode\nfilter = stats::filter ## Note the lack of parentheses\nfilter = dplyr::filter ## Change it back again\n\n\n\n\n\nWe can also use :: for more than just conflicted cases\ne.g. Being explicit about where a function (or dataset) comes from can help add clarity to our code\ne.g. dplyr::filter(iris, Species==\"virginica\") is clearer than just filter(iris, Species==\"virginica\")\n\nAnother good rule of thumb is that you want to load your most important packages last\n\ne.g. Load the tidyverse after you’ve already loaded any other packages\n\nUser-side namespace conflicts\n\nA final thing to say about namespace conflicts is that they don’t only arise from loading packages\nThey can arise when users create their own functions with a conflicting name\n\ne.g. If I was naive enough to create a new function called c()"
+  },
+  {
+    "objectID": "R_introduction.html#indexing-3",
+    "href": "R_introduction.html#indexing-3",
+    "title": "R - An Introduction",
+    "section": "Indexing",
+    "text": "Indexing\n\nLet’s look at an example of a list to see how it works in practice\n\nWe’ll use the my_list object, which contains three objects: a character string, a numeric vector, and a data frame\n\nAs before, we have two options for indexing lists\nOption 1: [[ ]]\n\nuse double square brackets to index a list\nthis will return the object itself, rather than a subset of the list\ne.g. my_list[[1]] will return the first object in the list\nwe can also use my_list[[2]][3] to return the third element of the second object\n\n\n. . .\n\n\nCode\nmy_list = list(a = \"hello\", b = c(1,2,3), c = data.frame(x = 1:5, y = 6:10))\n\nmy_list[[1]] \n\nmy_list[[2]][3]"
+  },
+  {
+    "objectID": "R_introduction.html#indexing-4",
+    "href": "R_introduction.html#indexing-4",
+    "title": "R - An Introduction",
+    "section": "Indexing",
+    "text": "Indexing\n\nOption 2: $\n\nlists provide a nice segue to our other indexing operator: $\nLet’s continue with the my_list example\n\n\n. . .\n\n\nCode\nmy_list\n\nmy_list$a\n\nmy_list$c$x\n\n\n\nThe $ form of indexing also works (and in the manner that you probably expect) for other object types in R\n\nIn some cases, you can also combine the two index options\n\n\n. . .\n\n\nCode\nmy_list$b[3]\n\nstarwars$name[1]\n\n\n\n\nnote some key differences between the output from this example and that of our previous starwars[1, 1] example\n\nWhat are they?\nHint: Apart from the visual cues, try wrapping each command in str()\n\nThe last thing that I want to say about $ is that it provides another way to avoid the “object not found” problem that we ran into with our earlier regression example\n\ne.g. lm(y ~ x) will not work, but lm(d$y ~ d$x) will work\n\n\n. . .\n\n\nCode\nd = data.frame(x = 1:10, y = 11:20)\n\nlm(y ~ x) \n\nlm(d$y ~ d$x)"
+  },
+  {
+    "objectID": "R_introduction_v2.html#introduction",
+    "href": "R_introduction_v2.html#introduction",
+    "title": "R - An Introduction",
+    "section": "Introduction",
+    "text": "Introduction\n\nR is a programming language and software environment for statistical computing and graphics\n\nwidely used in academia and industry\nfor data analysis, statistical modeling, and visualization\nfor machine learning, data mining, and big data analysis\nfor reproducible research and scientific computing\n\nR is an implementation of the S programming language\n\nS was developed at Bell Laboratories by John Chambers and colleagues\nS was designed for data analysis and graphics\nS was the precursor to the commercial statistical software package S-PLUS"
+  },
+  {
+    "objectID": "R_introduction_v2.html#introduction-1",
+    "href": "R_introduction_v2.html#introduction-1",
+    "title": "R - An Introduction",
+    "section": "Introduction",
+    "text": "Introduction\n\nR was created by Ross Ihaka and Robert Gentleman at the University of Auckland, New Zealand\n\nnamed partly after the first names of the first two R authors and partly as a play on the name of S\na GNU project, a free software movement initiated by Richard Stallman in 1983\nfreely available under the GNU General Public License\na large number of packages available"
+  },
+  {
+    "objectID": "R_introduction_v2.html#introduction-2",
+    "href": "R_introduction_v2.html#introduction-2",
+    "title": "R - An Introduction",
+    "section": "Introduction",
+    "text": "Introduction\n\ntidyverse is a collection of R packages designed for data science\n\ntidyverse packages share an underlying design philosophy, grammar, and data structures\ntidyverse packages are designed to work together\n\nfocus on the tidyverse\n\nmainly because it is easier to understand\ndo most data manipulation we need in social science research with these tools\n\nA good reference for tidyverse is the book by Wickham (2019)\n\nR for Data Science"
+  },
+  {
+    "objectID": "R_introduction_v2.html#introduction-3",
+    "href": "R_introduction_v2.html#introduction-3",
+    "title": "R - An Introduction",
+    "section": "Introduction",
+    "text": "Introduction\n\nfor quick reference, visit Posit Primers on Data Science\n\nR Basics\nTransform Tables\nVisualize Data\n\nfor more specific topics, visit Data Science\n\nData Wrangling\nData Visualization\nModelling\n\nwe use cover some base R functions first, then move on to the tidyverse"
+  },
+  {
+    "objectID": "R_introduction_v2.html#basic-arithmetic",
+    "href": "R_introduction_v2.html#basic-arithmetic",
+    "title": "R - An Introduction",
+    "section": "Basic Arithmetic",
+    "text": "Basic Arithmetic\n\nR can be regarded as a calculator\n\nit recognizes all of the standard arithmetic operators\n\n\n\n\n\nCode\n# Basic arithmetic operations in R\n\n1+2 \n\n6-7 \n\n5/2 \n\n2^3\n\n2+5*2^3\n\n3*(4+5) \n\n(3+4)*5\n\nsqrt(4)\n\n\n\nmodulo operators (integer division & remainder)\n\n\n\n\n\nCode\n# Modulo operators in R\n\n5 %/% 2  # integer division\n5 %% 2   # remainder\n\n100 %/% 60 ## How many whole hours in 100 minutes?\n\n100 %% 60 ## How many minutes are left over?\n\n\n\n\nIn RStudio, you can start a new script using the dropdown menu File &gt; New File &gt; R Script\nuse your R script to save finalized commands\n\ntype in the console to practice and debug, then use the script to save what worked\n\nR scripts allow you to save comments, or annotations, to your code\n\nanything following the # symbol in a script will not be treated like an R command—essentially, R will skip over it"
+  },
+  {
+    "objectID": "R_introduction_v2.html#logic",
+    "href": "R_introduction_v2.html#logic",
+    "title": "R - An Introduction",
+    "section": "Logic",
+    "text": "Logic\n\nR can also be used for logical operations\n\nit recognizes the standard logical operators\n\n\n\n\n\nCode\n1 &gt; 2\n\n1 &gt; 2 & 1 &gt; 0.5 # The \"&\" stands for \"and\"\n\n1 &gt; 2 | 1 &gt; 0.5 # The \"|\" stands for \"or\" (not a pipe a la the shell)\n\nisTRUE (1 &lt; 2)\n\n\n\nHere are the detailed list of logical operators in R\n\n& and | are used for element-wise logical operations\n&& and || are used for short-circuit logical operations\n\ne.g. 1 &gt; 2 && 1 &gt; 0.5 will return FALSE without evaluating the second condition\n\n! is used for negation (i.e. “not”)\n==, !=, &lt;, &lt;=, &gt;, and &gt;= are used for comparison\n\nHere is further information about logical vectors in R\n\nLogical vectors are vectors that contain only TRUE, FALSE, or NA values\nLogical vectors are often used for subsetting data frames or matrices"
+  },
+  {
+    "objectID": "R_introduction_v2.html#logic-1",
+    "href": "R_introduction_v2.html#logic-1",
+    "title": "R - An Introduction",
+    "section": "Logic",
+    "text": "Logic\n\nOrder of precedence\n\nlogic statements follow a strict order of precedence\nlogical operators (&gt;, ==, etc) are evaluated before Boolean operators (& and |)\n\nfailure to recognise this can lead to unexpected behaviour\n\n\n\n\n\n\nCode\n1 &gt; 0.5 & 2\n\n\n\n\n\n\nCode\n1 &gt; 0.5 & 1 &gt; 2\n\n\n\nLesson: explicit about each component of your logic statement(s)\n\n\n\n2 is converted into as.logical(2)\nas.logical(2) is TRUE because it is not zero\n\n\n\nNegation: !\n\nthis will come in very handy when we start filtering data objects\n\n\n\n\n\n\nCode\nis.na(1:10)\n!is.na(1:10)\n\nNegate(is.na)(1:10)"
+  },
+  {
+    "objectID": "R_introduction_v2.html#logical-operators",
+    "href": "R_introduction_v2.html#logical-operators",
+    "title": "R - An Introduction",
+    "section": "logical operators",
+    "text": "logical operators\n\nValue matching: %in%\n\nwhether an object is contained within (i.e. matches one of) a list of items, use %in%\n\n\n\n\n\nCode\n4 %in% 1:10\n\n4 %in% 5:10\n\n\n\nThere’s no equivalent “not in” command\n\nbut we can create one\n\n\n\n\n\n\nCode\n`%ni%` = Negate(`%in%`) ## The backticks (`) help to specify functions.\n\n4 %ni% 5:10\n\n\n\nEvaluation\n\nuse two equal signs for logical evaluation\n\n\n\n\n\n\nCode\n1 == 1 ## This does.\n\n1 != 2 ## Note the single equal sign when combined with a negation\n\n\n\n\nEvaluation caveat: Floating-point numbers\nWhat do you think will happen if we evaluate 0.1 + 0.2 == 0.3?\n0.1 + 0.2 == 0.3\nProblem: Computers represent numbers as binary (i.e. base 2) floating-points\n\nMore here.\n\nFast and memory efficient, but can lead to unexpected behaviour.\n\n\nSimilar to the way that standard decimal (i.e. base 10) representation can’t precisely capture certain fractions\n\ne.g. \\(\\frac{1}{3} = 0.3333...\\)\n\nSolution: Use all.equal() for evaluating floats (i.e fractions)\n\nall.equal(0.1 + 0.2, 0.3)"
+  },
+  {
+    "objectID": "R_introduction_v2.html#assignment-operators",
+    "href": "R_introduction_v2.html#assignment-operators",
+    "title": "R - An Introduction",
+    "section": "Assignment operators",
+    "text": "Assignment operators\n\nAssignment: &lt;- or =\n\nuse &lt;- for assignment, but = is also acceptable\n&lt;- is the preferred operator in R, but = is more common in other programming languages\n\n\n\n\n\nCode\na &lt;- 10 + 5\na\n\n\n\nnevertheless, we can use = for assignment\n\n\n\n\n\nCode\nb = 10 + 10 \n\nb\n\n\n\n\nan arrow can point in the other direction too (i.e. -&gt;)\nthe following code chunk is equivalent to the previous one, although used much less frequently\n\n\n\nCode\n10 + 5 -&gt; a\n\n\n\nNote that the assigned object must be on the left with “=”"
+  },
+  {
+    "objectID": "R_introduction_v2.html#help",
+    "href": "R_introduction_v2.html#help",
+    "title": "R - An Introduction",
+    "section": "Help",
+    "text": "Help\n\nUse help or ? to get help on a function\n\ne.g. ?mean will give you the documentation for the mean() function\n\nFor more information on a (named) function or object in R, consult the “help” documentation. For example:\n\n\n\n\nCode\nhelp(plot)\n\n?plot \n\n\n\nComments in R are demarcated by #.\nHit Ctrl+Shift+c in RStudio to (un)comment whole sections of highlighted code\nVignettes\n\nfor many packages, you can also try the vignette() function, which will provide an introduction to a package and it’s purpose through a series of helpful examples\n\ne.g. vignette(\"ggplot2\") will give you a detailed introduction to the ggplot2 package\n\n\n\n\n\nsee the Examples section at the bottom of the help file?\n\nYou can run them with the example() function\nTry it: example(plot)"
+  },
+  {
+    "objectID": "R_introduction_v2.html#object-oriented-programming-oop-in-r",
+    "href": "R_introduction_v2.html#object-oriented-programming-oop-in-r",
+    "title": "R - An Introduction",
+    "section": "Object-oriented programming (OOP) in R",
+    "text": "Object-oriented programming (OOP) in R\n\nR is an object-oriented programming language\n\neverything in R is an object\nobjects can be manipulated and transformed using functions\nfunctions are also objects in R\n\nR has three main object classes\n\nvectors\nlists\ndata frames\n\nR also has other object classes, such as matrices, arrays, and factors\nEach object class has its own set of rules (“methods”) for determining valid operations\n\ne.g. you can perform many of the same operations on matrices and data frames\nBut there are some operations that only work on a matrix, and vice versa\nAt the same time, you can (usually) convert an object from one type to another\n\n\n\n\n\nCode\n## Create a small data frame called \"d\".\n\nd = data.frame(x = 1:2, y = 3:4) \n\nd\n\n\n\n\n\n\nCode\n## Convert it to (i.e. create) a matrix call \"m\".\n\nm = as.matrix(d)\n\nm\n\n\n\n\nR can store information as an object with a name of our choice\n\nOnce we have created an object, we just refer to it by name\nwe are using objects as “shortcuts” to some piece of information or data\n\nthere are many different types (or classes) of objects\narithmetic operations like addition and subtraction cannot be used for character strings\nMost obviously, there are actually multiple OOP frameworks in R\n\nS3, S4, R6…\nHadley Wickham’s “Advanced R” provides a very thorough overview of the main ones\n\nBut for our purposes, it is much more helpful to think about\n\nthe shared characteristics of these different systems and\nthe broad implications of OOP in R.\n\n\nWhat we lose in detail, we hopefully gain in perspective\nBut do read Hadley’s book if you get the chance + It’s incredibly helpful (as are all his books)"
+  },
+  {
+    "objectID": "R_introduction_v2.html#object-class-type-and-structure",
+    "href": "R_introduction_v2.html#object-class-type-and-structure",
+    "title": "R - An Introduction",
+    "section": "Object class, type, and structure",
+    "text": "Object class, type, and structure\n\nUse the class, typeof, and str commands if you want understand more about a particular object\n\n\n\n\nCode\nd = data.frame(x = 1:2, y = 3:4) \n\nclass(d) ## Evaluate its class\n\ntypeof(d) ## Evaluate its type\n\nstr(d) ## Show its structure\n\n\n\nwe can inspect/print an object directly in the console\n\ne.g. Type d\n\nThe View() function is also very helpful\n\nthis is the same as clicking on the object in the RStudio Environment pane\ne.g. View(d)\n\n\n\n\nPS — Confused by the fact that typeof(d) returns “list”? See here."
+  },
+  {
+    "objectID": "R_introduction_v2.html#global-environment",
+    "href": "R_introduction_v2.html#global-environment",
+    "title": "R - An Introduction",
+    "section": "Global environment",
+    "text": "Global environment\n\nThe global environment is where all objects are stored\n\nyou can see the global environment in the RStudio Environment pane\nyou can also see the global environment by typing ls() in the console\n\nWorking with multiple objects\n\nyou can create multiple objects in the global environment\nyou can manipulate and transform these objects using functions\nyou can also use the rm() function to remove objects from the global environment\n\nR’s ability to keep multiple objects in memory at the same time is a huge plus when it comes to effective data work\n\ne.g. We can copy an existing data frame, or create new one entirely from scratch - either will exist happily with our existing objects in the global environment\n\n\n\n\n\nCode\nd2 = data.frame(x = rnorm(10), y = runif(10))"
+  },
+  {
+    "objectID": "R_introduction_v2.html#everything-has-a-name",
+    "href": "R_introduction_v2.html#everything-has-a-name",
+    "title": "R - An Introduction",
+    "section": "Everything has a name",
+    "text": "Everything has a name\n\nEvery object in R has a name\n\nyou can use the name to refer to the object in the global environment\nobject names are case sensitive\n\nThe name of our object must follow certain restrictions\n\nit cannot begin with a number\nit should not contain spaces\nspecial characters such as % and $ should not be used\n\nReserved words\n\nwe can assign objects to different names\nHowever, there are a number of special words that are “reserved” in R\n\nThese are are fundamental commands, operators and relations in base R that you cannot (re)assign, even if you wanted to\nSee here for a full list\n\n\n\n\n\n\nyou can also use the name to refer to the object in a function\nfunction itself is an object\n\ne.g. mean is a function that calculates the mean of a vector\nwe can assign it to a new name, e.g. average = mean\nbut we cannot assign it to a reserved word, e.g. if = mean\nthis will lead to an error"
+  },
+  {
+    "objectID": "R_introduction_v2.html#everything-has-a-name-1",
+    "href": "R_introduction_v2.html#everything-has-a-name-1",
+    "title": "R - An Introduction",
+    "section": "Everything has a name",
+    "text": "Everything has a name\n\nSemi-reserved words\n\nthere is a class of words and strings that are called “semi-reserved”\n\n\n\n\n\nCode\nmy_vector = c(1, 2, 5)\nmy_vector\n\n\n\nwhat happens if you type the following?\n\n\n\n\n\nCode\nc = 4\nc(1, 2 ,5)\n\n\n\nR is “smart” enough to distinguish between the variable c = 4 that we created and the built-in function c() that calls for concatenation\nHowever, R won’t always be able to distinguish between conflicting definitions\n\n\n\n\n\nCode\npi\npi = 2\npi\n\n\n\nBottom line: Don’t use (semi-)reserved characters!\n\n\n\nthese are named functions or constants (e.g. pi) that you can re-assign if you really wanted to… but already come with important meanings from base R\nThe c() function is a good example of a semi-reserved character\nArguably the most important semi-reserved character is c(), which we use for concatenation\n\ni.e. creating vectors and binding different objects together"
+  },
+  {
+    "objectID": "R_introduction_v2.html#namespace-conflicts",
+    "href": "R_introduction_v2.html#namespace-conflicts",
+    "title": "R - An Introduction",
+    "section": "Namespace conflicts",
+    "text": "Namespace conflicts\n\nR has a large number of packages, each with its own set of functions\n\nsometimes, different packages have functions with the same name\nthis can lead to “namespace conflicts” where R doesn’t know which function to use\n\ne.g. Look what happens we load the dplyr package\n\n\n\n\nCode\nlibrary(dplyr)\n\n\n\nThe messages that you see about some object being masked from ‘package:X’ are warning you about a namespace conflict\n\ne.g. Both dplyr and the stats package have functions named “filter” and “lag”\n\nWhenever a namespace conflict arises, the most recently loaded package will gain preference\n\nso the filter() function now refers specifically to the dplyr variant\nwhat if we want the stats variant?\n\n\n\n\nThe potential for namespace conflicts is a result of the OOP approach\n\nAlso reflects the fundamental open-source nature of R and the use of external packages\nPeople are free to call their functions whatever they want, so some overlap is only to be expected\n\nTemporarily use stats::filter()\n\nPermanently assign filter = stats::filter"
+  },
+  {
+    "objectID": "R_introduction_v2.html#namespace-conflicts-1",
+    "href": "R_introduction_v2.html#namespace-conflicts-1",
+    "title": "R - An Introduction",
+    "section": "Namespace conflicts",
+    "text": "Namespace conflicts\nTwo common ways to resolve namespace conflicts in R:\n\nUse package::function()\n\n\nWe can explicitly call a conflicted function from a particular package using the package::function() syntax\n\n\n\n\nCode\nstats::filter(1:10, rep(1, 2))\n\n\n\n\n\n\nCode\ndplyr::starwars ## Print the starwars data frame from the dplyr package\n\nscales::comma(c(1000, 1000000)) ## Use the comma function, which comes from the scales package\n\n\n\nAssign function = package::function\n\n\nA more permanent solution is to assign a conflicted function name to a particular package\nThis will hold for the remainder of your current R session, or until you change it back\n\n\n\n\n\nCode\nfilter = stats::filter ## Note the lack of parentheses\nfilter = dplyr::filter ## Change it back again\n\n\n\n\n\nWe can also use :: for more than just conflicted cases\ne.g. Being explicit about where a function (or dataset) comes from can help add clarity to our code\ne.g. dplyr::filter(iris, Species==\"virginica\") is clearer than just filter(iris, Species==\"virginica\")\n\nAnother good rule of thumb is that you want to load your most important packages last\n\ne.g. Load the tidyverse after you’ve already loaded any other packages\n\nUser-side namespace conflicts\n\nA final thing to say about namespace conflicts is that they don’t only arise from loading packages\nThey can arise when users create their own functions with a conflicting name\n\ne.g. If I was naive enough to create a new function called c()"
+  },
+  {
+    "objectID": "R_introduction_v2.html#indexing",
+    "href": "R_introduction_v2.html#indexing",
+    "title": "R - An Introduction",
+    "section": "Indexing",
+    "text": "Indexing\n\nIndexing is a way to access specific elements of an object\n\ne.g. we can access specific elements of a vector, list, or data frame using indexing\n\nThere are two main ways to index objects in R\n\nOption 1: []\n\nThis is the most common way to index objects in R\nIt works for vectors, matrices, data frames, and lists\nIt can be used to access specific elements of an object, or to subset an object\n\nOption 2: $\n\nThis is a special operator that is used to access specific elements of a list or data frame by name\nIt is often used to access columns of a data frame by name\n\n\n\n\n\nIndexing is done using square brackets []\nIndexing can be done using either numeric or logical vectors\n\nNumeric indexing refers to the position of the element in the object\nLogical indexing refers to a logical vector that indicates which elements to keep\n\nIndexing can also be done using names\n\ne.g. we can access specific elements of a data frame using the column names"
+  },
+  {
+    "objectID": "R_introduction_v2.html#indexing-1",
+    "href": "R_introduction_v2.html#indexing-1",
+    "title": "R - An Introduction",
+    "section": "Indexing",
+    "text": "Indexing\n\nuse [] to index objects that we create in R\n\n\n\n\nCode\na = 1:10\na[4] ## Get the 4th element of object \"a\"\na[c(4, 6)] ## Get the 4th and 6th elements\n\n\n\nIt also works on larger arrays (vectors, matrices, data frames, and lists)\n\n\n\n\n\nCode\nlibrary(dplyr)\nstarwars[1, 1] ## Show the cell corresponding to the 1st row & 1st column of the data frame\n\n\n\nWhat does starwars[1:3, 1] give you?\nWhat does starwars[-1, 1] give you?\nwhat if we want to get the 1st column of the data frame?\n\n\n\n\n\nCode\nstarwars[, 1] ## Get the 1st column of the starwars data frame\n\n\n\nwe can use $ to access the columns of a data frame by name\n\n\n\n\n\nCode\nstarwars$name ## Get the \"name\" column of the starwars data frame\n\n\n\n\nWhat if you want to get the names of the columns in a data frame? . . .\n\n\n[1] Indexing in R begins at 1. Not 0 like some languages (e.g. Python and JavaScript)"
+  },
+  {
+    "objectID": "R_introduction_v2.html#indexing-2",
+    "href": "R_introduction_v2.html#indexing-2",
+    "title": "R - An Introduction",
+    "section": "Indexing",
+    "text": "Indexing\n\nlists are a more complex type of array object in R\n\nthey can contain a random assortment of objects that don’t share the same class\n\ne.g. a list can contain a vector, a data frame, and a matrix\nor even lists of lists\n\nlists are very flexible and can be used to store any type of object\n\nThe relevance to indexing is that lists require two square brackets [[]] to index the parent list item and then the standard [] within that parent item\nThis is different from the single square brackets that we use to index vectors, matrices, and data frames\n\nThe double square brackets are used to extract the object itself, rather than a subset of the list"
+  },
+  {
+    "objectID": "R_introduction_v2.html#indexing-3",
+    "href": "R_introduction_v2.html#indexing-3",
+    "title": "R - An Introduction",
+    "section": "Indexing",
+    "text": "Indexing\n\nLet’s look at an example of a list to see how it works in practice\n\nWe’ll use the my_list object, which contains three objects: a character string, a numeric vector, and a data frame\n\nAs before, we have two options for indexing lists\nOption 1: [[ ]]\n\nuse double square brackets to index a list\nthis will return the object itself, rather than a subset of the list\ne.g. my_list[[1]] will return the first object in the list\nwe can also use my_list[[2]][3] to return the third element of the second object\n\n\n\n\n\nCode\nmy_list = list(a = \"hello\", b = c(1,2,3), c = data.frame(x = 1:5, y = 6:10))\n\nmy_list[[1]] \n\nmy_list[[2]][3]"
+  },
+  {
+    "objectID": "R_introduction_v2.html#indexing-4",
+    "href": "R_introduction_v2.html#indexing-4",
+    "title": "R - An Introduction",
+    "section": "Indexing",
+    "text": "Indexing\n\nOption 2: $\n\nlists provide a nice segue to our other indexing operator: $\nLet’s continue with the my_list example\n\n\n\n\n\nCode\nmy_list\n\nmy_list$a\n\nmy_list$c$x\n\n\n\nThe $ form of indexing also works (and in the manner that you probably expect) for other object types in R\n\nIn some cases, you can also combine the two index options\n\n\n\n\n\n\nCode\nmy_list$b[3]\n\nstarwars$name[1]\n\n\n\n\nnote some key differences between the output from this example and that of our previous starwars[1, 1] example\n\nWhat are they?\nHint: Apart from the visual cues, try wrapping each command in str()\n\nThe last thing that I want to say about $ is that it provides another way to avoid the “object not found” problem that we ran into with our earlier regression example\n\ne.g. lm(y ~ x) will not work, but lm(d$y ~ d$x) will work\n\n\n. . .\n\n\nCode\nd = data.frame(x = 1:10, y = 11:20)\n\nlm(y ~ x) \n\nlm(d$y ~ d$x)"
+  },
+  {
+    "objectID": "R_introduction_v2.html#cleaning-up",
+    "href": "R_introduction_v2.html#cleaning-up",
+    "title": "R - An Introduction",
+    "section": "cleaning up",
+    "text": "cleaning up\n\nUse rm() to remove objects from the global environment\n\ne.g. rm(a) will remove the object a from the global environment\n\n\n\n\n\nCode\na = \"hello\"\nb = \"world\"\nrm(a, b)\n\n\n\nuse rm(list = ls()) to remove all objects in your working environment (except packages)\n\nBetter just to start a new R session\n\n\n\n\nbut this is frowned upon\n\n\n\nDetaching packages is more complicated\n\nthere could be many cross-dependencies (i.e. one package depends on, and might even automatically load, another package)\ne.g. detach(package:dplyr)\n\nstill, better just to restart your R session"
+  },
+  {
+    "objectID": "R_introduction_v2.html#removing-plots",
+    "href": "R_introduction_v2.html#removing-plots",
+    "title": "R - An Introduction",
+    "section": "Removing plots",
+    "text": "Removing plots\n\nUse dev.off() to remove the current plot\n\ne.g. dev.off() will remove the current plot from the plotting window\n\nUse graphics.off() to remove all plots\n\n\n\n\nCode\nplot(1:10)\ndev.off()\n\n\n\nRStudio has convenient buttons for clearing your workspace environment and removing (individual) plots"
+  },
+  {
+    "objectID": "R_introduction_v2.html#references",
+    "href": "R_introduction_v2.html#references",
+    "title": "R - An Introduction",
+    "section": "References",
+    "text": "References\n\n\nImai, Kosuke, and Nora Webb Williams. 2022. Quantitative Social Science : An Introduction in Tidyverse. Princeton, New Jersey: Princeton University Press.\n\n\nWickham, Hadley. 2016. Ggplot2 : Elegrant Graphics for Data Analysis. Second edition. Use r! Switzerland: Springer.\n\n\n———. 2019. Advanced r. Second edition. The r Series. Boca Raton, FL: CRC Press.\n\n\nWickham, Hadley, and Garrett Grolemund. 2023. R for Data Science : Import, Tidy, Transform, Visualize, and Model Data. Second edition. Beijing: O’Reilly."
+  },
+  {
+    "objectID": "R_introduction_v2.html#data-files-loading-and-saving",
+    "href": "R_introduction_v2.html#data-files-loading-and-saving",
+    "title": "R - An Introduction",
+    "section": "Data files: Loading and saving",
+    "text": "Data files: Loading and saving\n\nR can read and write data files in various formats\n\ne.g. CSV, Excel, SPSS, Stata, etc.\nwe will focus on CSV files for now\n\nworking directory\n\nR will look for files in the current working directory\nyou can check the current working directory using getwd()\nyou can change the working directory using setwd()\ne.g. setwd(\"path/to/your/directory\")"
+  },
+  {
+    "objectID": "R_introduction_v2.html#data-files-loading-and-saving-1",
+    "href": "R_introduction_v2.html#data-files-loading-and-saving-1",
+    "title": "R - An Introduction",
+    "section": "Data files: Loading and saving",
+    "text": "Data files: Loading and saving\n\ngo to here to download a sample dataset\nuse read.csv() to read a CSV file into R\n\ne.g. unpop &lt;- read.csv(\"UNpop.csv\")\nthis will read the CSV file and create a data frame called unpop\n\n\n\n\n\nCode\nunpop &lt;- read.csv(\"Downloads/UNpop.csv\")\n\n\n\n\n\n\nCode\nclass(unpop)\n\n\n\nRData can be used to save and load R objects\n\ne.g. save(unpop, file = \"unpop.RData\") will save the unpop data frame as an RData file\nyou can load the RData file using load(\"unpop.RData\")\n\nRData files are useful for saving and loading multiple objects at once\n\n\n\n\n\nCode\nsave(unpop, file = \"unpop.RData\")\n\n\n\n\na data frame is a special type of list where each element is a vector of the same length\n\ndata frames are used to store tabular data, where each column represents a variable and each row represents an observation\n\nR will save the entire workspace as .RData in the working directory without an explicit file name and automatically load it next time we launch\n\nThis is not recommended practice because the .RData file is invisible to users of many operating systems and R will not tell us what objects are loaded unless we explicitly issue the ls() function"
+  },
+  {
+    "objectID": "R_introduction_v2.html#data-files-loading-and-saving-2",
+    "href": "R_introduction_v2.html#data-files-loading-and-saving-2",
+    "title": "R - An Introduction",
+    "section": "Data files: Loading and saving",
+    "text": "Data files: Loading and saving\n\nuseful functions for exploring data frames\n\nnames() to view the names of the columns in a data frame\nnrow() to view the number of rows in a data frame\nncol() to view the number of columns in a data frame\ndim() to view the dimensions of a data frame (number of rows and columns)\nstr() to view the structure of a data frame\nhead() to view the first few rows of a data frame\ntail() to view the last few rows of a data frame\n\nuse write.csv() to write a data frame to a CSV file\n\ne.g. write.csv(unpop, \"UNpop.csv\")\nthis will write the unpop data frame to a CSV file called UNpop.csv"
+  },
+  {
+    "objectID": "R_introduction_v2.html#data-files-loading-and-saving-3",
+    "href": "R_introduction_v2.html#data-files-loading-and-saving-3",
+    "title": "R - An Introduction",
+    "section": "Data files: Loading and saving",
+    "text": "Data files: Loading and saving\n\nload data in other formats\nR can read and write data files in various formats, including SPSS, Stata, and Excel\nforeign package can read and write data files in SPSS, Stata, and other formats\n\nit is part of the base R installation and is widely used for reading and writing data files\n\nhaven package is designed to be fast and efficient\n\nit can read and write data files in SPSS, Stata, and SAS formats\nit is part of the tidyverse and is designed to be fast and efficient\n\nreadr package can read and write data files in CSV, TSV, and other text formats\n\nit is part of the tidyverse and is designed to be fast and efficient\n\nreadxl package can read and write Excel files\nwritexl package can write data frames to Excel files\n\n\n\n\nCode\n#install.packages(\"haven\")\n\nlibrary(\"haven\")\n\n\n\n\n\n\nCode\n# Read Stata file\nurl_stata&lt;-\"https://github.com/kwan-MSDA/MSDA-Bootcamp/blob/main/dataset/UNpop.dta?raw=true\"\nunpop_stata&lt;- read_dta(url_stata)"
+  },
+  {
+    "objectID": "R_introduction.html",
+    "href": "R_introduction.html",
+    "title": "R - An Introduction",
+    "section": "",
+    "text": "R is a programming language and software environment for statistical computing and graphics\n\nwidely used in academia and industry\nfor data analysis, statistical modeling, and visualization\nfor machine learning, data mining, and big data analysis\nfor reproducible research and scientific computing\n\nR is an implementation of the S programming language\n\nS was developed at Bell Laboratories by John Chambers and colleagues\nS was designed for data analysis and graphics\nS was the precursor to the commercial statistical software package S-PLUS"
+  },
+  {
+    "objectID": "MSDA-Bootcamp/about.html",
+    "href": "MSDA-Bootcamp/about.html",
+    "title": "About",
+    "section": "",
+    "text": "About this site\n\n\n[1] 2"
+  },
+  {
+    "objectID": "Data Visualization with R.html",
+    "href": "Data Visualization with R.html",
+    "title": "Data Visualization with R",
+    "section": "",
+    "text": "it starts from the grammar of graphics Wickham (2016)\n\n\n\ndata\naesthetics\ngeoms\nfacets\nstats\nscales\ncoordinates\nthemes\n\n\n\n\n\nsource: University of Melbourne"
+  },
+  {
+    "objectID": "Data Visualization with R.html#ggplot2",
+    "href": "Data Visualization with R.html#ggplot2",
+    "title": "Data Visualization with R",
+    "section": "",
+    "text": "it starts from the grammar of graphics Wickham (2016)\n\n\n\ndata\naesthetics\ngeoms\nfacets\nstats\nscales\ncoordinates\nthemes\n\n\n\n\n\nsource: University of Melbourne"
+  },
+  {
+    "objectID": "Data Visualization with R.html#ggplot2-1",
+    "href": "Data Visualization with R.html#ggplot2-1",
+    "title": "Data Visualization with R",
+    "section": "ggplot2",
+    "text": "ggplot2\n\nEvery ggplot2 plot has three key components:\n\ndata\nA set of aesthetic mappings between variables in the data and visual properties\nAt least one layer which describes how to render each observation\n\nLayers are usually created with a geom function"
+  },
+  {
+    "objectID": "Data Visualization with R.html#ggplot2-2",
+    "href": "Data Visualization with R.html#ggplot2-2",
+    "title": "Data Visualization with R",
+    "section": "ggplot2",
+    "text": "ggplot2\n\nillustration\n\nUse built-in dataset from ggplot2: mpg\n\ninformation about the fuel economy of popular car models in 1999 and 2008\ncollected by the US Environmental Protection Agency\nhere are some of the variables in the dataset:\n\nmanufacturer, model, year\ndispl (engine displacement in litres)\nhwy (miles per gallon on the highway)\ncty (miles per gallon in the city)\ncyl (number of cylinders)\ndrv (f = front-wheel drive, r = rear wheel drive, 4 = 4wd)\nclass (type of car)\ntrans (type of transmission)\nfl (fuel type)\n\n\n\n\n\nThe mpg dataset is a tibble, a modern version of a data frame\nThe mpg dataset is part of the ggplot2 package\nThe mpg dataset is a tidy dataset\nThis dataset suggests many interesting questions\n\nHow are engine size and fuel economy related?\nDo certain manufacturers care more about fuel economy than others?\nHas fuel economy improved in the last ten years?\n\nList five functions that you could use to get more information about the mpg dataset\nHow can you find out what other datasets are included with ggplot2?\nApart from the US, most countries use fuel consumption (fuel consumed over fixed distance) rather than fuel economy (distance travelled with fixed amount of fuel). How could you convert cty and hwy into the European standard of l/100km?\nWhich manufacturer has the most models in this dataset?\n\nWhich model has the most variations?\nDoes your answer change if you remove the redundant specification of drive train (e.g. “pathfinder 4wd”, “a4 quattro”) from the model name?"
+  },
+  {
+    "objectID": "Data Visualization with R.html#ggplot2-3",
+    "href": "Data Visualization with R.html#ggplot2-3",
+    "title": "Data Visualization with R",
+    "section": "ggplot2",
+    "text": "ggplot2\n\nLet us plot the relationship between engine size and fuel economy\n\n. . .\n\n\nCode\nlibrary(ggplot2)\n\ndata(mpg)\n\nggplot(data=mpg, mapping=aes(x=displ, y=hwy)) +\n  geom_point()\n\n\n\n\n\n\n\n\n\n. . .\n\nHow would you describe the relationship between displ and hwy?\n\n\n\nCode\nggplot(mpg, aes(cty, hwy)) + geom_point()\n\n\n\n\n\n\n\n\n\nCode\nggplot(diamonds, aes(carat, price)) + geom_point()\n\n\n\n\n\n\n\n\n\nCode\nggplot(economics, aes(date, unemploy)) + geom_line()\n\n\n\n\n\n\n\n\n\nCode\nggplot(mpg, aes(cty)) + geom_histogram()"
+  },
+  {
+    "objectID": "Data Visualization with R.html#ggplot2-4",
+    "href": "Data Visualization with R.html#ggplot2-4",
+    "title": "Data Visualization with R",
+    "section": "ggplot2",
+    "text": "ggplot2\n\nColour, size, shape and other aesthetic attributes\n\nAesthetics are visual properties of the objects in the plot\n\ncolour, size, shape, linetype, fill, alpha\n\nAesthetics can be mapped to variables in the data\n\naes(colour=variable)\naes(size=variable)\naes(shape=variable)\naes(linetype=variable)\naes(fill=variable)\naes(alpha=variable)"
+  },
+  {
+    "objectID": "Data Visualization with R.html#ggplot2-5",
+    "href": "Data Visualization with R.html#ggplot2-5",
+    "title": "Data Visualization with R",
+    "section": "ggplot2",
+    "text": "ggplot2\n\nColour, size, shape and other aesthetic attributes\n\n\nCode\nggplot(mpg, aes(displ, hwy, colour=class)) +\n  geom_point()\n\n\n\n\n\n\n\n\n\n\n\nCode\nggplot(mpg, aes(trans, hwy, colour=class)) +\n  geom_point()\n\n\n\n\n\n\n\n\n\n\n\nggplot2 takes care of the details of converting data (e.g., ‘f’, ‘r’, ‘4’) into aesthetics (e.g., ‘red’, ‘yellow’, ‘green’) with a scale\n\nThere is one scale for each aesthetic mapping in a plot.\nThe scale is also responsible for creating a guide, an axis or legend, that allows you to read the plot, converting aesthetic values back into data values\n\nThe scale functions are:\n\nscale_colour_manual()\nscale_size_manual()\nscale_shape_manual()\nscale_linetype_manual()\nscale_fill_manual()\nscale_alpha_manual()\n\nWhat happens when you map them to continuous values? What about categorical values? What happens when you use more than one aesthetic in a plot?"
+  },
+  {
+    "objectID": "Data Visualization with R.html#ggplot2-6",
+    "href": "Data Visualization with R.html#ggplot2-6",
+    "title": "Data Visualization with R",
+    "section": "ggplot2",
+    "text": "ggplot2"
+  },
+  {
+    "objectID": "Data Visualization with R.html#labels",
+    "href": "Data Visualization with R.html#labels",
+    "title": "Data Visualization with R",
+    "section": "labels",
+    "text": "labels\n\nLabels are important for making your plot understandable\n\nxlab() and ylab() functions\nlabs() function\n\n\n\n\nCode\nggplot(mpg, aes(displ, hwy)) +\n  geom_point(aes(color=class)) +\n  labs(x=\"Engine size (litres)\",\n       y=\"Highway fuel economy (miles per gallon)\",\n       title=\"Relationship between engine size and fuel economy\",\n       color=\"Car type\",\n       caption=\"Source: mpg dataset\")+\n  theme_bw()"
+  },
+  {
+    "objectID": "Data Visualization with R.html#ggplot2-7",
+    "href": "Data Visualization with R.html#ggplot2-7",
+    "title": "Data Visualization with R",
+    "section": "ggplot2",
+    "text": "ggplot2\n\nggthemes\n\n\nCode\nlibrary(ggthemes)\n\nggplot(mpg, aes(displ, hwy)) +\n  geom_point(aes(color=class)) +\n  labs(x=\"Engine size (litres)\",\n       y=\"Highway fuel economy (miles per gallon)\",\n       title=\"Relationship between engine size and fuel economy\",\n       color=\"Car type\",\n       caption=\"Source: mpg dataset\")+\n  theme_economist()+\n  scale_color_tableau()"
+  },
+  {
+    "objectID": "Data Visualization with R.html#ggplot2-8",
+    "href": "Data Visualization with R.html#ggplot2-8",
+    "title": "Data Visualization with R",
+    "section": "ggplot2",
+    "text": "ggplot2\n\nFacets\n\nFacets allow you to create multiple plots that each display a subset of the data\n\nfacet_wrap() creates a grid of plots\nfacet_grid() creates a matrix of plots\n\n\n\n\nCode\nggplot(mpg, aes(displ, hwy)) +\n  geom_point() +\n  facet_wrap(~class)"
+  },
+  {
+    "objectID": "Data Visualization with R.html#ggplot2-9",
+    "href": "Data Visualization with R.html#ggplot2-9",
+    "title": "Data Visualization with R",
+    "section": "ggplot2",
+    "text": "ggplot2\n\nPlot geoms\n\nGeoms are the geometric objects that represent the data in the plot\n\ngeom_point() creates a scatterplot\ngeom_smooth() creates a smoothed line plot\ngeom_histogram() creates a histogram\ngeom_boxplot() creates a boxplot\ngeom_bar() creates a bar plot\ngeom_line() creates a line plot\ngeom_vline() adds a vertical line to the plot\ngeom_hline() adds a horizontal line to the plot\ngeom_abline() adds a diagonal line to the plot"
+  },
+  {
+    "objectID": "Data Visualization with R.html#ggplot2-10",
+    "href": "Data Visualization with R.html#ggplot2-10",
+    "title": "Data Visualization with R",
+    "section": "ggplot2",
+    "text": "ggplot2\n\nAdding a smoother to a plot\n\n\nCode\nggplot(mpg, aes(displ, hwy)) +\n  geom_point() +\n  geom_smooth(span=0.3)"
+  },
+  {
+    "objectID": "Data Visualization with R.html#ggplot2-11",
+    "href": "Data Visualization with R.html#ggplot2-11",
+    "title": "Data Visualization with R",
+    "section": "ggplot2",
+    "text": "ggplot2\n\nBoxplots and related plots\n\nBoxplots, violin and jittered points are useful for visualizing the distribution of a continuous variable\n\n\n\nCode\n##| layout-ncol: 3\n##| fig-width: 4\n\nlibrary(ggpubr)\n\njitter&lt;- ggplot(mpg, aes(drv, hwy)) + geom_jitter()\nboxplot&lt;- ggplot(mpg, aes(drv, hwy)) + geom_boxplot()\nviolin&lt;- ggplot(mpg, aes(drv, hwy)) + geom_violin()\n\nggarrange(jitter, boxplot, violin, ncol=3)\n\n\n\n\n\n\n\n\n\n\n\nA boxplot is a type of visual shorthand for measures of position (percentiles) that describe a distribution\n\nIt is also useful for identifying potential outliers in the data\nVisual points that display observations that fall more than 1.5 times the IQR from either edge of the box\nThese outlying points are unusual so are plotted individually\n\nA violin plot is a combination of a boxplot and a kernel density plot\n\nIt shows the distribution of the data, the median, and the interquartile range\nIt is useful for comparing the distribution of a continuous variable across different categories\n\nA jittered point plot is useful for visualizing the distribution of a continuous variable across different categories\n\nIt is useful for identifying potential outliers in the data"
+  },
+  {
+    "objectID": "Data Visualization with R.html#ggplot2-12",
+    "href": "Data Visualization with R.html#ggplot2-12",
+    "title": "Data Visualization with R",
+    "section": "ggplot2",
+    "text": "ggplot2\n\nBoxplots\n\n\nCode\nggplot(mpg, aes(class, hwy)) +\n  geom_boxplot()+\n  labs(title=\"Highway fuel economy by car type\",\n       x=\"Car type\",\n       y=\"Highway fuel economy (miles per gallon)\")+\n  coord_flip()+\n  theme_economist()"
+  },
+  {
+    "objectID": "Data Visualization with R.html#ggplot2-13",
+    "href": "Data Visualization with R.html#ggplot2-13",
+    "title": "Data Visualization with R",
+    "section": "ggplot2",
+    "text": "ggplot2\n\nBar plots\n\nBar plots are useful for visualizing the distribution of a categorical variable\n\n\n\n\n\nCode\nggplot(mpg, aes(class)) +\n  geom_bar()\n\n\n\n\n\n\n\n\n\n\n\n\nCode\nggplot(mpg, aes(class, fill=drv)) +\n  geom_bar()"
+  },
+  {
+    "objectID": "Data Visualization with R.html#ggplot2-14",
+    "href": "Data Visualization with R.html#ggplot2-14",
+    "title": "Data Visualization with R",
+    "section": "ggplot2",
+    "text": "ggplot2\n\nHistograms and density plots\n\nHistograms and density plots are useful for visualizing the distribution of a continuous variable\n\n\n\n\n\nCode\nggplot(mpg, aes(hwy)) +\n  geom_histogram() \n\n\n\n\n\n\n\n\n\n\n\n\nCode\nggplot(mpg, aes(hwy)) +\n  geom_density()"
+  },
+  {
+    "objectID": "Data Visualization with R.html#ggplot2-15",
+    "href": "Data Visualization with R.html#ggplot2-15",
+    "title": "Data Visualization with R",
+    "section": "ggplot2",
+    "text": "ggplot2\n\nHistograms and density plots\n\n\nCode\nden&lt;- ggplot(mpg, aes(displ, colour = drv)) + \n  geom_density(linewidth=0.8)\n  \nhist&lt;- ggplot(mpg, aes(displ, fill = drv)) + \n  geom_histogram(binwidth = 0.5) + \n  facet_wrap(~drv, ncol = 1)\n\nggarrange(den, hist, ncol=2)"
+  },
+  {
+    "objectID": "Data Visualization with R.html#ggplot2-16",
+    "href": "Data Visualization with R.html#ggplot2-16",
+    "title": "Data Visualization with R",
+    "section": "ggplot2",
+    "text": "ggplot2\n\nggsave - save the graph as an image file\n\n\nCode\nggsave(filename=\"mpg_displ.png\",width=6, height=4)"
+  },
+  {
+    "objectID": "Data Visualization with R.html#final-example---toy-imports-to-the-us-from-1996-2005",
+    "href": "Data Visualization with R.html#final-example---toy-imports-to-the-us-from-1996-2005",
+    "title": "Data Visualization with R",
+    "section": "Final Example - toy imports to the US from 1996-2005",
+    "text": "Final Example - toy imports to the US from 1996-2005\n\nit is drawn from Scott (2021)\n\n\n\nCode\nlibrary(tidyverse)\n\ntoy_imports &lt;- read_csv(\"https://raw.githubusercontent.com/kwan-MSDA/Bootcamp_2024/main/dataset/toyimports.csv\")\n\nhead(toy_imports)\n\n\n# A tibble: 6 × 8\n  partner  year partner_name       product product_name US_report_import pop2000\n  &lt;chr&gt;   &lt;dbl&gt; &lt;chr&gt;                &lt;dbl&gt; &lt;chr&gt;                   &lt;dbl&gt;   &lt;dbl&gt;\n1 ARE      1998 United Arab Emira…  950341 \"Toys repre…             1.06  3.25e6\n2 ARE      2000 United Arab Emira…  950349 \"Toys repre…            12.0   3.25e6\n3 ARE      2003 United Arab Emira…  950349 \"Toys repre…             4.65  3.25e6\n4 ARE      2005 United Arab Emira…  950320 \"Reduced-si…            49.2   3.25e6\n5 ARG      1996 Argentina           950341 \"Toys repre…             0     3.69e7\n6 ARG      1996 Argentina           950310 \"Electric t…            10.8   3.69e7\n# ℹ 1 more variable: region &lt;dbl&gt;\n\n\n. . .\n\nTask: make a graph showing total toy imports over time for the U.S.’s top 5 trading partners by total dollar value of toys imported"
+  },
+  {
+    "objectID": "Data Visualization with R.html#final-example---toy-imports-to-the-us-from-1996-2005-1",
+    "href": "Data Visualization with R.html#final-example---toy-imports-to-the-us-from-1996-2005-1",
+    "title": "Data Visualization with R",
+    "section": "Final Example - toy imports to the US from 1996-2005",
+    "text": "Final Example - toy imports to the US from 1996-2005\n\n\nCode\ncountry_total&lt;- toy_imports %&gt;% \n  group_by(partner_name) %&gt;%\n  summarize(total_import=sum(US_report_import)) %&gt;%\n  arrange(desc(total_import)) %&gt;%\n  head(5)\n\ncountry_total\n\n\n# A tibble: 5 × 2\n  partner_name     total_import\n  &lt;chr&gt;                   &lt;dbl&gt;\n1 China               26842305.\n2 Denmark              1034990.\n3 Canada                572309.\n4 Hong Kong, China      545186.\n5 Switzerland           400969.\n\n\n\n\nthe total dollar value of toys imported to the U.S. (US_report_import, in multiples of $1,000) in a specific product category from a specific country in a specific year\nThe product categories have unique numerical codes (product) as well as product names exciting enough to quicken the heart of any toy-loving child (“Parts and accessories :– Other,” “Toys representing animal or non-human figures,” and so on\nGroup all the observations by trading partner (the partner_name variable)\nFor each partner, calculate total dollar value by summing toy imports (US_report_import) across all categories and years\nArrange the partners by total dollar value"
+  },
+  {
+    "objectID": "Data Visualization with R.html#final-example---toy-imports-to-the-us-from-1996-2005-2",
+    "href": "Data Visualization with R.html#final-example---toy-imports-to-the-us-from-1996-2005-2",
+    "title": "Data Visualization with R",
+    "section": "Final Example - toy imports to the US from 1996-2005",
+    "text": "Final Example - toy imports to the US from 1996-2005\n\n\nCode\n#| out-width: 100%\n\ntop5_partners=c(\"China\", \"Denmark\", \"Canada\", \"Hong Kong, China\", \"Switzerland\")\n\noptions(scipen = 999)\n\nlibrary(ggthemes)\nlibrary(scales)\nlibrary(plotly)\n\np &lt;- toy_imports %&gt;% \n  filter(partner_name %in% top5_partners) %&gt;%\n  group_by(year, partner_name) %&gt;%\n  summarize(total_import=sum(US_report_import)) %&gt;% \n  ggplot(aes(year, total_import, color=partner_name)) +\n  geom_line()+\n  labs(title=\"Toy imports from the U.S.'s top-5 partners, 1996-2005\",\n       x=\"Year\",\n       y=\"Dollar value of imports (log scale)\",\n       color=\"Import Region\")+\n  scale_x_continuous(breaks=1996:2005)+\n  theme_economist()+ \n  scale_y_log10(breaks = trans_breaks(\"log10\", function(x) 10^x),\n              labels = trans_format(\"log10\", math_format(10^.x)))\n\nggplotly(p)"
+  },
+  {
+    "objectID": "Data Visualization with R.html#the-five-coldest-months-in-rapid-city-from-1995-to-2011",
+    "href": "Data Visualization with R.html#the-five-coldest-months-in-rapid-city-from-1995-to-2011",
+    "title": "Data Visualization with R",
+    "section": "the five coldest months in Rapid City from 1995 to 2011",
+    "text": "the five coldest months in Rapid City from 1995 to 2011\n\n\nCode\nlibrary(tidyverse)\n\nrapidcity &lt;- read_csv(\"https://raw.githubusercontent.com/kwan-MSDA/Bootcamp_2024/main/dataset/rapidcity.csv\")\n\nrapidcity %&gt;% \n  group_by(Year, Month) %&gt;%\n  summarize(avg_Temp = mean(Temp),\n            lowest_temp = min(Temp),\n            hightest_temp = max(Temp)) %&gt;%\n  arrange(avg_Temp) %&gt;%\n  head(5) %&gt;% \n  round(1)\n\n\n# A tibble: 5 × 5\n# Groups:   Year [4]\n   Year Month avg_Temp lowest_temp hightest_temp\n  &lt;dbl&gt; &lt;dbl&gt;    &lt;dbl&gt;       &lt;dbl&gt;         &lt;dbl&gt;\n1  1996     1     14.9       -11            46.1\n2  2009    12     16.4        -2.6          35.6\n3  2000    12     17.3        -9            38.8\n4  1996    12     17.5       -10.8          40.4\n5  2001     2     17.6        -3.9          40.8\n\n\n\n\nImport the data set (we’ve done this already).\nSplit the data set into individual months in individual years: January 1995, February 1995, March 1995, and so on, all the way through December 2011.\nFor each individual month, calculate the average of the Temp variable (along with any other summaries we might find interesting).\nSort the individual months according to their average temperatures.\nMake a table of the five coldest months"
+  },
+  {
+    "objectID": "Data Visualization with R.html#survival-on-the-titanic",
+    "href": "Data Visualization with R.html#survival-on-the-titanic",
+    "title": "Data Visualization with R",
+    "section": "survival on the Titanic",
+    "text": "survival on the Titanic\nQ: how did survival among adult passengers vary by sex and cabin class?\n\n\nCode\ntitanic &lt;- read_csv(\"https://raw.githubusercontent.com/kwan-MSDA/Bootcamp_2024/main/dataset/titanic.csv\")\n\nhead(titanic)\n\n\n# A tibble: 6 × 5\n  name                            survived sex       age passengerClass\n  &lt;chr&gt;                           &lt;chr&gt;    &lt;chr&gt;   &lt;dbl&gt; &lt;chr&gt;         \n1 Allen, Miss. Elisabeth Walton   yes      female 29     1st           \n2 Allison, Master. Hudson Trevor  yes      male    0.917 1st           \n3 Allison, Miss. Helen Loraine    no       female  2     1st           \n4 Allison, Mr. Hudson Joshua Crei no       male   30     1st           \n5 Allison, Mrs. Hudson J C (Bessi no       female 25     1st           \n6 Anderson, Mr. Harry             yes      male   48     1st           \n\n\n\n\nCode\nsurv_adults&lt;- titanic %&gt;% \n  mutate(Adult = age &gt;= 18) %&gt;%\n  filter(Adult) %&gt;%\n  group_by(sex, passengerClass) %&gt;%\n  summarize(total_count=n(),\n            survived = sum(survived==\"yes\"),\n            survival_rate = survived/total_count)\n\n\nsurv_adults\n\n\n# A tibble: 6 × 5\n# Groups:   sex [2]\n  sex    passengerClass total_count survived survival_rate\n  &lt;chr&gt;  &lt;chr&gt;                &lt;int&gt;    &lt;int&gt;         &lt;dbl&gt;\n1 female 1st                    125      121        0.968 \n2 female 2nd                     85       74        0.871 \n3 female 3rd                    106       47        0.443 \n4 male   1st                    144       47        0.326 \n5 male   2nd                    143       12        0.0839\n6 male   3rd                    289       45        0.156 \n\n\n\n\nCode\nlibrary(ggthemes)\n\nggplot(surv_adults) +\n  geom_col(aes(x=sex, y=survival_rate)) +\n  facet_wrap(~passengerClass, nrow=1)+\n  labs(title=\"Survival rate by gender and passenger class\",\n       y=\"Survival rate\",\n       x=\"gender\")+\n  theme_economist()\n\n\n\n\n\n\n\n\n\n\n\ncreate a new variable, which we’ll call Adult, that determines whether a passenger is at least 18 years old.\nfilter the data set down to adults only.\ngroup the filtered data set by sex and cabin class (2 sexes× × 3 classes = 6 groups).\ncalculate the survival percentage for each group."
+  },
+  {
+    "objectID": "Data Visualization with R.html#extra-gapminder-data",
+    "href": "Data Visualization with R.html#extra-gapminder-data",
+    "title": "Data Visualization with R",
+    "section": "Extra: Gapminder data",
+    "text": "Extra: Gapminder data\n\n\nCode\nlibrary(gapminder)\n\ndata(gapminder)\n\ngapminder %&gt;% \n  group_by(year, continent) %&gt;%\n  mutate(median_lifeExp = median(lifeExp)) %&gt;%\n  ggplot(aes(year, median_lifeExp, color=continent)) +\n  geom_line()+\n  labs(title=\"Life expectancy by continent and year\",\n       x=\"Year\",\n       y=\"Life expectancy\")+\n  theme_economist()\n\n\n\n\n\n\n\n\n\n\n\nCode\nggplot(gapminder, aes(x = continent, y = lifeExp)) +\n  geom_boxplot(outlier.colour = \"hotpink\") +\n  geom_jitter(position = position_jitter(width = 0.1, height = 0), alpha = 1 / 4)"
+  },
+  {
+    "objectID": "Data Visualization with R.html#extra-gapminder-data-1",
+    "href": "Data Visualization with R.html#extra-gapminder-data-1",
+    "title": "Data Visualization with R",
+    "section": "Extra: Gapminder data",
+    "text": "Extra: Gapminder data\n\nthis is from BBC style\n\n\nCode\n# install.packages('devtools')\n#devtools::install_github('bbc/bbplot'))\n\nlibrary(ggpubr)\n\nsource(\"https://raw.githubusercontent.com/kwan-MSDA/R/main/bbc_style.R\")\n\ngapminder %&gt;% \n  group_by(year, continent) %&gt;%\n  summarize(median_lifeExp = median(lifeExp)) %&gt;%\n  ggplot(aes(year, median_lifeExp, color=continent)) +\n  geom_line()+\n  labs(title=\"Life expectancy by continent and year\",\n       x=\"Year\",\n       y=\"Life expectancy\")+\n  bbc_style()\n\n\n\n\n\n\n\n\n\n\n\nsource 1: https://bbc.github.io/rcookbook/#do_something_else_entirely\nsource 2: https://github.com/bbc/bbplot?tab=readme-ov-file\nsource 3: https://noeliagorod.com/2020/07/23/bbc-visual-and-data-journalism-cookbook-for-r-graphics/"
+  },
+  {
+    "objectID": "Data Visualization with R.html#extra-gapminder-data-2",
+    "href": "Data Visualization with R.html#extra-gapminder-data-2",
+    "title": "Data Visualization with R",
+    "section": "Extra: Gapminder data",
+    "text": "Extra: Gapminder data\n\n\nCode\nlibrary(\"ggalt\")\nlibrary(\"tidyr\")\n \nlibrary(gapminder)\n\ndumbbell_df &lt;- gapminder %&gt;%\n  filter(year == 1967 | year == 2007) %&gt;%\n  select(country, year, lifeExp) %&gt;%\n  spread(year, lifeExp) %&gt;%\n  mutate(gap = `2007` - `1967`) %&gt;%\n  arrange(desc(gap)) %&gt;%\n  head(10)\n \n#Make plot\nggplot(dumbbell_df, aes(x = `1967`, xend = `2007`, y = reorder(country, gap), group = country)) + \n  geom_dumbbell(colour = \"#dddddd\",\n                size = 3,\n                colour_x = \"#FAAB18\",\n                colour_xend = \"#1380A1\") +\n  bbc_style() + \n  labs(title=\"We're living longer\",\n       subtitle=\"Biggest life expectancy rise, 1967-2007\")"
+  },
+  {
+    "objectID": "Data Visualization with R.html#extra-gapminder-data-3",
+    "href": "Data Visualization with R.html#extra-gapminder-data-3",
+    "title": "Data Visualization with R",
+    "section": "Extra: Gapminder data",
+    "text": "Extra: Gapminder data\n\n\nCode\nlibrary(hrbrthemes)\nlibrary(viridis)\n\ngapminder %&gt;% \n  filter(year==2007) %&gt;%\n  mutate(country=factor(country, levels=unique(country))) %&gt;%\n  arrange(desc(pop)) %&gt;% \n  ggplot(aes(x=gdpPercap, y=lifeExp, size=pop, fill=continent)) +\n  geom_point(alpha=0.6, shape=21, color=\"black\")+\n  scale_size(range=c(.1, 24), name=\"Population (M)\")+\n  scale_fill_viridis(discrete=TRUE, guide=FALSE, option=\"A\")+\n  theme_ipsum()+\n  theme(legend.position=\"none\")+\n  labs(title=\"Life expectancy by continent in 2007\",\n       x=\"GDP per capita\",\n       y=\"Life Expectancy\")"
+  },
+  {
+    "objectID": "Data Visualization with R.html#extra-gapminder-data-4",
+    "href": "Data Visualization with R.html#extra-gapminder-data-4",
+    "title": "Data Visualization with R",
+    "section": "Extra: Gapminder data",
+    "text": "Extra: Gapminder data\n\n\nCode\nlibrary(gganimate)\n\ngapminder %&gt;% \n  ggplot(aes(x=gdpPercap, y=lifeExp, size=pop, fill=continent, frame=year)) +\n  geom_point(alpha=0.6, shape=21, color=\"black\")+\n  scale_size(range=c(.1, 22), name=\"Population (M)\")+\n  scale_fill_viridis(discrete=TRUE, guide=FALSE, option=\"A\")+\n  theme_ipsum()+\n  theme(legend.position=\"none\")+\n  labs(title=\"Life expectancy by continent in {frame_time}\",\n       x=\"GDP per capita\",\n       y=\"Life Expectancy\")+\n  geom_text(data=gapminder %&gt;%  filter(pop &gt;1e+8), aes(label=country), size=5, nudge_x=0.1, nudge_y=0.1)+\n  transition_time(year)+\n  enter_fade()+\n  exit_fade()\n\n\n\n\n\n\n\n\n\nCode\nanim_save(\"gapminder_gganimate.gif\")"
+  },
+  {
+    "objectID": "Data Visualization with R.html#extra-gapminder-data-5",
+    "href": "Data Visualization with R.html#extra-gapminder-data-5",
+    "title": "Data Visualization with R",
+    "section": "Extra: Gapminder data",
+    "text": "Extra: Gapminder data\n\nsource\n\n\nCode\nlibrary(plotly)\nlibrary(hrbrthemes)\nlibrary(viridis)\n\ng&lt;- crosstalk::SharedData$new(gapminder %&gt;% \n                              mutate(country=factor(country, levels=unique(country))) %&gt;%\n                              arrange(desc(pop)),\n                              ~ continent)\ngg&lt;- g %&gt;% \n  ggplot(aes(x=gdpPercap, y=lifeExp, fill=continent, frame=year)) +\n  geom_point(aes(size=pop, alpha=0.6, ids=country))+\n  scale_size(range=c(.1, 24), name=\"Population (M)\")+\n  scale_fill_viridis(discrete=TRUE, guide=FALSE, option=\"A\")+\n  scale_alpha(range=c(0.6, 1), guide=FALSE)+\n  theme_ipsum()+\n  # theme(legend.position=\"none\")+\n  labs(title=\"Life expectancy by continent between 1952-2007\",\n       x=\"GDP per capita\",\n       y=\"Life Expectancy\")\n\nggplotly(gg, height = 500, width = 800)"
+  },
+  {
+    "objectID": "Data Visualization with R.html#references",
+    "href": "Data Visualization with R.html#references",
+    "title": "Data Visualization with R",
+    "section": "References",
+    "text": "References\n\n\nScott, James. 2021. “Data Science in r: A Gentle Introduction.” 2021. https://bookdown.org/jgscott/DSGI/.\n\n\nWickham, Hadley. 2016. Ggplot2 : Elegrant Graphics for Data Analysis. Second edition. Use r! Switzerland: Springer.\n\n\n———. 2019. Advanced r. Second edition. The r Series. Boca Raton, FL: CRC Press.\n\n\nWickham, Hadley, and Garrett Grolemund. 2023. R for Data Science : Import, Tidy, Transform, Visualize, and Model Data. Second edition. Beijing: O’Reilly."
+  },
+  {
+    "objectID": "Data Wrangling with R.html",
+    "href": "Data Wrangling with R.html",
+    "title": "Data Wrangling with R",
+    "section": "",
+    "text": "The first step in any data analysis is to load the data into R\n\nthe data can be in a variety of formats\nthe most common formats are CSV, Excel, and SPSS\nthe readr package is part of the tidyverse and is used to read data into R\n\n\n\n\n\n\n\nCode\n#install.packages(\"tidyverse\")\nlibrary(tidyverse)\n\n\n# check your working directory\ngetwd()\n\n## read data file\n\naddh&lt;- read_csv(\"https://raw.githubusercontent.com/kwan-MSDA/Bootcamp_2024/main/dataset/addhealthfake.csv\")\n\n\n\n\n\n\nHere are some details about the dataset\n\nThe National Longitudinal Study of Adolescent to Adult Health (Add Health)\na longitudinal study of a nationally representative sample of adolescents in grades 7-12 in the United States during the 1994-95 school year (Wave I)\nThe Add Health cohort has been followed into young adulthood with four in-home interviews for Wave I-IV by 2008\n\nthe Wave V conducted during 2016-2018 included a mixed-mode survey\n\nrespondents’ social, economic, psychological, and physical well-being\n\nalong with contextual data on the family, neighborhood, community, school, friendships, peer groups, and romantic relationships\n\nstudy developmental trajectories of health and risk behaviors throughout the life course\n\n\n\n\n\n\nThe dataset used here is a subset of the Add Health dataset\n\n3000 observations and 11 variables\n\nAfter the dataset is loaded in R, it is important to explore the data to understand its structure and content\n\ncheck the data types of each variable\ncheck the dimensions of the data\nlook at a few rows and variables\n\n\n\n\nCode\nclass(addh$age)\n\n\n[1] \"numeric\"\n\n\nCode\nclass(addh$gender)\n\n\n[1] \"character\"\n\n\nCode\nclass(addh$love)\n\n\n[1] \"numeric\"\n\n\n\n\n\n\nFor more information on the dataset,\n\nsummary(): numeric summaries\nstr(): data types and sample data\ncolnames() or names(): names of columns/variables\ndim(): dimensions\nView(): view all data in RStudio viewer\nhead(): top 10 rows\ntail(): bottom 10 rows\n\n\n\n\n\n\n\nCode\nstr(addh)\n\n\nspc_tbl_ [3,000 × 11] (S3: spec_tbl_df/tbl_df/tbl/data.frame)\n $ id           : num [1:3000] 1 2 3 4 5 6 7 8 9 10 ...\n $ age          : num [1:3000] 18 22 18 26 27 21 19 27 18 25 ...\n $ gender       : chr [1:3000] \"female\" \"male\" \"female\" \"female\" ...\n $ income       : num [1:3000] 19252 11617 16189 18194 24484 ...\n $ logincome    : num [1:3000] 9.87 9.36 9.69 9.81 10.11 ...\n $ debt         : chr [1:3000] \"yesdebt\" \"nodebt\" \"yesdebt\" \"yesdebt\" ...\n $ love         : num [1:3000] 1 10 10 2 5 10 3 4 1 6 ...\n $ nocheating   : num [1:3000] 7 10 3 1 10 4 10 10 10 3 ...\n $ money        : num [1:3000] 9 3 5 3 9 9 9 7 3 8 ...\n $ paypercent   : num [1:3000] 46 56 42 82 93 42 89 55 43 53 ...\n $ logpaypercent: num [1:3000] 3.83 4.03 3.74 4.41 4.53 ...\n - attr(*, \"spec\")=\n  .. cols(\n  ..   id = col_double(),\n  ..   age = col_double(),\n  ..   gender = col_character(),\n  ..   income = col_double(),\n  ..   logincome = col_double(),\n  ..   debt = col_character(),\n  ..   love = col_double(),\n  ..   nocheating = col_double(),\n  ..   money = col_double(),\n  ..   paypercent = col_double(),\n  ..   logpaypercent = col_double()\n  .. )\n - attr(*, \"problems\")=&lt;externalptr&gt; \n\n\n\n\nCode\nhead(addh, n=5)\n\n\n# A tibble: 5 × 11\n     id   age gender income logincome debt     love nocheating money paypercent\n  &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;   &lt;dbl&gt;     &lt;dbl&gt; &lt;chr&gt;   &lt;dbl&gt;      &lt;dbl&gt; &lt;dbl&gt;      &lt;dbl&gt;\n1     1    18 female 19252.      9.87 yesdebt     1          7     9         46\n2     2    22 male   11617.      9.36 nodebt     10         10     3         56\n3     3    18 female 16189.      9.69 yesdebt    10          3     5         42\n4     4    26 female 18194.      9.81 yesdebt     2          1     3         82\n5     5    27 female 24484.     10.1  yesdebt     5         10     9         93\n# ℹ 1 more variable: logpaypercent &lt;dbl&gt;\n\n\n\n\n(in dplyr) slice_sample(): randomly select n rows\n\n\n\n\n\n\nTo get information about one variable, use the following functions:\n\ntable(): get a table summarizing counts\nunique(): get the unique responses for a variable\nsort(): sort the numerically (or alphabetically)\nhist(): produce a histogram\n\n\n\n\nCode\n##| output-location: fragment\n\ntable(addh$gender)\n\n\n\nfemale   male \n  1503   1497 \n\n\n\n\nCode\n##| output-location: fragment\n\ntable(addh$age)\n\n\n\n 18  19  20  21  22  23  24  25  26  27 \n306 299 300 315 303 265 301 278 296 337 \n\n\n\n\nCode\n##| output-location: fragment\n\nsort(unique(addh$age))\n\n\n [1] 18 19 20 21 22 23 24 25 26 27\n\n\n\n\n\n\nuse the base R subsetting syntax with [row index, column index]\n\n\n\nCode\n##| output-location: fragment\n\n# get first column, rows 1 through 3 \naddh[1:3,1]\n\n\n# A tibble: 3 × 1\n     id\n  &lt;dbl&gt;\n1     1\n2     2\n3     3\n\n\n\nExercise: How would you subset the observation in the third row and the fifth column?\n\n\n\nCode\n##| output-location: fragment\n\n# get everything besides first row\naddh[-1, ]\n\n\n# A tibble: 2,999 × 11\n      id   age gender income logincome debt     love nocheating money paypercent\n   &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;   &lt;dbl&gt;     &lt;dbl&gt; &lt;chr&gt;   &lt;dbl&gt;      &lt;dbl&gt; &lt;dbl&gt;      &lt;dbl&gt;\n 1     2    22 male   11617.      9.36 nodebt     10         10     3         56\n 2     3    18 female 16189.      9.69 yesdebt    10          3     5         42\n 3     4    26 female 18194.      9.81 yesdebt     2          1     3         82\n 4     5    27 female 24484.     10.1  yesdebt     5         10     9         93\n 5     6    21 female 22353.     10.0  nodebt     10          4     9         42\n 6     7    19 male   11842.      9.38 yesdebt     3         10     9         89\n 7     8    27 female 19874.      9.90 nodebt      4         10     7         55\n 8     9    18 male   27422.     10.2  nodebt      1         10     3         43\n 9    10    25 female  9968.      9.21 yesdebt     6          3     8         53\n10    11    24 female 26354.     10.2  nodebt     10         10    10         52\n# ℹ 2,989 more rows\n# ℹ 1 more variable: logpaypercent &lt;dbl&gt;\n\n\n\n\n\n\nSuppose that you want to know a few things from the dataset:\n\nWhat’s the median income of this sample? What’s the mean age?\nOn average, do the young adults surveyed think money, no cheating, or love is more important in a relationship?\nWhat are the answer choices for debt?\n\nhint: for simple calculations, you can use the base R functions mean(), median(), and table()\n\n\n\nCode\n##| output-location: fragment\n\nmedian(addh$income)\n\n\n[1] 15127.34\n\n\nCode\nmean(addh$age)\n\n\n[1] 22.51133\n\n\nCode\nunique(addh$debt)\n\n\n[1] \"yesdebt\" \"nodebt\" \n\n\n\n\nCode\n# as a precursor to the next section, we can use dplyr to do the same thing\n\nlibrary(dplyr)\nsummary(addh,\n        mean_money = mean(money),\n        mean_nocheating = mean(nocheating),\n        mean_love = mean(love))\n\n\n       id              age           gender              income     \n Min.   :   1.0   Min.   :18.00   Length:3000        Min.   : 1008  \n 1st Qu.: 750.8   1st Qu.:20.00   Class :character   1st Qu.: 9372  \n Median :1500.5   Median :22.00   Mode  :character   Median :15127  \n Mean   :1500.5   Mean   :22.51                      Mean   :15231  \n 3rd Qu.:2250.2   3rd Qu.:25.00                      3rd Qu.:20518  \n Max.   :3000.0   Max.   :27.00                      Max.   :41700  \n                                                                    \n   logincome          debt                love          nocheating    \n Min.   : 3.292   Length:3000        Min.   : 1.000   Min.   : 1.000  \n 1st Qu.: 9.222   Class :character   1st Qu.: 5.000   1st Qu.: 5.000  \n Median : 9.650   Mode  :character   Median :10.000   Median :10.000  \n Mean   : 9.482                      Mean   : 7.707   Mean   : 7.694  \n 3rd Qu.: 9.939                      3rd Qu.:10.000   3rd Qu.:10.000  \n Max.   :10.638                      Max.   :10.000   Max.   :10.000  \n NA's   :97                                                           \n     money          paypercent     logpaypercent  \n Min.   : 1.000   Min.   :  1.00   Min.   :0.000  \n 1st Qu.: 3.000   1st Qu.: 25.00   1st Qu.:3.219  \n Median : 6.000   Median : 51.00   Median :3.932  \n Mean   : 5.569   Mean   : 50.45   Mean   :3.629  \n 3rd Qu.: 8.000   3rd Qu.: 76.00   3rd Qu.:4.331  \n Max.   :10.000   Max.   :100.00   Max.   :4.605  \n                                                  \n\n\n\n\n\n\nThe dplyr package is part of the tidyverse and is used for data manipulation\ndplyr functions include:\n\nfilter(): subset rows\nselect(): subset columns\nmutate(): create new variables\nsummarise(): summarize data\narrange(): sort data\ngroup_by(): group data\n\nvery important function: pipe operator %&gt;% from the magrittr package\n\nallows you to chain functions together\n\nbasic structure of the dplyr functions\n\nfunction(dataframe, operation 1 to perform, opertaion 2 to perform,…)\n\n\n\n\n\n\n\n\nit can be used with operations, like\n\nstarts_with()\nends_with()\ncontains()\nmatches()\netc…\n\n\n\n\nCode\npay_variables &lt;- select(addh, contains(\"pay\"))\n\nhead(pay_variables, 5)\n\n\n# A tibble: 5 × 2\n  paypercent logpaypercent\n       &lt;dbl&gt;         &lt;dbl&gt;\n1         46          3.83\n2         56          4.03\n3         42          3.74\n4         82          4.41\n5         93          4.53\n\n\n\n\n\n\n\n\n\nfilter rows based on conditions\n\n\n\nCode\nnodebt_income &lt;- filter(addh, debt == \"nodebt\" & income &gt;= 10000)\n\nnrow(nodebt_income)\n\n\n[1] 1096\n\n\n\n\nCode\nnomissing_income &lt;- filter(addh, !is.na(income)) # only keep obs that are NOT (!) na\n\n#nomissing_income &lt;- drop_na(addh, income) # alternate function from tidyr\n\nnrow(nomissing_income)\n\n\n[1] 3000\n\n\n\n#nomissing_income &lt;- drop_na(addh, income) # alternate function from tidyr\n\n\n\n\n\n\n\n\nsort data based on one or more columns\ntask: find the two observations who think money is extremely important for a relationship (10 on money) but who pay for the fewest percentage of dates (paypercent)\n\n\n\nCode\naddh %&gt;%\n  filter(money == 10) %&gt;%\n  arrange(paypercent) %&gt;%\n  head(2)\n\n\n# A tibble: 2 × 11\n     id   age gender income logincome debt     love nocheating money paypercent\n  &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;   &lt;dbl&gt;     &lt;dbl&gt; &lt;chr&gt;   &lt;dbl&gt;      &lt;dbl&gt; &lt;dbl&gt;      &lt;dbl&gt;\n1   811    22 male   34161.     10.4  yesdebt    10          9    10          2\n2  2086    20 male    4816.      8.48 yesdebt    10         10    10          2\n# ℹ 1 more variable: logpaypercent &lt;dbl&gt;\n\n\n\n\n\n\n\n\n\ncreate new variables added to the dataset\ntask: add a variable with the average rating for nocheating, money, and love’s importance for a relationship (sum divided by 3) and another variable that logs that rating\n\n\n\nCode\naddh&lt;- mutate(addh,\n              rateavg=(love + money + nocheating)/3,\n              rateavglog=log(rateavg))\n\nhead(addh, 5)\n\n\n# A tibble: 5 × 13\n     id   age gender income logincome debt     love nocheating money paypercent\n  &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;   &lt;dbl&gt;     &lt;dbl&gt; &lt;chr&gt;   &lt;dbl&gt;      &lt;dbl&gt; &lt;dbl&gt;      &lt;dbl&gt;\n1     1    18 female 19252.      9.87 yesdebt     1          7     9         46\n2     2    22 male   11617.      9.36 nodebt     10         10     3         56\n3     3    18 female 16189.      9.69 yesdebt    10          3     5         42\n4     4    26 female 18194.      9.81 yesdebt     2          1     3         82\n5     5    27 female 24484.     10.1  yesdebt     5         10     9         93\n# ℹ 3 more variables: logpaypercent &lt;dbl&gt;, rateavg &lt;dbl&gt;, rateavglog &lt;dbl&gt;\n\n\n\nCaution\n\nusing the same column name or same object name, you overwrite the original object or column\n\n\n\n\n\n\n\n\n\ngroup data by one or more variables and then summarize the data according to the groups\ntask: find the average “not cheating importance” for different gender\n\n\n\nCode\naddh %&gt;% \n  group_by(gender) %&gt;% \n  summarize(mean_nocheating = mean(nocheating))\n\n\n# A tibble: 2 × 2\n  gender mean_nocheating\n  &lt;chr&gt;            &lt;dbl&gt;\n1 female            7.79\n2 male              7.60\n\n\n\nSummarise has a number of operations for creating summary statistics\n\nmean(), median(), min(), max(), sd(), n(), n_distinct(), first, last, etc…\n\n\n\n\n\n\n\nExercise one\n\nthe number of females and males by debt status\nthe percentage in each (debt x gender) category as a fraction of all observations\nthe number of distinct ratings of love’s importance in each of these debt x gender categories\n\n\n\n\nCode\naddh %&gt;% \n  group_by(gender, debt) %&gt;%\n  summarize(percentage = n()/nrow(addh),\n            n_distinct_love = n_distinct(love))\n\n\n# A tibble: 4 × 4\n# Groups:   gender [2]\n  gender debt    percentage n_distinct_love\n  &lt;chr&gt;  &lt;chr&gt;        &lt;dbl&gt;           &lt;int&gt;\n1 female nodebt       0.256              10\n2 female yesdebt      0.245              10\n3 male   nodebt       0.248              10\n4 male   yesdebt      0.251              10\n\n\n\n\n\n\nExercise two\n\n\nGroup the data by gender and debt status first\n\nFind the average rating of love, no cheating, and money’s importance for a relationship in each group\nArrange the groups by their rating of money’s importance to a relationship from the highest to rating to the lowest rating\n\n\n\n\nCode\naddh %&gt;% \n  group_by(gender, debt) %&gt;%\n  summarize(mean_love = mean(love),\n            mean_nocheating = mean(nocheating),\n            mean_money = mean(money)) %&gt;%\n  arrange(desc(mean_money))\n\n\n# A tibble: 4 × 5\n# Groups:   gender [2]\n  gender debt    mean_love mean_nocheating mean_money\n  &lt;chr&gt;  &lt;chr&gt;       &lt;dbl&gt;           &lt;dbl&gt;      &lt;dbl&gt;\n1 male   yesdebt      7.76            7.72       5.66\n2 female yesdebt      7.57            7.75       5.59\n3 female nodebt       7.82            7.83       5.54\n4 male   nodebt       7.68            7.47       5.49\n\n\n\n\n\n\nRecoding variables is a common task in data analysis for social science research\n\nconvert a variable from one format to another\ncreate a new variable based on the values of an existing variable (or of multiple existing variables)\n\nsome typical recoding tasks\n\nconvert a continuous variable to a categorical variable\nconvert a categorical variable to a continuous variable\ncreate categorical variables based on conditions\n\nOur focus\n\ndata types\nlogical statements\ncase_when() function\n\n\n\n\n\n\n\n\nuse the mutate() function to change the data type of a variable\n\nas.character()\nas.numeric()\nas.factor()\nas.integer()\nas.logical()\n\n\n\n\nCode\naddh2 &lt;- addh %&gt;% \n            mutate(\n               age = as.character(age),\n               debt = as.factor(debt)\n               )\n\nhead(addh2, 3)\n\n\n# A tibble: 3 × 13\n     id age   gender income logincome debt     love nocheating money paypercent\n  &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt;   &lt;dbl&gt;     &lt;dbl&gt; &lt;fct&gt;   &lt;dbl&gt;      &lt;dbl&gt; &lt;dbl&gt;      &lt;dbl&gt;\n1     1 18    female 19252.      9.87 yesdebt     1          7     9         46\n2     2 22    male   11617.      9.36 nodebt     10         10     3         56\n3     3 18    female 16189.      9.69 yesdebt    10          3     5         42\n# ℹ 3 more variables: logpaypercent &lt;dbl&gt;, rateavg &lt;dbl&gt;, rateavglog &lt;dbl&gt;\n\n\n\n\n\n\n\n\n\nuse c to string together the elements\n\n\n\nCode\nagevec&lt;- c(18, 21, 23, 25, 27, 30)\n\nagevec\n\n\n[1] 18 21 23 25 27 30\n\n\n\n\nCode\nclass(agevec)\n\n\n[1] \"numeric\"\n\n\n\n\nCode\ngendervec &lt;- c(\"male\", \"female\", \"other\", \"female\", \"female\", \"male\")\ngendervec\n\n\n[1] \"male\"   \"female\" \"other\"  \"female\" \"female\" \"male\"  \n\n\n\n\nCode\nclass(gendervec)\n\n\n[1] \"character\"\n\n\n\n\n\n\n\n\n\nElements in a vector need to be of the same type, otherwise, type coercion happens\n\n\n\nCode\nc(28, \"28\", TRUE)\n\n\n[1] \"28\"   \"28\"   \"TRUE\"\n\n\n\n\nCode\nc(28, \"28\", TRUE) %&gt;% class()\n\n\n[1] \"character\"\n\n\n\n\nCode\nc(1,2,3, TRUE, FALSE)\n\n\n[1] 1 2 3 1 0\n\n\nCode\nc(1,2,3, TRUE, FALSE) %&gt;% class()\n\n\n[1] \"numeric\"\n\n\n\n\n\n\n\n\n\nconvert from one type to another using the following functions:\n\nas.numeric()\nas.character()\nas.factor()\n\n\n\n\nCode\nas.character(agevec)\n\n\n[1] \"18\" \"21\" \"23\" \"25\" \"27\" \"30\"\n\n\n\n\nCode\nas.numeric(gendervec)\n\n\n[1] NA NA NA NA NA NA\n\n\n\n\n\n\n\n\n\nVectors can have a factor type\n\nlooks like a character vector\nbut is actually a number under the hood (“labelled data”)\n\n\n\n\nCode\ngenderfactorvec&lt;- factor(gendervec,\n                         levels=c(\"male\", \"female\", \"other\"))\n\ngenderfactorvec\n\n\n[1] male   female other  female female male  \nLevels: male female other\n\n\n\n\nCode\nclass(genderfactorvec)\n\n\n[1] \"factor\"\n\n\n\n\nCode\nas.numeric(genderfactorvec)\n\n\n[1] 1 2 3 2 2 1\n\n\n\n\n\n\n\n\n\nthere are functions to help you create the vector more efficiently:\n\nrep: repeat the same thing multiple times\nseq: create a sequence of numbers\npaste: stick together character and numeric info\nsample: for vectors where we want to randomly sample from some larger pool\n\n\n\n\nCode\nrep(1, 5)\n\n\n[1] 1 1 1 1 1\n\n\n\n\nCode\nseq(from=1997, to=2024, by=5)\n\n\n[1] 1997 2002 2007 2012 2017 2022\n\n\n\n\nCode\npaste(\"age\", seq(from=22, to=30, by=1),\n      sep=\"_\")\n\n\n[1] \"age_22\" \"age_23\" \"age_24\" \"age_25\" \"age_26\" \"age_27\" \"age_28\" \"age_29\"\n[9] \"age_30\"\n\n\n\n\n\n\n\n\n\nOne way to create a dataframe\n\nuse bind_cols() to attach same-length vectors together as columns in a tibble\nVectors can be different types\n\n\n\n\nCode\nbind_cols(age=agevec, gender=gendervec)\n\n\n# A tibble: 6 × 2\n    age gender\n  &lt;dbl&gt; &lt;chr&gt; \n1    18 male  \n2    21 female\n3    23 other \n4    25 female\n5    27 female\n6    30 male  \n\n\n\n\n\n\n\n\nCode\naddh2&lt;- addh %&gt;% \n            mutate(gender=factor(gender,\n                                 levels=c(\"male\", \"female\")\n                                 )\n               )\n\nstr(addh2$gender)\n\n\n Factor w/ 2 levels \"male\",\"female\": 2 1 2 2 2 2 1 2 1 2 ...\n\n\nCode\nvec1&lt;- as.character(addh2$gender)\nvec2&lt;- as.numeric(addh2$gender)\n\n\n\nconvert the variable gender in addh to a factor variable\nwhat happens if you try to convert the variable to character by using as.character after the factor conversion\nwhat happens if you try to convert the variable to number by using as.numeric after the factor conversion\n\n\n\n\n\n\n\nA matrix is a two-dimensional array\n\nall elements must be of the same type\ncan be created using the matrix() function\ncan be created from a vector using the dim() function\n\n\n\n\nCode\nmatrix1&lt;- matrix(1:15, nrow=3, ncol=5)\n\nmatrix1\n\n\n     [,1] [,2] [,3] [,4] [,5]\n[1,]    1    4    7   10   13\n[2,]    2    5    8   11   14\n[3,]    3    6    9   12   15\n\n\n\n\n\n\n\n\n\n\nCode\ndim(matrix1)\n\n\n[1] 3 5\n\n\n\n\nCode\ncolnames(matrix1)&lt;- c(\"A\", \"B\", \"C\", \"D\", \"E\")\nrownames(matrix1)&lt;- c(\"X\", \"Y\", \"Z\")\n\nmatrix1\n\n\n  A B C  D  E\nX 1 4 7 10 13\nY 2 5 8 11 14\nZ 3 6 9 12 15\n\n\n\n\nCode\nmatrix1[2,3]\n\n\n[1] 8\n\n\n\n\nCode\nmatrix1[2,]\n\n\n A  B  C  D  E \n 2  5  8 11 14 \n\n\n\n\n\n\n\n\n\n\nCode\nA&lt;- matrix(1:6, nrow=2, ncol=3)\nB&lt;- matrix(7:12, nrow=3, ncol=2)\n\n\nprint(A %*% B)\n\n\n     [,1] [,2]\n[1,]   76  103\n[2,]  100  136\n\n\nCode\nprint(B %*% A)\n\n\n     [,1] [,2] [,3]\n[1,]   27   61   95\n[2,]   30   68  106\n[3,]   33   75  117\n\n\n\n\nCode\nprint(t(A))\n\n\n     [,1] [,2]\n[1,]    1    2\n[2,]    3    4\n[3,]    5    6\n\n\n\n\n\n\n\n\n\n\nCode\nC&lt;- matrix(c(2,5,3,1,3,6,2,9,5), nrow=3, ncol=3)\nprint(solve(C))\n\n\n            [,1]       [,2]        [,3]\n[1,]  1.14705882 -0.2058824 -0.08823529\n[2,] -0.05882353 -0.1176471  0.23529412\n[3,] -0.61764706  0.2647059 -0.02941176\n\n\n\n\nCode\nprint(det(C))\n\n\n[1] -34\n\n\n\n\nCode\nprint(eigen(C))\n\n\neigen() decomposition\n$values\n[1] 12.502029 -3.320941  0.818912\n\n$vectors\n           [,1]        [,2]       [,3]\n[1,] -0.1946720 -0.07646107 -0.8799055\n[2,] -0.7265653 -0.79546586  0.1194865\n[3,] -0.6589428  0.60115536  0.4598796\n\n\n\n\n\n\n\n\n\nlet us start from discussing logical operators first\nthe main logical operators used in R are:\n\n\\(==\\) (equal to)\n\\(!=\\) (not equal to)\n\\(!\\) (not)\n\\(&lt;\\) (less than)\n\\(&lt;=\\) (less than or equal to)\n\\(&gt;\\) (greater than)\n\\(&gt;=\\) (greater than or equal to)\n\\(\\&\\) (and)\n\\(|\\) (or)\n\n\n\n\n\n\n\n\n\nlogical statements are used to filter data, create new variables, and recode variables\n\nifelse() function\n\n\n\n\nCode\naddh2&lt;- addh %&gt;% \n            mutate(\n               money_over_love = ifelse(money &gt; love, 1, 0),\n               .after = id\n               )\n\nhead(addh2, 5)\n\n\n# A tibble: 5 × 14\n     id money_over_love   age gender income logincome debt     love nocheating\n  &lt;dbl&gt;           &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;   &lt;dbl&gt;     &lt;dbl&gt; &lt;chr&gt;   &lt;dbl&gt;      &lt;dbl&gt;\n1     1               1    18 female 19252.      9.87 yesdebt     1          7\n2     2               0    22 male   11617.      9.36 nodebt     10         10\n3     3               0    18 female 16189.      9.69 yesdebt    10          3\n4     4               1    26 female 18194.      9.81 yesdebt     2          1\n5     5               1    27 female 24484.     10.1  yesdebt     5         10\n# ℹ 5 more variables: money &lt;dbl&gt;, paypercent &lt;dbl&gt;, logpaypercent &lt;dbl&gt;,\n#   rateavg &lt;dbl&gt;, rateavglog &lt;dbl&gt;\n\n\n\n\nCode\naddh3&lt;- addh %&gt;% \n            mutate(\n               money_or_love = ifelse(money==love, \"same\",\n                                      ifelse(love &gt; money, \"love greater\", \"money greater\")),\n               .after = id\n               )\n\nhead(addh3, 5)\n\n\n# A tibble: 5 × 14\n     id money_or_love   age gender income logincome debt   love nocheating money\n  &lt;dbl&gt; &lt;chr&gt;         &lt;dbl&gt; &lt;chr&gt;   &lt;dbl&gt;     &lt;dbl&gt; &lt;chr&gt; &lt;dbl&gt;      &lt;dbl&gt; &lt;dbl&gt;\n1     1 money greater    18 female 19252.      9.87 yesd…     1          7     9\n2     2 love greater     22 male   11617.      9.36 node…    10         10     3\n3     3 love greater     18 female 16189.      9.69 yesd…    10          3     5\n4     4 money greater    26 female 18194.      9.81 yesd…     2          1     3\n5     5 money greater    27 female 24484.     10.1  yesd…     5         10     9\n# ℹ 4 more variables: paypercent &lt;dbl&gt;, logpaypercent &lt;dbl&gt;, rateavg &lt;dbl&gt;,\n#   rateavglog &lt;dbl&gt;\n\n\n\n\n\n\n\n\n\nuse case_when() if there are 3 or more conditions for creating a variable\nits syntax is the following:\n\ncase_when(logical condition ~ value assigned, logical condition 2 ~ value assigned. . . .default = value if does not fit other logical conditions)\n\n\n\n\nCode\naddh3&lt;- addh %&gt;% \n  mutate(\n    money_or_love = case_when(\n      money==love ~ \"same\",\n      love &gt; money ~ \"love greater\",\n      TRUE ~ \"money greater\"\n    ),\n    .after = id\n  )\n\nhead(addh3, 5)\n\n\n# A tibble: 5 × 14\n     id money_or_love   age gender income logincome debt   love nocheating money\n  &lt;dbl&gt; &lt;chr&gt;         &lt;dbl&gt; &lt;chr&gt;   &lt;dbl&gt;     &lt;dbl&gt; &lt;chr&gt; &lt;dbl&gt;      &lt;dbl&gt; &lt;dbl&gt;\n1     1 money greater    18 female 19252.      9.87 yesd…     1          7     9\n2     2 love greater     22 male   11617.      9.36 node…    10         10     3\n3     3 love greater     18 female 16189.      9.69 yesd…    10          3     5\n4     4 money greater    26 female 18194.      9.81 yesd…     2          1     3\n5     5 money greater    27 female 24484.     10.1  yesd…     5         10     9\n# ℹ 4 more variables: paypercent &lt;dbl&gt;, logpaypercent &lt;dbl&gt;, rateavg &lt;dbl&gt;,\n#   rateavglog &lt;dbl&gt;\n\n\n\n\n\n\n\ncreate a new variable called money_or_love in the addh dataset\n\nthe variable should have the following categories:\n\n“extreme” if person either codes love or money as 9 or 10\n“lovegreater” if love &gt; money\n“same” if love == money\n“moneygreater” if money &gt; love\nNA if none of the above\n\n\n\n\n\n\n\n\n\n\nCode\nincome_75&lt;- quantile(addh$income)[4]\n\naddh2&lt;- addh %&gt;% \n  mutate(high_income=ifelse(income &gt; income_75, 1, 0))\n\nincome_25 &lt;- quantile(addh$income)[2]\n\naddh2&lt;- addh2 %&gt;% \n  mutate(income_level=case_when(income &lt;= income_25 ~ \"low\",\n                                income &gt;=income_75 ~\"high\", \n                                .default=\"medium\"),\n         .after = id)\n\nhead(addh2, 5)\n\n\n# A tibble: 5 × 15\n     id income_level   age gender income logincome debt    love nocheating money\n  &lt;dbl&gt; &lt;chr&gt;        &lt;dbl&gt; &lt;chr&gt;   &lt;dbl&gt;     &lt;dbl&gt; &lt;chr&gt;  &lt;dbl&gt;      &lt;dbl&gt; &lt;dbl&gt;\n1     1 medium          18 female 19252.      9.87 yesde…     1          7     9\n2     2 medium          22 male   11617.      9.36 nodebt    10         10     3\n3     3 medium          18 female 16189.      9.69 yesde…    10          3     5\n4     4 medium          26 female 18194.      9.81 yesde…     2          1     3\n5     5 high            27 female 24484.     10.1  yesde…     5         10     9\n# ℹ 5 more variables: paypercent &lt;dbl&gt;, logpaypercent &lt;dbl&gt;, rateavg &lt;dbl&gt;,\n#   rateavglog &lt;dbl&gt;, high_income &lt;dbl&gt;\n\n\n\n\n\n\n\nLoops are used to repeat a block of code multiple times\n\nfor loop\nwhile loop\nrepeat loop\nbreak and next statements\n\nLoops are useful for:\n\nautomating repetitive tasks\niterating over elements in a list or vector\ncreating new variables or dataframes\nrunning simulations\n\n\n\n\nLoops can be slow in R\n\nuse vectorized functions whenever possible\nuse the apply family of functions\nuse the purrr package\n\n\n\n\n\n\n\nThe for loop is the most common type of loop in R\n\nit repeats a block of code a specified number of times\nit can go through every element of a vector\n\nsyntax: for (i in vector) {code to execute}\n\n\nit can iterate through a set number of elements in a vector\n\nsyntax: for (i in 1:length(vector)) {code to execute}\n\n\nThe for loop is useful for:\n\ncreating new variables\nrunning simulations\niterating over elements in a list or vector\nautomating repetitive tasks\n\n\n\n\nSteps to turn into a for loop:\n\nInitialize a vector to store results- this time it will store an entire vector of results rather than one result. Can either do: 1.1 Initialize a vector of a certain length: vec &lt;- vector(length = desired length) 1.2 Initialize an empty vector: vec &lt;- c()\nUse the for statement to tell the loop what to iterate through.\nCopy and paste the code from the single-observation case into the “meat” part of the for loop sandwich\nFor step three, make sure to add indexing where appropriate\n\n\n\n\n\n\n\n\nCode\nset.seed(123456)\n\nsample_means&lt;- numeric(length=1000)\n\nfor (i in seq_along(sample_means)) {\n  samp&lt;- sample(addh3$money, size = 800, replace=TRUE)\n  sample_means[i]&lt;- mean(samp)\n}\n\nmean(sample_means)\n\n\n[1] 5.57076\n\n\n\n\nCode\nlibrary(tidyverse)\n\nggplot(as.data.frame(sample_means), aes(sample_means)) +\n  #geom_histogram(bins=30)+\n  geom_density()+\n  geom_vline(xintercept = mean(sample_means),\n             color=\"red\", linetype=\"dashed\") +\n  labs(title=\"Distribution of Sample Means\",\n       x=\"Sample Means\",\n       y=\"Frequency\")+\n  theme_minimal()\n\n\n\n\n\n\n\n\n\n\n\n\n\nFunctions are blocks of code that can be reused\n\nthey take input arguments\nthey return output\nthey can be used in loops, apply functions, and other functions\nthey can be used to create new variables, summarize data, and run simulations\n\nthe basic structure of a function is:\n\nfunction_name &lt;- function(input arguments) {code to execute}\nreturn(output)\n\nwe now touch upon some basics\n\n\n\nWhat problem is the function trying to solve?\nWhat are the function’s arguments in this case? (as a function’s inputs)\nWhat is the function doing with those arguments?\nWhat does the function return? What class is it? (check it using R)\n\n\n\n\n\n\nLet us start with a simple function, z-score of a variable\n\n. . .\n\n\nCode\nzscore&lt;- function(x) {\n  zscore&lt;- (x - mean(x))/sd(x)\n  return(zscore)\n}\n\nz_income&lt;- zscore(addh$income)\n\nhead(z_income, 10)\n\n\n [1]  0.5221372 -0.4693026  0.1243644  0.3847371  1.2013581  0.9246830\n [7] -0.4400798  0.6028251  1.5828892 -0.6833786\n\n\n. . .\n\nmore complicated example\n\n\n\nCode\nsample_means&lt;- function(data, n, reps) {\n  sample_means&lt;- numeric(length=reps)\n  \n  for (i in seq_along(sample_means)) {\n    samp&lt;- sample(data, size = n, replace=TRUE)\n    sample_means[i]&lt;- mean(samp)\n  }\n  \n  return(sample_means)\n}\n\n\n. . .\n\n\nCode\nage_sample_means&lt;- sample_means(addh$age, 500, 1000)\n\nggplot(as.data.frame(age_sample_means), aes(age_sample_means)) +\n  geom_density()+\n  geom_vline(xintercept = mean(age_sample_means),\n             color=\"red\", linetype=\"dashed\") +\n  labs(title=\"Distribution of Sample Means\",\n       x=\"Sample Means of Age\",\n       y=\"Frequency\")+\n  theme_bw()\n\n\n\n\n\n\n\n\n\n\n\n\n\ncreate a function that incorporate both sample means functions and the density plot as above\nplot the distribution of sample means for the variable love in the addh dataset using the function\n\n\n\n\n\nLists are a way to store multiple objects in R\n\ncan store vectors, dataframes, and other lists\ncan store objects of different classes\n\n\n\n\nCode\nlist1&lt;- list(1, c(8,9,10,11,12), data.frame(x=1:10, y=11:20))\n\nlist1\n\n\n[[1]]\n[1] 1\n\n[[2]]\n[1]  8  9 10 11 12\n\n[[3]]\n    x  y\n1   1 11\n2   2 12\n3   3 13\n4   4 14\n5   5 15\n6   6 16\n7   7 17\n8   8 18\n9   9 19\n10 10 20\n\n\n\n\n\n\nThe syntax is map(mylist, myfunction, functionoptions) and can change depending on the type of output for your analysis\n\n\n\nCode\nlibrary(purrr)\n\nmap(list1, length)\n\n\n[[1]]\n[1] 1\n\n[[2]]\n[1] 5\n\n[[3]]\n[1] 2\n\n\n\n\nCode\nmap(list1, class)\n\n\n[[1]]\n[1] \"numeric\"\n\n[[2]]\n[1] \"numeric\"\n\n[[3]]\n[1] \"data.frame\"\n\n\n\n\nCode\nmap(list1, summary)\n\n\n[[1]]\n   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. \n      1       1       1       1       1       1 \n\n[[2]]\n   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. \n      8       9      10      10      11      12 \n\n[[3]]\n       x               y        \n Min.   : 1.00   Min.   :11.00  \n 1st Qu.: 3.25   1st Qu.:13.25  \n Median : 5.50   Median :15.50  \n Mean   : 5.50   Mean   :15.50  \n 3rd Qu.: 7.75   3rd Qu.:17.75  \n Max.   :10.00   Max.   :20.00  \n\n\n\n\n\n\nThe tidy approach (Wickham (2014)) to data is a way to organize data in a consistent format\n\neach variable is a column\neach observation is a row\neach type of observational unit is a table\neach value is a cell\n\n\n\n\nFive common problems for messy data\n\nColumn headers are values, not variable names\nMultiple variables are stored in one column\nVariables are stored in both rows and columns\nMultiple types of observational units are stored in the same table\nA single observational unit is stored in multiple tables\n\n\n\n\n\n\n\n\n\n\n\nCode\nlibrary(tidyr)\n\nsleep_wide&lt;- tibble(name=c(\"KT\", \"Olivia\", \"Dean\"),\n                    day1=c(8, 7, 6),\n                    day2=c(6, 6, 5),\n                    day3=c(5, 4, 4))\n\nsleep_wide\n\n\n# A tibble: 3 × 4\n  name    day1  day2  day3\n  &lt;chr&gt;  &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;\n1 KT         8     6     5\n2 Olivia     7     6     4\n3 Dean       6     5     4\n\n\n\n\nCode\nsleep_long&lt;- sleep_wide %&gt;% \n  pivot_longer(cols=day1:day3,\n               names_to=\"day\",\n               values_to=\"sleep_hours\")\n  \n\n\nsleep_long\n\n\n# A tibble: 9 × 3\n  name   day   sleep_hours\n  &lt;chr&gt;  &lt;chr&gt;       &lt;dbl&gt;\n1 KT     day1            8\n2 KT     day2            6\n3 KT     day3            5\n4 Olivia day1            7\n5 Olivia day2            6\n6 Olivia day3            4\n7 Dean   day1            6\n8 Dean   day2            5\n9 Dean   day3            4\n\n\n\n\nCode\nlibrary(stringr)\n\nsleep_long %&gt;% \n  mutate(day=stringr::str_sub(day,-1, -1))\n\n\n# A tibble: 9 × 3\n  name   day   sleep_hours\n  &lt;chr&gt;  &lt;chr&gt;       &lt;dbl&gt;\n1 KT     1               8\n2 KT     2               6\n3 KT     3               5\n4 Olivia 1               7\n5 Olivia 2               6\n6 Olivia 3               4\n7 Dean   1               6\n8 Dean   2               5\n9 Dean   3               4\n\n\n\n\nseparate(col = office_housing, into = c(“office”, “housing”), sep = “_“)\nsleep_united &lt;- sleep_pls_unite %&gt;% unite(col = “office”, building, floor, sep = ““)\n\n\n\n\n\n\n\n\n\nCode\nsleep_wide2&lt;- sleep_long %&gt;% \n  pivot_wider(names_from=day,\n              values_from=sleep_hours)\n\nsleep_wide2\n\n\n# A tibble: 3 × 4\n  name    day1  day2  day3\n  &lt;chr&gt;  &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;\n1 KT         8     6     5\n2 Olivia     7     6     4\n3 Dean       6     5     4\n\n\n\n\n\n\n. . .\n\n\nCode\nsleep_wide2&lt;- tibble(name=c(rep(\"KT\",2), rep(\"Olivia\",2), rep(\"Dean\",2)),\n                     activity=rep(c(\"sleep\", \"play\"),3),\n                     day1=c(8, 2, 7, 2, 5, 3),\n                     day2=c(6, 1, 1, 3, 6, 2),\n                     day3=c(5, 1, 4, 1, 4, 3))\n\nsleep_wide2\n\n\n# A tibble: 6 × 5\n  name   activity  day1  day2  day3\n  &lt;chr&gt;  &lt;chr&gt;    &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;\n1 KT     sleep        8     6     5\n2 KT     play         2     1     1\n3 Olivia sleep        7     1     4\n4 Olivia play         2     3     1\n5 Dean   sleep        5     6     4\n6 Dean   play         3     2     3\n\n\n. . .\n\nhow to express the data in a tidy format?\n\ni.e. name, day, sleep, play as columns\n\n\n. . .\n\n\nCode\nsleep_tidy&lt;- sleep_wide2 %&gt;% \n  pivot_longer(cols=day1:day3,\n               names_to=\"day\",\n               values_to=\"hours\") %&gt;% \n  mutate(day=stringr::str_sub(day, -1, -1)) %&gt;% \n  pivot_wider(names_from=activity,\n              values_from=hours)\n\nsleep_tidy\n\n\n# A tibble: 9 × 4\n  name   day   sleep  play\n  &lt;chr&gt;  &lt;chr&gt; &lt;dbl&gt; &lt;dbl&gt;\n1 KT     1         8     2\n2 KT     2         6     1\n3 KT     3         5     1\n4 Olivia 1         7     2\n5 Olivia 2         1     3\n6 Olivia 3         4     1\n7 Dean   1         5     3\n8 Dean   2         6     2\n9 Dean   3         4     3\n\n\n\n\n\n\nThe last step in data analysis is to export the data\n\nsave the data in a format that can be shared with others\nsave the data in a format that can be read by other software\nsave the data in a format that can be used in other software\n\nExport command depends on the type of file you are trying to write to\n\nwrite.csv for CSV\nwrite.xslx for Excel\nwrite.dta for Stata file\netc\n\nBy default, the new file will be saved in current working directory\n\nIf you want to save it elsewhere, need to specify the path\n\n\n\n\nCode\nwrite_csv(sleep_tidy, \"sleep_tidy.csv\")\n\nlibrary(haven)\nwrite_dta(sleep_tidy, \"c:/Users/KT/Downloads/sleep_tidy.dta\")\n\n\n\n\n\n\nThe typical merge in R is left_join\n\nkeep all rows from “left” table even if observation doesn’t have matching row in “right” table\nthis will drop observations from the joining data when they are not matched to the “left” table\n\n\n\n\nCode\nsleep_tidy&lt;- tibble(name=c(\"KT\", \"Olivia\", \"Dean\", \"May\", \"Mary\"),\n                     sleep=c(8, 7, 6, 5, 5),\n                     play=c(2, 2, 3, 3, 2))\n\nsleep_tidy2&lt;- tibble(name=c(\"KT\", \"Olivia\", \"Dean\", \"Peter\", \"Susan\"),\n                      study=c(3, 4, 5, 2, 3),\n                      work=c(8, 10, 9, 6, 5))\n\nsleep_tidy3&lt;- left_join(sleep_tidy, sleep_tidy2, by=\"name\")\n\nsleep_tidy3\n\n\n# A tibble: 5 × 5\n  name   sleep  play study  work\n  &lt;chr&gt;  &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;\n1 KT         8     2     3     8\n2 Olivia     7     2     4    10\n3 Dean       6     3     5     9\n4 May        5     3    NA    NA\n5 Mary       5     2    NA    NA\n\n\n\n\nCode\nsleep_tidy4&lt;- left_join(sleep_tidy2, sleep_tidy, by=\"name\")\n\nsleep_tidy4\n\n\n# A tibble: 5 × 5\n  name   study  work sleep  play\n  &lt;chr&gt;  &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;\n1 KT         3     8     8     2\n2 Olivia     4    10     7     2\n3 Dean       5     9     6     3\n4 Peter      2     6    NA    NA\n5 Susan      3     5    NA    NA\n\n\n\n\n\n\ninner join Only keep rows of the first data.frame that have corresponding records in the second data.frame\n\n. . .\n\n\nCode\nsleep_tidy5&lt;- inner_join(sleep_tidy, sleep_tidy2, by=\"name\", suffix=c(\"_sleep\", \"_work\"))\n\nsleep_tidy5\n\n\n# A tibble: 3 × 5\n  name   sleep  play study  work\n  &lt;chr&gt;  &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;\n1 KT         8     2     3     8\n2 Olivia     7     2     4    10\n3 Dean       6     3     5     9\n\n\n. . .\n\nfull join Keep all rows from both dataframes, filling in missing values with NAs\n\n. . .\n\n\nCode\nsleep_tidy6&lt;- full_join(sleep_tidy, sleep_tidy2, by=\"name\")\n\nsleep_tidy6\n\n\n# A tibble: 7 × 5\n  name   sleep  play study  work\n  &lt;chr&gt;  &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;\n1 KT         8     2     3     8\n2 Olivia     7     2     4    10\n3 Dean       6     3     5     9\n4 May        5     3    NA    NA\n5 Mary       5     2    NA    NA\n6 Peter     NA    NA     2     6\n7 Susan     NA    NA     3     5"
+  },
+  {
+    "objectID": "Data Wrangling with R.html#loading-data",
+    "href": "Data Wrangling with R.html#loading-data",
+    "title": "Data Wrangling with R",
+    "section": "",
+    "text": "The first step in any data analysis is to load the data into R\n\nthe data can be in a variety of formats\nthe most common formats are CSV, Excel, and SPSS\nthe readr package is part of the tidyverse and is used to read data into R\n\n\n\n\n\n\n\nCode\n#install.packages(\"tidyverse\")\nlibrary(tidyverse)\n\n\n# check your working directory\ngetwd()\n\n## read data file\n\naddh&lt;- read_csv(\"https://raw.githubusercontent.com/kwan-MSDA/Bootcamp_2024/main/dataset/addhealthfake.csv\")"
+  },
+  {
+    "objectID": "Data Wrangling with R.html#add-health-dataset",
+    "href": "Data Wrangling with R.html#add-health-dataset",
+    "title": "Data Wrangling with R",
+    "section": "",
+    "text": "Here are some details about the dataset\n\nThe National Longitudinal Study of Adolescent to Adult Health (Add Health)\na longitudinal study of a nationally representative sample of adolescents in grades 7-12 in the United States during the 1994-95 school year (Wave I)\nThe Add Health cohort has been followed into young adulthood with four in-home interviews for Wave I-IV by 2008\n\nthe Wave V conducted during 2016-2018 included a mixed-mode survey\n\nrespondents’ social, economic, psychological, and physical well-being\n\nalong with contextual data on the family, neighborhood, community, school, friendships, peer groups, and romantic relationships\n\nstudy developmental trajectories of health and risk behaviors throughout the life course"
+  },
+  {
+    "objectID": "Data Wrangling with R.html#explore-data",
+    "href": "Data Wrangling with R.html#explore-data",
+    "title": "Data Wrangling with R",
+    "section": "",
+    "text": "The dataset used here is a subset of the Add Health dataset\n\n3000 observations and 11 variables\n\nAfter the dataset is loaded in R, it is important to explore the data to understand its structure and content\n\ncheck the data types of each variable\ncheck the dimensions of the data\nlook at a few rows and variables\n\n\n\n\nCode\nclass(addh$age)\n\n\n[1] \"numeric\"\n\n\nCode\nclass(addh$gender)\n\n\n[1] \"character\"\n\n\nCode\nclass(addh$love)\n\n\n[1] \"numeric\""
+  },
+  {
+    "objectID": "Data Wrangling with R.html#explore-data-1",
+    "href": "Data Wrangling with R.html#explore-data-1",
+    "title": "Data Wrangling with R",
+    "section": "",
+    "text": "For more information on the dataset,\n\nsummary(): numeric summaries\nstr(): data types and sample data\ncolnames() or names(): names of columns/variables\ndim(): dimensions\nView(): view all data in RStudio viewer\nhead(): top 10 rows\ntail(): bottom 10 rows"
+  },
+  {
+    "objectID": "Data Wrangling with R.html#explore-data-2",
+    "href": "Data Wrangling with R.html#explore-data-2",
+    "title": "Data Wrangling with R",
+    "section": "",
+    "text": "Code\nstr(addh)\n\n\nspc_tbl_ [3,000 × 11] (S3: spec_tbl_df/tbl_df/tbl/data.frame)\n $ id           : num [1:3000] 1 2 3 4 5 6 7 8 9 10 ...\n $ age          : num [1:3000] 18 22 18 26 27 21 19 27 18 25 ...\n $ gender       : chr [1:3000] \"female\" \"male\" \"female\" \"female\" ...\n $ income       : num [1:3000] 19252 11617 16189 18194 24484 ...\n $ logincome    : num [1:3000] 9.87 9.36 9.69 9.81 10.11 ...\n $ debt         : chr [1:3000] \"yesdebt\" \"nodebt\" \"yesdebt\" \"yesdebt\" ...\n $ love         : num [1:3000] 1 10 10 2 5 10 3 4 1 6 ...\n $ nocheating   : num [1:3000] 7 10 3 1 10 4 10 10 10 3 ...\n $ money        : num [1:3000] 9 3 5 3 9 9 9 7 3 8 ...\n $ paypercent   : num [1:3000] 46 56 42 82 93 42 89 55 43 53 ...\n $ logpaypercent: num [1:3000] 3.83 4.03 3.74 4.41 4.53 ...\n - attr(*, \"spec\")=\n  .. cols(\n  ..   id = col_double(),\n  ..   age = col_double(),\n  ..   gender = col_character(),\n  ..   income = col_double(),\n  ..   logincome = col_double(),\n  ..   debt = col_character(),\n  ..   love = col_double(),\n  ..   nocheating = col_double(),\n  ..   money = col_double(),\n  ..   paypercent = col_double(),\n  ..   logpaypercent = col_double()\n  .. )\n - attr(*, \"problems\")=&lt;externalptr&gt; \n\n\n\n\nCode\nhead(addh, n=5)\n\n\n# A tibble: 5 × 11\n     id   age gender income logincome debt     love nocheating money paypercent\n  &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;   &lt;dbl&gt;     &lt;dbl&gt; &lt;chr&gt;   &lt;dbl&gt;      &lt;dbl&gt; &lt;dbl&gt;      &lt;dbl&gt;\n1     1    18 female 19252.      9.87 yesdebt     1          7     9         46\n2     2    22 male   11617.      9.36 nodebt     10         10     3         56\n3     3    18 female 16189.      9.69 yesdebt    10          3     5         42\n4     4    26 female 18194.      9.81 yesdebt     2          1     3         82\n5     5    27 female 24484.     10.1  yesdebt     5         10     9         93\n# ℹ 1 more variable: logpaypercent &lt;dbl&gt;\n\n\n\n\n(in dplyr) slice_sample(): randomly select n rows"
+  },
+  {
+    "objectID": "Data Wrangling with R.html#explore-data-3",
+    "href": "Data Wrangling with R.html#explore-data-3",
+    "title": "Data Wrangling with R",
+    "section": "",
+    "text": "To get information about one variable, use the following functions:\n\ntable(): get a table summarizing counts\nunique(): get the unique responses for a variable\nsort(): sort the numerically (or alphabetically)\nhist(): produce a histogram\n\n\n\n\nCode\n##| output-location: fragment\n\ntable(addh$gender)\n\n\n\nfemale   male \n  1503   1497 \n\n\n\n\nCode\n##| output-location: fragment\n\ntable(addh$age)\n\n\n\n 18  19  20  21  22  23  24  25  26  27 \n306 299 300 315 303 265 301 278 296 337 \n\n\n\n\nCode\n##| output-location: fragment\n\nsort(unique(addh$age))\n\n\n [1] 18 19 20 21 22 23 24 25 26 27"
+  },
+  {
+    "objectID": "Data Wrangling with R.html#subset-data",
+    "href": "Data Wrangling with R.html#subset-data",
+    "title": "Data Wrangling with R",
+    "section": "",
+    "text": "use the base R subsetting syntax with [row index, column index]\n\n\n\nCode\n##| output-location: fragment\n\n# get first column, rows 1 through 3 \naddh[1:3,1]\n\n\n# A tibble: 3 × 1\n     id\n  &lt;dbl&gt;\n1     1\n2     2\n3     3\n\n\n\nExercise: How would you subset the observation in the third row and the fifth column?\n\n\n\nCode\n##| output-location: fragment\n\n# get everything besides first row\naddh[-1, ]\n\n\n# A tibble: 2,999 × 11\n      id   age gender income logincome debt     love nocheating money paypercent\n   &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;   &lt;dbl&gt;     &lt;dbl&gt; &lt;chr&gt;   &lt;dbl&gt;      &lt;dbl&gt; &lt;dbl&gt;      &lt;dbl&gt;\n 1     2    22 male   11617.      9.36 nodebt     10         10     3         56\n 2     3    18 female 16189.      9.69 yesdebt    10          3     5         42\n 3     4    26 female 18194.      9.81 yesdebt     2          1     3         82\n 4     5    27 female 24484.     10.1  yesdebt     5         10     9         93\n 5     6    21 female 22353.     10.0  nodebt     10          4     9         42\n 6     7    19 male   11842.      9.38 yesdebt     3         10     9         89\n 7     8    27 female 19874.      9.90 nodebt      4         10     7         55\n 8     9    18 male   27422.     10.2  nodebt      1         10     3         43\n 9    10    25 female  9968.      9.21 yesdebt     6          3     8         53\n10    11    24 female 26354.     10.2  nodebt     10         10    10         52\n# ℹ 2,989 more rows\n# ℹ 1 more variable: logpaypercent &lt;dbl&gt;"
+  },
+  {
+    "objectID": "Data Wrangling with R.html#exercises",
+    "href": "Data Wrangling with R.html#exercises",
+    "title": "Data Wrangling with R",
+    "section": "",
+    "text": "Suppose that you want to know a few things from the dataset:\n\nWhat’s the median income of this sample? What’s the mean age?\nOn average, do the young adults surveyed think money, no cheating, or love is more important in a relationship?\nWhat are the answer choices for debt?\n\nhint: for simple calculations, you can use the base R functions mean(), median(), and table()\n\n\n\nCode\n##| output-location: fragment\n\nmedian(addh$income)\n\n\n[1] 15127.34\n\n\nCode\nmean(addh$age)\n\n\n[1] 22.51133\n\n\nCode\nunique(addh$debt)\n\n\n[1] \"yesdebt\" \"nodebt\" \n\n\n\n\nCode\n# as a precursor to the next section, we can use dplyr to do the same thing\n\nlibrary(dplyr)\nsummary(addh,\n        mean_money = mean(money),\n        mean_nocheating = mean(nocheating),\n        mean_love = mean(love))\n\n\n       id              age           gender              income     \n Min.   :   1.0   Min.   :18.00   Length:3000        Min.   : 1008  \n 1st Qu.: 750.8   1st Qu.:20.00   Class :character   1st Qu.: 9372  \n Median :1500.5   Median :22.00   Mode  :character   Median :15127  \n Mean   :1500.5   Mean   :22.51                      Mean   :15231  \n 3rd Qu.:2250.2   3rd Qu.:25.00                      3rd Qu.:20518  \n Max.   :3000.0   Max.   :27.00                      Max.   :41700  \n                                                                    \n   logincome          debt                love          nocheating    \n Min.   : 3.292   Length:3000        Min.   : 1.000   Min.   : 1.000  \n 1st Qu.: 9.222   Class :character   1st Qu.: 5.000   1st Qu.: 5.000  \n Median : 9.650   Mode  :character   Median :10.000   Median :10.000  \n Mean   : 9.482                      Mean   : 7.707   Mean   : 7.694  \n 3rd Qu.: 9.939                      3rd Qu.:10.000   3rd Qu.:10.000  \n Max.   :10.638                      Max.   :10.000   Max.   :10.000  \n NA's   :97                                                           \n     money          paypercent     logpaypercent  \n Min.   : 1.000   Min.   :  1.00   Min.   :0.000  \n 1st Qu.: 3.000   1st Qu.: 25.00   1st Qu.:3.219  \n Median : 6.000   Median : 51.00   Median :3.932  \n Mean   : 5.569   Mean   : 50.45   Mean   :3.629  \n 3rd Qu.: 8.000   3rd Qu.: 76.00   3rd Qu.:4.331  \n Max.   :10.000   Max.   :100.00   Max.   :4.605"
+  },
+  {
+    "objectID": "Data Wrangling with R.html#data-manipulation",
+    "href": "Data Wrangling with R.html#data-manipulation",
+    "title": "Data Wrangling with R",
+    "section": "",
+    "text": "The dplyr package is part of the tidyverse and is used for data manipulation\ndplyr functions include:\n\nfilter(): subset rows\nselect(): subset columns\nmutate(): create new variables\nsummarise(): summarize data\narrange(): sort data\ngroup_by(): group data\n\nvery important function: pipe operator %&gt;% from the magrittr package\n\nallows you to chain functions together\n\nbasic structure of the dplyr functions\n\nfunction(dataframe, operation 1 to perform, opertaion 2 to perform,…)"
+  },
+  {
+    "objectID": "Data Wrangling with R.html#data-manipulation-1",
+    "href": "Data Wrangling with R.html#data-manipulation-1",
+    "title": "Data Wrangling with R",
+    "section": "",
+    "text": "it can be used with operations, like\n\nstarts_with()\nends_with()\ncontains()\nmatches()\netc…\n\n\n\n\nCode\npay_variables &lt;- select(addh, contains(\"pay\"))\n\nhead(pay_variables, 5)\n\n\n# A tibble: 5 × 2\n  paypercent logpaypercent\n       &lt;dbl&gt;         &lt;dbl&gt;\n1         46          3.83\n2         56          4.03\n3         42          3.74\n4         82          4.41\n5         93          4.53"
+  },
+  {
+    "objectID": "Data Wrangling with R.html#data-manipulation-2",
+    "href": "Data Wrangling with R.html#data-manipulation-2",
+    "title": "Data Wrangling with R",
+    "section": "",
+    "text": "filter rows based on conditions\n\n\n\nCode\nnodebt_income &lt;- filter(addh, debt == \"nodebt\" & income &gt;= 10000)\n\nnrow(nodebt_income)\n\n\n[1] 1096\n\n\n\n\nCode\nnomissing_income &lt;- filter(addh, !is.na(income)) # only keep obs that are NOT (!) na\n\n#nomissing_income &lt;- drop_na(addh, income) # alternate function from tidyr\n\nnrow(nomissing_income)\n\n\n[1] 3000\n\n\n\n#nomissing_income &lt;- drop_na(addh, income) # alternate function from tidyr"
+  },
+  {
+    "objectID": "Data Wrangling with R.html#data-manipulation-3",
+    "href": "Data Wrangling with R.html#data-manipulation-3",
+    "title": "Data Wrangling with R",
+    "section": "",
+    "text": "sort data based on one or more columns\ntask: find the two observations who think money is extremely important for a relationship (10 on money) but who pay for the fewest percentage of dates (paypercent)\n\n\n\nCode\naddh %&gt;%\n  filter(money == 10) %&gt;%\n  arrange(paypercent) %&gt;%\n  head(2)\n\n\n# A tibble: 2 × 11\n     id   age gender income logincome debt     love nocheating money paypercent\n  &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;   &lt;dbl&gt;     &lt;dbl&gt; &lt;chr&gt;   &lt;dbl&gt;      &lt;dbl&gt; &lt;dbl&gt;      &lt;dbl&gt;\n1   811    22 male   34161.     10.4  yesdebt    10          9    10          2\n2  2086    20 male    4816.      8.48 yesdebt    10         10    10          2\n# ℹ 1 more variable: logpaypercent &lt;dbl&gt;"
+  },
+  {
+    "objectID": "Data Wrangling with R.html#data-manipulation-4",
+    "href": "Data Wrangling with R.html#data-manipulation-4",
+    "title": "Data Wrangling with R",
+    "section": "",
+    "text": "create new variables added to the dataset\ntask: add a variable with the average rating for nocheating, money, and love’s importance for a relationship (sum divided by 3) and another variable that logs that rating\n\n\n\nCode\naddh&lt;- mutate(addh,\n              rateavg=(love + money + nocheating)/3,\n              rateavglog=log(rateavg))\n\nhead(addh, 5)\n\n\n# A tibble: 5 × 13\n     id   age gender income logincome debt     love nocheating money paypercent\n  &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;   &lt;dbl&gt;     &lt;dbl&gt; &lt;chr&gt;   &lt;dbl&gt;      &lt;dbl&gt; &lt;dbl&gt;      &lt;dbl&gt;\n1     1    18 female 19252.      9.87 yesdebt     1          7     9         46\n2     2    22 male   11617.      9.36 nodebt     10         10     3         56\n3     3    18 female 16189.      9.69 yesdebt    10          3     5         42\n4     4    26 female 18194.      9.81 yesdebt     2          1     3         82\n5     5    27 female 24484.     10.1  yesdebt     5         10     9         93\n# ℹ 3 more variables: logpaypercent &lt;dbl&gt;, rateavg &lt;dbl&gt;, rateavglog &lt;dbl&gt;\n\n\n\nCaution\n\nusing the same column name or same object name, you overwrite the original object or column"
+  },
+  {
+    "objectID": "Data Wrangling with R.html#data-manipulation-5",
+    "href": "Data Wrangling with R.html#data-manipulation-5",
+    "title": "Data Wrangling with R",
+    "section": "",
+    "text": "group data by one or more variables and then summarize the data according to the groups\ntask: find the average “not cheating importance” for different gender\n\n\n\nCode\naddh %&gt;% \n  group_by(gender) %&gt;% \n  summarize(mean_nocheating = mean(nocheating))\n\n\n# A tibble: 2 × 2\n  gender mean_nocheating\n  &lt;chr&gt;            &lt;dbl&gt;\n1 female            7.79\n2 male              7.60\n\n\n\nSummarise has a number of operations for creating summary statistics\n\nmean(), median(), min(), max(), sd(), n(), n_distinct(), first, last, etc…"
+  },
+  {
+    "objectID": "Data Wrangling with R.html#exercises-1",
+    "href": "Data Wrangling with R.html#exercises-1",
+    "title": "Data Wrangling with R",
+    "section": "",
+    "text": "Exercise one\n\nthe number of females and males by debt status\nthe percentage in each (debt x gender) category as a fraction of all observations\nthe number of distinct ratings of love’s importance in each of these debt x gender categories\n\n\n\n\nCode\naddh %&gt;% \n  group_by(gender, debt) %&gt;%\n  summarize(percentage = n()/nrow(addh),\n            n_distinct_love = n_distinct(love))\n\n\n# A tibble: 4 × 4\n# Groups:   gender [2]\n  gender debt    percentage n_distinct_love\n  &lt;chr&gt;  &lt;chr&gt;        &lt;dbl&gt;           &lt;int&gt;\n1 female nodebt       0.256              10\n2 female yesdebt      0.245              10\n3 male   nodebt       0.248              10\n4 male   yesdebt      0.251              10"
+  },
+  {
+    "objectID": "Data Wrangling with R.html#exercises-2",
+    "href": "Data Wrangling with R.html#exercises-2",
+    "title": "Data Wrangling with R",
+    "section": "",
+    "text": "Exercise two\n\n\nGroup the data by gender and debt status first\n\nFind the average rating of love, no cheating, and money’s importance for a relationship in each group\nArrange the groups by their rating of money’s importance to a relationship from the highest to rating to the lowest rating\n\n\n\n\nCode\naddh %&gt;% \n  group_by(gender, debt) %&gt;%\n  summarize(mean_love = mean(love),\n            mean_nocheating = mean(nocheating),\n            mean_money = mean(money)) %&gt;%\n  arrange(desc(mean_money))\n\n\n# A tibble: 4 × 5\n# Groups:   gender [2]\n  gender debt    mean_love mean_nocheating mean_money\n  &lt;chr&gt;  &lt;chr&gt;       &lt;dbl&gt;           &lt;dbl&gt;      &lt;dbl&gt;\n1 male   yesdebt      7.76            7.72       5.66\n2 female yesdebt      7.57            7.75       5.59\n3 female nodebt       7.82            7.83       5.54\n4 male   nodebt       7.68            7.47       5.49"
+  },
+  {
+    "objectID": "Data Wrangling with R.html#recoding-variables",
+    "href": "Data Wrangling with R.html#recoding-variables",
+    "title": "Data Wrangling with R",
+    "section": "",
+    "text": "Recoding variables is a common task in data analysis for social science research\n\nconvert a variable from one format to another\ncreate a new variable based on the values of an existing variable (or of multiple existing variables)\n\nsome typical recoding tasks\n\nconvert a continuous variable to a categorical variable\nconvert a categorical variable to a continuous variable\ncreate categorical variables based on conditions\n\nOur focus\n\ndata types\nlogical statements\ncase_when() function"
+  },
+  {
+    "objectID": "Data Wrangling with R.html#recoding-variables-1",
+    "href": "Data Wrangling with R.html#recoding-variables-1",
+    "title": "Data Wrangling with R",
+    "section": "",
+    "text": "use the mutate() function to change the data type of a variable\n\nas.character()\nas.numeric()\nas.factor()\nas.integer()\nas.logical()\n\n\n\n\nCode\naddh2 &lt;- addh %&gt;% \n            mutate(\n               age = as.character(age),\n               debt = as.factor(debt)\n               )\n\nhead(addh2, 3)\n\n\n# A tibble: 3 × 13\n     id age   gender income logincome debt     love nocheating money paypercent\n  &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt;   &lt;dbl&gt;     &lt;dbl&gt; &lt;fct&gt;   &lt;dbl&gt;      &lt;dbl&gt; &lt;dbl&gt;      &lt;dbl&gt;\n1     1 18    female 19252.      9.87 yesdebt     1          7     9         46\n2     2 22    male   11617.      9.36 nodebt     10         10     3         56\n3     3 18    female 16189.      9.69 yesdebt    10          3     5         42\n# ℹ 3 more variables: logpaypercent &lt;dbl&gt;, rateavg &lt;dbl&gt;, rateavglog &lt;dbl&gt;"
+  },
+  {
+    "objectID": "Data Wrangling with R.html#recoding-variables-2",
+    "href": "Data Wrangling with R.html#recoding-variables-2",
+    "title": "Data Wrangling with R",
+    "section": "",
+    "text": "use c to string together the elements\n\n\n\nCode\nagevec&lt;- c(18, 21, 23, 25, 27, 30)\n\nagevec\n\n\n[1] 18 21 23 25 27 30\n\n\n\n\nCode\nclass(agevec)\n\n\n[1] \"numeric\"\n\n\n\n\nCode\ngendervec &lt;- c(\"male\", \"female\", \"other\", \"female\", \"female\", \"male\")\ngendervec\n\n\n[1] \"male\"   \"female\" \"other\"  \"female\" \"female\" \"male\"  \n\n\n\n\nCode\nclass(gendervec)\n\n\n[1] \"character\""
+  },
+  {
+    "objectID": "Data Wrangling with R.html#recoding-variables-3",
+    "href": "Data Wrangling with R.html#recoding-variables-3",
+    "title": "Data Wrangling with R",
+    "section": "",
+    "text": "Elements in a vector need to be of the same type, otherwise, type coercion happens\n\n\n\nCode\nc(28, \"28\", TRUE)\n\n\n[1] \"28\"   \"28\"   \"TRUE\"\n\n\n\n\nCode\nc(28, \"28\", TRUE) %&gt;% class()\n\n\n[1] \"character\"\n\n\n\n\nCode\nc(1,2,3, TRUE, FALSE)\n\n\n[1] 1 2 3 1 0\n\n\nCode\nc(1,2,3, TRUE, FALSE) %&gt;% class()\n\n\n[1] \"numeric\""
+  },
+  {
+    "objectID": "Data Wrangling with R.html#recoding-variables-4",
+    "href": "Data Wrangling with R.html#recoding-variables-4",
+    "title": "Data Wrangling with R",
+    "section": "",
+    "text": "convert from one type to another using the following functions:\n\nas.numeric()\nas.character()\nas.factor()\n\n\n\n\nCode\nas.character(agevec)\n\n\n[1] \"18\" \"21\" \"23\" \"25\" \"27\" \"30\"\n\n\n\n\nCode\nas.numeric(gendervec)\n\n\n[1] NA NA NA NA NA NA"
+  },
+  {
+    "objectID": "Data Wrangling with R.html#recoding-variables-5",
+    "href": "Data Wrangling with R.html#recoding-variables-5",
+    "title": "Data Wrangling with R",
+    "section": "",
+    "text": "Vectors can have a factor type\n\nlooks like a character vector\nbut is actually a number under the hood (“labelled data”)\n\n\n\n\nCode\ngenderfactorvec&lt;- factor(gendervec,\n                         levels=c(\"male\", \"female\", \"other\"))\n\ngenderfactorvec\n\n\n[1] male   female other  female female male  \nLevels: male female other\n\n\n\n\nCode\nclass(genderfactorvec)\n\n\n[1] \"factor\"\n\n\n\n\nCode\nas.numeric(genderfactorvec)\n\n\n[1] 1 2 3 2 2 1"
+  },
+  {
+    "objectID": "Data Wrangling with R.html#recoding-variables-6",
+    "href": "Data Wrangling with R.html#recoding-variables-6",
+    "title": "Data Wrangling with R",
+    "section": "",
+    "text": "there are functions to help you create the vector more efficiently:\n\nrep: repeat the same thing multiple times\nseq: create a sequence of numbers\npaste: stick together character and numeric info\nsample: for vectors where we want to randomly sample from some larger pool\n\n\n\n\nCode\nrep(1, 5)\n\n\n[1] 1 1 1 1 1\n\n\n\n\nCode\nseq(from=1997, to=2024, by=5)\n\n\n[1] 1997 2002 2007 2012 2017 2022\n\n\n\n\nCode\npaste(\"age\", seq(from=22, to=30, by=1),\n      sep=\"_\")\n\n\n[1] \"age_22\" \"age_23\" \"age_24\" \"age_25\" \"age_26\" \"age_27\" \"age_28\" \"age_29\"\n[9] \"age_30\""
+  },
+  {
+    "objectID": "Data Wrangling with R.html#recoding-variables-7",
+    "href": "Data Wrangling with R.html#recoding-variables-7",
+    "title": "Data Wrangling with R",
+    "section": "",
+    "text": "One way to create a dataframe\n\nuse bind_cols() to attach same-length vectors together as columns in a tibble\nVectors can be different types\n\n\n\n\nCode\nbind_cols(age=agevec, gender=gendervec)\n\n\n# A tibble: 6 × 2\n    age gender\n  &lt;dbl&gt; &lt;chr&gt; \n1    18 male  \n2    21 female\n3    23 other \n4    25 female\n5    27 female\n6    30 male"
+  },
+  {
+    "objectID": "Data Wrangling with R.html#exercises-3",
+    "href": "Data Wrangling with R.html#exercises-3",
+    "title": "Data Wrangling with R",
+    "section": "",
+    "text": "Code\naddh2&lt;- addh %&gt;% \n            mutate(gender=factor(gender,\n                                 levels=c(\"male\", \"female\")\n                                 )\n               )\n\nstr(addh2$gender)\n\n\n Factor w/ 2 levels \"male\",\"female\": 2 1 2 2 2 2 1 2 1 2 ...\n\n\nCode\nvec1&lt;- as.character(addh2$gender)\nvec2&lt;- as.numeric(addh2$gender)\n\n\n\nconvert the variable gender in addh to a factor variable\nwhat happens if you try to convert the variable to character by using as.character after the factor conversion\nwhat happens if you try to convert the variable to number by using as.numeric after the factor conversion"
+  },
+  {
+    "objectID": "Data Wrangling with R.html#recoding-variables-8",
+    "href": "Data Wrangling with R.html#recoding-variables-8",
+    "title": "Data Wrangling with R",
+    "section": "",
+    "text": "A matrix is a two-dimensional array\n\nall elements must be of the same type\ncan be created using the matrix() function\ncan be created from a vector using the dim() function\n\n\n\n\nCode\nmatrix1&lt;- matrix(1:15, nrow=3, ncol=5)\n\nmatrix1\n\n\n     [,1] [,2] [,3] [,4] [,5]\n[1,]    1    4    7   10   13\n[2,]    2    5    8   11   14\n[3,]    3    6    9   12   15"
+  },
+  {
+    "objectID": "Data Wrangling with R.html#recoding-variables-9",
+    "href": "Data Wrangling with R.html#recoding-variables-9",
+    "title": "Data Wrangling with R",
+    "section": "",
+    "text": "Code\ndim(matrix1)\n\n\n[1] 3 5\n\n\n\n\nCode\ncolnames(matrix1)&lt;- c(\"A\", \"B\", \"C\", \"D\", \"E\")\nrownames(matrix1)&lt;- c(\"X\", \"Y\", \"Z\")\n\nmatrix1\n\n\n  A B C  D  E\nX 1 4 7 10 13\nY 2 5 8 11 14\nZ 3 6 9 12 15\n\n\n\n\nCode\nmatrix1[2,3]\n\n\n[1] 8\n\n\n\n\nCode\nmatrix1[2,]\n\n\n A  B  C  D  E \n 2  5  8 11 14"
+  },
+  {
+    "objectID": "Data Wrangling with R.html#recoding-variables-10",
+    "href": "Data Wrangling with R.html#recoding-variables-10",
+    "title": "Data Wrangling with R",
+    "section": "",
+    "text": "Code\nA&lt;- matrix(1:6, nrow=2, ncol=3)\nB&lt;- matrix(7:12, nrow=3, ncol=2)\n\n\nprint(A %*% B)\n\n\n     [,1] [,2]\n[1,]   76  103\n[2,]  100  136\n\n\nCode\nprint(B %*% A)\n\n\n     [,1] [,2] [,3]\n[1,]   27   61   95\n[2,]   30   68  106\n[3,]   33   75  117\n\n\n\n\nCode\nprint(t(A))\n\n\n     [,1] [,2]\n[1,]    1    2\n[2,]    3    4\n[3,]    5    6"
+  },
+  {
+    "objectID": "Data Wrangling with R.html#recoding-variables-11",
+    "href": "Data Wrangling with R.html#recoding-variables-11",
+    "title": "Data Wrangling with R",
+    "section": "",
+    "text": "Code\nC&lt;- matrix(c(2,5,3,1,3,6,2,9,5), nrow=3, ncol=3)\nprint(solve(C))\n\n\n            [,1]       [,2]        [,3]\n[1,]  1.14705882 -0.2058824 -0.08823529\n[2,] -0.05882353 -0.1176471  0.23529412\n[3,] -0.61764706  0.2647059 -0.02941176\n\n\n\n\nCode\nprint(det(C))\n\n\n[1] -34\n\n\n\n\nCode\nprint(eigen(C))\n\n\neigen() decomposition\n$values\n[1] 12.502029 -3.320941  0.818912\n\n$vectors\n           [,1]        [,2]       [,3]\n[1,] -0.1946720 -0.07646107 -0.8799055\n[2,] -0.7265653 -0.79546586  0.1194865\n[3,] -0.6589428  0.60115536  0.4598796"
+  },
+  {
+    "objectID": "Data Wrangling with R.html#recoding-variables-12",
+    "href": "Data Wrangling with R.html#recoding-variables-12",
+    "title": "Data Wrangling with R",
+    "section": "",
+    "text": "let us start from discussing logical operators first\nthe main logical operators used in R are:\n\n\\(==\\) (equal to)\n\\(!=\\) (not equal to)\n\\(!\\) (not)\n\\(&lt;\\) (less than)\n\\(&lt;=\\) (less than or equal to)\n\\(&gt;\\) (greater than)\n\\(&gt;=\\) (greater than or equal to)\n\\(\\&\\) (and)\n\\(|\\) (or)"
+  },
+  {
+    "objectID": "Data Wrangling with R.html#recoding-variables-13",
+    "href": "Data Wrangling with R.html#recoding-variables-13",
+    "title": "Data Wrangling with R",
+    "section": "",
+    "text": "logical statements are used to filter data, create new variables, and recode variables\n\nifelse() function\n\n\n\n\nCode\naddh2&lt;- addh %&gt;% \n            mutate(\n               money_over_love = ifelse(money &gt; love, 1, 0),\n               .after = id\n               )\n\nhead(addh2, 5)\n\n\n# A tibble: 5 × 14\n     id money_over_love   age gender income logincome debt     love nocheating\n  &lt;dbl&gt;           &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;   &lt;dbl&gt;     &lt;dbl&gt; &lt;chr&gt;   &lt;dbl&gt;      &lt;dbl&gt;\n1     1               1    18 female 19252.      9.87 yesdebt     1          7\n2     2               0    22 male   11617.      9.36 nodebt     10         10\n3     3               0    18 female 16189.      9.69 yesdebt    10          3\n4     4               1    26 female 18194.      9.81 yesdebt     2          1\n5     5               1    27 female 24484.     10.1  yesdebt     5         10\n# ℹ 5 more variables: money &lt;dbl&gt;, paypercent &lt;dbl&gt;, logpaypercent &lt;dbl&gt;,\n#   rateavg &lt;dbl&gt;, rateavglog &lt;dbl&gt;\n\n\n\n\nCode\naddh3&lt;- addh %&gt;% \n            mutate(\n               money_or_love = ifelse(money==love, \"same\",\n                                      ifelse(love &gt; money, \"love greater\", \"money greater\")),\n               .after = id\n               )\n\nhead(addh3, 5)\n\n\n# A tibble: 5 × 14\n     id money_or_love   age gender income logincome debt   love nocheating money\n  &lt;dbl&gt; &lt;chr&gt;         &lt;dbl&gt; &lt;chr&gt;   &lt;dbl&gt;     &lt;dbl&gt; &lt;chr&gt; &lt;dbl&gt;      &lt;dbl&gt; &lt;dbl&gt;\n1     1 money greater    18 female 19252.      9.87 yesd…     1          7     9\n2     2 love greater     22 male   11617.      9.36 node…    10         10     3\n3     3 love greater     18 female 16189.      9.69 yesd…    10          3     5\n4     4 money greater    26 female 18194.      9.81 yesd…     2          1     3\n5     5 money greater    27 female 24484.     10.1  yesd…     5         10     9\n# ℹ 4 more variables: paypercent &lt;dbl&gt;, logpaypercent &lt;dbl&gt;, rateavg &lt;dbl&gt;,\n#   rateavglog &lt;dbl&gt;"
+  },
+  {
+    "objectID": "Data Wrangling with R.html#recoding-variables-14",
+    "href": "Data Wrangling with R.html#recoding-variables-14",
+    "title": "Data Wrangling with R",
+    "section": "",
+    "text": "use case_when() if there are 3 or more conditions for creating a variable\nits syntax is the following:\n\ncase_when(logical condition ~ value assigned, logical condition 2 ~ value assigned. . . .default = value if does not fit other logical conditions)\n\n\n\n\nCode\naddh3&lt;- addh %&gt;% \n  mutate(\n    money_or_love = case_when(\n      money==love ~ \"same\",\n      love &gt; money ~ \"love greater\",\n      TRUE ~ \"money greater\"\n    ),\n    .after = id\n  )\n\nhead(addh3, 5)\n\n\n# A tibble: 5 × 14\n     id money_or_love   age gender income logincome debt   love nocheating money\n  &lt;dbl&gt; &lt;chr&gt;         &lt;dbl&gt; &lt;chr&gt;   &lt;dbl&gt;     &lt;dbl&gt; &lt;chr&gt; &lt;dbl&gt;      &lt;dbl&gt; &lt;dbl&gt;\n1     1 money greater    18 female 19252.      9.87 yesd…     1          7     9\n2     2 love greater     22 male   11617.      9.36 node…    10         10     3\n3     3 love greater     18 female 16189.      9.69 yesd…    10          3     5\n4     4 money greater    26 female 18194.      9.81 yesd…     2          1     3\n5     5 money greater    27 female 24484.     10.1  yesd…     5         10     9\n# ℹ 4 more variables: paypercent &lt;dbl&gt;, logpaypercent &lt;dbl&gt;, rateavg &lt;dbl&gt;,\n#   rateavglog &lt;dbl&gt;"
+  },
+  {
+    "objectID": "Data Wrangling with R.html#exercises-4",
+    "href": "Data Wrangling with R.html#exercises-4",
+    "title": "Data Wrangling with R",
+    "section": "",
+    "text": "create a new variable called money_or_love in the addh dataset\n\nthe variable should have the following categories:\n\n“extreme” if person either codes love or money as 9 or 10\n“lovegreater” if love &gt; money\n“same” if love == money\n“moneygreater” if money &gt; love\nNA if none of the above"
+  },
+  {
+    "objectID": "Data Wrangling with R.html#recoding-variables-15",
+    "href": "Data Wrangling with R.html#recoding-variables-15",
+    "title": "Data Wrangling with R",
+    "section": "",
+    "text": "Code\nincome_75&lt;- quantile(addh$income)[4]\n\naddh2&lt;- addh %&gt;% \n  mutate(high_income=ifelse(income &gt; income_75, 1, 0))\n\nincome_25 &lt;- quantile(addh$income)[2]\n\naddh2&lt;- addh2 %&gt;% \n  mutate(income_level=case_when(income &lt;= income_25 ~ \"low\",\n                                income &gt;=income_75 ~\"high\", \n                                .default=\"medium\"),\n         .after = id)\n\nhead(addh2, 5)\n\n\n# A tibble: 5 × 15\n     id income_level   age gender income logincome debt    love nocheating money\n  &lt;dbl&gt; &lt;chr&gt;        &lt;dbl&gt; &lt;chr&gt;   &lt;dbl&gt;     &lt;dbl&gt; &lt;chr&gt;  &lt;dbl&gt;      &lt;dbl&gt; &lt;dbl&gt;\n1     1 medium          18 female 19252.      9.87 yesde…     1          7     9\n2     2 medium          22 male   11617.      9.36 nodebt    10         10     3\n3     3 medium          18 female 16189.      9.69 yesde…    10          3     5\n4     4 medium          26 female 18194.      9.81 yesde…     2          1     3\n5     5 high            27 female 24484.     10.1  yesde…     5         10     9\n# ℹ 5 more variables: paypercent &lt;dbl&gt;, logpaypercent &lt;dbl&gt;, rateavg &lt;dbl&gt;,\n#   rateavglog &lt;dbl&gt;, high_income &lt;dbl&gt;"
+  },
+  {
+    "objectID": "Data Wrangling with R.html#looping",
+    "href": "Data Wrangling with R.html#looping",
+    "title": "Data Wrangling with R",
+    "section": "",
+    "text": "Loops are used to repeat a block of code multiple times\n\nfor loop\nwhile loop\nrepeat loop\nbreak and next statements\n\nLoops are useful for:\n\nautomating repetitive tasks\niterating over elements in a list or vector\ncreating new variables or dataframes\nrunning simulations\n\n\n\n\nLoops can be slow in R\n\nuse vectorized functions whenever possible\nuse the apply family of functions\nuse the purrr package"
+  },
+  {
+    "objectID": "Data Wrangling with R.html#for-loops",
+    "href": "Data Wrangling with R.html#for-loops",
+    "title": "Data Wrangling with R",
+    "section": "",
+    "text": "The for loop is the most common type of loop in R\n\nit repeats a block of code a specified number of times\nit can go through every element of a vector\n\nsyntax: for (i in vector) {code to execute}\n\n\nit can iterate through a set number of elements in a vector\n\nsyntax: for (i in 1:length(vector)) {code to execute}\n\n\nThe for loop is useful for:\n\ncreating new variables\nrunning simulations\niterating over elements in a list or vector\nautomating repetitive tasks\n\n\n\n\nSteps to turn into a for loop:\n\nInitialize a vector to store results- this time it will store an entire vector of results rather than one result. Can either do: 1.1 Initialize a vector of a certain length: vec &lt;- vector(length = desired length) 1.2 Initialize an empty vector: vec &lt;- c()\nUse the for statement to tell the loop what to iterate through.\nCopy and paste the code from the single-observation case into the “meat” part of the for loop sandwich\nFor step three, make sure to add indexing where appropriate"
+  },
+  {
+    "objectID": "Data Wrangling with R.html#for-loops-sample-means",
+    "href": "Data Wrangling with R.html#for-loops-sample-means",
+    "title": "Data Wrangling with R",
+    "section": "",
+    "text": "Code\nset.seed(123456)\n\nsample_means&lt;- numeric(length=1000)\n\nfor (i in seq_along(sample_means)) {\n  samp&lt;- sample(addh3$money, size = 800, replace=TRUE)\n  sample_means[i]&lt;- mean(samp)\n}\n\nmean(sample_means)\n\n\n[1] 5.57076\n\n\n\n\nCode\nlibrary(tidyverse)\n\nggplot(as.data.frame(sample_means), aes(sample_means)) +\n  #geom_histogram(bins=30)+\n  geom_density()+\n  geom_vline(xintercept = mean(sample_means),\n             color=\"red\", linetype=\"dashed\") +\n  labs(title=\"Distribution of Sample Means\",\n       x=\"Sample Means\",\n       y=\"Frequency\")+\n  theme_minimal()"
+  },
+  {
+    "objectID": "Data Wrangling with R.html#write-a-function",
+    "href": "Data Wrangling with R.html#write-a-function",
+    "title": "Data Wrangling with R",
+    "section": "",
+    "text": "Functions are blocks of code that can be reused\n\nthey take input arguments\nthey return output\nthey can be used in loops, apply functions, and other functions\nthey can be used to create new variables, summarize data, and run simulations\n\nthe basic structure of a function is:\n\nfunction_name &lt;- function(input arguments) {code to execute}\nreturn(output)\n\nwe now touch upon some basics\n\n\n\nWhat problem is the function trying to solve?\nWhat are the function’s arguments in this case? (as a function’s inputs)\nWhat is the function doing with those arguments?\nWhat does the function return? What class is it? (check it using R)"
+  },
+  {
+    "objectID": "Data Wrangling with R.html#functions---basics",
+    "href": "Data Wrangling with R.html#functions---basics",
+    "title": "Data Wrangling with R",
+    "section": "",
+    "text": "Let us start with a simple function, z-score of a variable\n\n. . .\n\n\nCode\nzscore&lt;- function(x) {\n  zscore&lt;- (x - mean(x))/sd(x)\n  return(zscore)\n}\n\nz_income&lt;- zscore(addh$income)\n\nhead(z_income, 10)\n\n\n [1]  0.5221372 -0.4693026  0.1243644  0.3847371  1.2013581  0.9246830\n [7] -0.4400798  0.6028251  1.5828892 -0.6833786\n\n\n. . .\n\nmore complicated example\n\n\n\nCode\nsample_means&lt;- function(data, n, reps) {\n  sample_means&lt;- numeric(length=reps)\n  \n  for (i in seq_along(sample_means)) {\n    samp&lt;- sample(data, size = n, replace=TRUE)\n    sample_means[i]&lt;- mean(samp)\n  }\n  \n  return(sample_means)\n}\n\n\n. . .\n\n\nCode\nage_sample_means&lt;- sample_means(addh$age, 500, 1000)\n\nggplot(as.data.frame(age_sample_means), aes(age_sample_means)) +\n  geom_density()+\n  geom_vline(xintercept = mean(age_sample_means),\n             color=\"red\", linetype=\"dashed\") +\n  labs(title=\"Distribution of Sample Means\",\n       x=\"Sample Means of Age\",\n       y=\"Frequency\")+\n  theme_bw()"
+  },
+  {
+    "objectID": "Data Wrangling with R.html#exercises-5",
+    "href": "Data Wrangling with R.html#exercises-5",
+    "title": "Data Wrangling with R",
+    "section": "",
+    "text": "create a function that incorporate both sample means functions and the density plot as above\nplot the distribution of sample means for the variable love in the addh dataset using the function"
+  },
+  {
+    "objectID": "Data Wrangling with R.html#lists-and-map-functions-from-purrr-library",
+    "href": "Data Wrangling with R.html#lists-and-map-functions-from-purrr-library",
+    "title": "Data Wrangling with R",
+    "section": "",
+    "text": "Lists are a way to store multiple objects in R\n\ncan store vectors, dataframes, and other lists\ncan store objects of different classes\n\n\n\n\nCode\nlist1&lt;- list(1, c(8,9,10,11,12), data.frame(x=1:10, y=11:20))\n\nlist1\n\n\n[[1]]\n[1] 1\n\n[[2]]\n[1]  8  9 10 11 12\n\n[[3]]\n    x  y\n1   1 11\n2   2 12\n3   3 13\n4   4 14\n5   5 15\n6   6 16\n7   7 17\n8   8 18\n9   9 19\n10 10 20"
+  },
+  {
+    "objectID": "Data Wrangling with R.html#lists-and-map-functions-from-purrr-library-1",
+    "href": "Data Wrangling with R.html#lists-and-map-functions-from-purrr-library-1",
+    "title": "Data Wrangling with R",
+    "section": "",
+    "text": "The syntax is map(mylist, myfunction, functionoptions) and can change depending on the type of output for your analysis\n\n\n\nCode\nlibrary(purrr)\n\nmap(list1, length)\n\n\n[[1]]\n[1] 1\n\n[[2]]\n[1] 5\n\n[[3]]\n[1] 2\n\n\n\n\nCode\nmap(list1, class)\n\n\n[[1]]\n[1] \"numeric\"\n\n[[2]]\n[1] \"numeric\"\n\n[[3]]\n[1] \"data.frame\"\n\n\n\n\nCode\nmap(list1, summary)\n\n\n[[1]]\n   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. \n      1       1       1       1       1       1 \n\n[[2]]\n   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. \n      8       9      10      10      11      12 \n\n[[3]]\n       x               y        \n Min.   : 1.00   Min.   :11.00  \n 1st Qu.: 3.25   1st Qu.:13.25  \n Median : 5.50   Median :15.50  \n Mean   : 5.50   Mean   :15.50  \n 3rd Qu.: 7.75   3rd Qu.:17.75  \n Max.   :10.00   Max.   :20.00"
+  },
+  {
+    "objectID": "Data Wrangling with R.html#tidy-approach-to-data",
+    "href": "Data Wrangling with R.html#tidy-approach-to-data",
+    "title": "Data Wrangling with R",
+    "section": "",
+    "text": "The tidy approach (Wickham (2014)) to data is a way to organize data in a consistent format\n\neach variable is a column\neach observation is a row\neach type of observational unit is a table\neach value is a cell\n\n\n\n\nFive common problems for messy data\n\nColumn headers are values, not variable names\nMultiple variables are stored in one column\nVariables are stored in both rows and columns\nMultiple types of observational units are stored in the same table\nA single observational unit is stored in multiple tables"
+  },
+  {
+    "objectID": "Data Wrangling with R.html#let-us-start-from-a-real-example",
+    "href": "Data Wrangling with R.html#let-us-start-from-a-real-example",
+    "title": "Data Wrangling with R",
+    "section": "",
+    "text": "Code\nlibrary(tidyr)\n\nsleep_wide&lt;- tibble(name=c(\"KT\", \"Olivia\", \"Dean\"),\n                    day1=c(8, 7, 6),\n                    day2=c(6, 6, 5),\n                    day3=c(5, 4, 4))\n\nsleep_wide\n\n\n# A tibble: 3 × 4\n  name    day1  day2  day3\n  &lt;chr&gt;  &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;\n1 KT         8     6     5\n2 Olivia     7     6     4\n3 Dean       6     5     4\n\n\n\n\nCode\nsleep_long&lt;- sleep_wide %&gt;% \n  pivot_longer(cols=day1:day3,\n               names_to=\"day\",\n               values_to=\"sleep_hours\")\n  \n\n\nsleep_long\n\n\n# A tibble: 9 × 3\n  name   day   sleep_hours\n  &lt;chr&gt;  &lt;chr&gt;       &lt;dbl&gt;\n1 KT     day1            8\n2 KT     day2            6\n3 KT     day3            5\n4 Olivia day1            7\n5 Olivia day2            6\n6 Olivia day3            4\n7 Dean   day1            6\n8 Dean   day2            5\n9 Dean   day3            4\n\n\n\n\nCode\nlibrary(stringr)\n\nsleep_long %&gt;% \n  mutate(day=stringr::str_sub(day,-1, -1))\n\n\n# A tibble: 9 × 3\n  name   day   sleep_hours\n  &lt;chr&gt;  &lt;chr&gt;       &lt;dbl&gt;\n1 KT     1               8\n2 KT     2               6\n3 KT     3               5\n4 Olivia 1               7\n5 Olivia 2               6\n6 Olivia 3               4\n7 Dean   1               6\n8 Dean   2               5\n9 Dean   3               4\n\n\n\n\nseparate(col = office_housing, into = c(“office”, “housing”), sep = “_“)\nsleep_united &lt;- sleep_pls_unite %&gt;% unite(col = “office”, building, floor, sep = ““)"
+  },
+  {
+    "objectID": "Data Wrangling with R.html#reshape-the-data-1",
+    "href": "Data Wrangling with R.html#reshape-the-data-1",
+    "title": "Data Wrangling with R",
+    "section": "",
+    "text": "Code\nsleep_wide2&lt;- sleep_long %&gt;% \n  pivot_wider(names_from=day,\n              values_from=sleep_hours)\n\nsleep_wide2\n\n\n# A tibble: 3 × 4\n  name    day1  day2  day3\n  &lt;chr&gt;  &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;\n1 KT         8     6     5\n2 Olivia     7     6     4\n3 Dean       6     5     4"
+  },
+  {
+    "objectID": "Data Wrangling with R.html#execises",
+    "href": "Data Wrangling with R.html#execises",
+    "title": "Data Wrangling with R",
+    "section": "",
+    "text": ". . .\n\n\nCode\nsleep_wide2&lt;- tibble(name=c(rep(\"KT\",2), rep(\"Olivia\",2), rep(\"Dean\",2)),\n                     activity=rep(c(\"sleep\", \"play\"),3),\n                     day1=c(8, 2, 7, 2, 5, 3),\n                     day2=c(6, 1, 1, 3, 6, 2),\n                     day3=c(5, 1, 4, 1, 4, 3))\n\nsleep_wide2\n\n\n# A tibble: 6 × 5\n  name   activity  day1  day2  day3\n  &lt;chr&gt;  &lt;chr&gt;    &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;\n1 KT     sleep        8     6     5\n2 KT     play         2     1     1\n3 Olivia sleep        7     1     4\n4 Olivia play         2     3     1\n5 Dean   sleep        5     6     4\n6 Dean   play         3     2     3\n\n\n. . .\n\nhow to express the data in a tidy format?\n\ni.e. name, day, sleep, play as columns\n\n\n. . .\n\n\nCode\nsleep_tidy&lt;- sleep_wide2 %&gt;% \n  pivot_longer(cols=day1:day3,\n               names_to=\"day\",\n               values_to=\"hours\") %&gt;% \n  mutate(day=stringr::str_sub(day, -1, -1)) %&gt;% \n  pivot_wider(names_from=activity,\n              values_from=hours)\n\nsleep_tidy\n\n\n# A tibble: 9 × 4\n  name   day   sleep  play\n  &lt;chr&gt;  &lt;chr&gt; &lt;dbl&gt; &lt;dbl&gt;\n1 KT     1         8     2\n2 KT     2         6     1\n3 KT     3         5     1\n4 Olivia 1         7     2\n5 Olivia 2         1     3\n6 Olivia 3         4     1\n7 Dean   1         5     3\n8 Dean   2         6     2\n9 Dean   3         4     3"
+  },
+  {
+    "objectID": "Data Wrangling with R.html#export-data",
+    "href": "Data Wrangling with R.html#export-data",
+    "title": "Data Wrangling with R",
+    "section": "",
+    "text": "The last step in data analysis is to export the data\n\nsave the data in a format that can be shared with others\nsave the data in a format that can be read by other software\nsave the data in a format that can be used in other software\n\nExport command depends on the type of file you are trying to write to\n\nwrite.csv for CSV\nwrite.xslx for Excel\nwrite.dta for Stata file\netc\n\nBy default, the new file will be saved in current working directory\n\nIf you want to save it elsewhere, need to specify the path\n\n\n\n\nCode\nwrite_csv(sleep_tidy, \"sleep_tidy.csv\")\n\nlibrary(haven)\nwrite_dta(sleep_tidy, \"c:/Users/KT/Downloads/sleep_tidy.dta\")"
+  },
+  {
+    "objectID": "Data Wrangling with R.html#basic-merge",
+    "href": "Data Wrangling with R.html#basic-merge",
+    "title": "Data Wrangling with R",
+    "section": "",
+    "text": "The typical merge in R is left_join\n\nkeep all rows from “left” table even if observation doesn’t have matching row in “right” table\nthis will drop observations from the joining data when they are not matched to the “left” table\n\n\n\n\nCode\nsleep_tidy&lt;- tibble(name=c(\"KT\", \"Olivia\", \"Dean\", \"May\", \"Mary\"),\n                     sleep=c(8, 7, 6, 5, 5),\n                     play=c(2, 2, 3, 3, 2))\n\nsleep_tidy2&lt;- tibble(name=c(\"KT\", \"Olivia\", \"Dean\", \"Peter\", \"Susan\"),\n                      study=c(3, 4, 5, 2, 3),\n                      work=c(8, 10, 9, 6, 5))\n\nsleep_tidy3&lt;- left_join(sleep_tidy, sleep_tidy2, by=\"name\")\n\nsleep_tidy3\n\n\n# A tibble: 5 × 5\n  name   sleep  play study  work\n  &lt;chr&gt;  &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;\n1 KT         8     2     3     8\n2 Olivia     7     2     4    10\n3 Dean       6     3     5     9\n4 May        5     3    NA    NA\n5 Mary       5     2    NA    NA\n\n\n\n\nCode\nsleep_tidy4&lt;- left_join(sleep_tidy2, sleep_tidy, by=\"name\")\n\nsleep_tidy4\n\n\n# A tibble: 5 × 5\n  name   study  work sleep  play\n  &lt;chr&gt;  &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;\n1 KT         3     8     8     2\n2 Olivia     4    10     7     2\n3 Dean       5     9     6     3\n4 Peter      2     6    NA    NA\n5 Susan      3     5    NA    NA"
+  },
+  {
+    "objectID": "Data Wrangling with R.html#merge-data",
+    "href": "Data Wrangling with R.html#merge-data",
+    "title": "Data Wrangling with R",
+    "section": "",
+    "text": "inner join Only keep rows of the first data.frame that have corresponding records in the second data.frame\n\n. . .\n\n\nCode\nsleep_tidy5&lt;- inner_join(sleep_tidy, sleep_tidy2, by=\"name\", suffix=c(\"_sleep\", \"_work\"))\n\nsleep_tidy5\n\n\n# A tibble: 3 × 5\n  name   sleep  play study  work\n  &lt;chr&gt;  &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;\n1 KT         8     2     3     8\n2 Olivia     7     2     4    10\n3 Dean       6     3     5     9\n\n\n. . .\n\nfull join Keep all rows from both dataframes, filling in missing values with NAs\n\n. . .\n\n\nCode\nsleep_tidy6&lt;- full_join(sleep_tidy, sleep_tidy2, by=\"name\")\n\nsleep_tidy6\n\n\n# A tibble: 7 × 5\n  name   sleep  play study  work\n  &lt;chr&gt;  &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;\n1 KT         8     2     3     8\n2 Olivia     7     2     4    10\n3 Dean       6     3     5     9\n4 May        5     3    NA    NA\n5 Mary       5     2    NA    NA\n6 Peter     NA    NA     2     6\n7 Susan     NA    NA     3     5"
+  },
+  {
+    "objectID": "MSDA-Bootcamp/index.html",
+    "href": "MSDA-Bootcamp/index.html",
+    "title": "MSDA_Bootcamp",
+    "section": "",
+    "text": "This is a Quarto website.\nTo learn more about Quarto websites visit https://quarto.org/docs/websites.\n\n\n[1] 2"
   }
 ]
