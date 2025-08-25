@@ -2,9 +2,9 @@
   {
     "objectID": "index.html",
     "href": "index.html",
-    "title": "MSDA Bootcamp 2025",
+    "title": "HKU MSDA Bootcamp 2025",
     "section": "",
-    "text": "Our bootcamp covers three areas of knowledge essential for data analytics in social sciences 1. Mathematical foundations for data analytics, including Calculus and Linear Algebra 2. R (and R Studio) for data visualizaton and data wrangling 3. Probability and Statistics"
+    "text": "Our bootcamp covers three areas of knowledge essential for data analytics in social sciences\n\nMathematical foundations for data analytics (Calculus and Linear Algebra)\nR (and R Studio) for data visualizaton and data wrangling\nProbability and Statistics"
   },
   {
     "objectID": "about.html",
@@ -16,7 +16,7 @@
   {
     "objectID": "index.html#schedule",
     "href": "index.html#schedule",
-    "title": "MSDA Bootcamp 2025",
+    "title": "HKU MSDA Bootcamp 2025",
     "section": "Schedule",
     "text": "Schedule\n\n\n\n\n\nDate\nTime\nTopic\n\n\n\n\nAugust 26, 2025\n09:00 - 12:00\nOverview and Review of Calculus\n\n\nAugust 26, 2025\n14:00 - 17:00\nReview of Linear Algebra\n\n\nAugust 27, 2025\n14:00 - 17:00\nIntroduction to R (and RStudio)\n\n\nAugust 28, 2025\n14:00 - 17:00\nData Visualization with ggplot2\n\n\nAugust 29, 2025\n09:00 - 12:00\nData Wrangling with tidyverse\n\n\nAugust 29, 2025\n14:00 - 17:00\nElements of Probability and Statistics"
   },
@@ -2634,9 +2634,9 @@
   {
     "objectID": "index.html#welcome-to-msda-bootcamp",
     "href": "index.html#welcome-to-msda-bootcamp",
-    "title": "MSDA Bootcamp 2025",
+    "title": "HKU MSDA Bootcamp 2025",
     "section": "",
-    "text": "Our bootcamp covers three areas of knowledge essential for data analytics in social sciences 1. Mathematical foundations for data analytics, including Calculus and Linear Algebra 2. R (and R Studio) for data visualizaton and data wrangling 3. Probability and Statistics"
+    "text": "Our bootcamp covers three areas of knowledge essential for data analytics in social sciences\n\nMathematical foundations for data analytics (Calculus and Linear Algebra)\nR (and R Studio) for data visualizaton and data wrangling\nProbability and Statistics"
   },
   {
     "objectID": "R_introduction.html#basic-arithmetic",
