@@ -1,11 +1,79 @@
 ---
-title: "MSDA_Bootcamp"
+title: "MSDA Bootcamp 2025"
+author: "KT Wong"
+date: "`r Sys.Date()`"
+format:
+  html:
+    theme: cosmo
+    toc: false
+    toc-depth: 2
+    code-fold: true
+    code-tools: false
+    self-contained: True
+    fig-width: 8
+    fig-height: 6
+    fig-cap: "Figure"
+    fig-align: center
+    
+execute:
+    echo: false
+    warning: false
+    message: false
+    error: false
+    cache: true
+
+#jupyter: python3
+
+description: |
+  This webpage provides an overview of the MSDA Bootcamp 2025, including the schedule and topics covered.
+  
 ---
 
-This is a Quarto website.
+## Welcome to MSDA Bootcamp
 
-To learn more about Quarto websites visit <https://quarto.org/docs/websites>.
+Our bootcamp covers three areas of knowledge essential for data analytics in social sciences
+  1. Mathematical foundations for data analytics, including Calculus and Linear Algebra
+  2. R (and R Studio) for data visualizaton and data wrangling
+  3. Probability and Statistics
+
+## Schedule
 
 ```{r}
-1 + 1
+library(tidyverse)
+library(lubridate)
+library(knitr)
+library(kableExtra)
+
+# Define the schedule data
+
+schedule <- tibble(
+  Date = c("2025-08-26", "2025-08-26", "2025-08-27", "2025-08-28", "2025-08-29",
+           "2025-08-29"),
+  Time = c("09:00 - 12:00", "14:00 - 17:00", "14:00 - 17:00",
+           "14:00 - 17:00", "09:00 - 12:00", "14:00 - 17:00"),
+  Topic = c("Overview and Review of Calculus",
+            "Review of Linear Algebra",
+            "Introduction to R (and RStudio)",
+            "Data Visualization with ggplot2",
+            "Data Wrangling with tidyverse",
+            "Elements of Probability and Statistics")
+)
+
+# Convert Date to a more readable format
+schedule <- schedule %>%
+  mutate(Date = format(as.Date(Date), "%B %d, %Y"))
+
+# Create the table
+
+# kable(schedule, format = "html", table.attr = "class='table table-striped'",
+#       col.names = c("Date", "Time", "Topic")) %>%
+#   kable_styling(full_width = F, position = "left") %>% 
+#   column_spec(column = 3, width = "50%")
+  
+# Create a basic HTML table
+kable(schedule, format = "html", col.names = c("Date", "Time", "Topic"), align = "l")
+
 ```
+
+
+
