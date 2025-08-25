@@ -4849,5 +4849,12 @@
     "title": "Probability and Distribution",
     "section": "Predicting election outcomes with uncertainty",
     "text": "Predicting election outcomes with uncertainty\n\nthe variance of Obama’s Electoral College votes can be computed as\n\n\n\\[\n\\begin{align*}\nV(\\textrm{Obama's predicted votes}) &= \\sum_{j=1}^{51} V(v_j \\mathbb{I}\\{S_j &gt; 500\\}) \\\\\n& = \\sum_{j=1}^{51} P(S_j &gt; 500)(1 - P(S_j &gt; 500)) \\cdot v_j^2\n\\end{align*}\n\\]\n\nwhere \\(\\mathbb{I}\\{S_j &gt; 500\\}\\) is an indicator function that equals \\(1\\) if Obama wins state \\(j\\) and \\(0\\) otherwise\n\n\nuse use the pbinom() function, which evaluates the cdf of the binomial distribution at its input value\n\n\n\n\n\nCode\nn_draws &lt;- 1000\n\npres08 %&gt;%\n  mutate(pb = pbinom(n_draws / 2, size = n_draws, prob = p, lower.tail = FALSE)) %&gt;%\n  summarize(mean = sum(pb * EV),\n            median = sum(EV * (pb &gt; 0.5)),\n            var = sum(pb * (1-pb)*EV^2),\n            sd = sqrt(var))"
+  },
+  {
+    "objectID": "slides_v2.html",
+    "href": "slides_v2.html",
+    "title": "MSDA Bootcamp Notes",
+    "section": "",
+    "text": "Slides\n\n\n\n\nCalculus\nLinear Algebra\nIntroduction to R\nData Visualization\nData Wrangling\nProbability and Statistics"
   }
 ]
