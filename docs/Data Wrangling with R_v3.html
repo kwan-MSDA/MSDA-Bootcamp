@@ -1904,122 +1904,6 @@ as.numeric(genderfactorvec)
 </section>
 <section id="recoding-variables-3" class="slide level2">
 <h2>Recoding Variables</h2>
-<p><span class="big"><em><code>Matrices in R</code></em></span></p>
-<ul>
-<li class="fragment">A matrix is a two-dimensional array
-<ul>
-<li class="fragment">all elements must be of the same type</li>
-<li class="fragment">can be created using the matrix() function</li>
-<li class="fragment">can be created from a vector using the dim() function</li>
-</ul></li>
-</ul>
-<div class="fragment">
-<div class="cell fig-cap-location-bottom">
-<details class="code-fold">
-<summary>Code</summary>
-<div class="sourceCode cell-code" id="cb28" data-cap-location="bottom"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a></a>matrix1<span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">15</span>, <span class="at">nrow=</span><span class="dv">3</span>, <span class="at">ncol=</span><span class="dv">5</span>)</span>
-<span id="cb28-2"><a></a></span>
-<span id="cb28-3"><a></a>matrix1</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
-</div>
-</div>
-</section>
-<section id="recoding-variables-4" class="slide level2">
-<h2>Recoding Variables</h2>
-<p><span class="big"><em><code>Matrices in R - some basic operations</code></em></span></p>
-<div class="fragment">
-<div class="cell fig-cap-location-bottom">
-<details class="code-fold">
-<summary>Code</summary>
-<div class="sourceCode cell-code" id="cb29" data-cap-location="bottom"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a></a><span class="fu">dim</span>(matrix1)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
-</div>
-</div>
-<div class="fragment">
-<div class="cell fig-cap-location-bottom">
-<details class="code-fold">
-<summary>Code</summary>
-<div class="sourceCode cell-code" id="cb30" data-cap-location="bottom"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a></a><span class="fu">colnames</span>(matrix1)<span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;A&quot;</span>, <span class="st">&quot;B&quot;</span>, <span class="st">&quot;C&quot;</span>, <span class="st">&quot;D&quot;</span>, <span class="st">&quot;E&quot;</span>)</span>
-<span id="cb30-2"><a></a><span class="fu">rownames</span>(matrix1)<span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;X&quot;</span>, <span class="st">&quot;Y&quot;</span>, <span class="st">&quot;Z&quot;</span>)</span>
-<span id="cb30-3"><a></a></span>
-<span id="cb30-4"><a></a>matrix1</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
-</div>
-</div>
-<div class="fragment">
-<div class="cell fig-cap-location-bottom">
-<details class="code-fold">
-<summary>Code</summary>
-<div class="sourceCode cell-code" id="cb31" data-cap-location="bottom"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a></a>matrix1[<span class="dv">2</span>,<span class="dv">3</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
-</div>
-</div>
-<div class="fragment">
-<div class="cell fig-cap-location-bottom">
-<details class="code-fold">
-<summary>Code</summary>
-<div class="sourceCode cell-code" id="cb32" data-cap-location="bottom"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a></a>matrix1[<span class="dv">2</span>,]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
-</div>
-</div>
-</section>
-<section id="recoding-variables-5" class="slide level2">
-<h2>Recoding Variables</h2>
-<p><span class="big"><em><code>Matrices in R - some basic operations</code></em></span></p>
-<div class="fragment">
-<div class="cell fig-cap-location-bottom">
-<details class="code-fold">
-<summary>Code</summary>
-<div class="sourceCode cell-code" id="cb33" data-cap-location="bottom"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a></a>A<span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">6</span>, <span class="at">nrow=</span><span class="dv">2</span>, <span class="at">ncol=</span><span class="dv">3</span>)</span>
-<span id="cb33-2"><a></a>B<span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="dv">7</span><span class="sc">:</span><span class="dv">12</span>, <span class="at">nrow=</span><span class="dv">3</span>, <span class="at">ncol=</span><span class="dv">2</span>)</span>
-<span id="cb33-3"><a></a></span>
-<span id="cb33-4"><a></a></span>
-<span id="cb33-5"><a></a><span class="fu">print</span>(A <span class="sc">%*%</span> B)</span>
-<span id="cb33-6"><a></a></span>
-<span id="cb33-7"><a></a><span class="fu">print</span>(B <span class="sc">%*%</span> A)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
-</div>
-</div>
-<div class="fragment">
-<div class="cell fig-cap-location-bottom">
-<details class="code-fold">
-<summary>Code</summary>
-<div class="sourceCode cell-code" id="cb34" data-cap-location="bottom"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a></a><span class="fu">print</span>(<span class="fu">t</span>(A))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
-</div>
-</div>
-</section>
-<section id="recoding-variables-6" class="slide level2">
-<h2>Recoding Variables</h2>
-<p><span class="big"><em><code>Matrices in R - some basic operations</code></em></span></p>
-<div class="fragment">
-<div class="cell fig-cap-location-bottom">
-<details class="code-fold">
-<summary>Code</summary>
-<div class="sourceCode cell-code" id="cb35" data-cap-location="bottom"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a></a>C<span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="fu">c</span>(<span class="dv">2</span>,<span class="dv">5</span>,<span class="dv">3</span>,<span class="dv">1</span>,<span class="dv">3</span>,<span class="dv">6</span>,<span class="dv">2</span>,<span class="dv">9</span>,<span class="dv">5</span>), <span class="at">nrow=</span><span class="dv">3</span>, <span class="at">ncol=</span><span class="dv">3</span>)</span>
-<span id="cb35-2"><a></a><span class="fu">print</span>(<span class="fu">solve</span>(C))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
-</div>
-</div>
-<div class="fragment">
-<div class="cell fig-cap-location-bottom">
-<details class="code-fold">
-<summary>Code</summary>
-<div class="sourceCode cell-code" id="cb36" data-cap-location="bottom"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a></a><span class="fu">print</span>(<span class="fu">det</span>(C))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
-</div>
-</div>
-<div class="fragment">
-<div class="cell fig-cap-location-bottom">
-<details class="code-fold">
-<summary>Code</summary>
-<div class="sourceCode cell-code" id="cb37" data-cap-location="bottom"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a></a><span class="fu">print</span>(<span class="fu">eigen</span>(C))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
-</div>
-</div>
-</section>
-<section id="recoding-variables-7" class="slide level2">
-<h2>Recoding Variables</h2>
 <p><span class="big"><em><code>logical statements</code></em></span></p>
 <ul>
 <li class="fragment">Recap: the main logical operators used in R are:
@@ -2036,7 +1920,7 @@ as.numeric(genderfactorvec)
 </ul></li>
 </ul>
 </section>
-<section id="recoding-variables-8" class="slide level2">
+<section id="recoding-variables-4" class="slide level2">
 <h2>Recoding Variables</h2>
 <h3 id="logical-statements">logical statements</h3>
 <ul>
@@ -2045,35 +1929,33 @@ as.numeric(genderfactorvec)
 <li class="fragment">ifelse() function</li>
 </ul></li>
 </ul>
-<p>. . .</p>
-<div class="cell fig-cap-location-bottom">
+<div class="cell fig-cap-location-bottom fragment">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb38" data-cap-location="bottom"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a></a>addh2<span class="ot">&lt;-</span> addh <span class="sc">%&gt;%</span> </span>
-<span id="cb38-2"><a></a>            <span class="fu">mutate</span>(</span>
-<span id="cb38-3"><a></a>               <span class="at">money_over_love =</span> <span class="fu">ifelse</span>(money <span class="sc">&gt;</span> love, <span class="dv">1</span>, <span class="dv">0</span>),</span>
-<span id="cb38-4"><a></a>               <span class="at">.after =</span> id</span>
-<span id="cb38-5"><a></a>               )</span>
-<span id="cb38-6"><a></a></span>
-<span id="cb38-7"><a></a><span class="fu">head</span>(addh2, <span class="dv">5</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb28" data-cap-location="bottom"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a></a>addh2<span class="ot">&lt;-</span> addh <span class="sc">%&gt;%</span> </span>
+<span id="cb28-2"><a></a>            <span class="fu">mutate</span>(</span>
+<span id="cb28-3"><a></a>               <span class="at">money_over_love =</span> <span class="fu">ifelse</span>(money <span class="sc">&gt;</span> love, <span class="dv">1</span>, <span class="dv">0</span>),</span>
+<span id="cb28-4"><a></a>               <span class="at">.after =</span> id</span>
+<span id="cb28-5"><a></a>               )</span>
+<span id="cb28-6"><a></a></span>
+<span id="cb28-7"><a></a><span class="fu">head</span>(addh2, <span class="dv">5</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
-<p>. . .</p>
-<div class="cell fig-cap-location-bottom">
+<div class="cell fig-cap-location-bottom fragment">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb39" data-cap-location="bottom"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a></a>addh3<span class="ot">&lt;-</span> addh <span class="sc">%&gt;%</span> </span>
-<span id="cb39-2"><a></a>            <span class="fu">mutate</span>(</span>
-<span id="cb39-3"><a></a>               <span class="at">money_or_love =</span> <span class="fu">ifelse</span>(money<span class="sc">==</span>love, <span class="st">&quot;same&quot;</span>,</span>
-<span id="cb39-4"><a></a>                                      <span class="fu">ifelse</span>(love <span class="sc">&gt;</span> money, <span class="st">&quot;love greater&quot;</span>, <span class="st">&quot;money greater&quot;</span>)),</span>
-<span id="cb39-5"><a></a>               <span class="at">.after =</span> id</span>
-<span id="cb39-6"><a></a>               )</span>
-<span id="cb39-7"><a></a></span>
-<span id="cb39-8"><a></a><span class="fu">head</span>(addh3, <span class="dv">5</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb29" data-cap-location="bottom"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a></a>addh3<span class="ot">&lt;-</span> addh <span class="sc">%&gt;%</span> </span>
+<span id="cb29-2"><a></a>            <span class="fu">mutate</span>(</span>
+<span id="cb29-3"><a></a>               <span class="at">money_or_love =</span> <span class="fu">ifelse</span>(money<span class="sc">==</span>love, <span class="st">&quot;same&quot;</span>,</span>
+<span id="cb29-4"><a></a>                                      <span class="fu">ifelse</span>(love <span class="sc">&gt;</span> money, <span class="st">&quot;love greater&quot;</span>, <span class="st">&quot;money greater&quot;</span>)),</span>
+<span id="cb29-5"><a></a>               <span class="at">.after =</span> id</span>
+<span id="cb29-6"><a></a>               )</span>
+<span id="cb29-7"><a></a></span>
+<span id="cb29-8"><a></a><span class="fu">head</span>(addh3, <span class="dv">5</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
 </section>
-<section id="recoding-variables-9" class="slide level2">
+<section id="recoding-variables-5" class="slide level2">
 <h2>Recoding Variables</h2>
 <p><span class="big"><em><code>logical statements</code></em></span></p>
 <ul>
@@ -2083,23 +1965,21 @@ as.numeric(genderfactorvec)
 <li class="fragment">case_when(logical condition ~ value assigned, logical condition 2 ~ value assigned. . . .default = value if does not fit other logical conditions)</li>
 </ul></li>
 </ul>
-<div class="fragment">
-<div class="cell fig-cap-location-bottom">
+<div class="cell fig-cap-location-bottom fragment">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb40" data-cap-location="bottom"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a></a>addh3<span class="ot">&lt;-</span> addh <span class="sc">%&gt;%</span> </span>
-<span id="cb40-2"><a></a>  <span class="fu">mutate</span>(</span>
-<span id="cb40-3"><a></a>    <span class="at">money_or_love =</span> <span class="fu">case_when</span>(</span>
-<span id="cb40-4"><a></a>      money<span class="sc">==</span>love <span class="sc">~</span> <span class="st">&quot;same&quot;</span>,</span>
-<span id="cb40-5"><a></a>      love <span class="sc">&gt;</span> money <span class="sc">~</span> <span class="st">&quot;love greater&quot;</span>,</span>
-<span id="cb40-6"><a></a>      <span class="cn">TRUE</span> <span class="sc">~</span> <span class="st">&quot;money greater&quot;</span></span>
-<span id="cb40-7"><a></a>    ),</span>
-<span id="cb40-8"><a></a>    <span class="at">.after =</span> id</span>
-<span id="cb40-9"><a></a>  )</span>
-<span id="cb40-10"><a></a></span>
-<span id="cb40-11"><a></a><span class="fu">head</span>(addh3, <span class="dv">5</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb30" data-cap-location="bottom"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a></a>addh3<span class="ot">&lt;-</span> addh <span class="sc">%&gt;%</span> </span>
+<span id="cb30-2"><a></a>  <span class="fu">mutate</span>(</span>
+<span id="cb30-3"><a></a>    <span class="at">money_or_love =</span> <span class="fu">case_when</span>(</span>
+<span id="cb30-4"><a></a>      money<span class="sc">==</span>love <span class="sc">~</span> <span class="st">&quot;same&quot;</span>,</span>
+<span id="cb30-5"><a></a>      love <span class="sc">&gt;</span> money <span class="sc">~</span> <span class="st">&quot;love greater&quot;</span>,</span>
+<span id="cb30-6"><a></a>      <span class="cn">TRUE</span> <span class="sc">~</span> <span class="st">&quot;money greater&quot;</span></span>
+<span id="cb30-7"><a></a>    ),</span>
+<span id="cb30-8"><a></a>    <span class="at">.after =</span> id</span>
+<span id="cb30-9"><a></a>  )</span>
+<span id="cb30-10"><a></a></span>
+<span id="cb30-11"><a></a><span class="fu">head</span>(addh3, <span class="dv">5</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
-</div>
 </div>
 </section>
 <section id="exercises-4" class="slide level2">
@@ -2118,7 +1998,7 @@ as.numeric(genderfactorvec)
 </ul></li>
 </ul>
 </section>
-<section id="recoding-variables-10" class="slide level2">
+<section id="recoding-variables-6" class="slide level2">
 <h2>Recoding Variables</h2>
 <h3 id="create-a-binary-vector">create a binary vector</h3>
 <ul>
@@ -2131,10 +2011,10 @@ as.numeric(genderfactorvec)
 <div class="cell fig-cap-location-bottom fragment">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb41" data-cap-location="bottom"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb41-1"><a></a>income_75<span class="ot">&lt;-</span> <span class="fu">quantile</span>(addh<span class="sc">$</span>income)[<span class="dv">4</span>]</span>
-<span id="cb41-2"><a></a></span>
-<span id="cb41-3"><a></a>addh2<span class="ot">&lt;-</span> addh <span class="sc">%&gt;%</span> </span>
-<span id="cb41-4"><a></a>  <span class="fu">mutate</span>(<span class="at">high_income=</span><span class="fu">ifelse</span>(income <span class="sc">&gt;</span> income_75, <span class="dv">1</span>, <span class="dv">0</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb31" data-cap-location="bottom"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a></a>income_75<span class="ot">&lt;-</span> <span class="fu">quantile</span>(addh<span class="sc">$</span>income)[<span class="dv">4</span>]</span>
+<span id="cb31-2"><a></a></span>
+<span id="cb31-3"><a></a>addh2<span class="ot">&lt;-</span> addh <span class="sc">%&gt;%</span> </span>
+<span id="cb31-4"><a></a>  <span class="fu">mutate</span>(<span class="at">high_income=</span><span class="fu">ifelse</span>(income <span class="sc">&gt;</span> income_75, <span class="dv">1</span>, <span class="dv">0</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
 <ul>
@@ -2151,15 +2031,15 @@ as.numeric(genderfactorvec)
 <div class="cell fig-cap-location-bottom fragment">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb42" data-cap-location="bottom"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb42-1"><a></a>income_25 <span class="ot">&lt;-</span> <span class="fu">quantile</span>(addh<span class="sc">$</span>income)[<span class="dv">2</span>]</span>
-<span id="cb42-2"><a></a></span>
-<span id="cb42-3"><a></a>addh2<span class="ot">&lt;-</span> addh2 <span class="sc">%&gt;%</span> </span>
-<span id="cb42-4"><a></a>  <span class="fu">mutate</span>(<span class="at">income_level=</span><span class="fu">case_when</span>(income <span class="sc">&lt;=</span> income_25 <span class="sc">~</span> <span class="st">&quot;low&quot;</span>,</span>
-<span id="cb42-5"><a></a>                                income <span class="sc">&gt;=</span>income_75 <span class="sc">~</span><span class="st">&quot;high&quot;</span>, </span>
-<span id="cb42-6"><a></a>                                <span class="at">.default=</span><span class="st">&quot;medium&quot;</span>),</span>
-<span id="cb42-7"><a></a>         <span class="at">.after =</span> id)</span>
-<span id="cb42-8"><a></a></span>
-<span id="cb42-9"><a></a><span class="fu">head</span>(addh2, <span class="dv">5</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb32" data-cap-location="bottom"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a></a>income_25 <span class="ot">&lt;-</span> <span class="fu">quantile</span>(addh<span class="sc">$</span>income)[<span class="dv">2</span>]</span>
+<span id="cb32-2"><a></a></span>
+<span id="cb32-3"><a></a>addh2<span class="ot">&lt;-</span> addh2 <span class="sc">%&gt;%</span> </span>
+<span id="cb32-4"><a></a>  <span class="fu">mutate</span>(<span class="at">income_level=</span><span class="fu">case_when</span>(income <span class="sc">&lt;=</span> income_25 <span class="sc">~</span> <span class="st">&quot;low&quot;</span>,</span>
+<span id="cb32-5"><a></a>                                income <span class="sc">&gt;=</span>income_75 <span class="sc">~</span><span class="st">&quot;high&quot;</span>, </span>
+<span id="cb32-6"><a></a>                                <span class="at">.default=</span><span class="st">&quot;medium&quot;</span>),</span>
+<span id="cb32-7"><a></a>         <span class="at">.after =</span> id)</span>
+<span id="cb32-8"><a></a></span>
+<span id="cb32-9"><a></a><span class="fu">head</span>(addh2, <span class="dv">5</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
 </section>
@@ -2258,16 +2138,16 @@ display:block!important;
 <div class="cell fig-cap-location-bottom fragment">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb43" data-cap-location="bottom"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb43-1"><a></a><span class="fu">set.seed</span>(<span class="dv">123456</span>)</span>
-<span id="cb43-2"><a></a></span>
-<span id="cb43-3"><a></a>sample_means<span class="ot">&lt;-</span> <span class="fu">numeric</span>(<span class="at">length=</span><span class="dv">1000</span>)</span>
-<span id="cb43-4"><a></a></span>
-<span id="cb43-5"><a></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="fu">seq_along</span>(sample_means)) {</span>
-<span id="cb43-6"><a></a>  samp<span class="ot">&lt;-</span> <span class="fu">sample</span>(addh3<span class="sc">$</span>money, <span class="at">size =</span> <span class="dv">800</span>, <span class="at">replace=</span><span class="cn">TRUE</span>)</span>
-<span id="cb43-7"><a></a>  sample_means[i]<span class="ot">&lt;-</span> <span class="fu">mean</span>(samp)</span>
-<span id="cb43-8"><a></a>}</span>
-<span id="cb43-9"><a></a></span>
-<span id="cb43-10"><a></a><span class="fu">mean</span>(sample_means)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb33" data-cap-location="bottom"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a></a><span class="fu">set.seed</span>(<span class="dv">123456</span>)</span>
+<span id="cb33-2"><a></a></span>
+<span id="cb33-3"><a></a>sample_means<span class="ot">&lt;-</span> <span class="fu">numeric</span>(<span class="at">length=</span><span class="dv">1000</span>)</span>
+<span id="cb33-4"><a></a></span>
+<span id="cb33-5"><a></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="fu">seq_along</span>(sample_means)) {</span>
+<span id="cb33-6"><a></a>  samp<span class="ot">&lt;-</span> <span class="fu">sample</span>(addh3<span class="sc">$</span>money, <span class="at">size =</span> <span class="dv">800</span>, <span class="at">replace=</span><span class="cn">TRUE</span>)</span>
+<span id="cb33-7"><a></a>  sample_means[i]<span class="ot">&lt;-</span> <span class="fu">mean</span>(samp)</span>
+<span id="cb33-8"><a></a>}</span>
+<span id="cb33-9"><a></a></span>
+<span id="cb33-10"><a></a><span class="fu">mean</span>(sample_means)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
 <ul>
@@ -2276,17 +2156,17 @@ display:block!important;
 <div class="cell fig-cap-location-bottom fragment">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb44" data-cap-location="bottom"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb44-1"><a></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb44-2"><a></a></span>
-<span id="cb44-3"><a></a><span class="fu">ggplot</span>(<span class="fu">as.data.frame</span>(sample_means), <span class="fu">aes</span>(sample_means)) <span class="sc">+</span></span>
-<span id="cb44-4"><a></a>  <span class="co">#geom_histogram(bins=30)+</span></span>
-<span id="cb44-5"><a></a>  <span class="fu">geom_density</span>()<span class="sc">+</span></span>
-<span id="cb44-6"><a></a>  <span class="fu">geom_vline</span>(<span class="at">xintercept =</span> <span class="fu">mean</span>(sample_means),</span>
-<span id="cb44-7"><a></a>             <span class="at">color=</span><span class="st">&quot;red&quot;</span>, <span class="at">linetype=</span><span class="st">&quot;dashed&quot;</span>) <span class="sc">+</span></span>
-<span id="cb44-8"><a></a>  <span class="fu">labs</span>(<span class="at">title=</span><span class="st">&quot;Distribution of Sample Means&quot;</span>,</span>
-<span id="cb44-9"><a></a>       <span class="at">x=</span><span class="st">&quot;Sample Means&quot;</span>,</span>
-<span id="cb44-10"><a></a>       <span class="at">y=</span><span class="st">&quot;Frequency&quot;</span>)<span class="sc">+</span></span>
-<span id="cb44-11"><a></a>  <span class="fu">theme_minimal</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb34" data-cap-location="bottom"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb34-2"><a></a></span>
+<span id="cb34-3"><a></a><span class="fu">ggplot</span>(<span class="fu">as.data.frame</span>(sample_means), <span class="fu">aes</span>(sample_means)) <span class="sc">+</span></span>
+<span id="cb34-4"><a></a>  <span class="co">#geom_histogram(bins=30)+</span></span>
+<span id="cb34-5"><a></a>  <span class="fu">geom_density</span>()<span class="sc">+</span></span>
+<span id="cb34-6"><a></a>  <span class="fu">geom_vline</span>(<span class="at">xintercept =</span> <span class="fu">mean</span>(sample_means),</span>
+<span id="cb34-7"><a></a>             <span class="at">color=</span><span class="st">&quot;red&quot;</span>, <span class="at">linetype=</span><span class="st">&quot;dashed&quot;</span>) <span class="sc">+</span></span>
+<span id="cb34-8"><a></a>  <span class="fu">labs</span>(<span class="at">title=</span><span class="st">&quot;Distribution of Sample Means&quot;</span>,</span>
+<span id="cb34-9"><a></a>       <span class="at">x=</span><span class="st">&quot;Sample Means&quot;</span>,</span>
+<span id="cb34-10"><a></a>       <span class="at">y=</span><span class="st">&quot;Frequency&quot;</span>)<span class="sc">+</span></span>
+<span id="cb34-11"><a></a>  <span class="fu">theme_minimal</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
 </section>
@@ -2331,63 +2211,51 @@ display:block!important;
 <ul>
 <li class="fragment">Let us start with a simple function, z-score of a variable</li>
 </ul>
-<div class="fragment">
-<div class="cell fig-cap-location-bottom">
+<div class="cell fig-cap-location-bottom fragment">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb45" data-cap-location="bottom"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb45-1"><a></a>zscore<span class="ot">&lt;-</span> <span class="cf">function</span>(x) {</span>
-<span id="cb45-2"><a></a>  zscore<span class="ot">&lt;-</span> (x <span class="sc">-</span> <span class="fu">mean</span>(x))<span class="sc">/</span><span class="fu">sd</span>(x)</span>
-<span id="cb45-3"><a></a>  <span class="fu">return</span>(zscore)</span>
-<span id="cb45-4"><a></a>}</span>
-<span id="cb45-5"><a></a></span>
-<span id="cb45-6"><a></a>z_income<span class="ot">&lt;-</span> <span class="fu">zscore</span>(addh<span class="sc">$</span>income)</span>
-<span id="cb45-7"><a></a></span>
-<span id="cb45-8"><a></a><span class="fu">head</span>(z_income, <span class="dv">10</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb35" data-cap-location="bottom"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a></a>zscore<span class="ot">&lt;-</span> <span class="cf">function</span>(x) {</span>
+<span id="cb35-2"><a></a>  zscore<span class="ot">&lt;-</span> (x <span class="sc">-</span> <span class="fu">mean</span>(x))<span class="sc">/</span><span class="fu">sd</span>(x)</span>
+<span id="cb35-3"><a></a>  <span class="fu">return</span>(zscore)</span>
+<span id="cb35-4"><a></a>}</span>
+<span id="cb35-5"><a></a></span>
+<span id="cb35-6"><a></a>z_income<span class="ot">&lt;-</span> <span class="fu">zscore</span>(addh<span class="sc">$</span>income)</span>
+<span id="cb35-7"><a></a></span>
+<span id="cb35-8"><a></a><span class="fu">head</span>(z_income, <span class="dv">10</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
-</div>
-<div class="fragment">
 <ul>
 <li class="fragment">more complicated example</li>
 </ul>
-<div class="cell fig-cap-location-bottom">
+<div class="cell fig-cap-location-bottom fragment">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb46" data-cap-location="bottom"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb46-1"><a></a>sample_means<span class="ot">&lt;-</span> <span class="cf">function</span>(data, n, reps) {</span>
-<span id="cb46-2"><a></a>  sample_means<span class="ot">&lt;-</span> <span class="fu">numeric</span>(<span class="at">length=</span>reps)</span>
-<span id="cb46-3"><a></a>  </span>
-<span id="cb46-4"><a></a>  <span class="cf">for</span> (i <span class="cf">in</span> <span class="fu">seq_along</span>(sample_means)) {</span>
-<span id="cb46-5"><a></a>    samp<span class="ot">&lt;-</span> <span class="fu">sample</span>(data, <span class="at">size =</span> n, <span class="at">replace=</span><span class="cn">TRUE</span>)</span>
-<span id="cb46-6"><a></a>    sample_means[i]<span class="ot">&lt;-</span> <span class="fu">mean</span>(samp)</span>
-<span id="cb46-7"><a></a>  }</span>
-<span id="cb46-8"><a></a>  </span>
-<span id="cb46-9"><a></a>  <span class="fu">return</span>(sample_means)</span>
-<span id="cb46-10"><a></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb36" data-cap-location="bottom"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a></a>sample_means<span class="ot">&lt;-</span> <span class="cf">function</span>(data, n, reps) {</span>
+<span id="cb36-2"><a></a>  sample_means<span class="ot">&lt;-</span> <span class="fu">numeric</span>(<span class="at">length=</span>reps)</span>
+<span id="cb36-3"><a></a>  </span>
+<span id="cb36-4"><a></a>  <span class="cf">for</span> (i <span class="cf">in</span> <span class="fu">seq_along</span>(sample_means)) {</span>
+<span id="cb36-5"><a></a>    samp<span class="ot">&lt;-</span> <span class="fu">sample</span>(data, <span class="at">size =</span> n, <span class="at">replace=</span><span class="cn">TRUE</span>)</span>
+<span id="cb36-6"><a></a>    sample_means[i]<span class="ot">&lt;-</span> <span class="fu">mean</span>(samp)</span>
+<span id="cb36-7"><a></a>  }</span>
+<span id="cb36-8"><a></a>  </span>
+<span id="cb36-9"><a></a>  <span class="fu">return</span>(sample_means)</span>
+<span id="cb36-10"><a></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
 <div class="cell fig-cap-location-bottom fragment">
-
-</div>
-</div>
-<div class="fragment">
-<div class="cell fig-cap-location-bottom">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb47" data-cap-location="bottom"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb47-1"><a></a>age_sample_means<span class="ot">&lt;-</span> <span class="fu">sample_means</span>(addh<span class="sc">$</span>age, <span class="dv">500</span>, <span class="dv">1000</span>)</span>
-<span id="cb47-2"><a></a></span>
-<span id="cb47-3"><a></a><span class="fu">ggplot</span>(<span class="fu">as.data.frame</span>(age_sample_means), <span class="fu">aes</span>(age_sample_means)) <span class="sc">+</span></span>
-<span id="cb47-4"><a></a>  <span class="fu">geom_density</span>()<span class="sc">+</span></span>
-<span id="cb47-5"><a></a>  <span class="fu">geom_vline</span>(<span class="at">xintercept =</span> <span class="fu">mean</span>(age_sample_means),</span>
-<span id="cb47-6"><a></a>             <span class="at">color=</span><span class="st">&quot;red&quot;</span>, <span class="at">linetype=</span><span class="st">&quot;dashed&quot;</span>) <span class="sc">+</span></span>
-<span id="cb47-7"><a></a>  <span class="fu">labs</span>(<span class="at">title=</span><span class="st">&quot;Distribution of Sample Means&quot;</span>,</span>
-<span id="cb47-8"><a></a>       <span class="at">x=</span><span class="st">&quot;Sample Means of Age&quot;</span>,</span>
-<span id="cb47-9"><a></a>       <span class="at">y=</span><span class="st">&quot;Frequency&quot;</span>)<span class="sc">+</span></span>
-<span id="cb47-10"><a></a>  <span class="fu">theme_bw</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb37" data-cap-location="bottom"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a></a>age_sample_means<span class="ot">&lt;-</span> <span class="fu">sample_means</span>(addh<span class="sc">$</span>age, <span class="dv">500</span>, <span class="dv">1000</span>)</span>
+<span id="cb37-2"><a></a></span>
+<span id="cb37-3"><a></a><span class="fu">ggplot</span>(<span class="fu">as.data.frame</span>(age_sample_means), <span class="fu">aes</span>(age_sample_means)) <span class="sc">+</span></span>
+<span id="cb37-4"><a></a>  <span class="fu">geom_density</span>()<span class="sc">+</span></span>
+<span id="cb37-5"><a></a>  <span class="fu">geom_vline</span>(<span class="at">xintercept =</span> <span class="fu">mean</span>(age_sample_means),</span>
+<span id="cb37-6"><a></a>             <span class="at">color=</span><span class="st">&quot;red&quot;</span>, <span class="at">linetype=</span><span class="st">&quot;dashed&quot;</span>) <span class="sc">+</span></span>
+<span id="cb37-7"><a></a>  <span class="fu">labs</span>(<span class="at">title=</span><span class="st">&quot;Distribution of Sample Means&quot;</span>,</span>
+<span id="cb37-8"><a></a>       <span class="at">x=</span><span class="st">&quot;Sample Means of Age&quot;</span>,</span>
+<span id="cb37-9"><a></a>       <span class="at">y=</span><span class="st">&quot;Frequency&quot;</span>)<span class="sc">+</span></span>
+<span id="cb37-10"><a></a>  <span class="fu">theme_bw</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
-</div>
-<div class="cell fig-cap-location-bottom fragment">
-
-</div>
 </div>
 </section>
 <section id="exercises-5" class="slide level2">
@@ -2406,15 +2274,13 @@ display:block!important;
 <li class="fragment">can store objects of different classes</li>
 </ul></li>
 </ul>
-<div class="fragment">
-<div class="cell fig-cap-location-bottom">
+<div class="cell fig-cap-location-bottom fragment">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb48" data-cap-location="bottom"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb48-1"><a></a>list1<span class="ot">&lt;-</span> <span class="fu">list</span>(<span class="dv">1</span>, <span class="fu">c</span>(<span class="dv">8</span>,<span class="dv">9</span>,<span class="dv">10</span>,<span class="dv">11</span>,<span class="dv">12</span>), <span class="fu">data.frame</span>(<span class="at">x=</span><span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>, <span class="at">y=</span><span class="dv">11</span><span class="sc">:</span><span class="dv">20</span>))</span>
-<span id="cb48-2"><a></a></span>
-<span id="cb48-3"><a></a>list1</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb38" data-cap-location="bottom"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a></a>list1<span class="ot">&lt;-</span> <span class="fu">list</span>(<span class="dv">1</span>, <span class="fu">c</span>(<span class="dv">8</span>,<span class="dv">9</span>,<span class="dv">10</span>,<span class="dv">11</span>,<span class="dv">12</span>), <span class="fu">data.frame</span>(<span class="at">x=</span><span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>, <span class="at">y=</span><span class="dv">11</span><span class="sc">:</span><span class="dv">20</span>))</span>
+<span id="cb38-2"><a></a></span>
+<span id="cb38-3"><a></a>list1</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
-</div>
 </div>
 </section>
 <section id="lists-and-map-functions-from-purrr-library-1" class="slide level2">
@@ -2423,26 +2289,22 @@ display:block!important;
 <li class="fragment"><p>The syntax is <code>map(mylist, myfunction, functionoptions)</code> and can change depending on the type of output for your analysis</p></li>
 <li class="fragment"><p>calculate the length of each element in the list above</p></li>
 </ul>
-<div class="fragment">
-<div class="cell fig-cap-location-bottom">
+<div class="cell fig-cap-location-bottom fragment">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb49" data-cap-location="bottom"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb49-1"><a></a><span class="fu">library</span>(purrr)</span>
-<span id="cb49-2"><a></a></span>
-<span id="cb49-3"><a></a><span class="fu">map</span>(list1, length)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb39" data-cap-location="bottom"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a></a><span class="fu">library</span>(purrr)</span>
+<span id="cb39-2"><a></a></span>
+<span id="cb39-3"><a></a><span class="fu">map</span>(list1, length)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
-</div>
-<div class="fragment">
 <ul>
 <li class="fragment">examine the class of each element in the list above</li>
 </ul>
-</div>
 <div class="fragment">
 <div class="cell fig-cap-location-bottom">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb50" data-cap-location="bottom"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb50-1"><a></a><span class="fu">map</span>(list1, class)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb40" data-cap-location="bottom"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a></a><span class="fu">map</span>(list1, class)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
 <ul>
@@ -2453,7 +2315,7 @@ display:block!important;
 <div class="cell fig-cap-location-bottom">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb51" data-cap-location="bottom"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb51-1"><a></a><span class="fu">map</span>(list1, summary)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb41" data-cap-location="bottom"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb41-1"><a></a><span class="fu">map</span>(list1, summary)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
 </div>
@@ -2510,35 +2372,35 @@ display:block!important;
 <div class="cell fig-cap-location-bottom fragment">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb52" data-cap-location="bottom"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb52-1"><a></a><span class="fu">library</span>(tidyr)</span>
-<span id="cb52-2"><a></a></span>
-<span id="cb52-3"><a></a>sleep_wide<span class="ot">&lt;-</span> <span class="fu">tibble</span>(<span class="at">name=</span><span class="fu">c</span>(<span class="st">&quot;KT&quot;</span>, <span class="st">&quot;Wincy&quot;</span>, <span class="st">&quot;Kelly&quot;</span>),</span>
-<span id="cb52-4"><a></a>                    <span class="at">day1=</span><span class="fu">c</span>(<span class="dv">8</span>, <span class="dv">7</span>, <span class="dv">6</span>),</span>
-<span id="cb52-5"><a></a>                    <span class="at">day2=</span><span class="fu">c</span>(<span class="dv">4</span>, <span class="dv">6</span>, <span class="dv">5</span>),</span>
-<span id="cb52-6"><a></a>                    <span class="at">day3=</span><span class="fu">c</span>(<span class="dv">5</span>, <span class="dv">4</span>, <span class="dv">4</span>),</span>
-<span id="cb52-7"><a></a>                    <span class="at">day4=</span><span class="fu">c</span>(<span class="dv">7</span>, <span class="dv">7</span>, <span class="dv">6</span>))</span>
-<span id="cb52-8"><a></a></span>
-<span id="cb52-9"><a></a>sleep_wide</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb42" data-cap-location="bottom"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb42-1"><a></a><span class="fu">library</span>(tidyr)</span>
+<span id="cb42-2"><a></a></span>
+<span id="cb42-3"><a></a>sleep_wide<span class="ot">&lt;-</span> <span class="fu">tibble</span>(<span class="at">name=</span><span class="fu">c</span>(<span class="st">&quot;KT&quot;</span>, <span class="st">&quot;Wincy&quot;</span>, <span class="st">&quot;Kelly&quot;</span>),</span>
+<span id="cb42-4"><a></a>                    <span class="at">day1=</span><span class="fu">c</span>(<span class="dv">8</span>, <span class="dv">7</span>, <span class="dv">6</span>),</span>
+<span id="cb42-5"><a></a>                    <span class="at">day2=</span><span class="fu">c</span>(<span class="dv">4</span>, <span class="dv">6</span>, <span class="dv">5</span>),</span>
+<span id="cb42-6"><a></a>                    <span class="at">day3=</span><span class="fu">c</span>(<span class="dv">5</span>, <span class="dv">4</span>, <span class="dv">4</span>),</span>
+<span id="cb42-7"><a></a>                    <span class="at">day4=</span><span class="fu">c</span>(<span class="dv">7</span>, <span class="dv">7</span>, <span class="dv">6</span>))</span>
+<span id="cb42-8"><a></a></span>
+<span id="cb42-9"><a></a>sleep_wide</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
 <div class="cell fig-cap-location-bottom fragment">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb53" data-cap-location="bottom"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb53-1"><a></a>sleep_long<span class="ot">&lt;-</span> sleep_wide <span class="sc">%&gt;%</span> </span>
-<span id="cb53-2"><a></a>  <span class="fu">pivot_longer</span>(<span class="at">cols=</span>day1<span class="sc">:</span>day4,</span>
-<span id="cb53-3"><a></a>               <span class="at">names_to=</span><span class="st">&quot;day&quot;</span>,</span>
-<span id="cb53-4"><a></a>               <span class="at">values_to=</span><span class="st">&quot;sleep_hours&quot;</span>)</span>
-<span id="cb53-5"><a></a>  </span>
-<span id="cb53-6"><a></a>sleep_long</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb43" data-cap-location="bottom"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb43-1"><a></a>sleep_long<span class="ot">&lt;-</span> sleep_wide <span class="sc">%&gt;%</span> </span>
+<span id="cb43-2"><a></a>  <span class="fu">pivot_longer</span>(<span class="at">cols=</span>day1<span class="sc">:</span>day4,</span>
+<span id="cb43-3"><a></a>               <span class="at">names_to=</span><span class="st">&quot;day&quot;</span>,</span>
+<span id="cb43-4"><a></a>               <span class="at">values_to=</span><span class="st">&quot;sleep_hours&quot;</span>)</span>
+<span id="cb43-5"><a></a>  </span>
+<span id="cb43-6"><a></a>sleep_long</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
 <div class="cell fig-cap-location-bottom fragment">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb54" data-cap-location="bottom"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb54-1"><a></a><span class="fu">library</span>(stringr)</span>
-<span id="cb54-2"><a></a></span>
-<span id="cb54-3"><a></a>sleep_long <span class="sc">%&gt;%</span> </span>
-<span id="cb54-4"><a></a>  <span class="fu">mutate</span>(<span class="at">day=</span>stringr<span class="sc">::</span><span class="fu">str_sub</span>(day,<span class="sc">-</span><span class="dv">1</span>, <span class="sc">-</span><span class="dv">1</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb44" data-cap-location="bottom"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb44-1"><a></a><span class="fu">library</span>(stringr)</span>
+<span id="cb44-2"><a></a></span>
+<span id="cb44-3"><a></a>sleep_long <span class="sc">%&gt;%</span> </span>
+<span id="cb44-4"><a></a>  <span class="fu">mutate</span>(<span class="at">day=</span>stringr<span class="sc">::</span><span class="fu">str_sub</span>(day,<span class="sc">-</span><span class="dv">1</span>, <span class="sc">-</span><span class="dv">1</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
 <aside class="notes">
@@ -2564,11 +2426,11 @@ display:block!important;
 <div class="cell fig-cap-location-bottom fragment">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb55" data-cap-location="bottom"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb55-1"><a></a>sleep_wide2<span class="ot">&lt;-</span> sleep_long <span class="sc">%&gt;%</span> </span>
-<span id="cb55-2"><a></a>  <span class="fu">pivot_wider</span>(<span class="at">names_from=</span>day,</span>
-<span id="cb55-3"><a></a>              <span class="at">values_from=</span>sleep_hours)</span>
-<span id="cb55-4"><a></a></span>
-<span id="cb55-5"><a></a>sleep_wide2</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb45" data-cap-location="bottom"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb45-1"><a></a>sleep_wide2<span class="ot">&lt;-</span> sleep_long <span class="sc">%&gt;%</span> </span>
+<span id="cb45-2"><a></a>  <span class="fu">pivot_wider</span>(<span class="at">names_from=</span>day,</span>
+<span id="cb45-3"><a></a>              <span class="at">values_from=</span>sleep_hours)</span>
+<span id="cb45-4"><a></a></span>
+<span id="cb45-5"><a></a>sleep_wide2</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
 </section>
@@ -2585,14 +2447,14 @@ display:block!important;
 <div class="cell fig-cap-location-bottom fragment">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb56" data-cap-location="bottom"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb56-1"><a></a>sleep_wide2<span class="ot">&lt;-</span> <span class="fu">tibble</span>(<span class="at">name=</span><span class="fu">c</span>(<span class="fu">rep</span>(<span class="st">&quot;KT&quot;</span>,<span class="dv">2</span>), <span class="fu">rep</span>(<span class="st">&quot;Wincy&quot;</span>,<span class="dv">2</span>), <span class="fu">rep</span>(<span class="st">&quot;Kelly&quot;</span>,<span class="dv">2</span>)),</span>
-<span id="cb56-2"><a></a>                     <span class="at">activity=</span><span class="fu">rep</span>(<span class="fu">c</span>(<span class="st">&quot;sleep&quot;</span>, <span class="st">&quot;play&quot;</span>),<span class="dv">3</span>),</span>
-<span id="cb56-3"><a></a>                     <span class="at">day1=</span><span class="fu">c</span>(<span class="dv">8</span>, <span class="dv">2</span>, <span class="dv">7</span>, <span class="dv">2</span>, <span class="dv">5</span>, <span class="dv">3</span>),</span>
-<span id="cb56-4"><a></a>                     <span class="at">day2=</span><span class="fu">c</span>(<span class="dv">6</span>, <span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">3</span>, <span class="dv">6</span>, <span class="dv">2</span>),</span>
-<span id="cb56-5"><a></a>                     <span class="at">day3=</span><span class="fu">c</span>(<span class="dv">5</span>, <span class="dv">1</span>, <span class="dv">4</span>, <span class="dv">1</span>, <span class="dv">4</span>, <span class="dv">3</span>),</span>
-<span id="cb56-6"><a></a>                     <span class="at">day4=</span><span class="fu">c</span>(<span class="dv">7</span>, <span class="dv">2</span>, <span class="dv">7</span>, <span class="dv">3</span>, <span class="dv">6</span>, <span class="dv">2</span>))</span>
-<span id="cb56-7"><a></a></span>
-<span id="cb56-8"><a></a>sleep_wide2</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb46" data-cap-location="bottom"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb46-1"><a></a>sleep_wide2<span class="ot">&lt;-</span> <span class="fu">tibble</span>(<span class="at">name=</span><span class="fu">c</span>(<span class="fu">rep</span>(<span class="st">&quot;KT&quot;</span>,<span class="dv">2</span>), <span class="fu">rep</span>(<span class="st">&quot;Wincy&quot;</span>,<span class="dv">2</span>), <span class="fu">rep</span>(<span class="st">&quot;Kelly&quot;</span>,<span class="dv">2</span>)),</span>
+<span id="cb46-2"><a></a>                     <span class="at">activity=</span><span class="fu">rep</span>(<span class="fu">c</span>(<span class="st">&quot;sleep&quot;</span>, <span class="st">&quot;play&quot;</span>),<span class="dv">3</span>),</span>
+<span id="cb46-3"><a></a>                     <span class="at">day1=</span><span class="fu">c</span>(<span class="dv">8</span>, <span class="dv">2</span>, <span class="dv">7</span>, <span class="dv">2</span>, <span class="dv">5</span>, <span class="dv">3</span>),</span>
+<span id="cb46-4"><a></a>                     <span class="at">day2=</span><span class="fu">c</span>(<span class="dv">6</span>, <span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">3</span>, <span class="dv">6</span>, <span class="dv">2</span>),</span>
+<span id="cb46-5"><a></a>                     <span class="at">day3=</span><span class="fu">c</span>(<span class="dv">5</span>, <span class="dv">1</span>, <span class="dv">4</span>, <span class="dv">1</span>, <span class="dv">4</span>, <span class="dv">3</span>),</span>
+<span id="cb46-6"><a></a>                     <span class="at">day4=</span><span class="fu">c</span>(<span class="dv">7</span>, <span class="dv">2</span>, <span class="dv">7</span>, <span class="dv">3</span>, <span class="dv">6</span>, <span class="dv">2</span>))</span>
+<span id="cb46-7"><a></a></span>
+<span id="cb46-8"><a></a>sleep_wide2</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
 <div class="fragment">
@@ -2607,15 +2469,15 @@ display:block!important;
 <div class="cell fig-cap-location-bottom fragment">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb57" data-cap-location="bottom"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb57-1"><a></a>sleep_tidy<span class="ot">&lt;-</span> sleep_wide2 <span class="sc">%&gt;%</span> </span>
-<span id="cb57-2"><a></a>  <span class="fu">pivot_longer</span>(<span class="at">cols=</span>day1<span class="sc">:</span>day4,</span>
-<span id="cb57-3"><a></a>               <span class="at">names_to=</span><span class="st">&quot;day&quot;</span>,</span>
-<span id="cb57-4"><a></a>               <span class="at">values_to=</span><span class="st">&quot;hours&quot;</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb57-5"><a></a>  <span class="fu">mutate</span>(<span class="at">day=</span>stringr<span class="sc">::</span><span class="fu">str_sub</span>(day, <span class="sc">-</span><span class="dv">1</span>, <span class="sc">-</span><span class="dv">1</span>)) <span class="sc">%&gt;%</span> </span>
-<span id="cb57-6"><a></a>  <span class="fu">pivot_wider</span>(<span class="at">names_from=</span>activity,</span>
-<span id="cb57-7"><a></a>              <span class="at">values_from=</span>hours)</span>
-<span id="cb57-8"><a></a></span>
-<span id="cb57-9"><a></a>sleep_tidy</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb47" data-cap-location="bottom"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb47-1"><a></a>sleep_tidy<span class="ot">&lt;-</span> sleep_wide2 <span class="sc">%&gt;%</span> </span>
+<span id="cb47-2"><a></a>  <span class="fu">pivot_longer</span>(<span class="at">cols=</span>day1<span class="sc">:</span>day4,</span>
+<span id="cb47-3"><a></a>               <span class="at">names_to=</span><span class="st">&quot;day&quot;</span>,</span>
+<span id="cb47-4"><a></a>               <span class="at">values_to=</span><span class="st">&quot;hours&quot;</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb47-5"><a></a>  <span class="fu">mutate</span>(<span class="at">day=</span>stringr<span class="sc">::</span><span class="fu">str_sub</span>(day, <span class="sc">-</span><span class="dv">1</span>, <span class="sc">-</span><span class="dv">1</span>)) <span class="sc">%&gt;%</span> </span>
+<span id="cb47-6"><a></a>  <span class="fu">pivot_wider</span>(<span class="at">names_from=</span>activity,</span>
+<span id="cb47-7"><a></a>              <span class="at">values_from=</span>hours)</span>
+<span id="cb47-8"><a></a></span>
+<span id="cb47-9"><a></a>sleep_tidy</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
 </div>
@@ -2645,10 +2507,10 @@ display:block!important;
 <div class="cell fig-cap-location-bottom">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb58" data-cap-location="bottom"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb58-1"><a></a><span class="fu">write_csv</span>(sleep_tidy, <span class="st">&quot;sleep_tidy.csv&quot;</span>)</span>
-<span id="cb58-2"><a></a></span>
-<span id="cb58-3"><a></a><span class="fu">library</span>(haven)</span>
-<span id="cb58-4"><a></a><span class="fu">write_dta</span>(sleep_tidy, <span class="st">&quot;c:/Users/KT/Downloads/sleep_tidy.dta&quot;</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb48" data-cap-location="bottom"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb48-1"><a></a><span class="fu">write_csv</span>(sleep_tidy, <span class="st">&quot;sleep_tidy.csv&quot;</span>)</span>
+<span id="cb48-2"><a></a></span>
+<span id="cb48-3"><a></a><span class="fu">library</span>(haven)</span>
+<span id="cb48-4"><a></a><span class="fu">write_dta</span>(sleep_tidy, <span class="st">&quot;c:/Users/KT/Downloads/sleep_tidy.dta&quot;</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
 </div>
@@ -2666,17 +2528,17 @@ display:block!important;
 <div class="cell fig-cap-location-bottom">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb59" data-cap-location="bottom"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb59-1"><a></a>sleep_tidy<span class="ot">&lt;-</span> <span class="fu">tibble</span>(<span class="at">name=</span><span class="fu">c</span>(<span class="st">&quot;KT&quot;</span>, <span class="st">&quot;Wincy&quot;</span>, <span class="st">&quot;Kelly&quot;</span>, <span class="st">&quot;May&quot;</span>, <span class="st">&quot;Mary&quot;</span>),</span>
-<span id="cb59-2"><a></a>                     <span class="at">sleep=</span><span class="fu">c</span>(<span class="dv">8</span>, <span class="dv">7</span>, <span class="dv">6</span>, <span class="dv">5</span>, <span class="dv">5</span>),</span>
-<span id="cb59-3"><a></a>                     <span class="at">play=</span><span class="fu">c</span>(<span class="dv">2</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">3</span>, <span class="dv">2</span>))</span>
-<span id="cb59-4"><a></a></span>
-<span id="cb59-5"><a></a>sleep_tidy2<span class="ot">&lt;-</span> <span class="fu">tibble</span>(<span class="at">name=</span><span class="fu">c</span>(<span class="st">&quot;KT&quot;</span>, <span class="st">&quot;Wincy&quot;</span>, <span class="st">&quot;Kelly&quot;</span>, <span class="st">&quot;Peter&quot;</span>, <span class="st">&quot;Susan&quot;</span>),</span>
-<span id="cb59-6"><a></a>                      <span class="at">study=</span><span class="fu">c</span>(<span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">5</span>, <span class="dv">2</span>, <span class="dv">3</span>),</span>
-<span id="cb59-7"><a></a>                      <span class="at">work=</span><span class="fu">c</span>(<span class="dv">8</span>, <span class="dv">10</span>, <span class="dv">9</span>, <span class="dv">6</span>, <span class="dv">5</span>))</span>
-<span id="cb59-8"><a></a></span>
-<span id="cb59-9"><a></a>sleep_tidy3<span class="ot">&lt;-</span> <span class="fu">left_join</span>(sleep_tidy, sleep_tidy2, <span class="at">by=</span><span class="st">&quot;name&quot;</span>)</span>
-<span id="cb59-10"><a></a></span>
-<span id="cb59-11"><a></a>sleep_tidy3</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb49" data-cap-location="bottom"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb49-1"><a></a>sleep_tidy<span class="ot">&lt;-</span> <span class="fu">tibble</span>(<span class="at">name=</span><span class="fu">c</span>(<span class="st">&quot;KT&quot;</span>, <span class="st">&quot;Wincy&quot;</span>, <span class="st">&quot;Kelly&quot;</span>, <span class="st">&quot;May&quot;</span>, <span class="st">&quot;Mary&quot;</span>),</span>
+<span id="cb49-2"><a></a>                     <span class="at">sleep=</span><span class="fu">c</span>(<span class="dv">8</span>, <span class="dv">7</span>, <span class="dv">6</span>, <span class="dv">5</span>, <span class="dv">5</span>),</span>
+<span id="cb49-3"><a></a>                     <span class="at">play=</span><span class="fu">c</span>(<span class="dv">2</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">3</span>, <span class="dv">2</span>))</span>
+<span id="cb49-4"><a></a></span>
+<span id="cb49-5"><a></a>sleep_tidy2<span class="ot">&lt;-</span> <span class="fu">tibble</span>(<span class="at">name=</span><span class="fu">c</span>(<span class="st">&quot;KT&quot;</span>, <span class="st">&quot;Wincy&quot;</span>, <span class="st">&quot;Kelly&quot;</span>, <span class="st">&quot;Peter&quot;</span>, <span class="st">&quot;Susan&quot;</span>),</span>
+<span id="cb49-6"><a></a>                      <span class="at">study=</span><span class="fu">c</span>(<span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">5</span>, <span class="dv">2</span>, <span class="dv">3</span>),</span>
+<span id="cb49-7"><a></a>                      <span class="at">work=</span><span class="fu">c</span>(<span class="dv">8</span>, <span class="dv">10</span>, <span class="dv">9</span>, <span class="dv">6</span>, <span class="dv">5</span>))</span>
+<span id="cb49-8"><a></a></span>
+<span id="cb49-9"><a></a>sleep_tidy3<span class="ot">&lt;-</span> <span class="fu">left_join</span>(sleep_tidy, sleep_tidy2, <span class="at">by=</span><span class="st">&quot;name&quot;</span>)</span>
+<span id="cb49-10"><a></a></span>
+<span id="cb49-11"><a></a>sleep_tidy3</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
 <ul>
@@ -2687,9 +2549,9 @@ display:block!important;
 <div class="cell fig-cap-location-bottom">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb60" data-cap-location="bottom"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb60-1"><a></a>sleep_tidy4<span class="ot">&lt;-</span> <span class="fu">left_join</span>(sleep_tidy2, sleep_tidy, <span class="at">by=</span><span class="st">&quot;name&quot;</span>)</span>
-<span id="cb60-2"><a></a></span>
-<span id="cb60-3"><a></a>sleep_tidy4</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb50" data-cap-location="bottom"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb50-1"><a></a>sleep_tidy4<span class="ot">&lt;-</span> <span class="fu">left_join</span>(sleep_tidy2, sleep_tidy, <span class="at">by=</span><span class="st">&quot;name&quot;</span>)</span>
+<span id="cb50-2"><a></a></span>
+<span id="cb50-3"><a></a>sleep_tidy4</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
 </div>
@@ -2706,9 +2568,9 @@ display:block!important;
 <div class="cell fig-cap-location-bottom">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb61" data-cap-location="bottom"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb61-1"><a></a>sleep_tidy5<span class="ot">&lt;-</span> <span class="fu">inner_join</span>(sleep_tidy, sleep_tidy2, <span class="at">by=</span><span class="st">&quot;name&quot;</span>, <span class="at">suffix=</span><span class="fu">c</span>(<span class="st">&quot;_sleep&quot;</span>, <span class="st">&quot;_work&quot;</span>))</span>
-<span id="cb61-2"><a></a></span>
-<span id="cb61-3"><a></a>sleep_tidy5</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb51" data-cap-location="bottom"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb51-1"><a></a>sleep_tidy5<span class="ot">&lt;-</span> <span class="fu">inner_join</span>(sleep_tidy, sleep_tidy2, <span class="at">by=</span><span class="st">&quot;name&quot;</span>, <span class="at">suffix=</span><span class="fu">c</span>(<span class="st">&quot;_sleep&quot;</span>, <span class="st">&quot;_work&quot;</span>))</span>
+<span id="cb51-2"><a></a></span>
+<span id="cb51-3"><a></a>sleep_tidy5</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
 </div>
@@ -2721,9 +2583,9 @@ display:block!important;
 <div class="cell fig-cap-location-bottom">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb62" data-cap-location="bottom"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb62-1"><a></a>sleep_tidy6<span class="ot">&lt;-</span> <span class="fu">full_join</span>(sleep_tidy, sleep_tidy2, <span class="at">by=</span><span class="st">&quot;name&quot;</span>)</span>
-<span id="cb62-2"><a></a></span>
-<span id="cb62-3"><a></a>sleep_tidy6</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb52" data-cap-location="bottom"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb52-1"><a></a>sleep_tidy6<span class="ot">&lt;-</span> <span class="fu">full_join</span>(sleep_tidy, sleep_tidy2, <span class="at">by=</span><span class="st">&quot;name&quot;</span>)</span>
+<span id="cb52-2"><a></a></span>
+<span id="cb52-3"><a></a>sleep_tidy6</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
 <div class="cell fig-cap-location-bottom fragment">

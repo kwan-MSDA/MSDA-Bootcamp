@@ -442,8 +442,7 @@
   <meta name="generator" content="quarto-1.7.32">
 
   <meta name="author" content="KT Wong">
-  <meta name="dcterms.date" content="2025-08-28">
-  <title>Welcome to HKU MSDA Bootcamp 2025 – Data Wrangling with R</title>
+  <title>Welcome to HKU MSDA Bootcamp 2025 – R - An Introduction</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
@@ -1075,7 +1074,7 @@ margin-right: 0; }
 
 <section id="title-slide" class="center">
 
-<h1 class="title">Data Wrangling with R</h1>
+<h1 class="title">R - An Introduction</h1>
 
   <p class="subtitle">MSDA - Bootcamp 2025 Summer</p>
   <p class="author">KT Wong</p>
@@ -1085,7 +1084,7 @@ margin-right: 0; }
 
   <p class="affiliation" style="font-style: italic; font-size: 0.68em; margin-top: 0;">Faculty of Social Sciences, HKU</p>
 
-  <p class="date">2025-08-28</p>
+  <p class="date">Aug 28, 2025</p>
 
 <div class="abstract">
 <p>The materials in this topic are drawn from <span class="citation" data-cites="QSS">Imai and Williams (<a href="#/references" role="doc-biblioref" onclick>2022</a>)</span>, <span class="citation" data-cites="Wickham2023">Wickham and Grolemund (<a href="#/references" role="doc-biblioref" onclick>2023</a>)</span>, <span class="citation" data-cites="Wickham2019">Wickham (<a href="#/references" role="doc-biblioref" onclick>2019</a>)</span> and <span class="citation" data-cites="Wickham2016">Wickham (<a href="#/references" role="doc-biblioref" onclick>2016</a>)</span> as well as other sources, including Princeton Sociology Methods Camp 2023. The materials are for educational purposes only.</p>
@@ -1094,158 +1093,130 @@ margin-right: 0; }
 <section id="introduction" class="slide level2">
 <h2>Introduction</h2>
 <ul>
-<li class="fragment">Data wrangling is the process of transforming and cleaning data to make it suitable for analysis
+<li class="fragment">R is a programming language and software environment for statistical computing and graphics
 <ul>
-<li class="fragment">it is an essential step in the data analysis process</li>
-<li class="fragment">it involves a variety of tasks, including:
-<ul>
-<li class="fragment">loading data</li>
-<li class="fragment">exploring data</li>
-<li class="fragment">subsetting data</li>
-<li class="fragment">manipulating data</li>
-<li class="fragment">recoding variables</li>
-<li class="fragment">reshaping data</li>
+<li class="fragment">widely used in academia and industry</li>
+<li class="fragment">for data analysis, statistical modeling, and visualization</li>
+<li class="fragment">for machine learning, data mining, and big data analysis</li>
+<li class="fragment">for reproducible research and scientific computing</li>
 </ul></li>
-</ul></li>
-<li class="fragment">we use the <code>tidyverse</code> package - a collection of packages for data manipulation and visualization
+<li class="fragment">R is an implementation of the S programming language
 <ul>
-<li class="fragment">the core of tidyverse package for data manipulation is the <code>dplyr</code> package</li>
-<li class="fragment">also use the <code>tidyr</code> package for reshaping data later</li>
+<li class="fragment">S was developed at Bell Laboratories by John Chambers and colleagues</li>
+<li class="fragment">S was designed for data analysis and graphics</li>
+<li class="fragment">S was the precursor to the commercial statistical software package S-PLUS</li>
 </ul></li>
 </ul>
 </section>
-<section id="loading-data" class="slide level2">
-<h2>Loading Data</h2>
+<section id="introduction-1" class="slide level2">
+<h2>Introduction</h2>
 <ul>
-<li class="fragment">The first step in any data analysis is to load the data into R
+<li class="fragment">R was created by Ross Ihaka and Robert Gentleman at the University of Auckland, New Zealand
 <ul>
-<li class="fragment">the data can be in a variety of formats</li>
-<li class="fragment">the most common formats are CSV, Excel, and SPSS</li>
-<li class="fragment">the <code>readr</code> package is part of the tidyverse and is used to read data into R</li>
+<li class="fragment">named partly after the first names of the first two R authors and partly as a play on the name of S</li>
+<li class="fragment">a GNU project, a free software movement initiated by Richard Stallman in 1983</li>
+<li class="fragment">freely available under the GNU General Public License</li>
+<li class="fragment">a large number of packages available</li>
 </ul></li>
 </ul>
-<div class="cell fig-cap-location-bottom">
-<style type="text/css">
-code.sourceCode {
-font-size: 168%;
-
-}
-</style>
-</div>
+</section>
+<section id="introduction-2" class="slide level2">
+<h2>Introduction</h2>
+<ul>
+<li class="fragment"><a href="https://www.tidyverse.org/">tidyverse</a> is a collection of R packages designed for data science
+<ul>
+<li class="fragment">tidyverse packages share an underlying design philosophy, grammar, and data structures</li>
+<li class="fragment">tidyverse packages are designed to work together</li>
+</ul></li>
+<li class="fragment">focus on the tidyverse
+<ul>
+<li class="fragment">mainly because it is easier to understand</li>
+<li class="fragment">do most data manipulation we need in social science research with these tools</li>
+</ul></li>
+<li class="fragment">A good reference for tidyverse is the book by <span class="citation" data-cites="Wickham2019">Wickham (<a href="#/references" role="doc-biblioref" onclick>2019</a>)</span>
+<ul>
+<li class="fragment"><a href="https://r4ds.had.co.nz/">R for Data Science</a></li>
+</ul></li>
+</ul>
+</section>
+<section id="introduction-3" class="slide level2">
+<h2>Introduction</h2>
+<ul>
+<li class="fragment">for quick reference, visit Posit Primers on <a href="https://rstudio.cloud/learn/primers">Data Science</a>
+<ul>
+<li class="fragment">R Basics</li>
+<li class="fragment">Transform Tables</li>
+<li class="fragment">Visualize Data</li>
+</ul></li>
+<li class="fragment">for more specific topics, visit <a href="https://rstudio.cloud/learn/intermediate">Data Science</a>
+<ul>
+<li class="fragment">Data Wrangling</li>
+<li class="fragment">Data Visualization</li>
+<li class="fragment">Modelling</li>
+</ul></li>
+<li class="fragment">we use cover some base R functions first, then move on to the tidyverse</li>
+</ul>
+</section>
+<section id="basic-arithmetic" class="slide level2">
+<h2>Basic Arithmetic</h2>
+<ul>
+<li class="fragment">R can be regarded as a calculator
+<ul>
+<li class="fragment">it recognizes all of the standard arithmetic operators</li>
+</ul></li>
+</ul>
 <div class="fragment">
-<div class="cell fig-cap-location-bottom">
+<div class="cell">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb1" data-cap-location="bottom"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a></a><span class="co">#install.packages(&quot;tidyverse&quot;)</span></span>
-<span id="cb1-2"><a></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb1-3"><a></a></span>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a></a><span class="co"># Basic arithmetic operations in R</span></span>
+<span id="cb1-2"><a></a></span>
+<span id="cb1-3"><a></a><span class="dv">1</span><span class="sc">+</span><span class="dv">2</span> </span>
 <span id="cb1-4"><a></a></span>
-<span id="cb1-5"><a></a><span class="co"># check your working directory</span></span>
-<span id="cb1-6"><a></a><span class="fu">getwd</span>()</span>
-<span id="cb1-7"><a></a></span>
-<span id="cb1-8"><a></a><span class="do">## read data file</span></span>
-<span id="cb1-9"><a></a></span>
-<span id="cb1-10"><a></a>addh<span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&quot;https://raw.githubusercontent.com/kwan-MSDA/Bootcamp_2024/main/dataset/addhealthfake.csv&quot;</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb1-5"><a></a><span class="dv">6-7</span> </span>
+<span id="cb1-6"><a></a></span>
+<span id="cb1-7"><a></a><span class="dv">5</span><span class="sc">/</span><span class="dv">2</span> </span>
+<span id="cb1-8"><a></a></span>
+<span id="cb1-9"><a></a><span class="dv">2</span><span class="sc">^</span><span class="dv">3</span></span>
+<span id="cb1-10"><a></a></span>
+<span id="cb1-11"><a></a><span class="dv">2</span><span class="sc">+</span><span class="dv">5</span><span class="sc">*</span><span class="dv">2</span><span class="sc">^</span><span class="dv">3</span></span>
+<span id="cb1-12"><a></a></span>
+<span id="cb1-13"><a></a><span class="dv">3</span><span class="sc">*</span>(<span class="dv">4</span><span class="sc">+</span><span class="dv">5</span>) </span>
+<span id="cb1-14"><a></a></span>
+<span id="cb1-15"><a></a>(<span class="dv">3</span><span class="sc">+</span><span class="dv">4</span>)<span class="sc">*</span><span class="dv">5</span></span>
+<span id="cb1-16"><a></a></span>
+<span id="cb1-17"><a></a><span class="fu">sqrt</span>(<span class="dv">4</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
+<ul>
+<li class="fragment">modulo operators (integer division &amp; remainder)</li>
+</ul>
 </div>
-</section>
-<section id="add-health-dataset" class="slide level2">
-<h2>Add health dataset</h2>
-<ul>
-<li class="fragment">Here are some details about the <a href="https://addhealth.cpc.unc.edu/data/#public-use">dataset</a>
-<ul>
-<li class="fragment">The National Longitudinal Study of Adolescent to Adult Health (Add Health)</li>
-<li class="fragment">a longitudinal study of a nationally representative sample of adolescents in <strong>grades 7-12</strong> in the United States during the 1994-95 school year (Wave I)</li>
-<li class="fragment">The Add Health cohort has been followed into young adulthood with four in-home interviews for Wave I-IV by 2008
-<ul>
-<li class="fragment">the Wave V conducted during 2016-2018 included a mixed-mode survey</li>
-</ul></li>
-<li class="fragment">respondents’ social, economic, psychological, and physical well-being
-<ul>
-<li class="fragment">along with contextual data on the family, neighborhood, community, school, friendships, peer groups, and romantic relationships</li>
-</ul></li>
-<li class="fragment">study developmental trajectories of health and risk behaviors throughout the life course</li>
-</ul></li>
-</ul>
-</section>
-<section id="explore-data" class="slide level2">
-<h2>Explore data</h2>
-<ul>
-<li class="fragment"><p>The dataset used here is a subset of the Add Health dataset</p>
-<ul>
-<li class="fragment">3000 observations and 11 variables</li>
-</ul></li>
-<li class="fragment"><p>After the dataset is loaded in R, it is important to explore the data to understand its structure and content</p></li>
-<li class="fragment"><p>The following steps are recommended to explore the data:</p>
-<ul>
-<li class="fragment">check the data types of key variables</li>
-<li class="fragment">check the dimensions of the data</li>
-<li class="fragment">look at a few rows and variables</li>
-</ul></li>
-</ul>
 <div class="fragment">
-<div class="cell fig-cap-location-bottom">
+<div class="cell">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb2" data-cap-location="bottom"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a></a><span class="fu">class</span>(addh<span class="sc">$</span>age)</span>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a></a><span class="co"># Modulo operators in R</span></span>
 <span id="cb2-2"><a></a></span>
-<span id="cb2-3"><a></a><span class="fu">class</span>(addh<span class="sc">$</span>gender)</span>
-<span id="cb2-4"><a></a></span>
-<span id="cb2-5"><a></a><span class="fu">class</span>(addh<span class="sc">$</span>love)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
-</div>
-</div>
-</section>
-<section id="explore-data-1" class="slide level2">
-<h2>Explore data</h2>
-<ul>
-<li class="fragment">For more information on the dataset,
-<ul>
-<li class="fragment">summary(): numeric summaries</li>
-<li class="fragment">str(): data types and sample data</li>
-<li class="fragment">colnames() or names(): names of columns/variables</li>
-<li class="fragment">dim(): dimensions</li>
-<li class="fragment">View(): view all data in RStudio viewer</li>
-<li class="fragment">head(): top 6 rows</li>
-<li class="fragment">tail(): bottom 6 rows</li>
-</ul></li>
-</ul>
-</section>
-<section id="explore-data-2" class="slide level2">
-<h2>Explore data</h2>
-<div class="cell fig-cap-location-bottom">
-<details class="code-fold">
-<summary>Code</summary>
-<div class="sourceCode cell-code" id="cb3" data-cap-location="bottom"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a></a><span class="fu">str</span>(addh)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
-</div>
-<div class="fragment">
-<div class="cell fig-cap-location-bottom">
-<details class="code-fold">
-<summary>Code</summary>
-<div class="sourceCode cell-code" id="cb4" data-cap-location="bottom"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a></a><span class="fu">head</span>(addh, <span class="at">n=</span><span class="dv">5</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
-</div>
-</div>
-<div class="fragment">
-<div class="cell fig-cap-location-bottom">
-<details class="code-fold">
-<summary>Code</summary>
-<div class="sourceCode cell-code" id="cb5" data-cap-location="bottom"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a></a><span class="fu">tail</span>(addh, <span class="at">n=</span><span class="dv">5</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
-</div>
-</div>
-<div class="fragment">
-<div class="cell fig-cap-location-bottom">
-<details class="code-fold">
-<summary>Code</summary>
-<div class="sourceCode cell-code" id="cb6" data-cap-location="bottom"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a></a><span class="fu">colnames</span>(addh)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb2-3"><a></a><span class="dv">5</span> <span class="sc">%/%</span> <span class="dv">2</span>  <span class="co"># integer division</span></span>
+<span id="cb2-4"><a></a><span class="dv">5</span> <span class="sc">%%</span> <span class="dv">2</span>   <span class="co"># remainder</span></span>
+<span id="cb2-5"><a></a></span>
+<span id="cb2-6"><a></a><span class="dv">100</span> <span class="sc">%/%</span> <span class="dv">60</span> <span class="do">## How many whole hours in 100 minutes?</span></span>
+<span id="cb2-7"><a></a></span>
+<span id="cb2-8"><a></a><span class="dv">100</span> <span class="sc">%%</span> <span class="dv">60</span> <span class="do">## How many minutes are left over?</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
 <aside class="notes">
 <ul>
-<li>(in dplyr) slice_sample(): randomly select n rows</li>
+<li><p>In RStudio, you can start a new script using the dropdown menu File &gt; New File &gt; R Script</p></li>
+<li><p>use your R script to save finalized commands</p>
+<ul>
+<li>type in the console to practice and debug, then use the script to save what worked</li>
+</ul></li>
+<li><p>R scripts allow you to save comments, or annotations, to your code</p>
+<ul>
+<li>anything following the # symbol in a script will not be treated like an R command—essentially, R will skip over it</li>
+</ul></li>
 </ul>
 <style type="text/css">
 span.MJX_Assistive_MathML {
@@ -1260,188 +1231,371 @@ display:block!important;
 }</style></aside>
 </div>
 </section>
-<section id="explore-data-3" class="slide level2">
-<h2>Explore data</h2>
+<section id="logic" class="slide level2">
+<h2>Logic</h2>
 <ul>
-<li class="fragment">To get information about one variable, use the following functions:
+<li class="fragment">R can also be used for logical operations
 <ul>
-<li class="fragment">table(): get a table summarizing counts</li>
-<li class="fragment">unique(): get the unique responses for a variable</li>
-<li class="fragment">sort(): sort the numerically (or alphabetically)</li>
-<li class="fragment">hist(): produce a histogram</li>
+<li class="fragment">it recognizes the standard logical operators</li>
 </ul></li>
 </ul>
 <div class="fragment">
-<div class="cell fig-cap-location-bottom">
+<div class="cell">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb7" data-cap-location="bottom"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a></a><span class="fu">table</span>(addh<span class="sc">$</span>gender)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a></a><span class="dv">1</span> <span class="sc">&gt;</span> <span class="dv">2</span></span>
+<span id="cb3-2"><a></a></span>
+<span id="cb3-3"><a></a><span class="dv">1</span> <span class="sc">&gt;</span> <span class="dv">2</span> <span class="sc">&amp;</span> <span class="dv">1</span> <span class="sc">&gt;</span> <span class="fl">0.5</span> <span class="co"># The &quot;&amp;&quot; stands for &quot;and&quot;</span></span>
+<span id="cb3-4"><a></a></span>
+<span id="cb3-5"><a></a><span class="dv">1</span> <span class="sc">&gt;</span> <span class="dv">2</span> <span class="sc">|</span> <span class="dv">1</span> <span class="sc">&gt;</span> <span class="fl">0.5</span> <span class="co"># The &quot;|&quot; stands for &quot;or&quot; (not a pipe a la the shell)</span></span>
+<span id="cb3-6"><a></a></span>
+<span id="cb3-7"><a></a><span class="fu">isTRUE</span> (<span class="dv">1</span> <span class="sc">&lt;</span> <span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<ul>
+<li class="fragment">Here are the <a href="https://stat.ethz.ch/R-manual/R-devel/library/base/html/Logic.html">detailed list</a> of logical operators in R
+<ul>
+<li class="fragment"><code>&amp;</code> and <code>|</code> are used for element-wise logical operations</li>
+<li class="fragment"><code>&amp;&amp;</code> and <code>||</code> are used for short-circuit logical operations
+<ul>
+<li class="fragment">e.g. <code>1 &gt; 2 &amp;&amp; 1 &gt; 0.5</code> will return <code>FALSE</code> without evaluating the second condition</li>
+</ul></li>
+<li class="fragment"><code>!</code> is used for negation (i.e. “not”)</li>
+<li class="fragment"><code>==</code>, <code>!=</code>, <code>&lt;</code>, <code>&lt;=</code>, <code>&gt;</code>, and <code>&gt;=</code> are used for comparison</li>
+</ul></li>
+<li class="fragment">Here is further information about logical vectors in R
+<ul>
+<li class="fragment"><a href="https://stat.ethz.ch/R-manual/R-devel/library/base/html/logical.html">Logical vectors</a> are vectors that contain only <code>TRUE</code>, <code>FALSE</code>, or <code>NA</code> values</li>
+<li class="fragment">Logical vectors are often used for subsetting data frames or matrices</li>
+</ul></li>
+</ul>
+</div>
+</section>
+<section id="logic-1" class="slide level2">
+<h2>Logic</h2>
+<ul>
+<li class="fragment">Order of precedence
+<ul>
+<li class="fragment">logic statements follow a strict order of precedence</li>
+<li class="fragment">logical operators (<code>&gt;</code>, <code>==</code>, etc) are evaluated before Boolean operators (<code>&amp;</code> and <code>|</code>)
+<ul>
+<li class="fragment">failure to recognise this can lead to unexpected behaviour</li>
+</ul></li>
+</ul></li>
+</ul>
+<div class="fragment">
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a></a><span class="dv">1</span> <span class="sc">&gt;</span> <span class="fl">0.5</span> <span class="sc">&amp;</span> <span class="dv">2</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
 </div>
 <div class="fragment">
-<div class="cell fig-cap-location-bottom">
+<div class="cell">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb8" data-cap-location="bottom"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a></a><span class="fu">table</span>(addh<span class="sc">$</span>age)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a></a><span class="dv">1</span> <span class="sc">&gt;</span> <span class="fl">0.5</span> <span class="sc">&amp;</span> <span class="dv">1</span> <span class="sc">&gt;</span> <span class="dv">2</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
+<ul>
+<li class="fragment">Lesson: explicit about each component of your logic statement(s)</li>
+</ul>
+<aside class="notes">
+<ul>
+<li><p>2 is converted into <code>as.logical(2)</code></p></li>
+<li><p><code>as.logical(2)</code> is <code>TRUE</code> because it is not zero</p></li>
+</ul>
+<style type="text/css">
+span.MJX_Assistive_MathML {
+position:absolute!important;
+clip: rect(1px, 1px, 1px, 1px);
+padding: 1px 0 0 0!important;
+border: 0!important;
+height: 1px!important;
+width: 1px!important;
+overflow: hidden!important;
+display:block!important;
+}</style></aside>
+<ul>
+<li class="fragment">Negation: <code>!</code>
+<ul>
+<li class="fragment">this will come in very handy when we start filtering data objects</li>
+</ul></li>
+</ul>
 </div>
 <div class="fragment">
-<div class="cell fig-cap-location-bottom">
+<div class="cell">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb9" data-cap-location="bottom"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a></a><span class="fu">sort</span>(<span class="fu">unique</span>(addh<span class="sc">$</span>age))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a></a><span class="fu">is.na</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>)</span>
+<span id="cb6-2"><a></a><span class="sc">!</span><span class="fu">is.na</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>)</span>
+<span id="cb6-3"><a></a></span>
+<span id="cb6-4"><a></a><span class="fu">Negate</span>(is.na)(<span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
 </div>
 </section>
-<section id="subset-data" class="slide level2">
-<h2>Subset data</h2>
+<section id="logical-operators" class="slide level2">
+<h2>logical operators</h2>
 <ul>
-<li class="fragment">let us recap by using the base R subsetting syntax with [row index, column index]</li>
+<li class="fragment">Value matching: <code>%in%</code>
+<ul>
+<li class="fragment">whether an object is contained within (i.e. matches one of) a list of items, use <code>%in%</code></li>
+</ul></li>
 </ul>
 <div class="fragment">
-<div class="cell fig-cap-location-bottom">
+<div class="cell">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb10" data-cap-location="bottom"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a></a><span class="co"># get first column, rows 1 through 3 </span></span>
-<span id="cb10-2"><a></a>addh[<span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>,<span class="dv">1</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a></a><span class="dv">4</span> <span class="sc">%in%</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">10</span></span>
+<span id="cb7-2"><a></a></span>
+<span id="cb7-3"><a></a><span class="dv">4</span> <span class="sc">%in%</span> <span class="dv">5</span><span class="sc">:</span><span class="dv">10</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
 <ul>
-<li class="fragment"><p><strong>Exercise</strong>: How would you subset the observation in the third row and the fifth column?</p></li>
-<li class="fragment"><p>we can use <code>-</code> to exclude rows or columns</p></li>
+<li class="fragment">There’s no equivalent “not in” command
+<ul>
+<li class="fragment">but we can create one</li>
+</ul></li>
 </ul>
 </div>
 <div class="fragment">
-<div class="cell fig-cap-location-bottom">
+<div class="cell">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb11" data-cap-location="bottom"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a></a><span class="co"># get everything besides first row</span></span>
-<span id="cb11-2"><a></a>addh[<span class="sc">-</span><span class="dv">1</span>, ]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a></a><span class="st">`</span><span class="at">%ni%</span><span class="st">`</span> <span class="ot">=</span> <span class="fu">Negate</span>(<span class="st">`</span><span class="at">%in%</span><span class="st">`</span>) <span class="do">## The backticks (`) help to specify functions.</span></span>
+<span id="cb8-2"><a></a></span>
+<span id="cb8-3"><a></a><span class="dv">4</span> <span class="sc">%ni%</span> <span class="dv">5</span><span class="sc">:</span><span class="dv">10</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
+<ul>
+<li class="fragment">Evaluation
+<ul>
+<li class="fragment">use two equal signs for logical evaluation</li>
+</ul></li>
+</ul>
+</div>
+<div class="fragment">
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a></a><span class="dv">1</span> <span class="sc">==</span> <span class="dv">1</span> <span class="do">## This does.</span></span>
+<span id="cb9-2"><a></a></span>
+<span id="cb9-3"><a></a><span class="dv">1</span> <span class="sc">!=</span> <span class="dv">2</span> <span class="do">## Note the single equal sign when combined with a negation</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<aside class="notes">
+<ul>
+<li><p>Evaluation caveat: Floating-point numbers</p></li>
+<li><p>What do you think will happen if we evaluate <code>0.1 + 0.2 == 0.3</code>?</p></li>
+<li><p>0.1 + 0.2 == 0.3</p></li>
+<li><p><strong>Problem:</strong> Computers represent numbers as binary (i.e. base 2) floating-points</p>
+<ul>
+<li>More <a href="https://floating-point-gui.de/basic/">here</a>.
+<ul>
+<li>Fast and memory efficient, but can lead to unexpected behaviour.</li>
+</ul></li>
+</ul></li>
+<li><p>Similar to the way that standard decimal (i.e. base 10) representation can’t precisely capture certain fractions</p>
+<ul>
+<li>e.g. <span class="math inline">\(\frac{1}{3} = 0.3333...\)</span></li>
+</ul></li>
+<li><p><strong>Solution:</strong> Use <code>all.equal()</code> for evaluating floats (i.e fractions)</p>
+<ul>
+<li>all.equal(0.1 + 0.2, 0.3)</li>
+</ul></li>
+</ul>
+<style type="text/css">
+span.MJX_Assistive_MathML {
+position:absolute!important;
+clip: rect(1px, 1px, 1px, 1px);
+padding: 1px 0 0 0!important;
+border: 0!important;
+height: 1px!important;
+width: 1px!important;
+overflow: hidden!important;
+display:block!important;
+}</style></aside>
 </div>
 </section>
-<section id="exercises" class="slide level2">
-<h2>Exercises</h2>
+<section id="assignment-operators" class="slide level2">
+<h2>Assignment operators</h2>
 <ul>
-<li class="fragment">Suppose that you want to know a few things from the dataset:
+<li class="fragment">Assignment: <code>&lt;-</code> or <code>=</code>
 <ul>
-<li class="fragment">What’s the median income of this sample? What’s the mean age?</li>
-<li class="fragment">What are the answer choices for debt?</li>
-<li class="fragment">On average, do the young adults surveyed think money, no cheating, or love is more important in a relationship?</li>
+<li class="fragment">use <code>&lt;-</code> for assignment, but <code>=</code> is also acceptable</li>
+<li class="fragment"><code>&lt;-</code> is the preferred operator in R, but <code>=</code> is more common in other programming languages</li>
 </ul></li>
-<li class="fragment">hint: for simple calculations, you can use the base R functions mean(), median(), and table()</li>
 </ul>
 <div class="fragment">
-<div class="cell fig-cap-location-bottom">
+<div class="cell">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb12" data-cap-location="bottom"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a></a><span class="fu">median</span>(addh<span class="sc">$</span>income)</span>
-<span id="cb12-2"><a></a></span>
-<span id="cb12-3"><a></a><span class="fu">mean</span>(addh<span class="sc">$</span>age)</span>
-<span id="cb12-4"><a></a></span>
-<span id="cb12-5"><a></a><span class="fu">unique</span>(addh<span class="sc">$</span>debt)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a></a>a <span class="ot">&lt;-</span> <span class="dv">10</span> <span class="sc">+</span> <span class="dv">5</span></span>
+<span id="cb10-2"><a></a>a</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
+<ul>
+<li class="fragment">nevertheless, we can use <code>=</code> for assignment</li>
+</ul>
 </div>
 <div class="fragment">
-<div class="cell fig-cap-location-bottom">
+<div class="cell">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb13" data-cap-location="bottom"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a></a><span class="co"># as a precursor to the next section, we can use dplyr to do the same thing</span></span>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a></a>b <span class="ot">=</span> <span class="dv">10</span> <span class="sc">+</span> <span class="dv">10</span> </span>
+<span id="cb11-2"><a></a></span>
+<span id="cb11-3"><a></a>b</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<aside class="notes">
+<ul>
+<li><p>an arrow can point in the other direction too (i.e. <code>-&gt;</code>)</p></li>
+<li><p>the following code chunk is equivalent to the previous one, although used much less frequently</p></li>
+</ul>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a></a><span class="dv">10</span> <span class="sc">+</span> <span class="dv">5</span> <span class="ot">-&gt;</span> a</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<ul>
+<li>Note that the assigned object <em>must</em> be on the left with “=”</li>
+</ul>
+<style type="text/css">
+span.MJX_Assistive_MathML {
+position:absolute!important;
+clip: rect(1px, 1px, 1px, 1px);
+padding: 1px 0 0 0!important;
+border: 0!important;
+height: 1px!important;
+width: 1px!important;
+overflow: hidden!important;
+display:block!important;
+}</style></aside>
+</div>
+</section>
+<section id="help" class="slide level2">
+<h2>Help</h2>
+<ul>
+<li class="fragment">Use <code>help</code> or <code>?</code> to get help on a function
+<ul>
+<li class="fragment">e.g. <code>?mean</code> will give you the documentation for the <code>mean()</code> function</li>
+</ul></li>
+<li class="fragment">For more information on a (named) function or object in R, consult the “help” documentation. For example:</li>
+</ul>
+<div class="fragment">
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a></a><span class="fu">help</span>(plot)</span>
 <span id="cb13-2"><a></a></span>
-<span id="cb13-3"><a></a><span class="fu">library</span>(dplyr)</span>
-<span id="cb13-4"><a></a></span>
-<span id="cb13-5"><a></a>addh <span class="sc">%&gt;%</span></span>
-<span id="cb13-6"><a></a>  <span class="fu">summarise</span>(<span class="at">mean_money =</span> <span class="fu">mean</span>(money),</span>
-<span id="cb13-7"><a></a>            <span class="at">mean_nocheating =</span> <span class="fu">mean</span>(nocheating),</span>
-<span id="cb13-8"><a></a>            <span class="at">mean_love =</span> <span class="fu">mean</span>(love)</span>
-<span id="cb13-9"><a></a>            )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb13-3"><a></a>?plot </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
-</div>
-</section>
-<section id="data-manipulation" class="slide level2">
-<h2>Data Manipulation</h2>
 <ul>
-<li class="fragment"><p>The <code>dplyr</code> package is part of the tidyverse and is used for data manipulation</p></li>
-<li class="fragment"><p>dplyr functions include:</p>
+<li class="fragment"><p>Comments in R are demarcated by <code>#</code>.</p></li>
+<li class="fragment"><p>Hit <code>Ctrl+Shift+c</code> in RStudio to (un)comment whole sections of highlighted code</p></li>
+<li class="fragment"><p>Vignettes</p>
 <ul>
-<li class="fragment"><code>filter()</code>: subset rows</li>
-<li class="fragment"><code>select()</code>: subset columns</li>
-<li class="fragment"><code>mutate()</code>: create new variables</li>
-<li class="fragment"><code>summarise()</code>: summarize data</li>
-<li class="fragment"><code>arrange()</code>: sort data</li>
-<li class="fragment"><code>group_by()</code>: group data</li>
+<li class="fragment">for many packages, you can also try the <code>vignette()</code> function, which will provide an introduction to a package and it’s purpose through a series of helpful examples
+<ul>
+<li class="fragment">e.g. <code>vignette(&quot;ggplot2&quot;)</code> will give you a detailed introduction to the <code>ggplot2</code> package</li>
 </ul></li>
-<li class="fragment"><p>very important function: pipe operator <code>%&gt;%</code> from the <strong>magrittr</strong> package</p>
-<ul>
-<li class="fragment">allows you to chain functions together</li>
-</ul></li>
-<li class="fragment"><p>basic structure of the dplyr functions</p>
-<ul>
-<li class="fragment">function(dataframe, operation 1 to perform, opertaion 2 to perform,…)</li>
 </ul></li>
 </ul>
+<aside class="notes">
+<ul>
+<li>see the <em>Examples</em> section at the bottom of the help file?
+<ul>
+<li>You can run them with the <code>example()</code> function</li>
+<li>Try it: <code>example(plot)</code></li>
+</ul></li>
+</ul>
+<style type="text/css">
+span.MJX_Assistive_MathML {
+position:absolute!important;
+clip: rect(1px, 1px, 1px, 1px);
+padding: 1px 0 0 0!important;
+border: 0!important;
+height: 1px!important;
+width: 1px!important;
+overflow: hidden!important;
+display:block!important;
+}</style></aside>
+</div>
 </section>
-<section id="data-manipulation-1" class="slide level2">
-<h2>Data Manipulation</h2>
-<p><span class="big"><em><code>dplyr</code> - select</em></span></p>
+<section id="object-oriented-programming-oop-in-r" class="slide level2 scrollable">
+<h2>Object-oriented programming (OOP) in R</h2>
 <ul>
-<li class="fragment">it can be used with <a href="https://dplyr.tidyverse.org/reference/select.html">operations</a>, like
+<li class="fragment"><p>R is an object-oriented programming language</p>
 <ul>
-<li class="fragment"><code>starts_with()</code></li>
-<li class="fragment"><code>ends_with()</code></li>
-<li class="fragment"><code>contains()</code></li>
-<li class="fragment"><code>matches()</code></li>
-<li class="fragment">etc…</li>
+<li class="fragment">everything in R is an object</li>
+<li class="fragment">objects can be manipulated and transformed using functions</li>
+<li class="fragment">functions are also objects in R</li>
+</ul></li>
+<li class="fragment"><p>R has three main object classes</p>
+<ul>
+<li class="fragment">vectors</li>
+<li class="fragment">lists</li>
+<li class="fragment">data frames</li>
+</ul></li>
+<li class="fragment"><p>R also has other object classes, such as matrices, arrays, and factors</p></li>
+<li class="fragment"><p>Each object class has its own set of rules (“methods”) for determining valid operations</p>
+<ul>
+<li class="fragment">e.g. you can perform many of the same operations on matrices and data frames</li>
+<li class="fragment">But there are some operations that only work on a matrix, and vice versa</li>
+<li class="fragment">At the same time, you can (usually) convert an object from one type to another</li>
 </ul></li>
 </ul>
 <div class="fragment">
-<div class="cell fig-cap-location-bottom">
+<div class="cell">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb14" data-cap-location="bottom"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a></a>pay_variables <span class="ot">&lt;-</span> <span class="fu">select</span>(addh, <span class="fu">contains</span>(<span class="st">&quot;pay&quot;</span>))</span>
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a></a><span class="do">## Create a small data frame called &quot;d&quot;.</span></span>
 <span id="cb14-2"><a></a></span>
-<span id="cb14-3"><a></a><span class="fu">head</span>(pay_variables, <span class="dv">5</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb14-3"><a></a>d <span class="ot">=</span> <span class="fu">data.frame</span>(<span class="at">x =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>, <span class="at">y =</span> <span class="dv">3</span><span class="sc">:</span><span class="dv">4</span>) </span>
+<span id="cb14-4"><a></a></span>
+<span id="cb14-5"><a></a>d</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
 </div>
-</section>
-<section id="data-manipulation-2" class="slide level2">
-<h2>Data Manipulation</h2>
-<p><span class="big"><em><code>dplyr</code> - filter</em></span></p>
-<ul>
-<li class="fragment">filter rows based on conditions</li>
-</ul>
 <div class="fragment">
-<div class="cell fig-cap-location-bottom">
+<div class="cell">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb15" data-cap-location="bottom"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a></a>nodebt_income <span class="ot">&lt;-</span> <span class="fu">filter</span>(addh, debt <span class="sc">==</span> <span class="st">&quot;nodebt&quot;</span> <span class="sc">&amp;</span> income <span class="sc">&gt;=</span> <span class="dv">10000</span>)</span>
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a></a><span class="do">## Convert it to (i.e. create) a matrix call &quot;m&quot;.</span></span>
 <span id="cb15-2"><a></a></span>
-<span id="cb15-3"><a></a><span class="fu">nrow</span>(nodebt_income)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
-</div>
-</div>
-<div class="fragment">
-<div class="cell fig-cap-location-bottom">
-<details class="code-fold">
-<summary>Code</summary>
-<div class="sourceCode cell-code" id="cb16" data-cap-location="bottom"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a></a>nomissing_income <span class="ot">&lt;-</span> <span class="fu">filter</span>(addh, <span class="sc">!</span><span class="fu">is.na</span>(income)) <span class="co"># only keep obs that are NOT missing</span></span>
-<span id="cb16-2"><a></a></span>
-<span id="cb16-3"><a></a><span class="fu">nrow</span>(nomissing_income)</span>
-<span id="cb16-4"><a></a></span>
-<span id="cb16-5"><a></a>nomissing_income2 <span class="ot">&lt;-</span> <span class="fu">drop_na</span>(addh, income) <span class="co"># alternate function from tidyr</span></span>
-<span id="cb16-6"><a></a></span>
-<span id="cb16-7"><a></a><span class="fu">nrow</span>(nomissing_income2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb15-3"><a></a>m <span class="ot">=</span> <span class="fu">as.matrix</span>(d)</span>
+<span id="cb15-4"><a></a></span>
+<span id="cb15-5"><a></a>m</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
 <aside class="notes">
-<p>#nomissing_income &lt;- drop_na(addh, income) # alternate function from tidyr</p>
+<ul>
+<li><p>R can store information as an object with a name of our choice</p>
+<ul>
+<li>Once we have created an object, we just refer to it by name</li>
+<li>we are using objects as “shortcuts” to some piece of information or data</li>
+</ul></li>
+<li><p>there are many different <em>types</em> (or <em>classes</em>) of objects</p></li>
+<li><p>arithmetic operations like addition and subtraction cannot be used for character strings</p></li>
+<li><p>Most obviously, there are actually <em>multiple</em> OOP frameworks in R</p>
+<ul>
+<li><strong>S3</strong>, <strong>S4</strong>, <strong>R6</strong>…</li>
+<li>Hadley Wickham’s “Advanced R” provides a <a href="https://adv-r.hadley.nz/oo.html">very thorough overview</a> of the main ones</li>
+</ul></li>
+<li><p>But for our purposes, it is much more helpful to think about</p>
+<ol type="a">
+<li>the shared characteristics of these different systems and</li>
+<li>the broad implications of OOP in R.</li>
+</ol>
+<ul>
+<li>What we lose in detail, we hopefully gain in perspective</li>
+<li>But do read Hadley’s book if you get the chance + It’s incredibly helpful (as are all his books)</li>
+</ul></li>
+</ul>
 <style type="text/css">
 span.MJX_Assistive_MathML {
 position:absolute!important;
@@ -1455,455 +1609,8 @@ display:block!important;
 }</style></aside>
 </div>
 </section>
-<section id="data-manipulation-3" class="slide level2">
-<h2>Data Manipulation</h2>
-<p><span class="big"><em><code>dplyr</code> - arrange</em></span></p>
-<ul>
-<li class="fragment"><p>sort data based on one or more columns</p></li>
-<li class="fragment"><p>task: find the two observations who think money is extremely important for a relationship (10 on <strong>money</strong>) but who pay for the fewest percentage of dates (<strong>paypercent</strong>)</p></li>
-</ul>
-<div class="fragment">
-<div class="cell fig-cap-location-bottom">
-<details class="code-fold">
-<summary>Code</summary>
-<div class="sourceCode cell-code" id="cb17" data-cap-location="bottom"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a></a>addh <span class="sc">%&gt;%</span></span>
-<span id="cb17-2"><a></a>  <span class="fu">filter</span>(money <span class="sc">==</span> <span class="dv">10</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb17-3"><a></a>  <span class="fu">arrange</span>(paypercent) <span class="sc">%&gt;%</span></span>
-<span id="cb17-4"><a></a>  <span class="fu">head</span>(<span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
-</div>
-</div>
-<div class="fragment">
-<div class="cell fig-cap-location-bottom">
-<details class="code-fold">
-<summary>Code</summary>
-<div class="sourceCode cell-code" id="cb18" data-cap-location="bottom"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a></a>addh <span class="sc">%&gt;%</span></span>
-<span id="cb18-2"><a></a>  <span class="fu">filter</span>(money <span class="sc">==</span> <span class="dv">10</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb18-3"><a></a>  <span class="fu">arrange</span>(paypercent, gender) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
-</div>
-</div>
-</section>
-<section id="data-manipulation-4" class="slide level2">
-<h2>Data Manipulation</h2>
-<p><span class="big"><em><code>dplyr</code> - mutate</em></span></p>
-<ul>
-<li class="fragment"><p>create new variables added to the dataset</p></li>
-<li class="fragment"><p>task: add a variable with the average rating for nocheating, money, and love’s importance for a relationship (sum divided by 3) and another variable that logs that rating</p></li>
-</ul>
-<div class="fragment">
-<div class="cell fig-cap-location-bottom">
-<details class="code-fold">
-<summary>Code</summary>
-<div class="sourceCode cell-code" id="cb19" data-cap-location="bottom"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a></a>addh<span class="ot">&lt;-</span> <span class="fu">mutate</span>(addh,</span>
-<span id="cb19-2"><a></a>              <span class="at">rateavg=</span>(love <span class="sc">+</span> money <span class="sc">+</span> nocheating)<span class="sc">/</span><span class="dv">3</span>,</span>
-<span id="cb19-3"><a></a>              <span class="at">rateavglog=</span><span class="fu">log</span>(rateavg))</span>
-<span id="cb19-4"><a></a></span>
-<span id="cb19-5"><a></a><span class="fu">head</span>(addh, <span class="dv">5</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
-</div>
-<ul>
-<li class="fragment">Caution
-<ul>
-<li class="fragment">using the same column name or same object name, you overwrite the original object or column</li>
-</ul></li>
-</ul>
-</div>
-</section>
-<section id="data-manipulation-5" class="slide level2">
-<h2>Data Manipulation</h2>
-<p><span class="big"><em><code>dplyr</code> - group_by and summarise</em></span></p>
-<ul>
-<li class="fragment"><p>group data by one or more variables and then summarize the data according to the groups</p></li>
-<li class="fragment"><p>task: find the average “not cheating importance” for different gender</p></li>
-</ul>
-<div class="fragment">
-<div class="cell fig-cap-location-bottom">
-<details class="code-fold">
-<summary>Code</summary>
-<div class="sourceCode cell-code" id="cb20" data-cap-location="bottom"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a></a>addh <span class="sc">%&gt;%</span> </span>
-<span id="cb20-2"><a></a>  <span class="fu">group_by</span>(gender) <span class="sc">%&gt;%</span> </span>
-<span id="cb20-3"><a></a>  <span class="fu">summarize</span>(<span class="at">mean_nocheating =</span> <span class="fu">mean</span>(nocheating))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
-</div>
-<ul>
-<li class="fragment"><strong>summarise</strong> has a number of operations for creating summary statistics
-<ul>
-<li class="fragment">mean(), median(), min(), max(), sd(), n(), n_distinct(), first, last, etc…</li>
-</ul></li>
-</ul>
-</div>
-</section>
-<section id="exercises-1" class="slide level2 scrollable">
-<h2>Exercises</h2>
-<ol type="1">
-<li class="fragment">Exercise one
-<ul>
-<li class="fragment">the number of females and males by debt status</li>
-<li class="fragment">the percentage in each (debt x gender) category as a fraction of all observations</li>
-<li class="fragment">the number of distinct ratings of love’s importance in each of these debt x gender categories</li>
-</ul></li>
-</ol>
-<div class="fragment">
-<div class="cell fig-cap-location-bottom">
-<details class="code-fold">
-<summary>Code</summary>
-<div class="sourceCode cell-code" id="cb21" data-cap-location="bottom"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a></a>addh <span class="sc">%&gt;%</span> </span>
-<span id="cb21-2"><a></a>  <span class="fu">group_by</span>(gender, debt) <span class="sc">%&gt;%</span></span>
-<span id="cb21-3"><a></a>  <span class="fu">summarize</span>(<span class="at">percentage =</span> <span class="fu">n</span>()<span class="sc">/</span><span class="fu">nrow</span>(addh),</span>
-<span id="cb21-4"><a></a>            <span class="at">n_distinct_love =</span> <span class="fu">n_distinct</span>(love))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
-</div>
-</div>
-</section>
-<section id="exercises-2" class="slide level2 scrollable">
-<h2>Exercises</h2>
-<ol start="2" type="1">
-<li class="fragment">Exercise two</li>
-</ol>
-<ul>
-<li class="fragment">Group the data by gender and debt status first
-<ul>
-<li class="fragment">Find the average rating of love, no cheating, and money’s importance for a relationship in each group</li>
-<li class="fragment">Arrange the groups by their rating of money’s importance to a relationship from the highest to rating to the lowest rating</li>
-</ul></li>
-</ul>
-<div class="fragment">
-<div class="cell fig-cap-location-bottom">
-<details class="code-fold">
-<summary>Code</summary>
-<div class="sourceCode cell-code" id="cb22" data-cap-location="bottom"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a></a>addh <span class="sc">%&gt;%</span> </span>
-<span id="cb22-2"><a></a>  <span class="fu">group_by</span>(gender, debt) <span class="sc">%&gt;%</span></span>
-<span id="cb22-3"><a></a>  <span class="fu">summarize</span>(<span class="at">mean_love =</span> <span class="fu">mean</span>(love),</span>
-<span id="cb22-4"><a></a>            <span class="at">mean_nocheating =</span> <span class="fu">mean</span>(nocheating),</span>
-<span id="cb22-5"><a></a>            <span class="at">mean_money =</span> <span class="fu">mean</span>(money)) <span class="sc">%&gt;%</span></span>
-<span id="cb22-6"><a></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(mean_money))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
-</div>
-</div>
-</section>
-<section id="recoding-variables" class="slide level2">
-<h2>Recoding Variables</h2>
-<ul>
-<li class="fragment">Recoding variables is a common task in data analysis for social science research
-<ul>
-<li class="fragment">convert a variable from one format to another</li>
-<li class="fragment">create a new variable based on the values of an existing variable (or of multiple existing variables)</li>
-</ul></li>
-<li class="fragment">some typical recoding tasks
-<ul>
-<li class="fragment">convert a continuous variable to a categorical variable</li>
-<li class="fragment">convert a categorical variable to a continuous variable</li>
-<li class="fragment">create categorical variables based on conditions</li>
-</ul></li>
-</ul>
-<aside class="notes">
-<ul>
-<li>Our focus
-<ul>
-<li>data types</li>
-<li>logical statements</li>
-<li>case_when() function</li>
-</ul></li>
-</ul>
-<style type="text/css">
-span.MJX_Assistive_MathML {
-position:absolute!important;
-clip: rect(1px, 1px, 1px, 1px);
-padding: 1px 0 0 0!important;
-border: 0!important;
-height: 1px!important;
-width: 1px!important;
-overflow: hidden!important;
-display:block!important;
-}</style></aside>
-<!--
-
-## Recoding Variables
-
-[*`changing data types`*]{.big}
-
-+   use the `mutate()` function to change the data type of a variable
-    +   `as.character()`
-    +   `as.numeric()`
-    +   `as.factor()`
-    +   `as.integer()`
-    +   `as.logical()`
-
-. . .
-
-
-::: {.cell .fig-cap-location-bottom}
-
-```{.r .cell-code}
-addh2 <- addh %>% 
-            mutate(
-               age = as.character(age),
-               debt = as.factor(debt)
-               )
-
-head(addh2, 3)
-```
-:::
-
-
-
-## Recoding Variables
-
-[*`create a vector`*]{.big}
-
-+ use c to string together the elements
-
-. . .
-
-
-::: {.cell .fig-cap-location-bottom}
-
-```{.r .cell-code}
-agevec<- c(18, 21, 23, 25, 27, 30)
-
-agevec
-```
-:::
-
-
-. . .
-
-
-::: {.cell .fig-cap-location-bottom}
-
-```{.r .cell-code}
-class(agevec)
-```
-:::
-
-
-. . .
-
-
-::: {.cell .fig-cap-location-bottom}
-
-```{.r .cell-code}
-gendervec <- c("male", "female", "other", "female", "female", "male")
-
-gendervec
-```
-:::
-
-
-. . .
-
-
-::: {.cell .fig-cap-location-bottom}
-
-```{.r .cell-code}
-class(gendervec)
-```
-:::
-
-
-
-## Recoding Variables
-
-[*`create a vector`*]{.big}
-
-+ Elements in a vector need to be of the same type, otherwise, type coercion happens
-
-. . .
-
-
-::: {.cell .fig-cap-location-bottom}
-
-```{.r .cell-code}
-c(28, "28", TRUE)
-```
-:::
-
-
-. . .
-
-
-::: {.cell .fig-cap-location-bottom}
-
-```{.r .cell-code}
-c(28, "28", TRUE) %>% class()
-```
-:::
-
-
-. . .
-
-
-::: {.cell .fig-cap-location-bottom}
-
-```{.r .cell-code}
-c(1,2,3, TRUE, FALSE)
-
-c(1,2,3, TRUE, FALSE) %>% class()
-```
-:::
-
-
-## Recoding Variables
-
-[*`data types`*]{.big}
-
-+ convert from one type to another using the following functions:
-    + `as.numeric()`
-    + `as.character()`
-    + `as.factor()`
-
-. . .
-
-
-::: {.cell .fig-cap-location-bottom}
-
-```{.r .cell-code}
-as.character(agevec)
-```
-:::
-
-
-. . .
-
-
-::: {.cell .fig-cap-location-bottom}
-
-```{.r .cell-code}
-as.numeric(gendervec)
-```
-:::
-
-
-## Recoding Variables
-
-[*`data types`*]{.big}
-
-+ Vectors can have a factor type
-    + looks like a character vector
-    + but is actually a number under the hood (“labelled data”)
-
-. . .
-
-
-::: {.cell .fig-cap-location-bottom}
-
-```{.r .cell-code}
-genderfactorvec<- factor(gendervec,
-                         levels=c("male", "female", "other"))
-
-genderfactorvec
-```
-:::
-
-. . .
-
-
-::: {.cell .fig-cap-location-bottom}
-
-```{.r .cell-code}
-class(genderfactorvec)
-```
-:::
-
-
-. . .
-
-
-::: {.cell .fig-cap-location-bottom}
-
-```{.r .cell-code}
-as.numeric(genderfactorvec)
-```
-:::
-
-
--->
-</section>
-<section id="recoding-variables-1" class="slide level2 scrollable">
-<h2>Recoding Variables</h2>
-<p><span class="big"><em><code>create a vector</code></em></span></p>
-<ul>
-<li class="fragment">there are functions to help you create the vector more efficiently:
-<ol type="1">
-<li class="fragment"><code>rep</code>: repeat the same thing multiple times</li>
-<li class="fragment"><code>seq</code>: create a sequence of numbers</li>
-<li class="fragment"><code>paste</code>: stick together character and numeric info</li>
-<li class="fragment"><code>sample</code>: for vectors where we want to randomly sample from some larger pool</li>
-</ol></li>
-</ul>
-<div class="fragment">
-<div class="cell fig-cap-location-bottom">
-<details class="code-fold">
-<summary>Code</summary>
-<div class="sourceCode cell-code" id="cb23" data-cap-location="bottom"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a></a><span class="fu">rep</span>(<span class="dv">1</span>, <span class="dv">5</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
-</div>
-</div>
-<div class="fragment">
-<div class="cell fig-cap-location-bottom">
-<details class="code-fold">
-<summary>Code</summary>
-<div class="sourceCode cell-code" id="cb24" data-cap-location="bottom"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a></a><span class="fu">seq</span>(<span class="at">from=</span><span class="dv">1997</span>, <span class="at">to=</span><span class="dv">2025</span>, <span class="at">by=</span><span class="dv">5</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
-</div>
-</div>
-<div class="fragment">
-<div class="cell fig-cap-location-bottom">
-<details class="code-fold">
-<summary>Code</summary>
-<div class="sourceCode cell-code" id="cb25" data-cap-location="bottom"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a></a><span class="fu">paste</span>(<span class="st">&quot;age&quot;</span>, <span class="fu">seq</span>(<span class="at">from=</span><span class="dv">22</span>, <span class="at">to=</span><span class="dv">30</span>, <span class="at">by=</span><span class="dv">1</span>),</span>
-<span id="cb25-2"><a></a>      <span class="at">sep=</span><span class="st">&quot;_&quot;</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
-</div>
-</div>
-</section>
-<section id="recoding-variables-2" class="slide level2">
-<h2>Recoding Variables</h2>
-<p><span class="big"><em><code>from vectors to dataframes</code></em></span></p>
-<ul>
-<li class="fragment">One way to create a dataframe
-<ul>
-<li class="fragment">use <code>bind_cols()</code> to attach same-length vectors together as columns in a tibble</li>
-<li class="fragment">Vectors can be different types</li>
-</ul></li>
-</ul>
-<div class="fragment">
-<div class="cell fig-cap-location-bottom">
-<details class="code-fold">
-<summary>Code</summary>
-<div class="sourceCode cell-code" id="cb26" data-cap-location="bottom"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a></a><span class="fu">bind_cols</span>(<span class="at">age=</span>agevec, <span class="at">gender=</span>gendervec)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
-</div>
-</div>
-</section>
-<section id="exercises-3" class="slide level2">
-<h2>Exercises</h2>
-<div class="fragment">
-<div class="cell fig-cap-location-bottom">
-<details class="code-fold">
-<summary>Code</summary>
-<div class="sourceCode cell-code" id="cb27" data-cap-location="bottom"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a></a>addh2<span class="ot">&lt;-</span> addh <span class="sc">%&gt;%</span> </span>
-<span id="cb27-2"><a></a>            <span class="fu">mutate</span>(<span class="at">gender=</span><span class="fu">factor</span>(gender,</span>
-<span id="cb27-3"><a></a>                                 <span class="at">levels=</span><span class="fu">c</span>(<span class="st">&quot;male&quot;</span>, <span class="st">&quot;female&quot;</span>)</span>
-<span id="cb27-4"><a></a>                                 )</span>
-<span id="cb27-5"><a></a>               )</span>
-<span id="cb27-6"><a></a></span>
-<span id="cb27-7"><a></a><span class="fu">str</span>(addh2<span class="sc">$</span>gender)</span>
-<span id="cb27-8"><a></a></span>
-<span id="cb27-9"><a></a>vec1<span class="ot">&lt;-</span> <span class="fu">as.character</span>(addh2<span class="sc">$</span>gender)</span>
-<span id="cb27-10"><a></a>vec2<span class="ot">&lt;-</span> <span class="fu">as.numeric</span>(addh2<span class="sc">$</span>gender)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
-</div>
-<ul>
-<li class="fragment"><p>convert the variable <code>gender</code> in addh to a factor variable</p></li>
-<li class="fragment"><p>what happens if you try to convert the variable to character by using as.character after the factor conversion</p></li>
-<li class="fragment"><p>what happens if you try to convert the variable to number by using as.numeric after the factor conversion</p></li>
-</ul>
-</div>
-</section>
-<section id="recoding-variables-3" class="slide level2">
-<h2>Recoding Variables</h2>
+<section id="more-on-matrices" class="slide level2">
+<h2>More on matrices</h2>
 <p><span class="big"><em><code>Matrices in R</code></em></span></p>
 <ul>
 <li class="fragment">A matrix is a two-dimensional array
@@ -1914,280 +1621,292 @@ as.numeric(genderfactorvec)
 </ul></li>
 </ul>
 <div class="fragment">
-<div class="cell fig-cap-location-bottom">
+<div class="cell">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb28" data-cap-location="bottom"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a></a>matrix1<span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">15</span>, <span class="at">nrow=</span><span class="dv">3</span>, <span class="at">ncol=</span><span class="dv">5</span>)</span>
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a></a>matrix1<span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">15</span>, <span class="at">nrow=</span><span class="dv">3</span>, <span class="at">ncol=</span><span class="dv">5</span>)</span>
+<span id="cb16-2"><a></a></span>
+<span id="cb16-3"><a></a>matrix1</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+</div>
+</section>
+<section id="more-on-matrices-1" class="slide level2">
+<h2>More on matrices</h2>
+<p><span class="big"><em><code>Matrices in R - some basic operations</code></em></span></p>
+<div class="fragment">
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a></a><span class="fu">dim</span>(matrix1)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+</div>
+<div class="fragment">
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a></a><span class="fu">colnames</span>(matrix1)<span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;A&quot;</span>, <span class="st">&quot;B&quot;</span>, <span class="st">&quot;C&quot;</span>, <span class="st">&quot;D&quot;</span>, <span class="st">&quot;E&quot;</span>)</span>
+<span id="cb18-2"><a></a><span class="fu">rownames</span>(matrix1)<span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;X&quot;</span>, <span class="st">&quot;Y&quot;</span>, <span class="st">&quot;Z&quot;</span>)</span>
+<span id="cb18-3"><a></a></span>
+<span id="cb18-4"><a></a>matrix1</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+</div>
+<div class="fragment">
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a></a>matrix1[<span class="dv">2</span>,<span class="dv">3</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+</div>
+<div class="fragment">
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a></a>matrix1[<span class="dv">2</span>,]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+</div>
+</section>
+<section id="more-on-matrices-2" class="slide level2">
+<h2>More on matrices</h2>
+<p><span class="big"><em><code>Matrices in R - some basic operations</code></em></span></p>
+<div class="fragment">
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a></a>A<span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">6</span>, <span class="at">nrow=</span><span class="dv">2</span>, <span class="at">ncol=</span><span class="dv">3</span>)</span>
+<span id="cb21-2"><a></a>B<span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="dv">7</span><span class="sc">:</span><span class="dv">12</span>, <span class="at">nrow=</span><span class="dv">3</span>, <span class="at">ncol=</span><span class="dv">2</span>)</span>
+<span id="cb21-3"><a></a></span>
+<span id="cb21-4"><a></a></span>
+<span id="cb21-5"><a></a><span class="fu">print</span>(A <span class="sc">%*%</span> B)</span>
+<span id="cb21-6"><a></a></span>
+<span id="cb21-7"><a></a><span class="fu">print</span>(B <span class="sc">%*%</span> A)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+</div>
+<div class="fragment">
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a></a><span class="fu">print</span>(<span class="fu">t</span>(A))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+</div>
+</section>
+<section id="more-on-matrices-3" class="slide level2">
+<h2>More on matrices</h2>
+<p><span class="big"><em><code>Matrices in R - some basic operations</code></em></span></p>
+<div class="fragment">
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a></a>C<span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="fu">c</span>(<span class="dv">2</span>,<span class="dv">5</span>,<span class="dv">3</span>,<span class="dv">1</span>,<span class="dv">3</span>,<span class="dv">6</span>,<span class="dv">2</span>,<span class="dv">9</span>,<span class="dv">5</span>), <span class="at">nrow=</span><span class="dv">3</span>, <span class="at">ncol=</span><span class="dv">3</span>)</span>
+<span id="cb23-2"><a></a><span class="fu">print</span>(<span class="fu">solve</span>(C))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+</div>
+<div class="fragment">
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a></a><span class="fu">print</span>(<span class="fu">det</span>(C))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+</div>
+<div class="fragment">
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a></a><span class="fu">print</span>(<span class="fu">eigen</span>(C))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+</div>
+</section>
+<section id="object-class-type-and-structure" class="slide level2">
+<h2>Object class, type, and structure</h2>
+<ul>
+<li class="fragment">Use the <code>class</code>, <code>typeof</code>, and <code>str</code> commands if you want understand more about a particular object</li>
+</ul>
+<div class="fragment">
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a></a>d <span class="ot">=</span> <span class="fu">data.frame</span>(<span class="at">x =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>, <span class="at">y =</span> <span class="dv">3</span><span class="sc">:</span><span class="dv">4</span>) </span>
+<span id="cb26-2"><a></a></span>
+<span id="cb26-3"><a></a><span class="fu">class</span>(d) <span class="do">## Evaluate its class</span></span>
+<span id="cb26-4"><a></a></span>
+<span id="cb26-5"><a></a><span class="fu">typeof</span>(d) <span class="do">## Evaluate its type</span></span>
+<span id="cb26-6"><a></a></span>
+<span id="cb26-7"><a></a><span class="fu">str</span>(d) <span class="do">## Show its structure</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<ul>
+<li class="fragment">we can inspect/print an object directly in the console
+<ul>
+<li class="fragment">e.g. Type <code>d</code></li>
+</ul></li>
+<li class="fragment">The <code>View()</code> function is also very helpful
+<ul>
+<li class="fragment">this is the same as clicking on the object in the RStudio <em>Environment</em> pane</li>
+<li class="fragment">e.g. <code>View(d)</code></li>
+</ul></li>
+</ul>
+<aside class="notes">
+<ul>
+<li>PS — Confused by the fact that <code>typeof(d)</code> returns “list”? See <a href="https://stackoverflow.com/questions/45396538/typeofdata-frame-shows-list-in-r">here</a>.</li>
+</ul>
+<style type="text/css">
+span.MJX_Assistive_MathML {
+position:absolute!important;
+clip: rect(1px, 1px, 1px, 1px);
+padding: 1px 0 0 0!important;
+border: 0!important;
+height: 1px!important;
+width: 1px!important;
+overflow: hidden!important;
+display:block!important;
+}</style></aside>
+</div>
+</section>
+<section id="changing-data-types" class="slide level2">
+<h2>changing data types</h2>
+<ul>
+<li class="fragment">we might change the data type of a variable for some data analysis
+<ul>
+<li class="fragment">as.character()</li>
+<li class="fragment">as.numeric()</li>
+<li class="fragment">as.factor()</li>
+<li class="fragment">as.integer()</li>
+<li class="fragment">as.logical()</li>
+</ul></li>
+</ul>
+<div class="cell fragment">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a></a>agevec<span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">24</span>, <span class="dv">22</span>, <span class="dv">25</span>, <span class="dv">28</span>, <span class="dv">23</span>, <span class="dv">20</span>)</span>
+<span id="cb27-2"><a></a></span>
+<span id="cb27-3"><a></a><span class="fu">class</span>(agevec)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<div class="cell fragment">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a></a>gendervec <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;male&quot;</span>, <span class="st">&quot;female&quot;</span>, <span class="st">&quot;other&quot;</span>, <span class="st">&quot;female&quot;</span>, <span class="st">&quot;female&quot;</span>, <span class="st">&quot;male&quot;</span>)</span>
 <span id="cb28-2"><a></a></span>
-<span id="cb28-3"><a></a>matrix1</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb28-3"><a></a>gendervec</span>
+<span id="cb28-4"><a></a></span>
+<span id="cb28-5"><a></a><span class="fu">class</span>(gendervec)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
+<div class="cell fragment">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a></a>a<span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">28</span>, <span class="st">&quot;28&quot;</span>, <span class="cn">TRUE</span>)</span>
+<span id="cb29-2"><a></a></span>
+<span id="cb29-3"><a></a><span class="fu">class</span>(a)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<div class="cell fragment">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a></a>b<span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>, <span class="cn">TRUE</span>, <span class="cn">FALSE</span>)</span>
+<span id="cb30-2"><a></a></span>
+<span id="cb30-3"><a></a><span class="fu">class</span>(b)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 </div>
 </section>
-<section id="recoding-variables-4" class="slide level2">
-<h2>Recoding Variables</h2>
-<p><span class="big"><em><code>Matrices in R - some basic operations</code></em></span></p>
-<div class="fragment">
-<div class="cell fig-cap-location-bottom">
-<details class="code-fold">
-<summary>Code</summary>
-<div class="sourceCode cell-code" id="cb29" data-cap-location="bottom"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a></a><span class="fu">dim</span>(matrix1)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
-</div>
-</div>
-<div class="fragment">
-<div class="cell fig-cap-location-bottom">
-<details class="code-fold">
-<summary>Code</summary>
-<div class="sourceCode cell-code" id="cb30" data-cap-location="bottom"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a></a><span class="fu">colnames</span>(matrix1)<span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;A&quot;</span>, <span class="st">&quot;B&quot;</span>, <span class="st">&quot;C&quot;</span>, <span class="st">&quot;D&quot;</span>, <span class="st">&quot;E&quot;</span>)</span>
-<span id="cb30-2"><a></a><span class="fu">rownames</span>(matrix1)<span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;X&quot;</span>, <span class="st">&quot;Y&quot;</span>, <span class="st">&quot;Z&quot;</span>)</span>
-<span id="cb30-3"><a></a></span>
-<span id="cb30-4"><a></a>matrix1</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
-</div>
-</div>
-<div class="fragment">
-<div class="cell fig-cap-location-bottom">
-<details class="code-fold">
-<summary>Code</summary>
-<div class="sourceCode cell-code" id="cb31" data-cap-location="bottom"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a></a>matrix1[<span class="dv">2</span>,<span class="dv">3</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
-</div>
-</div>
-<div class="fragment">
-<div class="cell fig-cap-location-bottom">
-<details class="code-fold">
-<summary>Code</summary>
-<div class="sourceCode cell-code" id="cb32" data-cap-location="bottom"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a></a>matrix1[<span class="dv">2</span>,]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
-</div>
-</div>
-</section>
-<section id="recoding-variables-5" class="slide level2">
-<h2>Recoding Variables</h2>
-<p><span class="big"><em><code>Matrices in R - some basic operations</code></em></span></p>
-<div class="fragment">
-<div class="cell fig-cap-location-bottom">
-<details class="code-fold">
-<summary>Code</summary>
-<div class="sourceCode cell-code" id="cb33" data-cap-location="bottom"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a></a>A<span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">6</span>, <span class="at">nrow=</span><span class="dv">2</span>, <span class="at">ncol=</span><span class="dv">3</span>)</span>
-<span id="cb33-2"><a></a>B<span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="dv">7</span><span class="sc">:</span><span class="dv">12</span>, <span class="at">nrow=</span><span class="dv">3</span>, <span class="at">ncol=</span><span class="dv">2</span>)</span>
-<span id="cb33-3"><a></a></span>
-<span id="cb33-4"><a></a></span>
-<span id="cb33-5"><a></a><span class="fu">print</span>(A <span class="sc">%*%</span> B)</span>
-<span id="cb33-6"><a></a></span>
-<span id="cb33-7"><a></a><span class="fu">print</span>(B <span class="sc">%*%</span> A)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
-</div>
-</div>
-<div class="fragment">
-<div class="cell fig-cap-location-bottom">
-<details class="code-fold">
-<summary>Code</summary>
-<div class="sourceCode cell-code" id="cb34" data-cap-location="bottom"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a></a><span class="fu">print</span>(<span class="fu">t</span>(A))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
-</div>
-</div>
-</section>
-<section id="recoding-variables-6" class="slide level2">
-<h2>Recoding Variables</h2>
-<p><span class="big"><em><code>Matrices in R - some basic operations</code></em></span></p>
-<div class="fragment">
-<div class="cell fig-cap-location-bottom">
-<details class="code-fold">
-<summary>Code</summary>
-<div class="sourceCode cell-code" id="cb35" data-cap-location="bottom"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a></a>C<span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="fu">c</span>(<span class="dv">2</span>,<span class="dv">5</span>,<span class="dv">3</span>,<span class="dv">1</span>,<span class="dv">3</span>,<span class="dv">6</span>,<span class="dv">2</span>,<span class="dv">9</span>,<span class="dv">5</span>), <span class="at">nrow=</span><span class="dv">3</span>, <span class="at">ncol=</span><span class="dv">3</span>)</span>
-<span id="cb35-2"><a></a><span class="fu">print</span>(<span class="fu">solve</span>(C))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
-</div>
-</div>
-<div class="fragment">
-<div class="cell fig-cap-location-bottom">
-<details class="code-fold">
-<summary>Code</summary>
-<div class="sourceCode cell-code" id="cb36" data-cap-location="bottom"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a></a><span class="fu">print</span>(<span class="fu">det</span>(C))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
-</div>
-</div>
-<div class="fragment">
-<div class="cell fig-cap-location-bottom">
-<details class="code-fold">
-<summary>Code</summary>
-<div class="sourceCode cell-code" id="cb37" data-cap-location="bottom"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a></a><span class="fu">print</span>(<span class="fu">eigen</span>(C))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
-</div>
-</div>
-</section>
-<section id="recoding-variables-7" class="slide level2">
-<h2>Recoding Variables</h2>
-<p><span class="big"><em><code>logical statements</code></em></span></p>
+<section id="changing-data-types-1" class="slide level2">
+<h2>changing data types</h2>
 <ul>
-<li class="fragment">Recap: the main logical operators used in R are:
+<li class="fragment">Vectors can have a factor type
 <ul>
-<li class="fragment"><span class="math inline">\(==\)</span> (equal to)</li>
-<li class="fragment"><span class="math inline">\(!=\)</span> (not equal to)</li>
-<li class="fragment"><span class="math inline">\(!\)</span> (not)</li>
-<li class="fragment"><span class="math inline">\(&lt;\)</span> (less than)</li>
-<li class="fragment"><span class="math inline">\(&lt;=\)</span> (less than or equal to)</li>
-<li class="fragment"><span class="math inline">\(&gt;\)</span> (greater than)</li>
-<li class="fragment"><span class="math inline">\(&gt;=\)</span> (greater than or equal to)</li>
-<li class="fragment"><span class="math inline">\(\&amp;\)</span> (and)</li>
-<li class="fragment"><span class="math inline">\(|\)</span> (or)</li>
+<li class="fragment">looks like a character vector</li>
+<li class="fragment">but is actually a number under the hood (“labelled data”)</li>
 </ul></li>
 </ul>
+<div class="cell fragment">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a></a>genderfactorvec<span class="ot">&lt;-</span> <span class="fu">factor</span>(gendervec,</span>
+<span id="cb31-2"><a></a>                         <span class="at">levels=</span><span class="fu">c</span>(<span class="st">&quot;male&quot;</span>, <span class="st">&quot;female&quot;</span>, <span class="st">&quot;other&quot;</span>))</span>
+<span id="cb31-3"><a></a></span>
+<span id="cb31-4"><a></a>genderfactorvec</span>
+<span id="cb31-5"><a></a></span>
+<span id="cb31-6"><a></a><span class="fu">class</span>(genderfactorvec)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<div class="cell fragment">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a></a><span class="fu">as.numeric</span>(genderfactorvec)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
 </section>
-<section id="recoding-variables-8" class="slide level2">
-<h2>Recoding Variables</h2>
-<h3 id="logical-statements">logical statements</h3>
+<section id="global-environment" class="slide level2">
+<h2>Global environment</h2>
 <ul>
-<li class="fragment">logical statements are used to filter data, create new variables, and recode variables
+<li class="fragment">The global environment is where all objects are stored
 <ul>
-<li class="fragment">ifelse() function</li>
+<li class="fragment">you can see the global environment in the RStudio <em>Environment</em> pane</li>
+<li class="fragment">you can also see the global environment by typing <code>ls()</code> in the console</li>
 </ul></li>
-</ul>
-<p>. . .</p>
-<div class="cell fig-cap-location-bottom">
-<details class="code-fold">
-<summary>Code</summary>
-<div class="sourceCode cell-code" id="cb38" data-cap-location="bottom"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a></a>addh2<span class="ot">&lt;-</span> addh <span class="sc">%&gt;%</span> </span>
-<span id="cb38-2"><a></a>            <span class="fu">mutate</span>(</span>
-<span id="cb38-3"><a></a>               <span class="at">money_over_love =</span> <span class="fu">ifelse</span>(money <span class="sc">&gt;</span> love, <span class="dv">1</span>, <span class="dv">0</span>),</span>
-<span id="cb38-4"><a></a>               <span class="at">.after =</span> id</span>
-<span id="cb38-5"><a></a>               )</span>
-<span id="cb38-6"><a></a></span>
-<span id="cb38-7"><a></a><span class="fu">head</span>(addh2, <span class="dv">5</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
-</div>
-<p>. . .</p>
-<div class="cell fig-cap-location-bottom">
-<details class="code-fold">
-<summary>Code</summary>
-<div class="sourceCode cell-code" id="cb39" data-cap-location="bottom"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a></a>addh3<span class="ot">&lt;-</span> addh <span class="sc">%&gt;%</span> </span>
-<span id="cb39-2"><a></a>            <span class="fu">mutate</span>(</span>
-<span id="cb39-3"><a></a>               <span class="at">money_or_love =</span> <span class="fu">ifelse</span>(money<span class="sc">==</span>love, <span class="st">&quot;same&quot;</span>,</span>
-<span id="cb39-4"><a></a>                                      <span class="fu">ifelse</span>(love <span class="sc">&gt;</span> money, <span class="st">&quot;love greater&quot;</span>, <span class="st">&quot;money greater&quot;</span>)),</span>
-<span id="cb39-5"><a></a>               <span class="at">.after =</span> id</span>
-<span id="cb39-6"><a></a>               )</span>
-<span id="cb39-7"><a></a></span>
-<span id="cb39-8"><a></a><span class="fu">head</span>(addh3, <span class="dv">5</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
-</div>
-</section>
-<section id="recoding-variables-9" class="slide level2">
-<h2>Recoding Variables</h2>
-<p><span class="big"><em><code>logical statements</code></em></span></p>
+<li class="fragment">Working with multiple objects
 <ul>
-<li class="fragment"><p>use <code>case_when()</code> if there are 3 or more conditions for creating a variable</p></li>
-<li class="fragment"><p>its syntax is the following:</p>
+<li class="fragment">you can create multiple objects in the global environment</li>
+<li class="fragment">you can manipulate and transform these objects using functions</li>
+<li class="fragment">you can also use the <code>rm()</code> function to remove objects from the global environment</li>
+</ul></li>
+<li class="fragment">R’s ability to keep multiple objects in memory at the same time is a huge plus when it comes to effective data work
 <ul>
-<li class="fragment">case_when(logical condition ~ value assigned, logical condition 2 ~ value assigned. . . .default = value if does not fit other logical conditions)</li>
+<li class="fragment">e.g. We can copy an existing data frame, or create new one entirely from scratch - either will exist happily with our existing objects in the global environment</li>
 </ul></li>
 </ul>
 <div class="fragment">
-<div class="cell fig-cap-location-bottom">
+<div class="cell">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb40" data-cap-location="bottom"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a></a>addh3<span class="ot">&lt;-</span> addh <span class="sc">%&gt;%</span> </span>
-<span id="cb40-2"><a></a>  <span class="fu">mutate</span>(</span>
-<span id="cb40-3"><a></a>    <span class="at">money_or_love =</span> <span class="fu">case_when</span>(</span>
-<span id="cb40-4"><a></a>      money<span class="sc">==</span>love <span class="sc">~</span> <span class="st">&quot;same&quot;</span>,</span>
-<span id="cb40-5"><a></a>      love <span class="sc">&gt;</span> money <span class="sc">~</span> <span class="st">&quot;love greater&quot;</span>,</span>
-<span id="cb40-6"><a></a>      <span class="cn">TRUE</span> <span class="sc">~</span> <span class="st">&quot;money greater&quot;</span></span>
-<span id="cb40-7"><a></a>    ),</span>
-<span id="cb40-8"><a></a>    <span class="at">.after =</span> id</span>
-<span id="cb40-9"><a></a>  )</span>
-<span id="cb40-10"><a></a></span>
-<span id="cb40-11"><a></a><span class="fu">head</span>(addh3, <span class="dv">5</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a></a>d2 <span class="ot">=</span> <span class="fu">data.frame</span>(<span class="at">x =</span> <span class="fu">rnorm</span>(<span class="dv">10</span>), <span class="at">y =</span> <span class="fu">runif</span>(<span class="dv">10</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
 </div>
 </section>
-<section id="exercises-4" class="slide level2">
-<h2>Exercises</h2>
+<section id="everything-has-a-name" class="slide level2">
+<h2>Everything has a name</h2>
 <ul>
-<li class="fragment">create a new variable called <code>money_or_love</code> in the <code>addh</code> dataset
+<li class="fragment">Every object in R has a name
 <ul>
-<li class="fragment">the variable should have the following categories:
+<li class="fragment">you can use the name to refer to the object in the global environment</li>
+<li class="fragment">object names are case sensitive</li>
+</ul></li>
+<li class="fragment">The name of our object must follow certain restrictions
 <ul>
-<li class="fragment">“extreme” if person either codes love or money as 9 or 10</li>
-<li class="fragment">“lovegreater” if love &gt; money</li>
-<li class="fragment">“same” if love == money</li>
-<li class="fragment">“moneygreater” if money &gt; love</li>
-<li class="fragment">NA if none of the above</li>
+<li class="fragment">it cannot begin with a number</li>
+<li class="fragment">it should not contain spaces</li>
+<li class="fragment">special characters such as % and $ should not be used</li>
+</ul></li>
+<li class="fragment">Reserved words
+<ul>
+<li class="fragment">we can assign objects to different names</li>
+<li class="fragment">However, there are a number of special words that are “reserved” in R
+<ul>
+<li class="fragment">These are are fundamental commands, operators and relations in base R that you cannot (re)assign, even if you wanted to</li>
+<li class="fragment">See <a href="http://stat.ethz.ch/R-manual/R-devel/library/base/html/Reserved.html">here</a> for a full list</li>
 </ul></li>
 </ul></li>
 </ul>
-</section>
-<section id="recoding-variables-10" class="slide level2">
-<h2>Recoding Variables</h2>
-<h3 id="create-a-binary-vector">create a binary vector</h3>
-<ul>
-<li class="fragment">create a new variable called <code>high_income</code> in the <code>addh</code> dataset
-<ul>
-<li class="fragment">the variable should be 1 if income is above the 75th percentile and 0 otherwise</li>
-<li class="fragment">use the <code>quantile()</code> function to find the 75th percentile of income</li>
-</ul></li>
-</ul>
-<div class="cell fig-cap-location-bottom fragment">
-<details class="code-fold">
-<summary>Code</summary>
-<div class="sourceCode cell-code" id="cb41" data-cap-location="bottom"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb41-1"><a></a>income_75<span class="ot">&lt;-</span> <span class="fu">quantile</span>(addh<span class="sc">$</span>income)[<span class="dv">4</span>]</span>
-<span id="cb41-2"><a></a></span>
-<span id="cb41-3"><a></a>addh2<span class="ot">&lt;-</span> addh <span class="sc">%&gt;%</span> </span>
-<span id="cb41-4"><a></a>  <span class="fu">mutate</span>(<span class="at">high_income=</span><span class="fu">ifelse</span>(income <span class="sc">&gt;</span> income_75, <span class="dv">1</span>, <span class="dv">0</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
-</div>
-<ul>
-<li class="fragment">create a new variable called <code>income_level</code> in the <code>addh2</code> dataset
-<ul>
-<li class="fragment">the variable should have the following categories:
-<ul>
-<li class="fragment">“low” if income is below the 25th percentile</li>
-<li class="fragment">“high” if income is above the 75th percentile</li>
-<li class="fragment">“medium” if income is between the 25th and 75th percentiles</li>
-</ul></li>
-</ul></li>
-</ul>
-<div class="cell fig-cap-location-bottom fragment">
-<details class="code-fold">
-<summary>Code</summary>
-<div class="sourceCode cell-code" id="cb42" data-cap-location="bottom"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb42-1"><a></a>income_25 <span class="ot">&lt;-</span> <span class="fu">quantile</span>(addh<span class="sc">$</span>income)[<span class="dv">2</span>]</span>
-<span id="cb42-2"><a></a></span>
-<span id="cb42-3"><a></a>addh2<span class="ot">&lt;-</span> addh2 <span class="sc">%&gt;%</span> </span>
-<span id="cb42-4"><a></a>  <span class="fu">mutate</span>(<span class="at">income_level=</span><span class="fu">case_when</span>(income <span class="sc">&lt;=</span> income_25 <span class="sc">~</span> <span class="st">&quot;low&quot;</span>,</span>
-<span id="cb42-5"><a></a>                                income <span class="sc">&gt;=</span>income_75 <span class="sc">~</span><span class="st">&quot;high&quot;</span>, </span>
-<span id="cb42-6"><a></a>                                <span class="at">.default=</span><span class="st">&quot;medium&quot;</span>),</span>
-<span id="cb42-7"><a></a>         <span class="at">.after =</span> id)</span>
-<span id="cb42-8"><a></a></span>
-<span id="cb42-9"><a></a><span class="fu">head</span>(addh2, <span class="dv">5</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
-</div>
-</section>
-<section id="looping" class="slide level2">
-<h2>Looping</h2>
-<ul>
-<li class="fragment">Loops are used to repeat a block of code multiple times
-<ul>
-<li class="fragment">for loop</li>
-<li class="fragment">while loop</li>
-<li class="fragment">repeat loop</li>
-<li class="fragment">break and next statements</li>
-</ul></li>
-<li class="fragment">Loops are useful for:
-<ul>
-<li class="fragment">automating repetitive tasks</li>
-<li class="fragment">iterating over elements in a list or vector</li>
-<li class="fragment">creating new variables or dataframes</li>
-<li class="fragment">running simulations</li>
-</ul></li>
-</ul>
+<div class="fragment">
 <aside class="notes">
 <ul>
-<li>Loops can be slow in R
+<li><p>you can also use the name to refer to the object in a function</p></li>
+<li><p>function itself is an object</p>
 <ul>
-<li>use vectorized functions whenever possible</li>
-<li>use the apply family of functions</li>
-<li>use the purrr package</li>
+<li>e.g. <code>mean</code> is a function that calculates the mean of a vector</li>
+<li>we can assign it to a new name, e.g. <code>average = mean</code></li>
+<li>but we cannot assign it to a reserved word, e.g. <code>if = mean</code></li>
+<li>this will lead to an error</li>
 </ul></li>
 </ul>
 <style type="text/css">
@@ -2201,38 +1920,61 @@ width: 1px!important;
 overflow: hidden!important;
 display:block!important;
 }</style></aside>
+</div>
 </section>
-<section id="for-loops" class="slide level2 scrollable">
-<h2>For loops</h2>
+<section id="everything-has-a-name-1" class="slide level2">
+<h2>Everything has a name</h2>
 <ul>
-<li class="fragment">The for loop is the most common type of loop in R
+<li class="fragment">Semi-reserved words
 <ul>
-<li class="fragment">it repeats a block of code a specified number of times</li>
-<li class="fragment">it can go through every element of a vector
-<ul>
-<li class="fragment">syntax: <code>for (i in vector) {code to execute}</code><br>
-</li>
+<li class="fragment">there is a class of words and strings that are called “semi-reserved”</li>
 </ul></li>
-<li class="fragment">it can iterate through a set number of elements in a vector
+</ul>
+<div class="fragment">
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a></a>my_vector <span class="ot">=</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">5</span>)</span>
+<span id="cb34-2"><a></a>my_vector</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
 <ul>
-<li class="fragment">syntax: <code>for (i in 1:length(vector)) {code to execute}</code></li>
-</ul></li>
-</ul></li>
-<li class="fragment">The for loop is also useful for:
+<li class="fragment">what happens if you type the following?</li>
+</ul>
+</div>
+<div class="fragment">
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a></a>c <span class="ot">=</span> <span class="dv">4</span></span>
+<span id="cb35-2"><a></a><span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span> ,<span class="dv">5</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
 <ul>
-<li class="fragment">creating new variables</li>
-<li class="fragment">running simulations</li>
-</ul></li>
+<li class="fragment"><p>R is “smart” enough to distinguish between the variable <code>c = 4</code> that we created and the built-in function <code>c()</code> that calls for concatenation</p></li>
+<li class="fragment"><p>However, R won’t always be able to distinguish between conflicting definitions</p></li>
+</ul>
+</div>
+<div class="fragment">
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a></a>pi</span>
+<span id="cb36-2"><a></a>pi <span class="ot">=</span> <span class="dv">2</span></span>
+<span id="cb36-3"><a></a>pi</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<ul>
+<li class="fragment"><strong>Bottom line:</strong> Don’t use (semi-)reserved characters!</li>
 </ul>
 <aside class="notes">
 <ul>
-<li>Steps to turn into a for loop:
-<ol type="1">
-<li>Initialize a vector to store results- this time it will store an entire vector of results rather than one result. Can either do: 1.1 Initialize a vector of a certain length: vec &lt;- vector(length = desired length) 1.2 Initialize an empty vector: vec &lt;- c()</li>
-<li>Use the for statement to tell the loop what to iterate through.</li>
-<li>Copy and paste the code from the single-observation case into the “meat” part of the for loop sandwich</li>
-<li>For step three, make sure to add indexing where appropriate</li>
-</ol></li>
+<li>these are named functions or constants (e.g. <code>pi</code>) that you can re-assign if you really wanted to… but already come with important meanings from base R</li>
+<li>The <code>c()</code> function is a good example of a semi-reserved character</li>
+<li>Arguably the most important semi-reserved character is <code>c()</code>, which we use for concatenation
+<ul>
+<li>i.e. creating vectors and binding different objects together</li>
+</ul></li>
 </ul>
 <style type="text/css">
 span.MJX_Assistive_MathML {
@@ -2245,75 +1987,171 @@ width: 1px!important;
 overflow: hidden!important;
 display:block!important;
 }</style></aside>
+</div>
 </section>
-<section id="for-loops-sample-means" class="slide level2">
-<h2>For loops — sample means</h2>
+<section id="namespace-conflicts" class="slide level2">
+<h2>Namespace conflicts</h2>
 <ul>
-<li class="fragment">Let us start with a simple example of a for loop
+<li class="fragment">R has a large number of packages, each with its own set of functions
 <ul>
-<li class="fragment">we will use the <code>addh</code> dataset to calculate the sample means of the variable <code>money</code></li>
-<li class="fragment">we will take 1000 samples of size 800 with replacement and calculate the mean of each sample</li>
+<li class="fragment">sometimes, different packages have functions with the same name</li>
+<li class="fragment">this can lead to “namespace conflicts” where R doesn’t know which function to use</li>
 </ul></li>
+<li class="fragment">e.g. Look what happens we load the <code>dplyr</code> package</li>
 </ul>
-<div class="cell fig-cap-location-bottom fragment">
+<div class="fragment">
+<div class="cell">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb43" data-cap-location="bottom"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb43-1"><a></a><span class="fu">set.seed</span>(<span class="dv">123456</span>)</span>
-<span id="cb43-2"><a></a></span>
-<span id="cb43-3"><a></a>sample_means<span class="ot">&lt;-</span> <span class="fu">numeric</span>(<span class="at">length=</span><span class="dv">1000</span>)</span>
-<span id="cb43-4"><a></a></span>
-<span id="cb43-5"><a></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="fu">seq_along</span>(sample_means)) {</span>
-<span id="cb43-6"><a></a>  samp<span class="ot">&lt;-</span> <span class="fu">sample</span>(addh3<span class="sc">$</span>money, <span class="at">size =</span> <span class="dv">800</span>, <span class="at">replace=</span><span class="cn">TRUE</span>)</span>
-<span id="cb43-7"><a></a>  sample_means[i]<span class="ot">&lt;-</span> <span class="fu">mean</span>(samp)</span>
-<span id="cb43-8"><a></a>}</span>
-<span id="cb43-9"><a></a></span>
-<span id="cb43-10"><a></a><span class="fu">mean</span>(sample_means)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a></a><span class="fu">library</span>(dplyr)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
 <ul>
-<li class="fragment">plot the distribution of sample means</li>
-</ul>
-<div class="cell fig-cap-location-bottom fragment">
-<details class="code-fold">
-<summary>Code</summary>
-<div class="sourceCode cell-code" id="cb44" data-cap-location="bottom"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb44-1"><a></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb44-2"><a></a></span>
-<span id="cb44-3"><a></a><span class="fu">ggplot</span>(<span class="fu">as.data.frame</span>(sample_means), <span class="fu">aes</span>(sample_means)) <span class="sc">+</span></span>
-<span id="cb44-4"><a></a>  <span class="co">#geom_histogram(bins=30)+</span></span>
-<span id="cb44-5"><a></a>  <span class="fu">geom_density</span>()<span class="sc">+</span></span>
-<span id="cb44-6"><a></a>  <span class="fu">geom_vline</span>(<span class="at">xintercept =</span> <span class="fu">mean</span>(sample_means),</span>
-<span id="cb44-7"><a></a>             <span class="at">color=</span><span class="st">&quot;red&quot;</span>, <span class="at">linetype=</span><span class="st">&quot;dashed&quot;</span>) <span class="sc">+</span></span>
-<span id="cb44-8"><a></a>  <span class="fu">labs</span>(<span class="at">title=</span><span class="st">&quot;Distribution of Sample Means&quot;</span>,</span>
-<span id="cb44-9"><a></a>       <span class="at">x=</span><span class="st">&quot;Sample Means&quot;</span>,</span>
-<span id="cb44-10"><a></a>       <span class="at">y=</span><span class="st">&quot;Frequency&quot;</span>)<span class="sc">+</span></span>
-<span id="cb44-11"><a></a>  <span class="fu">theme_minimal</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
-</div>
-</section>
-<section id="write-a-function" class="slide level2 scrollable">
-<h2>Write a function</h2>
+<li class="fragment">The messages that you see about some object being <em>masked from ‘package:X’</em> are warning you about a namespace conflict
 <ul>
-<li class="fragment">Functions are blocks of code that can be reused
-<ul>
-<li class="fragment">they take input arguments</li>
-<li class="fragment">they return output</li>
-<li class="fragment">they can be used in loops, apply functions, and other functions</li>
-<li class="fragment">they can be used to create new variables, summarize data, and run simulations</li>
+<li class="fragment">e.g. Both <code>dplyr</code> and the <code>stats</code> package have functions named “filter” and “lag”</li>
 </ul></li>
-<li class="fragment">the basic structure of a function is:
+<li class="fragment">Whenever a namespace conflict arises, the most recently loaded package will gain preference
 <ul>
-<li class="fragment"><code>function_name &lt;- function(input arguments) {code to execute}</code></li>
-<li class="fragment"><code>return(output)</code></li>
+<li class="fragment">so the <code>filter()</code> function now refers specifically to the <code>dplyr</code> variant</li>
+<li class="fragment">what if we want the <code>stats</code> variant?</li>
 </ul></li>
-<li class="fragment">we now touch upon some basics</li>
 </ul>
 <aside class="notes">
+<ul>
+<li>The potential for namespace conflicts is a result of the OOP approach
+<ul>
+<li>Also reflects the fundamental open-source nature of R and the use of external packages</li>
+<li>People are free to call their functions whatever they want, so some overlap is only to be expected</li>
+</ul></li>
+<li>Temporarily use <code>stats::filter()</code>
+<ul>
+<li>Permanently assign <code>filter = stats::filter</code></li>
+</ul></li>
+</ul>
+<style type="text/css">
+span.MJX_Assistive_MathML {
+position:absolute!important;
+clip: rect(1px, 1px, 1px, 1px);
+padding: 1px 0 0 0!important;
+border: 0!important;
+height: 1px!important;
+width: 1px!important;
+overflow: hidden!important;
+display:block!important;
+}</style></aside>
+</div>
+</section>
+<section id="namespace-conflicts-1" class="slide level2 scrollable">
+<h2>Namespace conflicts</h2>
+<p>Two common ways to resolve namespace conflicts in R:</p>
 <ol type="1">
-<li>What problem is the function trying to solve?</li>
-<li>What are the function’s arguments in this case? (as a function’s inputs)</li>
-<li>What is the function doing with those arguments?</li>
-<li>What does the function return? What class is it? (check it using R)</li>
+<li class="fragment">Use <code>package::function()</code></li>
 </ol>
+<ul>
+<li class="fragment">We can explicitly call a conflicted function from a particular package using the <code>package::function()</code> syntax</li>
+</ul>
+<div class="fragment">
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a></a>stats<span class="sc">::</span><span class="fu">filter</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>, <span class="fu">rep</span>(<span class="dv">1</span>, <span class="dv">2</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+</div>
+<div class="fragment">
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a></a>dplyr<span class="sc">::</span>starwars <span class="do">## Print the starwars data frame from the dplyr package</span></span>
+<span id="cb39-2"><a></a></span>
+<span id="cb39-3"><a></a>scales<span class="sc">::</span><span class="fu">comma</span>(<span class="fu">c</span>(<span class="dv">1000</span>, <span class="dv">1000000</span>)) <span class="do">## Use the comma function, which comes from the scales package</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<ol start="2" type="1">
+<li class="fragment">Assign <code>function = package::function</code></li>
+</ol>
+<ul>
+<li class="fragment">A more permanent solution is to assign a conflicted function name to a particular package</li>
+<li class="fragment">This will hold for the remainder of your current R session, or until you change it back</li>
+</ul>
+</div>
+<div class="fragment">
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb40"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a></a>filter <span class="ot">=</span> stats<span class="sc">::</span>filter <span class="do">## Note the lack of parentheses</span></span>
+<span id="cb40-2"><a></a>filter <span class="ot">=</span> dplyr<span class="sc">::</span>filter <span class="do">## Change it back again</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<aside class="notes">
+<ul>
+<li><ul>
+<li>We can also use <code>::</code> for more than just conflicted cases</li>
+<li>e.g. Being explicit about where a function (or dataset) comes from can help add clarity to our code</li>
+<li>e.g. <code>dplyr::filter(iris, Species==&quot;virginica&quot;)</code> is clearer than just <code>filter(iris, Species==&quot;virginica&quot;)</code></li>
+</ul></li>
+<li>Another good rule of thumb is that you want to load your most important packages last
+<ul>
+<li>e.g. Load the tidyverse after you’ve already loaded any other packages</li>
+</ul></li>
+<li>User-side namespace conflicts
+<ul>
+<li>A final thing to say about namespace conflicts is that they don’t only arise from loading packages</li>
+<li>They can arise when users create their own functions with a conflicting name
+<ul>
+<li>e.g. If I was naive enough to create a new function called <code>c()</code></li>
+</ul></li>
+</ul></li>
+</ul>
+<style type="text/css">
+span.MJX_Assistive_MathML {
+position:absolute!important;
+clip: rect(1px, 1px, 1px, 1px);
+padding: 1px 0 0 0!important;
+border: 0!important;
+height: 1px!important;
+width: 1px!important;
+overflow: hidden!important;
+display:block!important;
+}</style></aside>
+</div>
+</section>
+<section id="indexing" class="slide level2">
+<h2>Indexing</h2>
+<ul>
+<li class="fragment">Indexing is a way to access specific elements of an object
+<ul>
+<li class="fragment">e.g. we can access specific elements of a vector, list, or data frame using indexing</li>
+</ul></li>
+<li class="fragment">There are two main ways to index objects in R
+<ul>
+<li class="fragment">Option 1: <code>[]</code>
+<ul>
+<li class="fragment">This is the most common way to index objects in R</li>
+<li class="fragment">It works for vectors, matrices, data frames, and lists</li>
+<li class="fragment">It can be used to access specific elements of an object, or to subset an object</li>
+</ul></li>
+<li class="fragment">Option 2: <code>$</code>
+<ul>
+<li class="fragment">This is a special operator that is used to access specific elements of a list or data frame by name</li>
+<li class="fragment">It is often used to access columns of a data frame by name</li>
+</ul></li>
+</ul></li>
+</ul>
+<aside class="notes">
+<ul>
+<li><p>Indexing is done using square brackets <code>[]</code></p></li>
+<li><p>Indexing can be done using either numeric or logical vectors</p>
+<ul>
+<li>Numeric indexing refers to the position of the element in the object</li>
+<li>Logical indexing refers to a logical vector that indicates which elements to keep</li>
+</ul></li>
+<li><p>Indexing can also be done using names</p>
+<ul>
+<li>e.g. we can access specific elements of a data frame using the column names</li>
+</ul></li>
+</ul>
 <style type="text/css">
 span.MJX_Assistive_MathML {
 position:absolute!important;
@@ -2326,170 +2164,335 @@ overflow: hidden!important;
 display:block!important;
 }</style></aside>
 </section>
-<section id="functions---basics" class="slide level2">
-<h2>functions - basics</h2>
+<section id="indexing-1" class="slide level2">
+<h2>Indexing</h2>
 <ul>
-<li class="fragment">Let us start with a simple function, z-score of a variable</li>
+<li class="fragment">use <code>[]</code> to index objects that we create in R</li>
 </ul>
 <div class="fragment">
-<div class="cell fig-cap-location-bottom">
+<div class="cell">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb45" data-cap-location="bottom"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb45-1"><a></a>zscore<span class="ot">&lt;-</span> <span class="cf">function</span>(x) {</span>
-<span id="cb45-2"><a></a>  zscore<span class="ot">&lt;-</span> (x <span class="sc">-</span> <span class="fu">mean</span>(x))<span class="sc">/</span><span class="fu">sd</span>(x)</span>
-<span id="cb45-3"><a></a>  <span class="fu">return</span>(zscore)</span>
-<span id="cb45-4"><a></a>}</span>
-<span id="cb45-5"><a></a></span>
-<span id="cb45-6"><a></a>z_income<span class="ot">&lt;-</span> <span class="fu">zscore</span>(addh<span class="sc">$</span>income)</span>
-<span id="cb45-7"><a></a></span>
-<span id="cb45-8"><a></a><span class="fu">head</span>(z_income, <span class="dv">10</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb41"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb41-1"><a></a>a <span class="ot">=</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">10</span></span>
+<span id="cb41-2"><a></a>a[<span class="dv">4</span>] <span class="do">## Get the 4th element of object &quot;a&quot;</span></span>
+<span id="cb41-3"><a></a>a[<span class="fu">c</span>(<span class="dv">4</span>, <span class="dv">6</span>)] <span class="do">## Get the 4th and 6th elements</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<ul>
+<li class="fragment">It also works on larger arrays (vectors, matrices, data frames, and lists)</li>
+</ul>
+</div>
+<div class="fragment">
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb42"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb42-1"><a></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb42-2"><a></a>starwars[<span class="dv">1</span>, <span class="dv">1</span>] <span class="do">## Show the cell corresponding to the 1st row &amp; 1st column of the data frame</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<ul>
+<li class="fragment"><p>What does <code>starwars[1:3, 1]</code> give you?</p></li>
+<li class="fragment"><p>What does <code>starwars[-1, 1]</code> give you?</p></li>
+<li class="fragment"><p>what if we want to get the 1st column of the data frame?</p></li>
+</ul>
+</div>
+<div class="fragment">
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb43"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb43-1"><a></a>starwars[, <span class="dv">1</span>] <span class="do">## Get the 1st column of the starwars data frame</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<ul>
+<li class="fragment">we can use <code>$</code> to access the columns of a data frame by name</li>
+</ul>
+</div>
+<div class="fragment">
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb44"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb44-1"><a></a>starwars<span class="sc">$</span>name <span class="do">## Get the &quot;name&quot; column of the starwars data frame</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<aside class="notes">
+<ul>
+<li>What if you want to get the names of the columns in a data frame? . . .</li>
+</ul>
+<ul>
+<li>[1] Indexing in R begins at 1. Not 0 like some languages (e.g. Python and JavaScript)</li>
+</ul>
+<style type="text/css">
+span.MJX_Assistive_MathML {
+position:absolute!important;
+clip: rect(1px, 1px, 1px, 1px);
+padding: 1px 0 0 0!important;
+border: 0!important;
+height: 1px!important;
+width: 1px!important;
+overflow: hidden!important;
+display:block!important;
+}</style></aside>
+</div>
+</section>
+<section id="indexing-2" class="slide level2">
+<h2>Indexing</h2>
+<ul>
+<li class="fragment"><strong>lists</strong> are a more complex type of array object in R
+<ul>
+<li class="fragment">they can contain a random assortment of objects that don’t share the same class
+<ul>
+<li class="fragment">e.g. a list can contain a vector, a data frame, and a matrix</li>
+<li class="fragment">or even lists of lists</li>
+</ul></li>
+<li class="fragment">lists are very flexible and can be used to store any type of object</li>
+</ul></li>
+<li class="fragment">The relevance to indexing is that lists require two square brackets <code>[[]]</code> to index the parent list item and then the standard <code>[]</code> within that parent item</li>
+<li class="fragment">This is different from the single square brackets that we use to index vectors, matrices, and data frames
+<ul>
+<li class="fragment">The double square brackets are used to extract the object itself, rather than a subset of the list</li>
+</ul></li>
+</ul>
+</section>
+<section id="indexing-3" class="slide level2">
+<h2>Indexing</h2>
+<ul>
+<li class="fragment"><p>Let’s look at an example of a list to see how it works in practice</p>
+<ul>
+<li class="fragment">We’ll use the <code>my_list</code> object, which contains three objects: a character string, a numeric vector, and a data frame</li>
+</ul></li>
+<li class="fragment"><p>As before, we have two options for indexing lists</p></li>
+<li class="fragment"><p>Option 1: <code>[[ ]]</code></p>
+<ul>
+<li class="fragment">use double square brackets to index a list</li>
+<li class="fragment">this will return the object itself, rather than a subset of the list</li>
+<li class="fragment">e.g. <code>my_list[[1]]</code> will return the first object in the list</li>
+<li class="fragment">we can also use <code>my_list[[2]][3]</code> to return the third element of the second object</li>
+</ul></li>
+</ul>
+<div class="fragment">
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb45"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb45-1"><a></a>my_list <span class="ot">=</span> <span class="fu">list</span>(<span class="at">a =</span> <span class="st">&quot;hello&quot;</span>, <span class="at">b =</span> <span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>), <span class="at">c =</span> <span class="fu">data.frame</span>(<span class="at">x =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>, <span class="at">y =</span> <span class="dv">6</span><span class="sc">:</span><span class="dv">10</span>))</span>
+<span id="cb45-2"><a></a></span>
+<span id="cb45-3"><a></a>my_list[[<span class="dv">1</span>]] </span>
+<span id="cb45-4"><a></a></span>
+<span id="cb45-5"><a></a>my_list[[<span class="st">&quot;a&quot;</span>]]</span>
+<span id="cb45-6"><a></a></span>
+<span id="cb45-7"><a></a>my_list[[<span class="dv">2</span>]][<span class="dv">3</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
 </div>
-<div class="fragment">
+</section>
+<section id="indexing-4" class="slide level2">
+<h2>Indexing</h2>
 <ul>
-<li class="fragment">more complicated example</li>
+<li class="fragment">Option 2: <code>$</code>
+<ul>
+<li class="fragment">lists provide a nice segue to our other indexing operator: <code>$</code></li>
+<li class="fragment">Let’s continue with the <code>my_list</code> example</li>
+</ul></li>
 </ul>
-<div class="cell fig-cap-location-bottom">
+<div class="fragment">
+<div class="cell">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb46" data-cap-location="bottom"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb46-1"><a></a>sample_means<span class="ot">&lt;-</span> <span class="cf">function</span>(data, n, reps) {</span>
-<span id="cb46-2"><a></a>  sample_means<span class="ot">&lt;-</span> <span class="fu">numeric</span>(<span class="at">length=</span>reps)</span>
-<span id="cb46-3"><a></a>  </span>
-<span id="cb46-4"><a></a>  <span class="cf">for</span> (i <span class="cf">in</span> <span class="fu">seq_along</span>(sample_means)) {</span>
-<span id="cb46-5"><a></a>    samp<span class="ot">&lt;-</span> <span class="fu">sample</span>(data, <span class="at">size =</span> n, <span class="at">replace=</span><span class="cn">TRUE</span>)</span>
-<span id="cb46-6"><a></a>    sample_means[i]<span class="ot">&lt;-</span> <span class="fu">mean</span>(samp)</span>
-<span id="cb46-7"><a></a>  }</span>
-<span id="cb46-8"><a></a>  </span>
-<span id="cb46-9"><a></a>  <span class="fu">return</span>(sample_means)</span>
-<span id="cb46-10"><a></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb46"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb46-1"><a></a>my_list</span>
+<span id="cb46-2"><a></a></span>
+<span id="cb46-3"><a></a>my_list<span class="sc">$</span>a</span>
+<span id="cb46-4"><a></a></span>
+<span id="cb46-5"><a></a>my_list<span class="sc">$</span>c<span class="sc">$</span>x</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
-<div class="cell fig-cap-location-bottom fragment">
-
-</div>
+<ul>
+<li class="fragment">The <code>$</code> form of indexing also works (and in the manner that you probably expect) for other object types in R
+<ul>
+<li class="fragment">In some cases, you can also combine the two index options</li>
+</ul></li>
+</ul>
 </div>
 <div class="fragment">
-<div class="cell fig-cap-location-bottom">
+<div class="cell">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb47" data-cap-location="bottom"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb47-1"><a></a>age_sample_means<span class="ot">&lt;-</span> <span class="fu">sample_means</span>(addh<span class="sc">$</span>age, <span class="dv">500</span>, <span class="dv">1000</span>)</span>
+<div class="sourceCode cell-code" id="cb47"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb47-1"><a></a>my_list<span class="sc">$</span>b[<span class="dv">3</span>]</span>
 <span id="cb47-2"><a></a></span>
-<span id="cb47-3"><a></a><span class="fu">ggplot</span>(<span class="fu">as.data.frame</span>(age_sample_means), <span class="fu">aes</span>(age_sample_means)) <span class="sc">+</span></span>
-<span id="cb47-4"><a></a>  <span class="fu">geom_density</span>()<span class="sc">+</span></span>
-<span id="cb47-5"><a></a>  <span class="fu">geom_vline</span>(<span class="at">xintercept =</span> <span class="fu">mean</span>(age_sample_means),</span>
-<span id="cb47-6"><a></a>             <span class="at">color=</span><span class="st">&quot;red&quot;</span>, <span class="at">linetype=</span><span class="st">&quot;dashed&quot;</span>) <span class="sc">+</span></span>
-<span id="cb47-7"><a></a>  <span class="fu">labs</span>(<span class="at">title=</span><span class="st">&quot;Distribution of Sample Means&quot;</span>,</span>
-<span id="cb47-8"><a></a>       <span class="at">x=</span><span class="st">&quot;Sample Means of Age&quot;</span>,</span>
-<span id="cb47-9"><a></a>       <span class="at">y=</span><span class="st">&quot;Frequency&quot;</span>)<span class="sc">+</span></span>
-<span id="cb47-10"><a></a>  <span class="fu">theme_bw</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb47-3"><a></a>starwars<span class="sc">$</span>name[<span class="dv">1</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
-<div class="cell fig-cap-location-bottom fragment">
-
-</div>
-</div>
-</section>
-<section id="exercises-5" class="slide level2">
-<h2>Exercises</h2>
+<aside class="notes">
 <ul>
-<li class="fragment"><p>create a function that incorporate both sample means functions and the density plot as above</p></li>
-<li class="fragment"><p>plot the distribution of sample means for the variable <code>love</code> in the <code>addh</code> dataset using the function</p></li>
-</ul>
-</section>
-<section id="lists-and-map-functions-from-purrr-library" class="slide level2">
-<h2>Lists and map functions from <code>purrr</code> library</h2>
+<li>note some key differences between the output from this example and that of our previous <code>starwars[1, 1]</code> example
 <ul>
-<li class="fragment">Lists are a way to store multiple objects in R
+<li>What are they?</li>
+<li>Hint: Apart from the visual cues, try wrapping each command in <code>str()</code></li>
+</ul></li>
+<li>The last thing that I want to say about <code>$</code> is that it provides another way to avoid the “object not found” problem that we ran into with our earlier regression example
 <ul>
-<li class="fragment">can store vectors, dataframes, and other lists</li>
-<li class="fragment">can store objects of different classes</li>
+<li>e.g. <code>lm(y ~ x)</code> will not work, but <code>lm(d$y ~ d$x)</code> will work</li>
 </ul></li>
 </ul>
-<div class="fragment">
-<div class="cell fig-cap-location-bottom">
+<p>. . .</p>
+<div class="cell">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb48" data-cap-location="bottom"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb48-1"><a></a>list1<span class="ot">&lt;-</span> <span class="fu">list</span>(<span class="dv">1</span>, <span class="fu">c</span>(<span class="dv">8</span>,<span class="dv">9</span>,<span class="dv">10</span>,<span class="dv">11</span>,<span class="dv">12</span>), <span class="fu">data.frame</span>(<span class="at">x=</span><span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>, <span class="at">y=</span><span class="dv">11</span><span class="sc">:</span><span class="dv">20</span>))</span>
+<div class="sourceCode cell-code" id="cb48"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb48-1"><a></a>d <span class="ot">=</span> <span class="fu">data.frame</span>(<span class="at">x =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>, <span class="at">y =</span> <span class="dv">11</span><span class="sc">:</span><span class="dv">20</span>)</span>
 <span id="cb48-2"><a></a></span>
-<span id="cb48-3"><a></a>list1</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb48-3"><a></a><span class="fu">lm</span>(y <span class="sc">~</span> x) </span>
+<span id="cb48-4"><a></a></span>
+<span id="cb48-5"><a></a><span class="fu">lm</span>(d<span class="sc">$</span>y <span class="sc">~</span> d<span class="sc">$</span>x) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
+<style type="text/css">
+span.MJX_Assistive_MathML {
+position:absolute!important;
+clip: rect(1px, 1px, 1px, 1px);
+padding: 1px 0 0 0!important;
+border: 0!important;
+height: 1px!important;
+width: 1px!important;
+overflow: hidden!important;
+display:block!important;
+}</style></aside>
 </div>
 </section>
-<section id="lists-and-map-functions-from-purrr-library-1" class="slide level2">
-<h2>Lists and map functions from <code>purrr</code> library</h2>
+<section id="cleaning-up" class="slide level2">
+<h2>cleaning up</h2>
 <ul>
-<li class="fragment"><p>The syntax is <code>map(mylist, myfunction, functionoptions)</code> and can change depending on the type of output for your analysis</p></li>
-<li class="fragment"><p>calculate the length of each element in the list above</p></li>
-</ul>
-<div class="fragment">
-<div class="cell fig-cap-location-bottom">
-<details class="code-fold">
-<summary>Code</summary>
-<div class="sourceCode cell-code" id="cb49" data-cap-location="bottom"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb49-1"><a></a><span class="fu">library</span>(purrr)</span>
-<span id="cb49-2"><a></a></span>
-<span id="cb49-3"><a></a><span class="fu">map</span>(list1, length)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
-</div>
-</div>
-<div class="fragment">
+<li class="fragment">Use <code>rm()</code> to remove objects from the global environment
 <ul>
-<li class="fragment">examine the class of each element in the list above</li>
-</ul>
-</div>
-<div class="fragment">
-<div class="cell fig-cap-location-bottom">
-<details class="code-fold">
-<summary>Code</summary>
-<div class="sourceCode cell-code" id="cb50" data-cap-location="bottom"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb50-1"><a></a><span class="fu">map</span>(list1, class)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
-</div>
-<ul>
-<li class="fragment">do the summary of each element in the list above</li>
-</ul>
-</div>
-<div class="fragment">
-<div class="cell fig-cap-location-bottom">
-<details class="code-fold">
-<summary>Code</summary>
-<div class="sourceCode cell-code" id="cb51" data-cap-location="bottom"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb51-1"><a></a><span class="fu">map</span>(list1, summary)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
-</div>
-</div>
-</section>
-<section id="tidy-approach-to-data" class="slide level2">
-<h2>Tidy approach to data</h2>
-<ul>
-<li class="fragment">The tidy approach (<span class="citation" data-cites="Wickham2014">Wickham (<a href="#/references" role="doc-biblioref" onclick>2014</a>)</span>) to data is a way to organize data in a consistent format
-<ul>
-<li class="fragment">Each variable is a column; each column is a variable</li>
-<li class="fragment">Each observation is a row; each row is an observation</li>
-<li class="fragment">Each value is a cell; each cell is a single value</li>
+<li class="fragment">e.g. <code>rm(a)</code> will remove the object <code>a</code> from the global environment</li>
 </ul></li>
-<li class="fragment">The tidy approach is useful for:
+</ul>
+<div class="fragment">
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb49"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb49-1"><a></a>a <span class="ot">=</span> <span class="st">&quot;hello&quot;</span></span>
+<span id="cb49-2"><a></a>b <span class="ot">=</span> <span class="st">&quot;world&quot;</span></span>
+<span id="cb49-3"><a></a><span class="fu">rm</span>(a, b)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
 <ul>
-<li class="fragment">data manipulation</li>
-<li class="fragment">data visualization</li>
-<li class="fragment">data analysis</li>
-<li class="fragment">data sharing</li>
+<li class="fragment">use <code>rm(list = ls())</code> to remove all objects in your working environment (except packages)
+<ul>
+<li class="fragment">Better just to start a new R session</li>
 </ul></li>
-<li class="fragment">The tidy approach is implemented in the <code>tidyr</code> package</li>
 </ul>
 <aside class="notes">
 <ul>
-<li>The tidy approach is a way to organize data in a consistent format
+<li>but this is <a href="https://www.tidyverse.org/articles/2017/12/workflow-vs-script/">frowned upon</a></li>
+</ul>
+<style type="text/css">
+span.MJX_Assistive_MathML {
+position:absolute!important;
+clip: rect(1px, 1px, 1px, 1px);
+padding: 1px 0 0 0!important;
+border: 0!important;
+height: 1px!important;
+width: 1px!important;
+overflow: hidden!important;
+display:block!important;
+}</style></aside>
 <ul>
-<li>it is based on the idea that data should be organized in a way that makes it easy to manipulate, visualize, and analyze</li>
-<li>it is a way to make data more accessible and easier to work with</li>
+<li class="fragment">Detaching packages is more complicated
+<ul>
+<li class="fragment">there could be many cross-dependencies (i.e. one package depends on, and might even automatically load, another package)</li>
+<li class="fragment">e.g. <code>detach(package:dplyr)</code></li>
 </ul></li>
-<li>Five common problems for messy data
+<li class="fragment">still, better just to restart your R session</li>
+</ul>
+</div>
+</section>
+<section id="removing-plots" class="slide level2">
+<h2>Removing plots</h2>
 <ul>
-<li>Column headers are values, not variable names</li>
-<li>Multiple variables are stored in one column</li>
-<li>Variables are stored in both rows and columns</li>
-<li>Multiple types of observational units are stored in the same table</li>
-<li>A single observational unit is stored in multiple tables</li>
+<li class="fragment">Use <code>dev.off()</code> to remove the current plot
+<ul>
+<li class="fragment">e.g. <code>dev.off()</code> will remove the current plot from the plotting window</li>
+</ul></li>
+<li class="fragment">Use <code>graphics.off()</code> to remove all plots</li>
+</ul>
+<div class="fragment">
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb50"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb50-1"><a></a><span class="fu">plot</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>)</span>
+<span id="cb50-2"><a></a><span class="fu">dev.off</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<ul>
+<li class="fragment">RStudio has convenient buttons for clearing your workspace environment and removing (individual) plots</li>
+</ul>
+</div>
+</section>
+<section id="data-files-loading-and-saving" class="slide level2">
+<h2>Data files: Loading and saving</h2>
+<ul>
+<li class="fragment">R can read and write data files in various formats
+<ul>
+<li class="fragment">e.g. CSV, Excel, SPSS, Stata, etc.</li>
+<li class="fragment">we will focus on CSV files for now</li>
+</ul></li>
+<li class="fragment">working directory
+<ul>
+<li class="fragment">R will look for files in the current working directory</li>
+<li class="fragment">you can check the current working directory using <code>getwd()</code></li>
+<li class="fragment">you can change the working directory using <code>setwd()</code></li>
+<li class="fragment">e.g. <code>setwd(&quot;path/to/your/directory&quot;)</code></li>
+</ul></li>
+</ul>
+</section>
+<section id="data-files-loading-and-saving-1" class="slide level2">
+<h2>Data files: Loading and saving</h2>
+<ul>
+<li class="fragment"><p>go to <a href="https://github.com/kwan-MSDA/MSDA-Bootcamp/blob/main/dataset/UNpop.csv">here</a> to download a sample dataset</p></li>
+<li class="fragment"><p>use <code>read.csv()</code> to read a CSV file into R</p>
+<ul>
+<li class="fragment">e.g. <code>unpop &lt;- read.csv(&quot;UNpop.csv&quot;)</code></li>
+<li class="fragment">this will read the CSV file and create a data frame called <code>unpop</code></li>
+</ul></li>
+</ul>
+<div class="fragment">
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb51"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb51-1"><a></a>unpop <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">&quot;Downloads/UNpop.csv&quot;</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+</div>
+<div class="fragment">
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb52"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb52-1"><a></a><span class="fu">class</span>(unpop)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<ul>
+<li class="fragment">RData can be used to save and load R objects
+<ul>
+<li class="fragment">e.g. <code>save(unpop, file = &quot;unpop.RData&quot;)</code> will save the <code>unpop</code> data frame as an RData file</li>
+<li class="fragment">you can load the RData file using <code>load(&quot;unpop.RData&quot;)</code></li>
+</ul></li>
+<li class="fragment">RData files are useful for saving and loading multiple objects at once</li>
+</ul>
+</div>
+<div class="fragment">
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb53"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb53-1"><a></a><span class="fu">save</span>(unpop, <span class="at">file =</span> <span class="st">&quot;unpop.RData&quot;</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<aside class="notes">
+<ul>
+<li>a data frame is a special type of list where each element is a vector of the same length
+<ul>
+<li>data frames are used to store tabular data, where each column represents a variable and each row represents an observation</li>
+</ul></li>
+<li>R will save the entire workspace as .RData in the working directory without an explicit file name and automatically load it next time we launch
+<ul>
+<li>This is not recommended practice because the .RData file is invisible to users of many operating systems and R will not tell us what objects are loaded unless we explicitly issue the ls() function</li>
 </ul></li>
 </ul>
 <style type="text/css">
@@ -2503,231 +2506,67 @@ width: 1px!important;
 overflow: hidden!important;
 display:block!important;
 }</style></aside>
+</div>
 </section>
-<section id="reshape-the-data" class="slide level2">
-<h2>Reshape the data</h2>
-<h3 id="let-us-start-from-a-real-example">let us start from a “real” example</h3>
-<div class="cell fig-cap-location-bottom fragment">
+<section id="data-files-loading-and-saving-2" class="slide level2">
+<h2>Data files: Loading and saving</h2>
+<ul>
+<li class="fragment">useful functions for exploring data frames
+<ul>
+<li class="fragment"><code>names()</code> to view the names of the columns in a data frame</li>
+<li class="fragment"><code>nrow()</code> to view the number of rows in a data frame</li>
+<li class="fragment"><code>ncol()</code> to view the number of columns in a data frame</li>
+<li class="fragment"><code>dim()</code> to view the dimensions of a data frame (number of rows and columns)</li>
+<li class="fragment"><code>str()</code> to view the structure of a data frame</li>
+<li class="fragment"><code>head()</code> to view the first few rows of a data frame</li>
+<li class="fragment"><code>tail()</code> to view the last few rows of a data frame</li>
+</ul></li>
+<li class="fragment">use <code>write.csv()</code> to write a data frame to a CSV file
+<ul>
+<li class="fragment">e.g. <code>write.csv(unpop, &quot;UNpop.csv&quot;)</code></li>
+<li class="fragment">this will write the <code>unpop</code> data frame to a CSV file called <code>UNpop.csv</code></li>
+</ul></li>
+</ul>
+</section>
+<section id="data-files-loading-and-saving-3" class="slide level2">
+<h2>Data files: Loading and saving</h2>
+<ul>
+<li class="fragment"><p>load data in other formats</p></li>
+<li class="fragment"><p>R can read and write data files in various formats, including SPSS, Stata, and Excel</p></li>
+<li class="fragment"><p><code>foreign</code> package can read and write data files in SPSS, Stata, and other formats</p>
+<ul>
+<li class="fragment">it is part of the base R installation and is widely used for reading and writing data files</li>
+</ul></li>
+<li class="fragment"><p><code>haven</code> package is designed to be fast and efficient</p>
+<ul>
+<li class="fragment">it can read and write data files in SPSS, Stata, and SAS formats</li>
+<li class="fragment">it is part of the tidyverse and is designed to be fast and efficient</li>
+</ul></li>
+<li class="fragment"><p><code>readr</code> package can read and write data files in CSV, TSV, and other text formats</p>
+<ul>
+<li class="fragment">it is part of the tidyverse and is designed to be fast and efficient</li>
+</ul></li>
+<li class="fragment"><p><code>readxl</code> package can read and write Excel files</p></li>
+<li class="fragment"><p><code>writexl</code> package can write data frames to Excel files</p></li>
+</ul>
+<div class="fragment">
+<div class="cell">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb52" data-cap-location="bottom"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb52-1"><a></a><span class="fu">library</span>(tidyr)</span>
-<span id="cb52-2"><a></a></span>
-<span id="cb52-3"><a></a>sleep_wide<span class="ot">&lt;-</span> <span class="fu">tibble</span>(<span class="at">name=</span><span class="fu">c</span>(<span class="st">&quot;KT&quot;</span>, <span class="st">&quot;Wincy&quot;</span>, <span class="st">&quot;Kelly&quot;</span>),</span>
-<span id="cb52-4"><a></a>                    <span class="at">day1=</span><span class="fu">c</span>(<span class="dv">8</span>, <span class="dv">7</span>, <span class="dv">6</span>),</span>
-<span id="cb52-5"><a></a>                    <span class="at">day2=</span><span class="fu">c</span>(<span class="dv">4</span>, <span class="dv">6</span>, <span class="dv">5</span>),</span>
-<span id="cb52-6"><a></a>                    <span class="at">day3=</span><span class="fu">c</span>(<span class="dv">5</span>, <span class="dv">4</span>, <span class="dv">4</span>),</span>
-<span id="cb52-7"><a></a>                    <span class="at">day4=</span><span class="fu">c</span>(<span class="dv">7</span>, <span class="dv">7</span>, <span class="dv">6</span>))</span>
-<span id="cb52-8"><a></a></span>
-<span id="cb52-9"><a></a>sleep_wide</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
-</div>
-<div class="cell fig-cap-location-bottom fragment">
-<details class="code-fold">
-<summary>Code</summary>
-<div class="sourceCode cell-code" id="cb53" data-cap-location="bottom"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb53-1"><a></a>sleep_long<span class="ot">&lt;-</span> sleep_wide <span class="sc">%&gt;%</span> </span>
-<span id="cb53-2"><a></a>  <span class="fu">pivot_longer</span>(<span class="at">cols=</span>day1<span class="sc">:</span>day4,</span>
-<span id="cb53-3"><a></a>               <span class="at">names_to=</span><span class="st">&quot;day&quot;</span>,</span>
-<span id="cb53-4"><a></a>               <span class="at">values_to=</span><span class="st">&quot;sleep_hours&quot;</span>)</span>
-<span id="cb53-5"><a></a>  </span>
-<span id="cb53-6"><a></a>sleep_long</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
-</div>
-<div class="cell fig-cap-location-bottom fragment">
-<details class="code-fold">
-<summary>Code</summary>
-<div class="sourceCode cell-code" id="cb54" data-cap-location="bottom"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb54-1"><a></a><span class="fu">library</span>(stringr)</span>
+<div class="sourceCode cell-code" id="cb54"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb54-1"><a></a><span class="co">#install.packages(&quot;haven&quot;)</span></span>
 <span id="cb54-2"><a></a></span>
-<span id="cb54-3"><a></a>sleep_long <span class="sc">%&gt;%</span> </span>
-<span id="cb54-4"><a></a>  <span class="fu">mutate</span>(<span class="at">day=</span>stringr<span class="sc">::</span><span class="fu">str_sub</span>(day,<span class="sc">-</span><span class="dv">1</span>, <span class="sc">-</span><span class="dv">1</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
-</div>
-<aside class="notes">
-<ul>
-<li><p>separate(col = office_housing, into = c(“office”, “housing”), sep = “_“)</p></li>
-<li><p>sleep_united &lt;- sleep_pls_unite %&gt;% unite(col = “office”, building, floor, sep = ““)</p></li>
-</ul>
-<style type="text/css">
-span.MJX_Assistive_MathML {
-position:absolute!important;
-clip: rect(1px, 1px, 1px, 1px);
-padding: 1px 0 0 0!important;
-border: 0!important;
-height: 1px!important;
-width: 1px!important;
-overflow: hidden!important;
-display:block!important;
-}</style></aside>
-</section>
-<section id="reshape-the-data-1" class="slide level2">
-<h2>Reshape the data</h2>
-<h3 id="from-long-to-wide">from long to wide</h3>
-<div class="cell fig-cap-location-bottom fragment">
-<details class="code-fold">
-<summary>Code</summary>
-<div class="sourceCode cell-code" id="cb55" data-cap-location="bottom"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb55-1"><a></a>sleep_wide2<span class="ot">&lt;-</span> sleep_long <span class="sc">%&gt;%</span> </span>
-<span id="cb55-2"><a></a>  <span class="fu">pivot_wider</span>(<span class="at">names_from=</span>day,</span>
-<span id="cb55-3"><a></a>              <span class="at">values_from=</span>sleep_hours)</span>
-<span id="cb55-4"><a></a></span>
-<span id="cb55-5"><a></a>sleep_wide2</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
-</div>
-</section>
-<section id="execises" class="slide level2">
-<h2>Execises</h2>
-<ul>
-<li class="fragment">The data is in a wide format, with each day as a separate column
-<ul>
-<li class="fragment">how to reshape the data to have each day as a separate row?</li>
-<li class="fragment">how to reshape the data to have each activity (sleep, play) as a separate column?</li>
-<li class="fragment">how to reshape the data to have each activity (sleep, play) as a separate row?</li>
-</ul></li>
-</ul>
-<div class="cell fig-cap-location-bottom fragment">
-<details class="code-fold">
-<summary>Code</summary>
-<div class="sourceCode cell-code" id="cb56" data-cap-location="bottom"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb56-1"><a></a>sleep_wide2<span class="ot">&lt;-</span> <span class="fu">tibble</span>(<span class="at">name=</span><span class="fu">c</span>(<span class="fu">rep</span>(<span class="st">&quot;KT&quot;</span>,<span class="dv">2</span>), <span class="fu">rep</span>(<span class="st">&quot;Wincy&quot;</span>,<span class="dv">2</span>), <span class="fu">rep</span>(<span class="st">&quot;Kelly&quot;</span>,<span class="dv">2</span>)),</span>
-<span id="cb56-2"><a></a>                     <span class="at">activity=</span><span class="fu">rep</span>(<span class="fu">c</span>(<span class="st">&quot;sleep&quot;</span>, <span class="st">&quot;play&quot;</span>),<span class="dv">3</span>),</span>
-<span id="cb56-3"><a></a>                     <span class="at">day1=</span><span class="fu">c</span>(<span class="dv">8</span>, <span class="dv">2</span>, <span class="dv">7</span>, <span class="dv">2</span>, <span class="dv">5</span>, <span class="dv">3</span>),</span>
-<span id="cb56-4"><a></a>                     <span class="at">day2=</span><span class="fu">c</span>(<span class="dv">6</span>, <span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">3</span>, <span class="dv">6</span>, <span class="dv">2</span>),</span>
-<span id="cb56-5"><a></a>                     <span class="at">day3=</span><span class="fu">c</span>(<span class="dv">5</span>, <span class="dv">1</span>, <span class="dv">4</span>, <span class="dv">1</span>, <span class="dv">4</span>, <span class="dv">3</span>),</span>
-<span id="cb56-6"><a></a>                     <span class="at">day4=</span><span class="fu">c</span>(<span class="dv">7</span>, <span class="dv">2</span>, <span class="dv">7</span>, <span class="dv">3</span>, <span class="dv">6</span>, <span class="dv">2</span>))</span>
-<span id="cb56-7"><a></a></span>
-<span id="cb56-8"><a></a>sleep_wide2</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
-</div>
-<div class="fragment">
-<ul>
-<li class="fragment">how to express the data in a tidy format?
-<ul>
-<li class="fragment">i.e. name, day, sleep, play as columns</li>
-</ul></li>
-</ul>
-</div>
-<div class="fragment">
-<div class="cell fig-cap-location-bottom fragment">
-<details class="code-fold">
-<summary>Code</summary>
-<div class="sourceCode cell-code" id="cb57" data-cap-location="bottom"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb57-1"><a></a>sleep_tidy<span class="ot">&lt;-</span> sleep_wide2 <span class="sc">%&gt;%</span> </span>
-<span id="cb57-2"><a></a>  <span class="fu">pivot_longer</span>(<span class="at">cols=</span>day1<span class="sc">:</span>day4,</span>
-<span id="cb57-3"><a></a>               <span class="at">names_to=</span><span class="st">&quot;day&quot;</span>,</span>
-<span id="cb57-4"><a></a>               <span class="at">values_to=</span><span class="st">&quot;hours&quot;</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb57-5"><a></a>  <span class="fu">mutate</span>(<span class="at">day=</span>stringr<span class="sc">::</span><span class="fu">str_sub</span>(day, <span class="sc">-</span><span class="dv">1</span>, <span class="sc">-</span><span class="dv">1</span>)) <span class="sc">%&gt;%</span> </span>
-<span id="cb57-6"><a></a>  <span class="fu">pivot_wider</span>(<span class="at">names_from=</span>activity,</span>
-<span id="cb57-7"><a></a>              <span class="at">values_from=</span>hours)</span>
-<span id="cb57-8"><a></a></span>
-<span id="cb57-9"><a></a>sleep_tidy</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
-</div>
-</div>
-</section>
-<section id="export-data---recap" class="slide level2">
-<h2>Export data - Recap</h2>
-<ul>
-<li class="fragment">The last step in data analysis is to export the data
-<ul>
-<li class="fragment">save the data in a format that can be shared with others</li>
-<li class="fragment">save the data in a format that can be read by other software</li>
-<li class="fragment">save the data in a format that can be used in other software</li>
-</ul></li>
-<li class="fragment">Export command depends on the type of file you are trying to write to
-<ul>
-<li class="fragment">write.csv for CSV</li>
-<li class="fragment">write.xslx for Excel</li>
-<li class="fragment">write.dta for Stata file</li>
-<li class="fragment">etc</li>
-</ul></li>
-<li class="fragment">By default, the new file will be saved in current working directory
-<ul>
-<li class="fragment">If you want to save it elsewhere, need to specify the path</li>
-</ul></li>
-</ul>
-<div class="fragment">
-<div class="cell fig-cap-location-bottom">
-<details class="code-fold">
-<summary>Code</summary>
-<div class="sourceCode cell-code" id="cb58" data-cap-location="bottom"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb58-1"><a></a><span class="fu">write_csv</span>(sleep_tidy, <span class="st">&quot;sleep_tidy.csv&quot;</span>)</span>
-<span id="cb58-2"><a></a></span>
-<span id="cb58-3"><a></a><span class="fu">library</span>(haven)</span>
-<span id="cb58-4"><a></a><span class="fu">write_dta</span>(sleep_tidy, <span class="st">&quot;c:/Users/KT/Downloads/sleep_tidy.dta&quot;</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
-</div>
-</div>
-</section>
-<section id="basic-merge" class="slide level2">
-<h2>Basic merge</h2>
-<ul>
-<li class="fragment">The typical merge in R is <code>left_join</code>
-<ul>
-<li class="fragment">keep all rows from “left” table even if observation doesn’t have matching row in “right” table</li>
-<li class="fragment">this will drop observations from the joining data when they are not matched to the “left” table</li>
-</ul></li>
-</ul>
-<div class="fragment">
-<div class="cell fig-cap-location-bottom">
-<details class="code-fold">
-<summary>Code</summary>
-<div class="sourceCode cell-code" id="cb59" data-cap-location="bottom"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb59-1"><a></a>sleep_tidy<span class="ot">&lt;-</span> <span class="fu">tibble</span>(<span class="at">name=</span><span class="fu">c</span>(<span class="st">&quot;KT&quot;</span>, <span class="st">&quot;Wincy&quot;</span>, <span class="st">&quot;Kelly&quot;</span>, <span class="st">&quot;May&quot;</span>, <span class="st">&quot;Mary&quot;</span>),</span>
-<span id="cb59-2"><a></a>                     <span class="at">sleep=</span><span class="fu">c</span>(<span class="dv">8</span>, <span class="dv">7</span>, <span class="dv">6</span>, <span class="dv">5</span>, <span class="dv">5</span>),</span>
-<span id="cb59-3"><a></a>                     <span class="at">play=</span><span class="fu">c</span>(<span class="dv">2</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">3</span>, <span class="dv">2</span>))</span>
-<span id="cb59-4"><a></a></span>
-<span id="cb59-5"><a></a>sleep_tidy2<span class="ot">&lt;-</span> <span class="fu">tibble</span>(<span class="at">name=</span><span class="fu">c</span>(<span class="st">&quot;KT&quot;</span>, <span class="st">&quot;Wincy&quot;</span>, <span class="st">&quot;Kelly&quot;</span>, <span class="st">&quot;Peter&quot;</span>, <span class="st">&quot;Susan&quot;</span>),</span>
-<span id="cb59-6"><a></a>                      <span class="at">study=</span><span class="fu">c</span>(<span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">5</span>, <span class="dv">2</span>, <span class="dv">3</span>),</span>
-<span id="cb59-7"><a></a>                      <span class="at">work=</span><span class="fu">c</span>(<span class="dv">8</span>, <span class="dv">10</span>, <span class="dv">9</span>, <span class="dv">6</span>, <span class="dv">5</span>))</span>
-<span id="cb59-8"><a></a></span>
-<span id="cb59-9"><a></a>sleep_tidy3<span class="ot">&lt;-</span> <span class="fu">left_join</span>(sleep_tidy, sleep_tidy2, <span class="at">by=</span><span class="st">&quot;name&quot;</span>)</span>
-<span id="cb59-10"><a></a></span>
-<span id="cb59-11"><a></a>sleep_tidy3</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
-</div>
-<ul>
-<li class="fragment">put different dataset on the left side of the join</li>
-</ul>
-</div>
-<div class="fragment">
-<div class="cell fig-cap-location-bottom">
-<details class="code-fold">
-<summary>Code</summary>
-<div class="sourceCode cell-code" id="cb60" data-cap-location="bottom"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb60-1"><a></a>sleep_tidy4<span class="ot">&lt;-</span> <span class="fu">left_join</span>(sleep_tidy2, sleep_tidy, <span class="at">by=</span><span class="st">&quot;name&quot;</span>)</span>
-<span id="cb60-2"><a></a></span>
-<span id="cb60-3"><a></a>sleep_tidy4</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
-</div>
-</div>
-</section>
-<section id="merge-data" class="slide level2">
-<h2>Merge data</h2>
-<ul>
-<li class="fragment"><strong>inner join</strong> Only keep rows of the first <code>data.frame</code> that have corresponding records in the second <code>data.frame</code>
-<ul>
-<li class="fragment">this will drop observations from both dataframes when they are not matched to each other</li>
-</ul></li>
-</ul>
-<div class="fragment">
-<div class="cell fig-cap-location-bottom">
-<details class="code-fold">
-<summary>Code</summary>
-<div class="sourceCode cell-code" id="cb61" data-cap-location="bottom"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb61-1"><a></a>sleep_tidy5<span class="ot">&lt;-</span> <span class="fu">inner_join</span>(sleep_tidy, sleep_tidy2, <span class="at">by=</span><span class="st">&quot;name&quot;</span>, <span class="at">suffix=</span><span class="fu">c</span>(<span class="st">&quot;_sleep&quot;</span>, <span class="st">&quot;_work&quot;</span>))</span>
-<span id="cb61-2"><a></a></span>
-<span id="cb61-3"><a></a>sleep_tidy5</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb54-3"><a></a><span class="fu">library</span>(<span class="st">&quot;haven&quot;</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
 </div>
 <div class="fragment">
-<ul>
-<li class="fragment"><strong>full join</strong> Keep all rows from both dataframes, filling in missing values with NAs</li>
-</ul>
-</div>
-<div class="fragment">
-<div class="cell fig-cap-location-bottom">
+<div class="cell">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb62" data-cap-location="bottom"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb62-1"><a></a>sleep_tidy6<span class="ot">&lt;-</span> <span class="fu">full_join</span>(sleep_tidy, sleep_tidy2, <span class="at">by=</span><span class="st">&quot;name&quot;</span>)</span>
-<span id="cb62-2"><a></a></span>
-<span id="cb62-3"><a></a>sleep_tidy6</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb55"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb55-1"><a></a><span class="co"># Read Stata file</span></span>
+<span id="cb55-2"><a></a>url_stata<span class="ot">&lt;-</span><span class="st">&quot;https://github.com/kwan-MSDA/MSDA-Bootcamp/blob/main/dataset/UNpop.dta?raw=true&quot;</span></span>
+<span id="cb55-3"><a></a>unpop_stata<span class="ot">&lt;-</span> <span class="fu">read_dta</span>(url_stata)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
-</div>
-<div class="cell fig-cap-location-bottom fragment">
-
 </div>
 </div>
 </section>
@@ -2737,11 +2576,8 @@ display:block!important;
 <div id="ref-QSS" class="csl-entry" role="listitem">
 Imai, Kosuke, and Nora Webb Williams. 2022. <em>Quantitative Social Science : An Introduction in Tidyverse</em>. Princeton, New Jersey: Princeton University Press.
 </div>
-<div id="ref-Wickham2014" class="csl-entry" role="listitem">
-Wickham, Hadley. 2014. <span>“Tidy Data.”</span> <em>Journal of Statistical Software</em> 59 (10): 1–23.
-</div>
 <div id="ref-Wickham2016" class="csl-entry" role="listitem">
-———. 2016. <em>Ggplot2 : Elegrant Graphics for Data Analysis</em>. Second edition. Use r! Switzerland: Springer.
+Wickham, Hadley. 2016. <em>Ggplot2 : Elegrant Graphics for Data Analysis</em>. Second edition. Use r! Switzerland: Springer.
 </div>
 <div id="ref-Wickham2019" class="csl-entry" role="listitem">
 ———. 2019. <em>Advanced r</em>. Second edition. The r Series. Boca Raton, FL: CRC Press.
