@@ -4855,7 +4855,7 @@
     "href": "slides_v2.html",
     "title": "MSDA Bootcamp Notes",
     "section": "",
-    "text": "Slides\n\n\n\n\nCalculus\nLinear Algebra\nIntroduction to R\nData Visualization\nData Wrangling\nProbability and Statistics"
+    "text": "NoneSlides\n\n\n\n\nCalculus\nLinear Algebra\nIntroduction to R\nData Visualization\nData Wrangling\nProbability and Statistics"
   },
   {
     "objectID": "Linear_Algebra_slimversion_v2.html#outline",
@@ -7019,5 +7019,1307 @@
     "title": "Data Wrangling with R",
     "section": "References",
     "text": "References\n\n\nImai, Kosuke, and Nora Webb Williams. 2022. Quantitative Social Science : An Introduction in Tidyverse. Princeton, New Jersey: Princeton University Press.\n\n\nWickham, Hadley. 2014. “Tidy Data.” Journal of Statistical Software 59 (10): 1–23.\n\n\n———. 2016. Ggplot2 : Elegrant Graphics for Data Analysis. Second edition. Use r! Switzerland: Springer.\n\n\n———. 2019. Advanced r. Second edition. The r Series. Boca Raton, FL: CRC Press.\n\n\nWickham, Hadley, and Garrett Grolemund. 2023. R for Data Science : Import, Tidy, Transform, Visualize, and Model Data. Second edition. Beijing: O’Reilly."
+  },
+  {
+    "objectID": "slides_qmd/Data Visualization with R_v3.html#ggplot2",
+    "href": "slides_qmd/Data Visualization with R_v3.html#ggplot2",
+    "title": "Data Visualization with R",
+    "section": "ggplot2",
+    "text": "ggplot2\nit starts from the grammar of graphics Wickham (2016)\n\n\n\ndata\naesthetics\ngeoms\nfacets\nstats\nscales\ncoordinates\nthemes\n\n\n\n\n\nSource: The Grammar of Graphics\n\n\n\n\n\nAesthetics\n\nspecifiy how we want our data to map onto our plot\n\nWhich variable belongs on the x-axis? What about the y-axis?\nAre we going to convey additional dimenisons of data with colour, or shape, or opacity?\n\n\nScale\n\nWhen setting scales, we need to allow for easy data visualisation\nMost of the time we’ll use a linear scale\nbut can also use other options such as geometric, or logarithmic, if the data is distributed differently and would better suit these transformations\n\nGeoms\n\nGeoms are the actual visual elements that we use to represent our data\n\nPoints, lines, bars, etc.\nGeoms are the building blocks of our plot\n\n\nStatistics\n\nWe need to think about summarising our data\nStatistics are used to summarise the data\n\nFacets\n\nFacets allow us to create multiple plots that each display a subset of the data\nThis is useful for comparing different groups or categories within the data"
+  },
+  {
+    "objectID": "slides_qmd/Data Visualization with R_v3.html#ggplot2-1",
+    "href": "slides_qmd/Data Visualization with R_v3.html#ggplot2-1",
+    "title": "Data Visualization with R",
+    "section": "ggplot2",
+    "text": "ggplot2\n\nEvery ggplot2 plot has three key components:\n\ndata\nA set of aesthetic mappings between variables in the data and visual properties\nAt least one layer which describes how to render each observation\n\nLayers are usually created with a geom function"
+  },
+  {
+    "objectID": "slides_qmd/Data Visualization with R_v3.html#ggplot2---data-illustration",
+    "href": "slides_qmd/Data Visualization with R_v3.html#ggplot2---data-illustration",
+    "title": "Data Visualization with R",
+    "section": "ggplot2 - data illustration",
+    "text": "ggplot2 - data illustration\n\nUse built-in dataset from ggplot2: mpg\n\ninformation about the fuel economy of popular car models in 1999 and 2008\ncollected by the US Environmental Protection Agency\nhere are some of the variables in the dataset:\n\n\n\n\n\n\n\nVariable\nDescription\n\n\n\n\nmanufacturer\nCar manufacturer\n\n\nmodel\nCar model\n\n\nyear\nYear of manufacture\n\n\ndispl\nEngine displacement (litres)\n\n\nhwy\nMiles per gallon (highway)\n\n\ncty\nMiles per gallon (city)\n\n\ncyl\nNumber of cylinders\n\n\ndrv\nDrive type (f = front, r = rear, 4 = 4wd)\n\n\nclass\nType of car\n\n\ntrans\nType of transmission\n\n\nfl\nFuel type\n\n\n\n\n\n\n\n    + manufacturer, model, year\n    + displ (engine displacement in litres)\n    + hwy (miles per gallon on the highway)\n    + cty (miles per gallon in the city)\n    + cyl (number of cylinders)\n    + drv (f = front-wheel drive, r = rear wheel drive, 4 = 4wd)\n    + class (type of car)\n    + trans (type of transmission)\n    + fl (fuel type)\n    \n\nThe mpg dataset is a tibble, a modern version of a data frame\nThe mpg dataset is part of the ggplot2 package\nThe mpg dataset is a tidy dataset\nThis dataset suggests many interesting questions\n\nHow are engine size and fuel economy related?\nDo certain manufacturers care more about fuel economy than others?\nHas fuel economy improved in the last ten years?\n\nList five functions that you could use to get more information about the mpg dataset\nHow can you find out what other datasets are included with ggplot2?\nApart from the US, most countries use fuel consumption (fuel consumed over fixed distance) rather than fuel economy (distance travelled with fixed amount of fuel). How could you convert cty and hwy into the European standard of l/100km?\nWhich manufacturer has the most models in this dataset?\n\nWhich model has the most variations?\nDoes your answer change if you remove the redundant specification of drive train (e.g. “pathfinder 4wd”, “a4 quattro”) from the model name?"
+  },
+  {
+    "objectID": "slides_qmd/Data Visualization with R_v3.html#ggplot2-2",
+    "href": "slides_qmd/Data Visualization with R_v3.html#ggplot2-2",
+    "title": "Data Visualization with R",
+    "section": "ggplot2",
+    "text": "ggplot2\n\nLet us plot the relationship between engine size and fuel economy\n\n\n\n\nCode\nlibrary(ggplot2)\n\ndata(mpg)\n\nggplot(data = mpg, mapping = aes(x = displ, y = hwy)) +\n  geom_point()\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nHow would you describe the relationship between displ and hwy?"
+  },
+  {
+    "objectID": "slides_qmd/Data Visualization with R_v3.html#ggplot2-3",
+    "href": "slides_qmd/Data Visualization with R_v3.html#ggplot2-3",
+    "title": "Data Visualization with R",
+    "section": "ggplot2",
+    "text": "ggplot2\n\n\nCode\nggplot(mpg, aes(cty, hwy)) +\n  geom_point()\n\n\n\n\n\n\n\n\n\n\n\n\n\nHow would you describe the relationship between cty and hwy?\n\n\n\nOther example - histogram of cty\n\n\n\nCode\nggplot(mpg, aes(cty)) +\n  geom_histogram()\n\n\n\n\n\n\n\n\n\n\n\nggplot(diamonds, aes(carat, price)) + geom_point()\nggplot(economics, aes(date, unemploy)) + geom_line()"
+  },
+  {
+    "objectID": "slides_qmd/Data Visualization with R_v3.html#ggplot2-4",
+    "href": "slides_qmd/Data Visualization with R_v3.html#ggplot2-4",
+    "title": "Data Visualization with R",
+    "section": "ggplot2",
+    "text": "ggplot2\nColour, size, shape and other aesthetic attributes\n\nAesthetics are visual properties of the objects in the plot\n\ncolour, size, shape, linetype, fill, alpha\n\nAesthetics can be mapped to variables in the data\n\naes(colour=variable)\naes(size=variable)\naes(shape=variable)\naes(linetype=variable)\naes(fill=variable)\naes(alpha=variable)"
+  },
+  {
+    "objectID": "slides_qmd/Data Visualization with R_v3.html#ggplot2-labels",
+    "href": "slides_qmd/Data Visualization with R_v3.html#ggplot2-labels",
+    "title": "Data Visualization with R",
+    "section": "ggplot2 — labels",
+    "text": "ggplot2 — labels\n\nLabels are important for making your plot understandable\n\nxlab() and ylab() functions\nlabs() function\n\n\n\n\n\nCode\nggplot(mpg, aes(displ, hwy)) +\n  geom_point(aes(color = class)) +\n  labs(\n    x = \"Engine size (litres)\",\n    y = \"Highway fuel economy (miles per gallon)\",\n    title = \"Relationship between engine size and fuel economy\",\n    color = \"Car type\",\n    caption = \"Source: mpg dataset\"\n  ) +\n  theme_bw()"
+  },
+  {
+    "objectID": "slides_qmd/Data Visualization with R_v3.html#ggplot2-5",
+    "href": "slides_qmd/Data Visualization with R_v3.html#ggplot2-5",
+    "title": "Data Visualization with R",
+    "section": "ggplot2",
+    "text": "ggplot2\nColour, size, shape and other aesthetic attributes\n\n\n\n\n\nCode\nggplot(mpg, aes(displ, hwy, colour = class)) +\n  geom_point()\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nCode\nggplot(mpg, aes(trans, hwy, colour = class)) +\n  geom_point()\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nggplot2 takes care of the details of converting data (e.g., ‘f’, ‘r’, ‘4’) into aesthetics (e.g., ‘red’, ‘yellow’, ‘green’) with a scale\n\nThere is one scale for each aesthetic mapping in a plot\nThe scale is also responsible for creating a guide, an axis or legend, that allows you to read the plot, converting aesthetic values back into data values\n\nThe scale functions are:\n\nscale_colour_manual()\nscale_size_manual()\nscale_shape_manual()\nscale_linetype_manual()\nscale_fill_manual()\nscale_alpha_manual()\n\nWhat happens when you map them to continuous values?\nWhat about categorical values?\nWhat happens when you use more than one aesthetic in a plot?"
+  },
+  {
+    "objectID": "slides_qmd/Data Visualization with R_v3.html#ggplot2-facets",
+    "href": "slides_qmd/Data Visualization with R_v3.html#ggplot2-facets",
+    "title": "Data Visualization with R",
+    "section": "ggplot2 — Facets",
+    "text": "ggplot2 — Facets\n\nFacets allow you to create multiple plots that each display a subset of the data\n\nfacet_wrap() creates a grid of plots\nfacet_grid() creates a matrix of plots\n\n\n\n\n\nCode\nggplot(mpg, aes(displ, hwy)) +\n  geom_point() +\n  facet_wrap(~class)"
+  },
+  {
+    "objectID": "slides_qmd/Data Visualization with R_v3.html#ggplot2-6",
+    "href": "slides_qmd/Data Visualization with R_v3.html#ggplot2-6",
+    "title": "Data Visualization with R",
+    "section": "ggplot2",
+    "text": "ggplot2\nggthemes\n\n\nCode\nlibrary(ggthemes)\n\nggplot(mpg, aes(displ, hwy)) +\n  geom_point(aes(color = class)) +\n  labs(\n    x = \"Engine size (litres)\",\n    y = \"Highway fuel economy (miles per gallon)\",\n    title = \"Relationship between engine size and fuel economy\",\n    color = \"Car type\",\n    caption = \"Source: mpg dataset\"\n  ) +\n  theme_economist() +\n  scale_color_tableau() +\n  theme(\n    axis.title.x = element_text(margin = margin(t = 10)),\n    axis.title.y = element_text(margin = margin(r = 10))\n  )"
+  },
+  {
+    "objectID": "slides_qmd/Data Visualization with R_v3.html#ggplot2-7",
+    "href": "slides_qmd/Data Visualization with R_v3.html#ggplot2-7",
+    "title": "Data Visualization with R",
+    "section": "ggplot2",
+    "text": "ggplot2\nPlot geoms\n\nGeoms are the geometric objects that represent the data in the plot\n\ngeom_point() creates a scatterplot\ngeom_smooth() creates a smoothed line plot\ngeom_histogram() creates a histogram\ngeom_boxplot() creates a boxplot\ngeom_bar() creates a bar plot\ngeom_line() creates a line plot\ngeom_vline() adds a vertical line to the plot\ngeom_hline() adds a horizontal line to the plot\ngeom_abline() adds a diagonal line to the plot"
+  },
+  {
+    "objectID": "slides_qmd/Data Visualization with R_v3.html#ggplot2-boxplots-and-related-plots",
+    "href": "slides_qmd/Data Visualization with R_v3.html#ggplot2-boxplots-and-related-plots",
+    "title": "Data Visualization with R",
+    "section": "ggplot2 — Boxplots and related plots",
+    "text": "ggplot2 — Boxplots and related plots\n\nBoxplots, violin and jittered points are useful for visualizing the distribution of a continuous variable\n\n\n\nCode\nlibrary(ggpubr)\n\nboxplot &lt;- ggplot(mpg, aes(drv, hwy)) +\n  geom_boxplot()\n\nviolin &lt;- ggplot(mpg, aes(drv, hwy)) + geom_violin()\n\n\njitter &lt;- ggplot(mpg, aes(drv, hwy)) +\n  geom_jitter()\n\nggarrange(boxplot, violin, jitter, ncol = 3)\n\n\n\n\n\n\n\n\n\n\n\n\n\nA boxplot is a type of visual shorthand for measures of position (percentiles) that describe a distribution\n\nIt is also useful for identifying potential outliers in the data\nVisual points that display observations that fall more than 1.5 times the IQR from either edge of the box\nThese outlying points are unusual so are plotted individually\n\nA violin plot is a combination of a boxplot and a kernel density plot\n\nIt shows the distribution of the data, the median, and the interquartile range\nIt is useful for comparing the distribution of a continuous variable across different categories\n\nA jittered point plot is useful for visualizing the distribution of a continuous variable across different categories\n\nIt is useful for identifying potential outliers in the data"
+  },
+  {
+    "objectID": "slides_qmd/Data Visualization with R_v3.html#ggplot2-boxplots",
+    "href": "slides_qmd/Data Visualization with R_v3.html#ggplot2-boxplots",
+    "title": "Data Visualization with R",
+    "section": "ggplot2 – Boxplots",
+    "text": "ggplot2 – Boxplots\n\n\nCode\nggplot(mpg, aes(class, hwy)) +\n  geom_boxplot() +\n  labs(\n    title = \"Highway fuel economy by car type\",\n    x = \"Car type\",\n    y = \"Highway fuel economy (miles per gallon)\"\n  ) +\n  coord_flip() +\n  theme_economist()"
+  },
+  {
+    "objectID": "slides_qmd/Data Visualization with R_v3.html#ggplot2-bar-plots",
+    "href": "slides_qmd/Data Visualization with R_v3.html#ggplot2-bar-plots",
+    "title": "Data Visualization with R",
+    "section": "ggplot2 — Bar plots",
+    "text": "ggplot2 — Bar plots\n\nBar plots are useful for visualizing the distribution of a categorical variable\n\n\n\n\n\nCode\nggplot(mpg, aes(class)) +\n  geom_bar()\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nCode\nggplot(mpg, aes(class, fill = drv)) +\n  geom_bar()\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nmanufacturer - car manufacturer - 15 manufacturers\nmodel - car model - 38 models\ndispl - engine displacement (litres) - 1.8, 2.0, 2.4, 3.5 etc\nclass - vehicle class - 7 types (compact, SUV, minivan etc.)\nfl - fuel type - 5 fuel types (diesel, petrol, electric, etc.)\ndrv - drive type - f, r, 4 (f=front wheel, r=rear wheel, 4=4 wheel)\ntrans - type of transmission - automatic, manual (many sub types)\nyear - year of manufacturing - 1999, 2008"
+  },
+  {
+    "objectID": "slides_qmd/Data Visualization with R_v3.html#ggplot2-8",
+    "href": "slides_qmd/Data Visualization with R_v3.html#ggplot2-8",
+    "title": "Data Visualization with R",
+    "section": "ggplot2",
+    "text": "ggplot2\nAdding a smoother to a plot\n\n\nCode\nggplot(mpg, aes(displ, hwy)) +\n  geom_point() +\n  geom_smooth(span = 0.3)"
+  },
+  {
+    "objectID": "slides_qmd/Data Visualization with R_v3.html#ggplot2-9",
+    "href": "slides_qmd/Data Visualization with R_v3.html#ggplot2-9",
+    "title": "Data Visualization with R",
+    "section": "ggplot2",
+    "text": "ggplot2\nHistograms and density plots\n\nHistograms and density plots are useful for visualizing the distribution of a continuous variable\n\n\n\n\n\nCode\nggplot(mpg, aes(hwy)) +\n  geom_histogram()\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nCode\nggplot(mpg, aes(hwy)) +\n  geom_density()"
+  },
+  {
+    "objectID": "slides_qmd/Data Visualization with R_v3.html#ggplot2-10",
+    "href": "slides_qmd/Data Visualization with R_v3.html#ggplot2-10",
+    "title": "Data Visualization with R",
+    "section": "ggplot2",
+    "text": "ggplot2\nHistograms and density plots\n\n\nCode\nden &lt;- ggplot(mpg, aes(displ, colour = drv)) +\n  geom_density(linewidth = 0.8)\n\nhist &lt;- ggplot(mpg, aes(displ, fill = drv)) +\n  geom_histogram(binwidth = 0.5) +\n  facet_wrap(~drv, ncol = 1)\n\nggarrange(den, hist, ncol = 2)"
+  },
+  {
+    "objectID": "slides_qmd/Data Visualization with R_v3.html#example---toy-imports-to-the-us-from-1996-2005",
+    "href": "slides_qmd/Data Visualization with R_v3.html#example---toy-imports-to-the-us-from-1996-2005",
+    "title": "Data Visualization with R",
+    "section": "Example - toy imports to the US from 1996-2005",
+    "text": "Example - toy imports to the US from 1996-2005\n\nit is drawn from Scott (2021)\n\n\n\nCode\nlibrary(tidyverse)\n\ntoy_imports &lt;- read_csv(\n  \"https://raw.githubusercontent.com/kwan-MSDA/Bootcamp_2024/main/dataset/toyimports.csv\"\n)\n\nhead(toy_imports)\n\n\n\n\n# A tibble: 6 × 8\n  partner  year partner_name       product product_name US_report_import pop2000\n  &lt;chr&gt;   &lt;dbl&gt; &lt;chr&gt;                &lt;dbl&gt; &lt;chr&gt;                   &lt;dbl&gt;   &lt;dbl&gt;\n1 ARE      1998 United Arab Emira…  950341 \"Toys repre…             1.06  3.25e6\n2 ARE      2000 United Arab Emira…  950349 \"Toys repre…            12.0   3.25e6\n3 ARE      2003 United Arab Emira…  950349 \"Toys repre…             4.65  3.25e6\n4 ARE      2005 United Arab Emira…  950320 \"Reduced-si…            49.2   3.25e6\n5 ARG      1996 Argentina           950341 \"Toys repre…             0     3.69e7\n6 ARG      1996 Argentina           950310 \"Electric t…            10.8   3.69e7\n# ℹ 1 more variable: region &lt;dbl&gt;"
+  },
+  {
+    "objectID": "slides_qmd/Data Visualization with R_v3.html#example---toy-imports-to-the-us-from-1996-2005-1",
+    "href": "slides_qmd/Data Visualization with R_v3.html#example---toy-imports-to-the-us-from-1996-2005-1",
+    "title": "Data Visualization with R",
+    "section": "Example - toy imports to the US from 1996-2005",
+    "text": "Example - toy imports to the US from 1996-2005\n\nTask: make a graph showing total toy imports over time for the U.S.’s top 5 trading partners by total dollar value of toys imported\n\n\n\nCode\ncountry_total &lt;- toy_imports %&gt;%\n  group_by(partner_name) %&gt;%\n  summarize(total_import = sum(US_report_import)) %&gt;%\n  arrange(desc(total_import)) %&gt;%\n  head(5)\n\ncountry_total\n\n\n\n\n# A tibble: 5 × 2\n  partner_name     total_import\n  &lt;chr&gt;                   &lt;dbl&gt;\n1 China               26842305.\n2 Denmark              1034990.\n3 Canada                572309.\n4 Hong Kong, China      545186.\n5 Switzerland           400969.\n\n\n\n\nthe total dollar value of toys imported to the U.S. (US_report_import, in multiples of $1,000) in a specific product category from a specific country in a specific year\nThe product categories have unique numerical codes (product) as well as product names exciting enough to quicken the heart of any toy-loving child (“Parts and accessories :– Other,” “Toys representing animal or non-human figures,” and so on\nGroup all the observations by trading partner (the partner_name variable)\nFor each partner, calculate total dollar value by summing toy imports (US_report_import) across all categories and years\nArrange the partners by total dollar value"
+  },
+  {
+    "objectID": "slides_qmd/Data Visualization with R_v3.html#one-more-example---toy-imports-to-the-us-from-1996-2005",
+    "href": "slides_qmd/Data Visualization with R_v3.html#one-more-example---toy-imports-to-the-us-from-1996-2005",
+    "title": "Data Visualization with R",
+    "section": "One More Example - toy imports to the US from 1996-2005",
+    "text": "One More Example - toy imports to the US from 1996-2005\n\n\n\nCode\ntop5_partners &lt;- c(\n  \"China\",\n  \"Denmark\",\n  \"Canada\",\n  \"Hong Kong, China\",\n  \"Switzerland\"\n)\n\noptions(scipen = 999)\n\nlibrary(ggthemes)\nlibrary(scales)\nlibrary(plotly)\n\np &lt;- toy_imports %&gt;%\n  filter(partner_name %in% top5_partners) %&gt;%\n  group_by(year, partner_name) %&gt;%\n  summarize(total_import = sum(US_report_import)) %&gt;%\n  ggplot(aes(year, total_import, color = partner_name)) +\n  geom_line(size = 1.18) +\n  labs(\n    title = \"Toy imports from the U.S.'s top-5 partners, 1996-2005\",\n    x = \"Year\",\n    y = \"Dollar value of imports (log scale)\",\n    color = \"Import Region\"\n  ) +\n  scale_x_continuous(breaks = 1996:2005) +\n  scale_y_log10(\n    breaks = trans_breaks(\"log10\", function(x) 10^x),\n    labels = trans_format(\"log10\", math_format(.x))\n  ) +\n  #labels = trans_format(\"log10\", math_format(10^.x))) +\n  theme_economist() +\n  theme(\n    plot.title = element_text(\n      size = 22,\n      face = \"bold\",\n      hjust = 0.5,\n      margin = margin(b = 15)\n    ), # Larger, bold, centered title\n    axis.title.x = element_text(size = 16, margin = margin(t = 10)), # Larger x-axis label\n    axis.title.y = element_text(size = 16, margin = margin(r = 15)), # Larger y-axis label with right margin for spacing\n    axis.text = element_text(size = 12), # Larger tick labels\n    axis.ticks.y = element_line(color = \"black\", size = 0.5), # Clearer y-ticks\n    axis.ticks.length.y = unit(0.3, \"cm\"), # Slightly longer y-ticks for prominence\n    legend.title = element_text(size = 18), # Larger legend title\n    legend.text = element_text(size = 16), # Larger legend text\n    legend.position = \"right\" # Position legend on the right (optional)\n  )\n\n\nggplotly(p)"
+  },
+  {
+    "objectID": "slides_qmd/Data Visualization with R_v3.html#another-example-the-five-coldest-months-in-rapid-city-from-1995-to-2011",
+    "href": "slides_qmd/Data Visualization with R_v3.html#another-example-the-five-coldest-months-in-rapid-city-from-1995-to-2011",
+    "title": "Data Visualization with R",
+    "section": "Another Example — The five coldest months in Rapid City from 1995 to 2011",
+    "text": "Another Example — The five coldest months in Rapid City from 1995 to 2011\n\n\nCode\nlibrary(tidyverse)\n\nrapidcity &lt;- read_csv(\n  \"https://raw.githubusercontent.com/kwan-MSDA/Bootcamp_2024/main/dataset/rapidcity.csv\"\n)\n\ntop_5_coldest &lt;- rapidcity %&gt;%\n  group_by(Year, Month) %&gt;%\n  summarize(\n    avg_Temp = mean(Temp),\n    lowest_temp = min(Temp),\n    highest_temp = max(Temp)\n  ) %&gt;%\n  arrange(avg_Temp) %&gt;%\n  round(1) %&gt;%\n  mutate(\n    Month_Year = paste(month.abb[Month], Year, sep = \"-\"),\n    .after = Month\n  ) %&gt;%\n  head(n = 5)\n\ntop_5_coldest\n\n\n\n\n# A tibble: 5 × 6\n# Groups:   Year [4]\n   Year Month Month_Year avg_Temp lowest_temp highest_temp\n  &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;         &lt;dbl&gt;       &lt;dbl&gt;        &lt;dbl&gt;\n1  1996     1 Jan-1996       14.9       -11           46.1\n2  2009    12 Dec-2009       16.4        -2.6         35.6\n3  2000    12 Dec-2000       17.3        -9           38.8\n4  1996    12 Dec-1996       17.5       -10.8         40.4\n5  2001     2 Feb-2001       17.6        -3.9         40.8\n\n\n\n\nBar chart\n\n\n\n\n\nCode\n# Reshape data to long format\ntop_5_long &lt;- top_5_coldest %&gt;%\n  pivot_longer(\n    cols = c(avg_Temp, lowest_temp, highest_temp),\n    names_to = \"Temp_Type\",\n    values_to = \"Temperature\"\n  ) %&gt;%\n  mutate(\n    Temp_Type = factor(\n      Temp_Type,\n      levels = c(\"lowest_temp\", \"avg_Temp\", \"highest_temp\"),\n      labels = c(\"Lowest\", \"Average\", \"Highest\")\n    )\n  )\n\n# Create the ggplot\np &lt;- ggplot(\n  top_5_long,\n  aes(x = Month_Year, y = Temperature, fill = Temp_Type)\n) +\n  geom_bar(\n    stat = \"identity\",\n    position = position_dodge(width = 1),\n    alpha = 0.6\n  ) +\n  scale_fill_manual(\n    values = c(\"Lowest\" = \"purple\", \"Average\" = \"blue\", \"Highest\" = \"red\")\n  ) +\n  labs(\n    title = \"Top 5 Coldest Months in Rapid City\",\n    x = \"Month-Year\",\n    y = \"Temperature (°F)\",\n    fill = \"Temperature Type\"\n  ) + # Add legend title\n  theme_minimal() +\n  theme(\n    legend.title = element_text(face = \"bold\", size = 12, color = \"black\"), # Style legend title\n    legend.text = element_text(size = 10), # Style legend text\n    axis.text.x = element_text(angle = 45, hjust = 1) # Rotate x-axis labels\n  )\n\n# Convert to interactive plotly plot\nggplotly(p, tooltip = c(\"x\", \"y\", \"fill\"))\n\n\n\n\n\n\n\n\nCode\nhtmlwidgets::saveWidget(ggplotly(p), \"top_5_coldest_months.html\")\n\n\n\n\nImport the data set\nSplit the data set into individual months in individual years: January 1995, February 1995, March 1995, and so on, all the way through December 2011.\nFor each individual month, calculate the average of the Temp variable (along with any other summaries we might find interesting).\nSort the individual months according to their average temperatures.\nMake a table of the five coldest months\nmutate(Month = match(Month, month.name)) # Convert full month names to numbers\nmutate(Month_Name = paste(month.abb[Month], “’”, str_sub(Year, 3, 4), sep = ““)) # e.g.,”Jan ’10”\ntheme(legend.position = “top”)"
+  },
+  {
+    "objectID": "slides_qmd/Data Visualization with R_v3.html#one-more-example---survival-on-the-titanic",
+    "href": "slides_qmd/Data Visualization with R_v3.html#one-more-example---survival-on-the-titanic",
+    "title": "Data Visualization with R",
+    "section": "One more Example - Survival on the Titanic",
+    "text": "One more Example - Survival on the Titanic\nQ: how did survival among adult passengers vary by sex and cabin class?\n\n\n\nCode\ntitanic &lt;- read_csv(\n  \"https://raw.githubusercontent.com/kwan-MSDA/Bootcamp_2024/main/dataset/titanic.csv\"\n)\n\nhead(titanic)\n\n\n\n\n# A tibble: 6 × 5\n  name                            survived sex       age passengerClass\n  &lt;chr&gt;                           &lt;chr&gt;    &lt;chr&gt;   &lt;dbl&gt; &lt;chr&gt;         \n1 Allen, Miss. Elisabeth Walton   yes      female 29     1st           \n2 Allison, Master. Hudson Trevor  yes      male    0.917 1st           \n3 Allison, Miss. Helen Loraine    no       female  2     1st           \n4 Allison, Mr. Hudson Joshua Crei no       male   30     1st           \n5 Allison, Mrs. Hudson J C (Bessi no       female 25     1st           \n6 Anderson, Mr. Harry             yes      male   48     1st           \n\n\n\n\n\n\nCode\nsurv_adults &lt;- titanic %&gt;%\n  mutate(Adult = age &gt;= 18) %&gt;%\n  filter(Adult) %&gt;%\n  group_by(sex, passengerClass) %&gt;%\n  summarize(\n    total_count = n(),\n    survived = sum(survived == \"yes\"),\n    survival_rate = survived / total_count\n  )\n\n\nsurv_adults\n\n\n\n\n# A tibble: 6 × 5\n# Groups:   sex [2]\n  sex    passengerClass total_count survived survival_rate\n  &lt;chr&gt;  &lt;chr&gt;                &lt;int&gt;    &lt;int&gt;         &lt;dbl&gt;\n1 female 1st                    125      121        0.968 \n2 female 2nd                     85       74        0.871 \n3 female 3rd                    106       47        0.443 \n4 male   1st                    144       47        0.326 \n5 male   2nd                    143       12        0.0839\n6 male   3rd                    289       45        0.156"
+  },
+  {
+    "objectID": "slides_qmd/Data Visualization with R_v3.html#an-example---survival-on-the-titanic",
+    "href": "slides_qmd/Data Visualization with R_v3.html#an-example---survival-on-the-titanic",
+    "title": "Data Visualization with R",
+    "section": "An Example - Survival on the Titanic",
+    "text": "An Example - Survival on the Titanic\n\n\n\n\nCode\nlibrary(ggthemes)\n\nggplot(surv_adults) +\n  geom_col(aes(x = sex, y = survival_rate)) +\n  facet_wrap(~passengerClass, nrow = 1) +\n  labs(\n    title = \"Survival rate by gender and passenger class\",\n    y = \"Survival rate\",\n    x = \"gender\"\n  ) +\n  theme_economist()\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nCode\nlibrary(ggplot2)\nlibrary(ggthemes)\nlibrary(scales) # For percent formatting\n\nclass_labels &lt;- function(passengerClass) {\n  dplyr::case_when(\n    passengerClass == \"1st\" ~ \"First Class\",\n    passengerClass == \"2nd\" ~ \"Second Class\",\n    passengerClass == \"3rd\" ~ \"Third Class\",\n    TRUE ~ as.character(passengerClass) # Fallback for unexpected values\n  )\n}\n\nggplot(surv_adults, aes(x = sex, y = survival_rate, fill = sex)) +\n  geom_col(position = \"dodge\", width = 0.45, color = \"black\", alpha = 0.85) + # Add outline and transparency\n  facet_wrap(\n    ~passengerClass,\n    nrow = 1,\n    labeller = labeller(passengerClass = class_labels)\n  ) + # Clear facet labels\n  geom_text(\n    aes(label = scales::percent(survival_rate, accuracy = 1)),\n    vjust = -0.5,\n    size = 4\n  ) + # Add percentage labels above bars\n  scale_y_continuous(\n    labels = scales::percent_format(accuracy = 1),\n    limits = c(0, 1),\n    expand = c(0, 0.05)\n  ) + # Y-axis as percentage, 0-1 range\n  scale_fill_brewer(palette = \"Set2\") + # Colorblind-friendly palette\n  labs(\n    title = \"Survival Rate by Gender and Passenger Class\",\n    y = \"Survival Rate\",\n    x = \"Gender\"\n  ) +\n  theme_economist() +\n  theme(\n    plot.title = element_text(\n      size = 16,\n      face = \"bold\",\n      hjust = 0.5,\n      margin = margin(b = 15)\n    ),\n    axis.title.x = element_text(size = 12, margin = margin(t = 10)),\n    axis.title.y = element_text(size = 12, margin = margin(r = 10)),\n    axis.text.x = element_text(size = 10, margin = margin(t = 5)),\n    axis.text.y = element_text(size = 10, margin = margin(r = 5)),\n    strip.text = element_text(\n      size = 11,\n      face = \"bold\",\n      margin = margin(t = 5, r = 5, b = 10, l = 5)\n    ), # Increased bottom margin\n    panel.spacing = unit(1.5, \"lines\"), # Increased space between facets\n    legend.position = \"none\"\n  )\n\n\n\n\n\n\n\n\n\n\n\n\n\n\ncreate a new variable, which we’ll call Adult, that determines whether a passenger is at least 18 years old.\nfilter the data set down to adults only.\ngroup the filtered data set by sex and cabin class (2 sexes× × 3 classes = 6 groups).\ncalculate the survival percentage for each group."
+  },
+  {
+    "objectID": "slides_qmd/Data Visualization with R_v3.html#extra-gapminder-data",
+    "href": "slides_qmd/Data Visualization with R_v3.html#extra-gapminder-data",
+    "title": "Data Visualization with R",
+    "section": "Extra: Gapminder data",
+    "text": "Extra: Gapminder data\n\n\nCode\nlibrary(gapminder)\n\ndata(gapminder)\n\ngapminder %&gt;%\n  group_by(year, continent) %&gt;%\n  mutate(median_lifeExp = median(lifeExp)) %&gt;%\n  ggplot(aes(year, median_lifeExp, color = continent)) +\n  geom_line() +\n  labs(\n    title = \"Life expectancy by continent and year\",\n    x = \"Year\",\n    y = \"Life expectancy\"\n  ) +\n  theme_economist()\n\n\n\n\n\n\n\n\n\n\n\n\n\nCode\nggplot(gapminder, aes(x = continent, y = lifeExp)) +\n  geom_boxplot(outlier.colour = \"hotpink\") +\n  geom_jitter(\n    position = position_jitter(width = 0.1, height = 0),\n    alpha = 1 / 4\n  )"
+  },
+  {
+    "objectID": "slides_qmd/Data Visualization with R_v3.html#extra-gapminder-data-1",
+    "href": "slides_qmd/Data Visualization with R_v3.html#extra-gapminder-data-1",
+    "title": "Data Visualization with R",
+    "section": "Extra: Gapminder data",
+    "text": "Extra: Gapminder data\nthis is from BBC style\n\n\nCode\n# install.packages('devtools')\n#devtools::install_github('bbc/bbplot'))\n\nlibrary(ggpubr)\n\nsource(\"https://raw.githubusercontent.com/kwan-MSDA/R/main/bbc_style.R\")\n\ngapminder %&gt;%\n  group_by(year, continent) %&gt;%\n  summarize(median_lifeExp = median(lifeExp)) %&gt;%\n  ggplot(aes(year, median_lifeExp, color = continent)) +\n  geom_line() +\n  labs(\n    title = \"Life expectancy by continent and year\",\n    x = \"Year\",\n    y = \"Life expectancy\"\n  ) +\n  bbc_style()\n\n\n\n\n\n\n\n\n\n\n\n\n\nsource 1: https://bbc.github.io/rcookbook/#do_something_else_entirely\nsource 2: https://github.com/bbc/bbplot?tab=readme-ov-file\nsource 3: https://noeliagorod.com/2020/07/23/bbc-visual-and-data-journalism-cookbook-for-r-graphics/"
+  },
+  {
+    "objectID": "slides_qmd/Data Visualization with R_v3.html#extra-gapminder-data-2",
+    "href": "slides_qmd/Data Visualization with R_v3.html#extra-gapminder-data-2",
+    "title": "Data Visualization with R",
+    "section": "Extra: Gapminder data",
+    "text": "Extra: Gapminder data\n\n\nCode\nlibrary(\"ggalt\")\nlibrary(\"tidyr\")\n\nlibrary(gapminder)\n\ndumbbell_df &lt;- gapminder %&gt;%\n  filter(year == 1967 | year == 2007) %&gt;%\n  select(country, year, lifeExp) %&gt;%\n  spread(year, lifeExp) %&gt;%\n  mutate(gap = `2007` - `1967`) %&gt;%\n  arrange(desc(gap)) %&gt;%\n  head(10)\n\n#Make plot\nggplot(\n  dumbbell_df,\n  aes(x = `1967`, xend = `2007`, y = reorder(country, gap), group = country)\n) +\n  geom_dumbbell(\n    colour = \"#dddddd\",\n    size = 3,\n    colour_x = \"#FAAB18\",\n    colour_xend = \"#1380A1\"\n  ) +\n  bbc_style() +\n  labs(\n    title = \"We're living longer\",\n    subtitle = \"Biggest life expectancy rise, 1967-2007\"\n  )"
+  },
+  {
+    "objectID": "slides_qmd/Data Visualization with R_v3.html#extra-gapminder-data-3",
+    "href": "slides_qmd/Data Visualization with R_v3.html#extra-gapminder-data-3",
+    "title": "Data Visualization with R",
+    "section": "Extra: Gapminder data",
+    "text": "Extra: Gapminder data\n\n\nCode\nlibrary(hrbrthemes)\nlibrary(viridis)\n\ngapminder %&gt;%\n  filter(year == 2007) %&gt;%\n  mutate(country = factor(country, levels = unique(country))) %&gt;%\n  arrange(desc(pop)) %&gt;%\n  ggplot(aes(x = gdpPercap, y = lifeExp, size = pop, fill = continent)) +\n  geom_point(alpha = 0.6, shape = 21, color = \"black\") +\n  scale_size(range = c(.1, 24), name = \"Population (M)\") +\n  scale_fill_viridis(discrete = TRUE, guide = FALSE, option = \"A\") +\n  theme_ipsum() +\n  theme(legend.position = \"none\") +\n  labs(\n    title = \"Life expectancy by continent in 2007\",\n    x = \"GDP per capita\",\n    y = \"Life Expectancy\"\n  )"
+  },
+  {
+    "objectID": "slides_qmd/Data Visualization with R_v3.html#extra-gapminder-data-4",
+    "href": "slides_qmd/Data Visualization with R_v3.html#extra-gapminder-data-4",
+    "title": "Data Visualization with R",
+    "section": "Extra: Gapminder data",
+    "text": "Extra: Gapminder data\n\n\nCode\nlibrary(gganimate)\n\ngapminder %&gt;%\n  ggplot(aes(\n    x = gdpPercap,\n    y = lifeExp,\n    size = pop,\n    fill = continent,\n    frame = year\n  )) +\n  geom_point(alpha = 0.6, shape = 21, color = \"black\") +\n  scale_size(range = c(.1, 22), name = \"Population (M)\") +\n  scale_fill_viridis(discrete = TRUE, guide = FALSE, option = \"A\") +\n  theme_ipsum() +\n  theme(legend.position = \"none\") +\n  labs(\n    title = \"Life expectancy by continent in {frame_time}\",\n    x = \"GDP per capita\",\n    y = \"Life Expectancy\"\n  ) +\n  geom_text(\n    data = gapminder %&gt;% filter(pop &gt; 1e+8),\n    aes(label = country),\n    size = 5,\n    nudge_x = 0.1,\n    nudge_y = 0.1\n  ) +\n  transition_time(year) +\n  enter_fade() +\n  exit_fade()\n\n\n\n\n\n\n\n\n\n\n\nCode\nanim_save(\"gapminder_gganimate.gif\")"
+  },
+  {
+    "objectID": "slides_qmd/Data Visualization with R_v3.html#extra-gapminder-data-5",
+    "href": "slides_qmd/Data Visualization with R_v3.html#extra-gapminder-data-5",
+    "title": "Data Visualization with R",
+    "section": "Extra: Gapminder data",
+    "text": "Extra: Gapminder data\nsource\n\n\nCode\nlibrary(plotly)\nlibrary(hrbrthemes)\nlibrary(viridis)\n\ng &lt;- crosstalk::SharedData$new(\n  gapminder %&gt;%\n    mutate(country = factor(country, levels = unique(country))) %&gt;%\n    arrange(desc(pop)),\n  ~continent\n)\ngg &lt;- g %&gt;%\n  ggplot(aes(x = gdpPercap, y = lifeExp, fill = continent, frame = year)) +\n  geom_point(aes(size = pop, alpha = 0.6, ids = country)) +\n  scale_size(range = c(.1, 24), name = \"Population (M)\") +\n  scale_fill_viridis(discrete = TRUE, guide = FALSE, option = \"A\") +\n  scale_alpha(range = c(0.6, 1), guide = FALSE) +\n  theme_ipsum() +\n  # theme(legend.position=\"none\")+\n  labs(\n    title = \"Life expectancy by continent between 1952-2007\",\n    x = \"GDP per capita\",\n    y = \"Life Expectancy\"\n  )\n\nggplotly(gg, height = 500, width = 800)"
+  },
+  {
+    "objectID": "slides_qmd/Data Visualization with R_v3.html#references",
+    "href": "slides_qmd/Data Visualization with R_v3.html#references",
+    "title": "Data Visualization with R",
+    "section": "References",
+    "text": "References\n\n\nImai, Kosuke, and Nora Webb Williams. 2022. Quantitative Social Science : An Introduction in Tidyverse. Princeton University Press.\n\n\nScott, James. 2021. “Data Science in r: A Gentle Introduction.” https://bookdown.org/jgscott/DSGI/.\n\n\nWickham, Hadley. 2016. Ggplot2 : Elegrant Graphics for Data Analysis. Second edition. Use r! Springer.\n\n\nWickham, Hadley. 2019. Advanced r. Second edition. The r Series. CRC Press.\n\n\nWickham, Hadley, and Garrett Grolemund. 2023. R for Data Science : Import, Tidy, Transform, Visualize, and Model Data. Second edition. O’Reilly."
+  },
+  {
+    "objectID": "slides_qmd/Data Visualization with R_v3.html#ggplot2-11",
+    "href": "slides_qmd/Data Visualization with R_v3.html#ggplot2-11",
+    "title": "Data Visualization with R",
+    "section": "ggplot2",
+    "text": "ggplot2\nggsave - save the graph as an image file\n\n\nCode\nggsave(filename = \"mpg_displ.png\", width = 6, height = 4)"
+  },
+  {
+    "objectID": "slides_qmd/Data Visualization with R_v3.html#more-example---toy-imports-to-the-us-from-1996-2005",
+    "href": "slides_qmd/Data Visualization with R_v3.html#more-example---toy-imports-to-the-us-from-1996-2005",
+    "title": "Data Visualization with R",
+    "section": "More Example - toy imports to the US from 1996-2005",
+    "text": "More Example - toy imports to the US from 1996-2005\n\n\n\nCode\ntop5_partners &lt;- c(\n  \"China\",\n  \"Denmark\",\n  \"Canada\",\n  \"Hong Kong, China\",\n  \"Switzerland\"\n)\n\noptions(scipen = 999)\n\nlibrary(ggthemes)\nlibrary(scales)\nlibrary(plotly)\n\np &lt;- toy_imports %&gt;%\n  filter(partner_name %in% top5_partners) %&gt;%\n  group_by(year, partner_name) %&gt;%\n  summarize(total_import = sum(US_report_import)) %&gt;%\n  ggplot(aes(year, total_import, color = partner_name)) +\n  geom_line(size = 1.18) +\n  labs(\n    title = \"Toy imports from the U.S.'s top-5 partners, 1996-2005\",\n    x = \"Year\",\n    y = \"Dollar value of imports (log scale)\",\n    color = \"Import Region\"\n  ) +\n  scale_x_continuous(breaks = 1996:2005) +\n  scale_y_log10(\n    breaks = trans_breaks(\"log10\", function(x) 10^x),\n    labels = trans_format(\"log10\", math_format(.x))\n  ) +\n  #labels = trans_format(\"log10\", math_format(10^.x))) +\n  theme_economist() +\n  theme(\n    plot.title = element_text(\n      size = 22,\n      face = \"bold\",\n      hjust = 0.5,\n      margin = margin(b = 15)\n    ), # Larger, bold, centered title\n    axis.title.x = element_text(size = 16, margin = margin(t = 10)), # Larger x-axis label\n    axis.title.y = element_text(size = 16, margin = margin(r = 15)), # Larger y-axis label with right margin for spacing\n    axis.text = element_text(size = 12), # Larger tick labels\n    axis.ticks.y = element_line(color = \"black\", size = 0.5), # Clearer y-ticks\n    axis.ticks.length.y = unit(0.3, \"cm\"), # Slightly longer y-ticks for prominence\n    legend.title = element_text(size = 18), # Larger legend title\n    legend.text = element_text(size = 16), # Larger legend text\n    legend.position = \"right\" # Position legend on the right (optional)\n  )\n\n\nggplotly(p)"
+  },
+  {
+    "objectID": "slides_qmd/Data Visualization with R_v3.html#more-example",
+    "href": "slides_qmd/Data Visualization with R_v3.html#more-example",
+    "title": "Data Visualization with R",
+    "section": "More Example",
+    "text": "More Example\nThe five coldest months in Rapid City from 1995 to 2011\n\n\nCode\nlibrary(tidyverse)\n\nrapidcity &lt;- read_csv(\n  \"https://raw.githubusercontent.com/kwan-MSDA/Bootcamp_2024/main/dataset/rapidcity.csv\"\n)\n\ntop_5_coldest &lt;- rapidcity %&gt;%\n  group_by(Year, Month) %&gt;%\n  summarize(\n    avg_Temp = mean(Temp),\n    lowest_temp = min(Temp),\n    highest_temp = max(Temp)\n  ) %&gt;%\n  arrange(avg_Temp) %&gt;%\n  round(1) %&gt;%\n  mutate(\n    Month_Year = paste(month.abb[Month], Year, sep = \"-\"),\n    .after = Month\n  ) %&gt;%\n  head(n = 5)\n\ntop_5_coldest\n\n\n\n\n# A tibble: 5 × 6\n# Groups:   Year [4]\n   Year Month Month_Year avg_Temp lowest_temp highest_temp\n  &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;         &lt;dbl&gt;       &lt;dbl&gt;        &lt;dbl&gt;\n1  1996     1 Jan-1996       14.9       -11           46.1\n2  2009    12 Dec-2009       16.4        -2.6         35.6\n3  2000    12 Dec-2000       17.3        -9           38.8\n4  1996    12 Dec-1996       17.5       -10.8         40.4\n5  2001     2 Feb-2001       17.6        -3.9         40.8\n\n\n. . .\n\nBar chart\n\n. . .\n\n\nCode\n# Reshape data to long format\ntop_5_long &lt;- top_5_coldest %&gt;%\n  pivot_longer(\n    cols = c(avg_Temp, lowest_temp, highest_temp),\n    names_to = \"Temp_Type\",\n    values_to = \"Temperature\"\n  ) %&gt;%\n  mutate(\n    Temp_Type = factor(\n      Temp_Type,\n      levels = c(\"lowest_temp\", \"avg_Temp\", \"highest_temp\"),\n      labels = c(\"Lowest\", \"Average\", \"Highest\")\n    )\n  )\n\n# Create the ggplot\np &lt;- ggplot(\n  top_5_long,\n  aes(x = Month_Year, y = Temperature, fill = Temp_Type)\n) +\n  geom_bar(\n    stat = \"identity\",\n    position = position_dodge(width = 1),\n    alpha = 0.6\n  ) +\n  scale_fill_manual(\n    values = c(\"Lowest\" = \"purple\", \"Average\" = \"blue\", \"Highest\" = \"red\")\n  ) +\n  labs(\n    title = \"Top 5 Coldest Months in Rapid City\",\n    x = \"Month-Year\",\n    y = \"Temperature (°F)\",\n    fill = \"Temperature Type\"\n  ) + # Add legend title\n  theme_minimal() +\n  theme(\n    legend.title = element_text(face = \"bold\", size = 12, color = \"black\"), # Style legend title\n    legend.text = element_text(size = 10), # Style legend text\n    axis.text.x = element_text(angle = 45, hjust = 1) # Rotate x-axis labels\n  )\n\n# Convert to interactive plotly plot\nggplotly(p, tooltip = c(\"x\", \"y\", \"fill\"))\n\n\n\n\n\n\n\n\nCode\nhtmlwidgets::saveWidget(ggplotly(p), \"top_5_coldest_months.html\")\n\n\n\n\nImport the data set\nSplit the data set into individual months in individual years: January 1995, February 1995, March 1995, and so on, all the way through December 2011.\nFor each individual month, calculate the average of the Temp variable (along with any other summaries we might find interesting).\nSort the individual months according to their average temperatures.\nMake a table of the five coldest months\nmutate(Month = match(Month, month.name)) # Convert full month names to numbers\nmutate(Month_Name = paste(month.abb[Month], “’”, str_sub(Year, 3, 4), sep = ““)) # e.g.,”Jan ’10”\ntheme(legend.position = “top”)"
+  },
+  {
+    "objectID": "slides_qmd/Linear_Algebra_slimversion_v3.html#outline",
+    "href": "slides_qmd/Linear_Algebra_slimversion_v3.html#outline",
+    "title": "Linear Algebra",
+    "section": "Outline",
+    "text": "Outline\n\nVectors\nMatrix operations\nLinear Transformation\nSystem of Linear Equations\nVector Spaces\nEigenvalues and Eigenvectors\nApplications for calculus"
+  },
+  {
+    "objectID": "slides_qmd/Linear_Algebra_slimversion_v3.html#vectors",
+    "href": "slides_qmd/Linear_Algebra_slimversion_v3.html#vectors",
+    "title": "Linear Algebra",
+    "section": "Vectors",
+    "text": "Vectors\n\nA vector of length \\(n\\) is just a sequence of \\(n\\) numbers\n\n\\(x=(x_1, \\ldots, x_n)\\) or\n\\(x=\\begin{bmatrix}x_1, \\ldots, x_n\\end{bmatrix}\\)\n\nvectors in 2-D space"
+  },
+  {
+    "objectID": "slides_qmd/Linear_Algebra_slimversion_v3.html#vectors-1",
+    "href": "slides_qmd/Linear_Algebra_slimversion_v3.html#vectors-1",
+    "title": "Linear Algebra",
+    "section": "Vectors",
+    "text": "Vectors\n\nrow vector\n\n\n\\[\nu=\\begin{bmatrix} 1 & 0 \\end{bmatrix}\n\\]\n\ncolumn vector\n\n\n\n\\[\nv=\\begin{bmatrix} 1 \\\\ 0 \\end{bmatrix}\n\\]\n\n\\(v=u^T\\)"
+  },
+  {
+    "objectID": "slides_qmd/Linear_Algebra_slimversion_v3.html#vector-operations",
+    "href": "slides_qmd/Linear_Algebra_slimversion_v3.html#vector-operations",
+    "title": "Linear Algebra",
+    "section": "Vector Operations",
+    "text": "Vector Operations\n\naddition and subtraction\n\ndo the operation element-by-element\ncheck the dimension of the vectors"
+  },
+  {
+    "objectID": "slides_qmd/Linear_Algebra_slimversion_v3.html#vector-operations-1",
+    "href": "slides_qmd/Linear_Algebra_slimversion_v3.html#vector-operations-1",
+    "title": "Linear Algebra",
+    "section": "Vector Operations",
+    "text": "Vector Operations\n\nvector multiplication\n\nmultiply vectors with scalars\ndot product (inner product)"
+  },
+  {
+    "objectID": "slides_qmd/Linear_Algebra_slimversion_v3.html#vector-operations-2",
+    "href": "slides_qmd/Linear_Algebra_slimversion_v3.html#vector-operations-2",
+    "title": "Linear Algebra",
+    "section": "Vector Operations",
+    "text": "Vector Operations\nThe dot product of vectors \\(x,y \\in \\mathbb R^n\\) is defined as\n\n\\[\n\\begin{array}{rl}\nx^\\top y &= {\\color{red}{x_1 y_1}} + {\\color{blue}{x_2 y_2}} + \\cdots + x_n y_n \\\\\n&= \\sum_{i=1}^n x_i y_i\n\\end{array}\n\\]\n\nthe dot product could be written as \\(x \\cdot y\\) or \\(x'y\\)\nthe dot product could be expressed in cosine form\n\n\n\n\\[\nx \\cdot y = \\|x\\| \\|y\\| \\cos \\theta\n\\]"
+  },
+  {
+    "objectID": "slides_qmd/Linear_Algebra_slimversion_v3.html#matrix-algebra",
+    "href": "slides_qmd/Linear_Algebra_slimversion_v3.html#matrix-algebra",
+    "title": "Linear Algebra",
+    "section": "Matrix Algebra",
+    "text": "Matrix Algebra\n\nwhat is a matrix?\n\na matrix is a rectangular array of numbers\n\\(A_{m \\times n} = \\begin{bmatrix} a_{11} & a_{12} & \\cdots & a_{1n} \\\\ a_{21} & a_{22} & \\cdots & a_{2n} \\\\ \\vdots & \\vdots & \\ddots & \\vdots \\\\ a_{m1} & a_{m2} & \\cdots & a_{mn} \\end{bmatrix}\\)"
+  },
+  {
+    "objectID": "slides_qmd/Linear_Algebra_slimversion_v3.html#matrix-algebra-1",
+    "href": "slides_qmd/Linear_Algebra_slimversion_v3.html#matrix-algebra-1",
+    "title": "Linear Algebra",
+    "section": "Matrix Algebra",
+    "text": "Matrix Algebra\n\nmatrix addition and subtraction\n\n\\(A_{m \\times n} \\pm B_{m \\times n} = C_{m \\times n}\\)\n\ne.g. \\(A = \\begin{bmatrix} 1 & 2 \\\\ 3 & 4 \\end{bmatrix}\\), \\(B = \\begin{bmatrix} 5 & 6 \\\\ 7 & 8 \\end{bmatrix}\\), \\(A+B = \\begin{bmatrix} 6 & 8 \\\\ 10 & 12 \\end{bmatrix}\\)\n\ncheck the dimension of the matrices\n\nIn general,\n\n\n\\[\nA + B =\n\\begin{bmatrix}\n    a_{11} & \\cdots & a_{1k} \\\\\n    \\vdots & \\vdots & \\vdots \\\\\n    a_{n1} & \\cdots & a_{nk}\n\\end{bmatrix} +\n\\begin{bmatrix}\n    b_{11} & \\cdots & b_{1k} \\\\\n    \\vdots & \\vdots & \\vdots \\\\\n    b_{n1} & \\cdots & b_{nk}\n\\end{bmatrix} =\n\\begin{bmatrix}\n    a_{11} + b_{11} &  \\cdots & a_{1k} + b_{1k} \\\\\n    \\vdots & \\vdots & \\vdots \\\\\n    a_{n1} + b_{n1} &  \\cdots & a_{nk} + b_{nk}\n\\end{bmatrix}\n\\]"
+  },
+  {
+    "objectID": "slides_qmd/Linear_Algebra_slimversion_v3.html#matrix-algebra-2",
+    "href": "slides_qmd/Linear_Algebra_slimversion_v3.html#matrix-algebra-2",
+    "title": "Linear Algebra",
+    "section": "Matrix Algebra",
+    "text": "Matrix Algebra\n\nscale multiplication\n\nIn general for a number \\(\\gamma\\) and any matrix \\(A\\),\n\n\n\n\\[\n\\gamma A =\n\\gamma\n\\begin{bmatrix}\n    a_{11} &  \\cdots & a_{1k} \\\\\n    \\vdots & \\vdots  & \\vdots \\\\\n    a_{n1} &  \\cdots & a_{nk}\n\\end{bmatrix} :=\n\\begin{bmatrix}\n    \\gamma a_{11} & \\cdots & \\gamma a_{1k} \\\\\n    \\vdots & \\vdots & \\vdots \\\\\n    \\gamma a_{n1} & \\cdots & \\gamma a_{nk}\n\\end{bmatrix}\n\\]"
+  },
+  {
+    "objectID": "slides_qmd/Linear_Algebra_slimversion_v3.html#matrix-multiplication",
+    "href": "slides_qmd/Linear_Algebra_slimversion_v3.html#matrix-multiplication",
+    "title": "Linear Algebra",
+    "section": "Matrix multiplication",
+    "text": "Matrix multiplication\n\nThe rule for matrix multiplication generalizes the idea of inner products\n\nIf \\(A\\) is \\(n \\times k\\) and \\(B\\) is \\(j \\times m\\), then to multiply \\(A\\) and \\(B\\)\n\nany requirement on the dimensions of \\(A\\) and \\(B\\) for the matrix multiplication?\nwhat will be dimension of the resulting matrix \\(A B\\)\n\n\nHere’s an example of a \\(2 \\times 2\\) matrix multiplied by a \\(2 \\times 1\\) vector\n\n\n\\[\nAx =\n\\begin{bmatrix}\n    \\color{red}{a_{11}} & \\color{red}{a_{12}} \\\\\n    a_{21} & a_{22}\n\\end{bmatrix}\n\\begin{bmatrix}\n    \\color{red}{x_1} \\\\\n    \\color{red}{x_2}\n\\end{bmatrix}\n=\n\\begin{bmatrix}\n    \\color{red}{a_{11}x_1 + a_{12}x_2} \\\\\n    a_{21}x_1 + a_{22}x_2\n\\end{bmatrix}\n\\]\n\nHere is a simple illustration of multiplication of two matrices\n\n\n\n\\[\nAB =\n\\begin{bmatrix}\n    a_{11} & a_{12} \\\\\n    \\color{red}{a_{21}} & \\color{red}{a_{22}} \\\\\n\\end{bmatrix}\n\\begin{bmatrix}\n    b_{11} & \\color{red}{b_{12}} \\\\\n    b_{21} & \\color{red}{b_{22}} \\\\\n\\end{bmatrix} :=\n\\begin{bmatrix}\n    a_{11}b_{11} + a_{12}b_{21} & a_{11}b_{12} + a_{12}b_{22} \\\\\n    a_{21}b_{11} + a_{22}b_{21} & \\color{red}{a_{21}b_{12} + a_{22}b_{22}}\n\\end{bmatrix}\n\\]"
+  },
+  {
+    "objectID": "slides_qmd/Linear_Algebra_slimversion_v3.html#matrix-multiplication-1",
+    "href": "slides_qmd/Linear_Algebra_slimversion_v3.html#matrix-multiplication-1",
+    "title": "Linear Algebra",
+    "section": "Matrix multiplication",
+    "text": "Matrix multiplication\n\nNotice that \\(AB \\neq BA\\) in general\nThere are many tutorials to help you further visualize this operation, like this one\nOne important special case is the identity matrix, which has ones on the principal diagonal and zero elsewhere:\n\n\n\\[\nI = \\begin{bmatrix}\n        1 & \\cdots & 0 \\\\\n        \\vdots & \\ddots & \\vdots \\\\\n        0 &  \\cdots & 1\n    \\end{bmatrix}\n\\]\n\nExecises:\n\nif \\(A\\) is \\(n \\times k\\) and \\(I\\) is the \\(k \\times k\\) identity matrix, then \\(AI = A\\)\nif \\(I\\) is the \\(n \\times n\\) identity matrix, then \\(IA = A\\)"
+  },
+  {
+    "objectID": "slides_qmd/Linear_Algebra_slimversion_v3.html#exercise",
+    "href": "slides_qmd/Linear_Algebra_slimversion_v3.html#exercise",
+    "title": "Linear Algebra",
+    "section": "Exercise",
+    "text": "Exercise\n\\[\nY=\\begin{bmatrix} 3 & 1 & -2 \\\\ 6 & 3 & 4 \\end{bmatrix}\n, \\quad X=\\begin{bmatrix} 4 & 2 \\\\ 3 & 0 \\\\ 1 & 2 \\end{bmatrix}\n\\]\n\nWhat are the dimensions of the matrices \\(X\\) and \\(Y\\)?\nHow to multiply \\(Y\\) and \\(X\\) to yield a \\(3 \\times 3\\) matrix? Compute it\nHow to multiply \\(Y\\) and \\(X\\) to yield a \\(2 \\times 2\\) matrix? Compute it"
+  },
+  {
+    "objectID": "slides_qmd/Linear_Algebra_slimversion_v3.html#linear-transformation",
+    "href": "slides_qmd/Linear_Algebra_slimversion_v3.html#linear-transformation",
+    "title": "Linear Algebra",
+    "section": "Linear Transformation",
+    "text": "Linear Transformation\nMatrics as Mapping\n\nEach \\(n \\times k\\) matrix \\(A\\) can be identified with a function \\(f(x) = Ax\\) that maps \\(x \\in \\mathbb R ^k\\) into \\(y = Ax \\in \\mathbb R ^n\\)\n\nthese kinds of functions have a special property: they are linear\n\nA function \\(f \\colon \\mathbb R ^k \\to \\mathbb R ^n\\) is called linear if\n\nfor all \\(x, y \\in \\mathbb R\\) and all scalars \\(\\alpha, \\beta\\), we have\n\n\n\n\\[\nf(\\alpha x + \\beta y) = \\alpha f(x) + \\beta f(y)\n\\]\n\n\nit can be shown that \\(f\\) is linear if and only if there exists a matrix \\(A\\) such that \\(f(x) = Ax\\) for all \\(x\\)"
+  },
+  {
+    "objectID": "slides_qmd/Linear_Algebra_slimversion_v3.html#linear-transformation-1",
+    "href": "slides_qmd/Linear_Algebra_slimversion_v3.html#linear-transformation-1",
+    "title": "Linear Algebra",
+    "section": "Linear Transformation",
+    "text": "Linear Transformation\nSome examples\nWe consider how a given matrix transforms in \\(\\mathbb R ^2\\)\nLet \\(\\begin{bmatrix} 2 & 1 \\\\ -1 & 1 \\end{bmatrix}\\)\n\n\n\nit transforms the vector \\(x = \\begin{bmatrix} 1 \\\\ 3 \\end{bmatrix}\\) to the vector \\(y = \\begin{bmatrix} 5 \\\\ 2 \\end{bmatrix}\\) through the matrix multiplication\n\n\n\\[\\begin{bmatrix}\n        2 & 1 \\\\\n        -1 & 1\n    \\end{bmatrix}\n    \\begin{bmatrix}\n        1 \\\\\n        3\n    \\end{bmatrix}\\]\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nEx: with the same vector \\(x\\), now, the matrix becomes \\(A = \\begin{bmatrix} 1 & 2 \\\\ 3 & 4 \\end{bmatrix}\\), what will be the \\(y\\)?"
+  },
+  {
+    "objectID": "slides_qmd/Linear_Algebra_slimversion_v3.html#linear-transformation-2",
+    "href": "slides_qmd/Linear_Algebra_slimversion_v3.html#linear-transformation-2",
+    "title": "Linear Algebra",
+    "section": "Linear Transformation",
+    "text": "Linear Transformation\nSome examples - Scaling\n\n\nA matrix of the form\n\\[\n\\begin{bmatrix}\n\\alpha & 0\n\\\\ 0 & \\beta\n\\end{bmatrix}\n\\]\nscales vectors across the x-axis by a factor \\(\\alpha\\) and along the y-axis by a factor \\(\\beta\\)\n\na simple example where \\(\\alpha = \\beta = 3\\)"
+  },
+  {
+    "objectID": "slides_qmd/Linear_Algebra_slimversion_v3.html#linear-transformation-3",
+    "href": "slides_qmd/Linear_Algebra_slimversion_v3.html#linear-transformation-3",
+    "title": "Linear Algebra",
+    "section": "Linear Transformation",
+    "text": "Linear Transformation\nSome examples - Shearing\n\n\nA “shear” matrix of the form\n\\[\n    \\begin{bmatrix}\n        1 & \\lambda \\\\\n        0 & 1\n    \\end{bmatrix}\n\\]\nstretches vectors along the x-axis by an amount proportional to the y-coordinate of a point"
+  },
+  {
+    "objectID": "slides_qmd/Linear_Algebra_slimversion_v3.html#linear-transformation-4",
+    "href": "slides_qmd/Linear_Algebra_slimversion_v3.html#linear-transformation-4",
+    "title": "Linear Algebra",
+    "section": "Linear Transformation",
+    "text": "Linear Transformation\nSome examples - Rotation\n\n\nA matrix of the form\n\\[\n\\begin{bmatrix}\n\\cos \\theta & \\sin \\theta\n\\\\ - \\sin \\theta & \\cos \\theta\n\\end{bmatrix}\n\\]\nis called a rotation matrix\n\nThis matrix rotates vectors clockwise by an angle \\(\\theta\\)\n\n45 degree clockwise rotation"
+  },
+  {
+    "objectID": "slides_qmd/Linear_Algebra_slimversion_v3.html#linear-transformation-5",
+    "href": "slides_qmd/Linear_Algebra_slimversion_v3.html#linear-transformation-5",
+    "title": "Linear Algebra",
+    "section": "Linear Transformation",
+    "text": "Linear Transformation\nSome examples - Permutation\n\n\nThe permutation matrix\n\\[\n\\begin{bmatrix}\n0 & 1 \\\\\n1 & 0\n\\end{bmatrix}\n\\]\ninterchanges the coordinates of a vector"
+  },
+  {
+    "objectID": "slides_qmd/Linear_Algebra_slimversion_v3.html#matrix-multiplication-as-composition",
+    "href": "slides_qmd/Linear_Algebra_slimversion_v3.html#matrix-multiplication-as-composition",
+    "title": "Linear Algebra",
+    "section": "Matrix multiplication as composition",
+    "text": "Matrix multiplication as composition\nLinear compositions\nConsider the two matrices\n\\[\n    A =\n        \\begin{bmatrix}\n            0 & 1 \\\\\n            -1 & 0\n        \\end{bmatrix}\n        \\quad \\text{and} \\quad\n    B =\n        \\begin{bmatrix}\n            1 & 2 \\\\\n            0 & 1\n        \\end{bmatrix}\n\\]\n\nWhat will the output be when we try to obtain \\(ABx\\) for some \\(2 \\times 1\\) vector \\(x\\)?\n\n\n\\[\n\\color{red}{\\underbrace{\n\\color{black}{\\begin{bmatrix}\n  0 & 1 \\\\\n-1 & 0\n\\end{bmatrix}}\n}_{\\textstyle A} }\n\\color{red}{\\underbrace{\n\\color{black}{\\begin{bmatrix}\n  1 & 2 \\\\\n  0 & 1\n\\end{bmatrix}}\n}_{\\textstyle B}}\n\\color{red}{\\overbrace{\n\\color{black}{\\begin{bmatrix}\n  1 \\\\\n  3\n\\end{bmatrix}}\n}^{\\textstyle x}}\n\\rightarrow\n\\color{red}{\\underbrace{\n\\color{black}{\\begin{bmatrix}\n  0 & 1 \\\\\n  -1 & -2\n\\end{bmatrix}}\n}_{\\textstyle AB}}\n\\color{red}{\\overbrace{\n\\color{black}{\\begin{bmatrix}\n  1 \\\\\n  3\n\\end{bmatrix}}\n}^{\\textstyle x}}\n\\rightarrow\n\\color{red}{\\overbrace{\n\\color{black}{\\begin{bmatrix}\n  3 \\\\\n  -7\n\\end{bmatrix}}\n}^{\\textstyle y}}\n\\]"
+  },
+  {
+    "objectID": "slides_qmd/Linear_Algebra_slimversion_v3.html#matrix-multiplication-as-composition-1",
+    "href": "slides_qmd/Linear_Algebra_slimversion_v3.html#matrix-multiplication-as-composition-1",
+    "title": "Linear Algebra",
+    "section": "Matrix multiplication as composition",
+    "text": "Matrix multiplication as composition\nLinear compositions\n\\[\n\\color{red}{\\underbrace{\n\\color{black}{\\begin{bmatrix}\n  0 & 1 \\\\\n-1 & 0\n\\end{bmatrix}}\n}_{\\textstyle A} }\n\\color{red}{\\underbrace{\n\\color{black}{\\begin{bmatrix}\n  1 & 2 \\\\\n  0 & 1\n\\end{bmatrix}}\n}_{\\textstyle B}}\n\\color{red}{\\overbrace{\n\\color{black}{\\begin{bmatrix}\n  1 \\\\\n  3\n\\end{bmatrix}}\n}^{\\textstyle x}}\n\\rightarrow\n\\color{red}{\\underbrace{\n\\color{black}{\\begin{bmatrix}\n  0 & 1 \\\\\n  -1 & 0\n\\end{bmatrix}}\n}_{\\textstyle A}}\n\\color{red}{\\overbrace{\n\\color{black}{\\begin{bmatrix}\n  7 \\\\\n  3\n\\end{bmatrix}}\n}^{\\textstyle Bx}}\n\\rightarrow\n\\color{red}{\\overbrace{\n\\color{black}{\\begin{bmatrix}\n  3 \\\\\n  -7\n\\end{bmatrix}}\n}^{\\textstyle y}}\n\\]\n\nWe can observe that applying the transformation \\(AB\\) on the vector \\(x\\) is the same as first applying \\(B\\) on \\(x\\) and then applying \\(A\\) on the vector \\(Bx\\).\nthe matrix product \\(AB\\) is the composition of the matrix transformations \\(A\\) and \\(B\\)\n\nfirst apply transformation \\(B\\) and then transformation \\(A\\)\n\n\n\n\nWhen we matrix multiply an \\(n \\times m\\) matrix \\(A\\) with an \\(m \\times k\\) matrix \\(B\\) the obtained matrix product is an \\(n \\times k\\) matrix \\(AB\\)\n\nThus, if \\(A\\) and \\(B\\) are transformations such that \\(A \\colon \\mathbb{R}^m \\to\n\\mathbb{R}^n\\) and \\(B \\colon \\mathbb{R}^k \\to \\mathbb{R}^m\\), then \\(AB\\) transforms \\(\\mathbb{R}^k\\) to \\(\\mathbb{R}^n\\).\n\n\nnotice that \\(AB\\) is generally not equal to \\(BA\\)"
+  },
+  {
+    "objectID": "slides_qmd/Linear_Algebra_slimversion_v3.html#matrix-multiplication-as-composition-2",
+    "href": "slides_qmd/Linear_Algebra_slimversion_v3.html#matrix-multiplication-as-composition-2",
+    "title": "Linear Algebra",
+    "section": "Matrix multiplication as composition",
+    "text": "Matrix multiplication as composition\nLinear compositions - examples\n\nLet \\(A\\) be the \\(90^{\\circ}\\) clockwise rotation matrix given by \\(\\begin{bmatrix} 0 & 1 \\\\ -1 & 0 \\end{bmatrix}\\)\nLet \\(B\\) be a shear matrix along the x-axis given by \\(\\begin{bmatrix} 1 & 2 \\\\ 0 & 1 \\end{bmatrix}\\)\nvisualize how a grid of points changes when we apply the transformation \\(AB\\) and then compare it with the transformation \\(BA\\)"
+  },
+  {
+    "objectID": "slides_qmd/Linear_Algebra_slimversion_v3.html#matrix-multiplication-as-composition-3",
+    "href": "slides_qmd/Linear_Algebra_slimversion_v3.html#matrix-multiplication-as-composition-3",
+    "title": "Linear Algebra",
+    "section": "Matrix multiplication as composition",
+    "text": "Matrix multiplication as composition\nLinear compositions - examples\nShear then rotate"
+  },
+  {
+    "objectID": "slides_qmd/Linear_Algebra_slimversion_v3.html#matrix-multiplication-as-composition-4",
+    "href": "slides_qmd/Linear_Algebra_slimversion_v3.html#matrix-multiplication-as-composition-4",
+    "title": "Linear Algebra",
+    "section": "Matrix multiplication as composition",
+    "text": "Matrix multiplication as composition\nLinear compositions - examples\nRotate then shear\n\n\n\n\n\n\n\n\n\n\nit demonstrates that the transformation \\(AB\\) is not the same as the transformation \\(BA\\)"
+  },
+  {
+    "objectID": "slides_qmd/Linear_Algebra_slimversion_v3.html#matrix-multiplication-as-composition-5",
+    "href": "slides_qmd/Linear_Algebra_slimversion_v3.html#matrix-multiplication-as-composition-5",
+    "title": "Linear Algebra",
+    "section": "Matrix multiplication as composition",
+    "text": "Matrix multiplication as composition\nLinear compositions - Iterating on a fixed map\nIn economics, we are often interested in analyzing behavior where we repeatedly apply a fixed matrix\nFor example, given a vector \\(v\\) and a matrix \\(A\\), we are interested in studying the sequence\n\\[\n    v, \\quad\n    Av, \\quad\n    AAv = A^2v, \\quad \\ldots\n\\]"
+  },
+  {
+    "objectID": "slides_qmd/Linear_Algebra_slimversion_v3.html#matrix-multiplication-as-composition-6",
+    "href": "slides_qmd/Linear_Algebra_slimversion_v3.html#matrix-multiplication-as-composition-6",
+    "title": "Linear Algebra",
+    "section": "Matrix multiplication as composition",
+    "text": "Matrix multiplication as composition\nLinear compositions - Iterating on a fixed map\n\nExample of a sequence of iterates \\((A^k v)_{k \\geq 0}\\) under map \\(A=\\begin{bmatrix} \\sqrt{3}+1 & -2 \\\\ 1 & \\sqrt{3}-1  \\end{bmatrix}\\)\nlet \\(v = (-3, -3)\\)\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nHere with each iteration the vectors get shorter, i.e., move closer to the origin\nIn this case, repeatedly multiplying a vector by \\(A\\) makes the vector “spiral in”"
+  },
+  {
+    "objectID": "slides_qmd/Linear_Algebra_slimversion_v3.html#matrix-multiplication-as-composition-7",
+    "href": "slides_qmd/Linear_Algebra_slimversion_v3.html#matrix-multiplication-as-composition-7",
+    "title": "Linear Algebra",
+    "section": "Matrix multiplication as composition",
+    "text": "Matrix multiplication as composition\nLinear compositions - Iterating on a fixed map\n\nExample of a sequence of iterates \\((A^k v)_{k \\geq 0}\\) under map \\(A=\\begin{bmatrix} \\sqrt{3}+1 & -2 \\\\ 1 & \\sqrt{3}-1  \\end{bmatrix}\\)\nlet \\(v = (2.5, 0)\\)\n\n\n\n\n\n\n\n\n\n\n\n\n\nIn this case, repeatedly multiplying a vector by \\(A\\) simply “rotates it around an ellipse”"
+  },
+  {
+    "objectID": "slides_qmd/Linear_Algebra_slimversion_v3.html#matrix-multiplication-as-composition-8",
+    "href": "slides_qmd/Linear_Algebra_slimversion_v3.html#matrix-multiplication-as-composition-8",
+    "title": "Linear Algebra",
+    "section": "Matrix multiplication as composition",
+    "text": "Matrix multiplication as composition\nLinear compositions - Iterating on a fixed map\n\nExample of a sequence of iterates \\((A^k v)_{k \\geq 0}\\) under map \\(A=\\begin{bmatrix} \\sqrt{3}+1 & -2 \\\\ 1 & \\sqrt{3}-1  \\end{bmatrix}\\)\nlet \\(v = (-1, -0.25)\\)\n\n\n\n\n\n\n\n\n\n\n\n\n\nIn this case, repeatedly multiplying a vector by \\(A\\) makes the vector “spiral out”"
+  },
+  {
+    "objectID": "slides_qmd/Linear_Algebra_slimversion_v3.html#system-of-linear-equations",
+    "href": "slides_qmd/Linear_Algebra_slimversion_v3.html#system-of-linear-equations",
+    "title": "Linear Algebra",
+    "section": "System of Linear Equations",
+    "text": "System of Linear Equations\n\nTwo equations in two unknowns\n\n\n\\[\n\\begin{aligned}\n    y_1 = a x_1 + b x_2 \\\\\n    y_2 = c x_1 + d x_2\n\\end{aligned}\n\\]\n\nHow we solve it?\n\nsubstitution and elimination\n\nLet us work on a simple example\n\n\n\n\\[\n\\begin{aligned}\n    3x + 5y &= 7 \\\\\n    x - 2y &= 3\n\\end{aligned}\n\\]\n\nwhat are \\(x\\) and \\(y\\)?"
+  },
+  {
+    "objectID": "slides_qmd/Linear_Algebra_slimversion_v3.html#general-linear-systems",
+    "href": "slides_qmd/Linear_Algebra_slimversion_v3.html#general-linear-systems",
+    "title": "Linear Algebra",
+    "section": "General linear systems",
+    "text": "General linear systems\nA more general version looks as follows\n\\[\n\\begin{matrix}\n    a_{11} x_1 & + & a_{12} x_2 & + & \\cdots & + & a_{1n} x_n & = & b_1 \\\\\n    \\vdots & & \\vdots & & & & \\vdots & & \\vdots \\\\\n    a_{n1} x_1 & + & a_{n2} x_2 & + & \\cdots & + & a_{nn} x_n & = & b_n\n\\end{matrix}\n\\]\n\nThe objective here is to solve for the “unknowns” \\(x_1, \\ldots, x_n\\)\nWe take as given the coefficients \\(a_{11}, \\ldots, a_{nn}\\) and constants \\(b_1, \\ldots, b_n\\)\nthis is a setting where the number of unknowns equals the number of equations\n\nthis is the case where we are most likely to find a well-defined solution\n\n\n\n\n(The other cases are referred to as overdetermined and underdetermined systems of equations)"
+  },
+  {
+    "objectID": "slides_qmd/Linear_Algebra_slimversion_v3.html#solving-systems-of-equations",
+    "href": "slides_qmd/Linear_Algebra_slimversion_v3.html#solving-systems-of-equations",
+    "title": "Linear Algebra",
+    "section": "Solving systems of equations",
+    "text": "Solving systems of equations\n\\[\nA x = b\n    \\quad \\text{where} \\quad\n    A =\n    \\begin{bmatrix}\n        a_{11} &  \\cdots & a_{1n} \\\\\n        \\vdots & \\vdots  & \\vdots \\\\\n        a_{n1} &  \\cdots & a_{nn}\n    \\end{bmatrix}\n    \\quad \\text{and} \\quad\n    b =\n    \\begin{bmatrix}\n        b_1 \\\\\n        \\vdots \\\\\n        b_n\n    \\end{bmatrix}\n\\]\n\nfind a vector \\(x \\in \\mathbb R^n\\) that solves the equations, taking \\(b\\) and \\(A\\) as given"
+  },
+  {
+    "objectID": "slides_qmd/Linear_Algebra_slimversion_v3.html#some-examples",
+    "href": "slides_qmd/Linear_Algebra_slimversion_v3.html#some-examples",
+    "title": "Linear Algebra",
+    "section": "Some examples",
+    "text": "Some examples\nConsider the system of equations given by\n\n\n\\[\n\\begin{aligned}\n    x + 3y &= 3 \\\\\n    2x + 6y &= -8\n\\end{aligned}\n\\]\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nthe rows of \\(A\\) are called linearly dependent"
+  },
+  {
+    "objectID": "slides_qmd/Linear_Algebra_slimversion_v3.html#some-examples-1",
+    "href": "slides_qmd/Linear_Algebra_slimversion_v3.html#some-examples-1",
+    "title": "Linear Algebra",
+    "section": "Some examples",
+    "text": "Some examples\nConsider the system of equations given by\n\\[\n\\begin{aligned}\n    x - 2y &= -4 \\\\\n    -2x + 4y &= 8\n\\end{aligned}\n\\]\nAny vector \\(v = (x,y)\\) such that \\(x = 2y - 4\\) will solve the above system\nSince we can find infinite such vectors this system has infinitely many solutions\nThis is because the rows of the corresponding matrix are linearly dependent"
+  },
+  {
+    "objectID": "slides_qmd/Linear_Algebra_slimversion_v3.html#nonsingular-matrices",
+    "href": "slides_qmd/Linear_Algebra_slimversion_v3.html#nonsingular-matrices",
+    "title": "Linear Algebra",
+    "section": "Nonsingular matrices",
+    "text": "Nonsingular matrices\n\nA square matrix \\(A\\) is nonsingular if and only if the rows and columns of \\(A\\) are linearly independent\nTo every square matrix we can assign a unique number called the determinant.\nFor \\(2 \\times 2\\) matrices, the determinant is given by,\n\n\n\\[\n\\begin{bmatrix}\n    \\color{red}{a} & \\color{blue}{b} \\\\\n    \\color{blue}{c} & \\color{red}{d}\n\\end{bmatrix}\n=\n{\\color{red}{ad}} - {\\color{blue}{bc}}\n\\]\n\n\nthe determinant of a \\(3 \\times 3\\) matrix\n\n\n\\[\ndet \\begin{bmatrix}\n    a & b & c \\\\\n    d & e & f \\\\\n    g & h & i\n\\end{bmatrix}\n= a(ei - fh) - b(di - fg) + c(dh - eg)\n\\]\n\n\nIf the determinant of \\(A\\) is not zero, then we say that \\(A\\) is nonsingular\n\n\n\nThe determinant of a \\(2 \\times 2\\) matrix is also the area of the parallelogram spanned by the column vectors\nThe determinant of a \\(2 \\times 2\\) matrix is also the factor by which the matrix scales the area of any set of points in the plane\n\nif the determinant is negative, the matrix also flips the orientation of the plane\nif the determinant is zero, the matrix collapses the plane to a line or lower-dimensional space\nif the determinant is one, the matrix preserves the area of the plane\nif the determinant is greater than one, the matrix expands the area of the plane\nif the determinant is less than one, the matrix shrinks the area of the plane"
+  },
+  {
+    "objectID": "slides_qmd/Linear_Algebra_slimversion_v3.html#nonsingular-matrices-1",
+    "href": "slides_qmd/Linear_Algebra_slimversion_v3.html#nonsingular-matrices-1",
+    "title": "Linear Algebra",
+    "section": "Nonsingular matrices",
+    "text": "Nonsingular matrices\n\na square matrix \\(A\\) has a nonzero determinant, if and only if it possesses an inverse matrix \\(A^{-1}\\), with the property that \\(A A^{-1} =A^{-1} A = I\\).\nAs a consequence, if we pre-multiply both sides of \\(Ax = b\\) by \\(A^{-1}\\), we get\n\n\n\\[\nx = A^{-1} b\n\\]\nThis is the solution to \\(Ax = b\\) —– the solution we are looking for\n\nA more detailed explanation of matrix inverse can be found here"
+  },
+  {
+    "objectID": "slides_qmd/Linear_Algebra_slimversion_v3.html#when-the-matrices-have-more-rows-than-columns",
+    "href": "slides_qmd/Linear_Algebra_slimversion_v3.html#when-the-matrices-have-more-rows-than-columns",
+    "title": "Linear Algebra",
+    "section": "When the matrices have more rows than columns",
+    "text": "When the matrices have more rows than columns\n\\(A_{n \\times k}\\) matrix with \\(n &gt; k\\)\n\nthis is important in many settings, including linear regression\nGiven arbitrary \\(y \\in \\mathbb R ^n\\), we seek an \\(x \\in \\mathbb R ^k\\) such that \\(y = Ax\\)\n\nthe existence of a solution is highly unlikely\n\nfocusing on the case where the columns of \\(A\\) are linearly independent.\n\nthe span of the columns of \\(A\\) is a \\(k\\)-dimensional subspace of \\(\\mathbb R ^n\\).\n\n\n\n\nThis span is very “unlikely” to contain arbitrary \\(y \\in \\mathbb R ^n\\).\nTo see why, recall the figure above, where $ k=2 $ and \\(n=3\\).\nImagine an arbitrarily chosen $ y R ^3 $, located somewhere in that three-dimensional space.\nWhat’s the likelihood that \\(y\\) lies in the span of \\(\\{a_1, a_2\\}\\) (i.e., the two dimensional plane through these points)?\nIn a sense, it must be very small, since this plane has zero “thickness”.\n\n\n\nin the \\(n &gt; k\\) case we usually give up on existence\n\ninstead, seek the best approximation, looking for \\(x\\) that makes the distance \\(\\| y - Ax\\|\\) as small as possible\none can use either calculus or the theory of orthogonal projections"
+  },
+  {
+    "objectID": "slides_qmd/Linear_Algebra_slimversion_v3.html#when-the-matrices-have-more-columns-than-rows",
+    "href": "slides_qmd/Linear_Algebra_slimversion_v3.html#when-the-matrices-have-more-columns-than-rows",
+    "title": "Linear Algebra",
+    "section": "When the matrices have more columns than rows",
+    "text": "When the matrices have more columns than rows\n\\(A_{n \\times k}\\) matrix with \\(n &lt; k\\)\n\nthere are either no solutions or infinitely many — in other words, uniqueness never holds\nFor example, consider the case where \\(k=3\\) and \\(n=2\\)\n\nthe columns of \\(A\\) consists of 3 vectors in \\(\\mathbb R ^2\\)\nthis set can never be linearly independent\nhence, one column is a linear combination of the other two\nlet’s say that \\(a_1 = \\alpha a_2 + \\beta a_3\\)\nthen if \\(y = Ax = x_1 a_1 + x_2 a_2 + x_3 a_3\\), we can also write\n\n\n\n\\[\ny\n= x_1 (\\alpha a_2 + \\beta a_3) + x_2 a_2 + x_3 a_3\n= (x_1 \\alpha + x_2) a_2 + (x_1 \\beta + x_3) a_3\n\\]"
+  },
+  {
+    "objectID": "slides_qmd/Linear_Algebra_slimversion_v3.html#vector-spaces",
+    "href": "slides_qmd/Linear_Algebra_slimversion_v3.html#vector-spaces",
+    "title": "Linear Algebra",
+    "section": "Vector Spaces",
+    "text": "Vector Spaces\nSpan\n\nGiven a set of vectors \\(A := \\{a_1, \\ldots, a_k\\}\\) in \\(\\mathbb R ^n\\)\n\nnew vectors can be created by performing linear operations\n\nnew vectors created in this manner are called linear combinations of \\(A\\)\nIn particular, \\(y \\in \\mathbb R ^n\\) is a linear combination of \\(A := \\{a_1, \\ldots, a_k\\}\\) if\n\n\n\\[\ny = \\beta_1 a_1 + \\cdots + \\beta_k a_k, \\quad\n\\text{ for some scalars } \\beta_1, \\ldots, \\beta_k\n\\]\n\n\nthe values \\(\\beta_1, \\ldots, \\beta_k\\) are called the coefficients of the linear combination\nThe set of linear combinations of \\(A\\) is called the span of \\(A\\)"
+  },
+  {
+    "objectID": "slides_qmd/Linear_Algebra_slimversion_v3.html#vector-spaces-1",
+    "href": "slides_qmd/Linear_Algebra_slimversion_v3.html#vector-spaces-1",
+    "title": "Linear Algebra",
+    "section": "Vector Spaces",
+    "text": "Vector Spaces\nSpan\nThe figure shows the span of \\(A = \\{a_1, a_2\\}\\) in \\(\\mathbb R ^3\\)\nThe span is a two-dimensional plane passing through these two points and the origin"
+  },
+  {
+    "objectID": "slides_qmd/Linear_Algebra_slimversion_v3.html#vector-spaces-2",
+    "href": "slides_qmd/Linear_Algebra_slimversion_v3.html#vector-spaces-2",
+    "title": "Linear Algebra",
+    "section": "Vector Spaces",
+    "text": "Vector Spaces\nSpan - Example\nIf \\(A = \\{e_1, e_2, e_3\\}\\) consists of the canonical basis vectors of \\(\\mathbb R ^3\\), that is\n\\[\ne_1 :=\n\\begin{bmatrix}\n     1 \\\\\n     0 \\\\\n     0\n\\end{bmatrix}\n, \\quad\ne_2 :=\n\\begin{bmatrix}\n     0 \\\\\n     1 \\\\\n     0\n\\end{bmatrix}\n, \\quad\ne_3 :=\n\\begin{bmatrix}\n     0 \\\\\n     0 \\\\\n     1\n\\end{bmatrix}\n\\]\nthen the span of \\(A\\) is all of \\(\\mathbb R ^3\\), because, for any \\(x = (x_1, x_2, x_3) \\in \\mathbb R ^3\\), we can write\n\\[\nx = x_1 e_1 + x_2 e_2 + x_3 e_3\n\\]\n\nExercise: Does \\(A_0 = \\{e_1, e_2, e_1 + e_2\\}\\) span \\(\\mathbb{R}^3\\)"
+  },
+  {
+    "objectID": "slides_qmd/Linear_Algebra_slimversion_v3.html#vector-spaces-3",
+    "href": "slides_qmd/Linear_Algebra_slimversion_v3.html#vector-spaces-3",
+    "title": "Linear Algebra",
+    "section": "Vector Spaces",
+    "text": "Vector Spaces\nLinear Independence (Re-cap)\n\na collection of vectors \\(A := \\{a_1, \\ldots, a_k\\}\\) in \\(\\mathbb R ^n\\) is said to be\n\nlinearly dependent if some strict subset of \\(A\\) has the same span as \\(A\\)\nlinearly independent if it is not linearly dependent\n\nPut differently, a set of vectors is linearly independent if no vector is redundant to the span and linearly dependent otherwise\nsince \\(\\mathbb R ^n\\) can be spanned by \\(n\\) vectors\n\nany collection of \\(m &gt; n\\) vectors in \\(\\mathbb R ^n\\) must be linearly dependent\n\nThe following statements are equivalent to linear independence of \\(A= \\{a_1, \\ldots, a_k\\} \\subset \\mathbb R ^n\\)\n\nNo vector in \\(A\\) can be formed as a linear combination of the other elements\nIf \\(\\beta_1 a_1 + \\cdots \\beta_k a_k = 0\\) for scalars \\(\\beta_1, \\ldots, \\beta_k\\), then \\(\\beta_1 = \\cdots = \\beta_k = 0\\)"
+  },
+  {
+    "objectID": "slides_qmd/Linear_Algebra_slimversion_v3.html#eigenvalues-and-eigenvectors",
+    "href": "slides_qmd/Linear_Algebra_slimversion_v3.html#eigenvalues-and-eigenvectors",
+    "title": "Linear Algebra",
+    "section": "Eigenvalues and Eigenvectors",
+    "text": "Eigenvalues and Eigenvectors\nLet \\(A\\) be an \\(n \\times n\\) square matrix\nIf \\(\\lambda\\) is scalar and \\(v\\) is a non-zero vector in \\(\\mathbb R ^n\\) such that\n\\[\nA v = \\lambda v\n\\]\nthen we say that \\(\\lambda\\) is an eigenvalue of \\(A\\), and \\(v\\) is an eigenvector\n\nan eigenvector of \\(A\\) is a vector such that when the map \\(f(x) = Ax\\) is applied\n\n\\(v\\) is merely scaled"
+  },
+  {
+    "objectID": "slides_qmd/Linear_Algebra_slimversion_v3.html#eigenvalues-and-eigenvectors-1",
+    "href": "slides_qmd/Linear_Algebra_slimversion_v3.html#eigenvalues-and-eigenvectors-1",
+    "title": "Linear Algebra",
+    "section": "Eigenvalues and Eigenvectors",
+    "text": "Eigenvalues and Eigenvectors\n\nThe eigenvalue equation is equivalent to \\((A - \\lambda I) v = 0\\)\n\nthis has a nonzero solution \\(v\\) only when the columns of \\(A - \\lambda I\\) are linearly dependent\n\n\n\n\nThis in turn is equivalent to stating that the determinant is zero.\nHence to find all eigenvalues, we can look for $ $ such that the determinant of $ A - I $ is zero\nThis problem can be expressed as one of solving for the roots of a polynomial in \\(\\lambda\\) of degree \\(n\\)\n\nthis in turn implies the existence of \\(n\\) solutions in the complex plane, although some might be repeated\n\n\n\nThe determinant of \\(A\\) equals the product of the eigenvalues\n\nThe trace of \\(A\\) (the sum of the elements on the principal diagonal) equals the sum of the eigenvalues\n\n\n\nSome nice facts about the eigenvalues of a square matrix \\(A\\) are as follows\n\nIf \\(A\\) is symmetric, then all of its eigenvalues are real\n\nIf \\(A\\) is invertible and \\(\\lambda_1, \\ldots, \\lambda_n\\) are its eigenvalues,\n\nthen the eigenvalues of \\(A^{-1}\\) are \\(1/\\lambda_1, \\ldots, 1/\\lambda_n\\)\n\n\na matrix is invertible if and only if all its eigenvalues are nonzero"
+  },
+  {
+    "objectID": "slides_qmd/Linear_Algebra_slimversion_v3.html#positive-definite-matrices",
+    "href": "slides_qmd/Linear_Algebra_slimversion_v3.html#positive-definite-matrices",
+    "title": "Linear Algebra",
+    "section": "Positive Definite Matrices",
+    "text": "Positive Definite Matrices\nLet \\(A\\) be a symmetric \\(n \\times n\\) matrix\n\n\\(A\\) is\n\npositive definite if \\(x' A x &gt; 0\\) for every \\(x \\in \\mathbb R ^n \\setminus \\{0\\}\\)\n\npositive semi-definite or nonnegative definite if \\(x' A x \\geq 0\\) for every \\(x \\in \\mathbb R ^n\\)\n\nAnalogous definitions exist for negative definite and negative semi-definite matrices\nif \\(A\\) is positive definite, then all of its eigenvalues are strictly positive\n\nhence \\(A\\) is invertible (with positive definite inverse)"
+  },
+  {
+    "objectID": "slides_qmd/Linear_Algebra_slimversion_v3.html#references",
+    "href": "slides_qmd/Linear_Algebra_slimversion_v3.html#references",
+    "title": "Linear Algebra",
+    "section": "References",
+    "text": "References\n\n\nStachurski, John. 2016. A Primer in Econometric Theory. The MIT Press."
+  },
+  {
+    "objectID": "slides_qmd/R_introduction_v5.html",
+    "href": "slides_qmd/R_introduction_v5.html",
+    "title": "R - An Introduction",
+    "section": "",
+    "text": "R is a programming language and software environment for statistical computing and graphics\n\nwidely used in academia and industry\nfor data analysis, statistical modeling, and visualization\nfor machine learning, data mining, and big data analysis\nfor reproducible research and scientific computing\n\nR is an implementation of the S programming language\n\nS was developed at Bell Laboratories by John Chambers and colleagues\nS was designed for data analysis and graphics\nS was the precursor to the commercial statistical software package S-PLUS"
+  },
+  {
+    "objectID": "slides_qmd/R_introduction_v5.html#introduction",
+    "href": "slides_qmd/R_introduction_v5.html#introduction",
+    "title": "R - An Introduction",
+    "section": "",
+    "text": "R is a programming language and software environment for statistical computing and graphics\n\nwidely used in academia and industry\nfor data analysis, statistical modeling, and visualization\nfor machine learning, data mining, and big data analysis\nfor reproducible research and scientific computing\n\nR is an implementation of the S programming language\n\nS was developed at Bell Laboratories by John Chambers and colleagues\nS was designed for data analysis and graphics\nS was the precursor to the commercial statistical software package S-PLUS"
+  },
+  {
+    "objectID": "slides_qmd/R_introduction_v5.html#introduction-1",
+    "href": "slides_qmd/R_introduction_v5.html#introduction-1",
+    "title": "R - An Introduction",
+    "section": "Introduction",
+    "text": "Introduction\n\nR was created by Ross Ihaka and Robert Gentleman at the University of Auckland, New Zealand\n\nnamed partly after the first names of the first two R authors and partly as a play on the name of S\na GNU project, a free software movement initiated by Richard Stallman in 1983\nfreely available under the GNU General Public License\na large number of packages available"
+  },
+  {
+    "objectID": "slides_qmd/R_introduction_v5.html#introduction-2",
+    "href": "slides_qmd/R_introduction_v5.html#introduction-2",
+    "title": "R - An Introduction",
+    "section": "Introduction",
+    "text": "Introduction\n\ntidyverse is a collection of R packages designed for data science\n\ntidyverse packages share an underlying design philosophy, grammar, and data structures\ntidyverse packages are designed to work together\n\nfocus on the tidyverse\n\nmainly because it is easier to understand\ndo most data manipulation we need in social science research with these tools\n\nA good reference for tidyverse is the book by Wickham (2019)\n\nR for Data Science"
+  },
+  {
+    "objectID": "slides_qmd/R_introduction_v5.html#introduction-3",
+    "href": "slides_qmd/R_introduction_v5.html#introduction-3",
+    "title": "R - An Introduction",
+    "section": "Introduction",
+    "text": "Introduction\n\nfor quick reference, visit Posit Primers on Data Science\n\nR Basics\nTransform Tables\nVisualize Data\n\nfor more specific topics, visit Data Science\n\nData Wrangling\nData Visualization\nModelling\n\nwe use cover some base R functions first, then move on to the tidyverse"
+  },
+  {
+    "objectID": "slides_qmd/R_introduction_v5.html#basic-arithmetic",
+    "href": "slides_qmd/R_introduction_v5.html#basic-arithmetic",
+    "title": "R - An Introduction",
+    "section": "Basic Arithmetic",
+    "text": "Basic Arithmetic\n\nR can be regarded as a calculator\n\nit recognizes all of the standard arithmetic operators\n\n\n. . .\n\n\nCode\n# Basic arithmetic operations in R\n\n1+2 \n\n6-7 \n\n5/2 \n\n2^3\n\n2+5*2^3\n\n3*(4+5) \n\n(3+4)*5\n\nsqrt(4)\n\n\n\nmodulo operators (integer division & remainder)\n\n. . .\n\n\nCode\n# Modulo operators in R\n\n5 %/% 2  # integer division\n5 %% 2   # remainder\n\n100 %/% 60 ## How many whole hours in 100 minutes?\n\n100 %% 60 ## How many minutes are left over?\n\n\n\n\nIn RStudio, you can start a new script using the dropdown menu File &gt; New File &gt; R Script\nuse your R script to save finalized commands\n\ntype in the console to practice and debug, then use the script to save what worked\n\nR scripts allow you to save comments, or annotations, to your code\n\nanything following the # symbol in a script will not be treated like an R command—essentially, R will skip over it"
+  },
+  {
+    "objectID": "slides_qmd/R_introduction_v5.html#logic",
+    "href": "slides_qmd/R_introduction_v5.html#logic",
+    "title": "R - An Introduction",
+    "section": "Logic",
+    "text": "Logic\n\nR can also be used for logical operations\n\nit recognizes the standard logical operators\n\n\n. . .\n\n\nCode\n1 &gt; 2\n\n1 &gt; 2 & 1 &gt; 0.5 # The \"&\" stands for \"and\"\n\n1 &gt; 2 | 1 &gt; 0.5 # The \"|\" stands for \"or\" (not a pipe a la the shell)\n\nisTRUE (1 &lt; 2)\n\n\n\nHere are the detailed list of logical operators in R\n\n& and | are used for element-wise logical operations\n&& and || are used for short-circuit logical operations\n\ne.g. 1 &gt; 2 && 1 &gt; 0.5 will return FALSE without evaluating the second condition\n\n! is used for negation (i.e. “not”)\n==, !=, &lt;, &lt;=, &gt;, and &gt;= are used for comparison\n\nHere is further information about logical vectors in R\n\nLogical vectors are vectors that contain only TRUE, FALSE, or NA values\nLogical vectors are often used for subsetting data frames or matrices"
+  },
+  {
+    "objectID": "slides_qmd/R_introduction_v5.html#logic-1",
+    "href": "slides_qmd/R_introduction_v5.html#logic-1",
+    "title": "R - An Introduction",
+    "section": "Logic",
+    "text": "Logic\n\nOrder of precedence\n\nlogic statements follow a strict order of precedence\nlogical operators (&gt;, ==, etc) are evaluated before Boolean operators (& and |)\n\nfailure to recognise this can lead to unexpected behaviour\n\n\n\n. . .\n\n\nCode\n1 &gt; 0.5 & 2\n\n\n. . .\n\n\nCode\n1 &gt; 0.5 & 1 &gt; 2\n\n\n\nLesson: explicit about each component of your logic statement(s)\n\n\n\n2 is converted into as.logical(2)\nas.logical(2) is TRUE because it is not zero\n\n\n\nNegation: !\n\nthis will come in very handy when we start filtering data objects\n\n\n. . .\n\n\nCode\nis.na(1:10)\n!is.na(1:10)\n\nNegate(is.na)(1:10)"
+  },
+  {
+    "objectID": "slides_qmd/R_introduction_v5.html#logical-operators",
+    "href": "slides_qmd/R_introduction_v5.html#logical-operators",
+    "title": "R - An Introduction",
+    "section": "logical operators",
+    "text": "logical operators\n\nValue matching: %in%\n\nwhether an object is contained within (i.e. matches one of) a list of items, use %in%\n\n\n. . .\n\n\nCode\n4 %in% 1:10\n\n4 %in% 5:10\n\n\n\nThere’s no equivalent “not in” command\n\nbut we can create one\n\n\n. . .\n\n\nCode\n`%ni%` = Negate(`%in%`) ## The backticks (`) help to specify functions.\n\n4 %ni% 5:10\n\n\n\nEvaluation\n\nuse two equal signs for logical evaluation\n\n\n. . .\n\n\nCode\n1 == 1 ## This does.\n\n1 != 2 ## Note the single equal sign when combined with a negation\n\n\n\n\nEvaluation caveat: Floating-point numbers\nWhat do you think will happen if we evaluate 0.1 + 0.2 == 0.3?\n0.1 + 0.2 == 0.3\nProblem: Computers represent numbers as binary (i.e. base 2) floating-points\n\nMore here.\n\nFast and memory efficient, but can lead to unexpected behaviour.\n\n\nSimilar to the way that standard decimal (i.e. base 10) representation can’t precisely capture certain fractions\n\ne.g. \\(\\frac{1}{3} = 0.3333...\\)\n\nSolution: Use all.equal() for evaluating floats (i.e fractions)\n\nall.equal(0.1 + 0.2, 0.3)"
+  },
+  {
+    "objectID": "slides_qmd/R_introduction_v5.html#assignment-operators",
+    "href": "slides_qmd/R_introduction_v5.html#assignment-operators",
+    "title": "R - An Introduction",
+    "section": "Assignment operators",
+    "text": "Assignment operators\n\nAssignment: &lt;- or =\n\nuse &lt;- for assignment, but = is also acceptable\n&lt;- is the preferred operator in R, but = is more common in other programming languages\n\n\n. . .\n\n\nCode\na &lt;- 10 + 5\na\n\n\n\nnevertheless, we can use = for assignment\n\n. . .\n\n\nCode\nb = 10 + 10 \n\nb\n\n\n\n\nan arrow can point in the other direction too (i.e. -&gt;)\nthe following code chunk is equivalent to the previous one, although used much less frequently\n\n\n\nCode\n10 + 5 -&gt; a\n\n\n\nNote that the assigned object must be on the left with “=”"
+  },
+  {
+    "objectID": "slides_qmd/R_introduction_v5.html#help",
+    "href": "slides_qmd/R_introduction_v5.html#help",
+    "title": "R - An Introduction",
+    "section": "Help",
+    "text": "Help\n\nUse help or ? to get help on a function\n\ne.g. ?mean will give you the documentation for the mean() function\n\nFor more information on a (named) function or object in R, consult the “help” documentation. For example:\n\n. . .\n\n\nCode\nhelp(plot)\n\n?plot \n\n\n\nComments in R are demarcated by #.\nHit Ctrl+Shift+c in RStudio to (un)comment whole sections of highlighted code\nVignettes\n\nfor many packages, you can also try the vignette() function, which will provide an introduction to a package and it’s purpose through a series of helpful examples\n\ne.g. vignette(\"ggplot2\") will give you a detailed introduction to the ggplot2 package\n\n\n\n\n\nsee the Examples section at the bottom of the help file?\n\nYou can run them with the example() function\nTry it: example(plot)"
+  },
+  {
+    "objectID": "slides_qmd/R_introduction_v5.html#object-oriented-programming-oop-in-r",
+    "href": "slides_qmd/R_introduction_v5.html#object-oriented-programming-oop-in-r",
+    "title": "R - An Introduction",
+    "section": "Object-oriented programming (OOP) in R",
+    "text": "Object-oriented programming (OOP) in R\n\nR is an object-oriented programming language\n\neverything in R is an object\nobjects can be manipulated and transformed using functions\nfunctions are also objects in R\n\nR has three main object classes\n\nvectors\nlists\ndata frames\n\nR also has other object classes, such as matrices, arrays, and factors\nEach object class has its own set of rules (“methods”) for determining valid operations\n\ne.g. you can perform many of the same operations on matrices and data frames\nBut there are some operations that only work on a matrix, and vice versa\nAt the same time, you can (usually) convert an object from one type to another\n\n\n. . .\n\n\nCode\n## Create a small data frame called \"d\".\n\nd = data.frame(x = 1:2, y = 3:4) \n\nd\n\n\n. . .\n\n\nCode\n## Convert it to (i.e. create) a matrix call \"m\".\n\nm = as.matrix(d)\n\nm\n\n\n\n\nR can store information as an object with a name of our choice\n\nOnce we have created an object, we just refer to it by name\nwe are using objects as “shortcuts” to some piece of information or data\n\nthere are many different types (or classes) of objects\narithmetic operations like addition and subtraction cannot be used for character strings\nMost obviously, there are actually multiple OOP frameworks in R\n\nS3, S4, R6…\nHadley Wickham’s “Advanced R” provides a very thorough overview of the main ones\n\nBut for our purposes, it is much more helpful to think about\n\nthe shared characteristics of these different systems and\nthe broad implications of OOP in R.\n\n\nWhat we lose in detail, we hopefully gain in perspective\nBut do read Hadley’s book if you get the chance + It’s incredibly helpful (as are all his books)"
+  },
+  {
+    "objectID": "slides_qmd/R_introduction_v5.html#more-on-matrices",
+    "href": "slides_qmd/R_introduction_v5.html#more-on-matrices",
+    "title": "R - An Introduction",
+    "section": "More on matrices",
+    "text": "More on matrices\nMatrices in R\n\nA matrix is a two-dimensional array\n\nall elements must be of the same type\ncan be created using the matrix() function\ncan be created from a vector using the dim() function\n\n\n. . .\n\n\nCode\nmatrix1&lt;- matrix(1:15, nrow=3, ncol=5)\n\nmatrix1"
+  },
+  {
+    "objectID": "slides_qmd/R_introduction_v5.html#more-on-matrices-1",
+    "href": "slides_qmd/R_introduction_v5.html#more-on-matrices-1",
+    "title": "R - An Introduction",
+    "section": "More on matrices",
+    "text": "More on matrices\nMatrices in R - some basic operations\n. . .\n\n\nCode\ndim(matrix1)\n\n\n. . .\n\n\nCode\ncolnames(matrix1)&lt;- c(\"A\", \"B\", \"C\", \"D\", \"E\")\nrownames(matrix1)&lt;- c(\"X\", \"Y\", \"Z\")\n\nmatrix1\n\n\n. . .\n\n\nCode\nmatrix1[2,3]\n\n\n. . .\n\n\nCode\nmatrix1[2,]"
+  },
+  {
+    "objectID": "slides_qmd/R_introduction_v5.html#more-on-matrices-2",
+    "href": "slides_qmd/R_introduction_v5.html#more-on-matrices-2",
+    "title": "R - An Introduction",
+    "section": "More on matrices",
+    "text": "More on matrices\nMatrices in R - some basic operations\n. . .\n\n\nCode\nA&lt;- matrix(1:6, nrow=2, ncol=3)\nB&lt;- matrix(7:12, nrow=3, ncol=2)\n\n\nprint(A %*% B)\n\nprint(B %*% A)\n\n\n. . .\n\n\nCode\nprint(t(A))"
+  },
+  {
+    "objectID": "slides_qmd/R_introduction_v5.html#more-on-matrices-3",
+    "href": "slides_qmd/R_introduction_v5.html#more-on-matrices-3",
+    "title": "R - An Introduction",
+    "section": "More on matrices",
+    "text": "More on matrices\nMatrices in R - some basic operations\n. . .\n\n\nCode\nC&lt;- matrix(c(2,5,3,1,3,6,2,9,5), nrow=3, ncol=3)\nprint(solve(C))\n\n\n. . .\n\n\nCode\nprint(det(C))\n\n\n. . .\n\n\nCode\nprint(eigen(C))"
+  },
+  {
+    "objectID": "slides_qmd/R_introduction_v5.html#object-class-type-and-structure",
+    "href": "slides_qmd/R_introduction_v5.html#object-class-type-and-structure",
+    "title": "R - An Introduction",
+    "section": "Object class, type, and structure",
+    "text": "Object class, type, and structure\n\nUse the class, typeof, and str commands if you want understand more about a particular object\n\n. . .\n\n\nCode\nd = data.frame(x = 1:2, y = 3:4) \n\nclass(d) ## Evaluate its class\n\ntypeof(d) ## Evaluate its type\n\nstr(d) ## Show its structure\n\n\n\nwe can inspect/print an object directly in the console\n\ne.g. Type d\n\nThe View() function is also very helpful\n\nthis is the same as clicking on the object in the RStudio Environment pane\ne.g. View(d)\n\n\n\n\nPS — Confused by the fact that typeof(d) returns “list”? See here."
+  },
+  {
+    "objectID": "slides_qmd/R_introduction_v5.html#changing-data-types",
+    "href": "slides_qmd/R_introduction_v5.html#changing-data-types",
+    "title": "R - An Introduction",
+    "section": "changing data types",
+    "text": "changing data types\n\nwe might change the data type of a variable for some data analysis\n\nas.character()\nas.numeric()\nas.factor()\nas.integer()\nas.logical()\n\n\n\n\nCode\nagevec&lt;- c(24, 22, 25, 28, 23, 20)\n\nclass(agevec)\n\n\n\n\nCode\ngendervec &lt;- c(\"male\", \"female\", \"other\", \"female\", \"female\", \"male\")\n\ngendervec\n\nclass(gendervec)\n\n\n\n\nCode\na&lt;- c(28, \"28\", TRUE)\n\nclass(a)\n\n\n\n\nCode\nb&lt;- c(1,2,3, TRUE, FALSE)\n\nclass(b)"
+  },
+  {
+    "objectID": "slides_qmd/R_introduction_v5.html#changing-data-types-1",
+    "href": "slides_qmd/R_introduction_v5.html#changing-data-types-1",
+    "title": "R - An Introduction",
+    "section": "changing data types",
+    "text": "changing data types\n\nVectors can have a factor type\n\nlooks like a character vector\nbut is actually a number under the hood (“labelled data”)\n\n\n\n\nCode\ngenderfactorvec&lt;- factor(gendervec,\n                         levels=c(\"male\", \"female\", \"other\"))\n\ngenderfactorvec\n\nclass(genderfactorvec)\n\n\n\n\nCode\nas.numeric(genderfactorvec)"
+  },
+  {
+    "objectID": "slides_qmd/R_introduction_v5.html#global-environment",
+    "href": "slides_qmd/R_introduction_v5.html#global-environment",
+    "title": "R - An Introduction",
+    "section": "Global environment",
+    "text": "Global environment\n\nThe global environment is where all objects are stored\n\nyou can see the global environment in the RStudio Environment pane\nyou can also see the global environment by typing ls() in the console\n\nWorking with multiple objects\n\nyou can create multiple objects in the global environment\nyou can manipulate and transform these objects using functions\nyou can also use the rm() function to remove objects from the global environment\n\nR’s ability to keep multiple objects in memory at the same time is a huge plus when it comes to effective data work\n\ne.g. We can copy an existing data frame, or create new one entirely from scratch - either will exist happily with our existing objects in the global environment\n\n\n. . .\n\n\nCode\nd2 = data.frame(x = rnorm(10), y = runif(10))"
+  },
+  {
+    "objectID": "slides_qmd/R_introduction_v5.html#everything-has-a-name",
+    "href": "slides_qmd/R_introduction_v5.html#everything-has-a-name",
+    "title": "R - An Introduction",
+    "section": "Everything has a name",
+    "text": "Everything has a name\n\nEvery object in R has a name\n\nyou can use the name to refer to the object in the global environment\nobject names are case sensitive\n\nThe name of our object must follow certain restrictions\n\nit cannot begin with a number\nit should not contain spaces\nspecial characters such as % and $ should not be used\n\nReserved words\n\nwe can assign objects to different names\nHowever, there are a number of special words that are “reserved” in R\n\nThese are are fundamental commands, operators and relations in base R that you cannot (re)assign, even if you wanted to\nSee here for a full list\n\n\n\n. . .\n\n\nyou can also use the name to refer to the object in a function\nfunction itself is an object\n\ne.g. mean is a function that calculates the mean of a vector\nwe can assign it to a new name, e.g. average = mean\nbut we cannot assign it to a reserved word, e.g. if = mean\nthis will lead to an error"
+  },
+  {
+    "objectID": "slides_qmd/R_introduction_v5.html#everything-has-a-name-1",
+    "href": "slides_qmd/R_introduction_v5.html#everything-has-a-name-1",
+    "title": "R - An Introduction",
+    "section": "Everything has a name",
+    "text": "Everything has a name\n\nSemi-reserved words\n\nthere is a class of words and strings that are called “semi-reserved”\n\n\n. . .\n\n\nCode\nmy_vector = c(1, 2, 5)\nmy_vector\n\n\n\nwhat happens if you type the following?\n\n. . .\n\n\nCode\nc = 4\nc(1, 2 ,5)\n\n\n\nR is “smart” enough to distinguish between the variable c = 4 that we created and the built-in function c() that calls for concatenation\nHowever, R won’t always be able to distinguish between conflicting definitions\n\n. . .\n\n\nCode\npi\npi = 2\npi\n\n\n\nBottom line: Don’t use (semi-)reserved characters!\n\n\n\nthese are named functions or constants (e.g. pi) that you can re-assign if you really wanted to… but already come with important meanings from base R\nThe c() function is a good example of a semi-reserved character\nArguably the most important semi-reserved character is c(), which we use for concatenation\n\ni.e. creating vectors and binding different objects together"
+  },
+  {
+    "objectID": "slides_qmd/R_introduction_v5.html#namespace-conflicts",
+    "href": "slides_qmd/R_introduction_v5.html#namespace-conflicts",
+    "title": "R - An Introduction",
+    "section": "Namespace conflicts",
+    "text": "Namespace conflicts\n\nR has a large number of packages, each with its own set of functions\n\nsometimes, different packages have functions with the same name\nthis can lead to “namespace conflicts” where R doesn’t know which function to use\n\ne.g. Look what happens we load the dplyr package\n\n. . .\n\n\nCode\nlibrary(dplyr)\n\n\n\nThe messages that you see about some object being masked from ‘package:X’ are warning you about a namespace conflict\n\ne.g. Both dplyr and the stats package have functions named “filter” and “lag”\n\nWhenever a namespace conflict arises, the most recently loaded package will gain preference\n\nso the filter() function now refers specifically to the dplyr variant\nwhat if we want the stats variant?\n\n\n\n\nThe potential for namespace conflicts is a result of the OOP approach\n\nAlso reflects the fundamental open-source nature of R and the use of external packages\nPeople are free to call their functions whatever they want, so some overlap is only to be expected\n\nTemporarily use stats::filter()\n\nPermanently assign filter = stats::filter"
+  },
+  {
+    "objectID": "slides_qmd/R_introduction_v5.html#namespace-conflicts-1",
+    "href": "slides_qmd/R_introduction_v5.html#namespace-conflicts-1",
+    "title": "R - An Introduction",
+    "section": "Namespace conflicts",
+    "text": "Namespace conflicts\nTwo common ways to resolve namespace conflicts in R:\n\nUse package::function()\n\n\nWe can explicitly call a conflicted function from a particular package using the package::function() syntax\n\n. . .\n\n\nCode\nstats::filter(1:10, rep(1, 2))\n\n\n. . .\n\n\nCode\ndplyr::starwars ## Print the starwars data frame from the dplyr package\n\nscales::comma(c(1000, 1000000)) ## Use the comma function, which comes from the scales package\n\n\n\nAssign function = package::function\n\n\nA more permanent solution is to assign a conflicted function name to a particular package\nThis will hold for the remainder of your current R session, or until you change it back\n\n. . .\n\n\nCode\nfilter = stats::filter ## Note the lack of parentheses\nfilter = dplyr::filter ## Change it back again\n\n\n\n\n\nWe can also use :: for more than just conflicted cases\ne.g. Being explicit about where a function (or dataset) comes from can help add clarity to our code\ne.g. dplyr::filter(iris, Species==\"virginica\") is clearer than just filter(iris, Species==\"virginica\")\n\nAnother good rule of thumb is that you want to load your most important packages last\n\ne.g. Load the tidyverse after you’ve already loaded any other packages\n\nUser-side namespace conflicts\n\nA final thing to say about namespace conflicts is that they don’t only arise from loading packages\nThey can arise when users create their own functions with a conflicting name\n\ne.g. If I was naive enough to create a new function called c()"
+  },
+  {
+    "objectID": "slides_qmd/R_introduction_v5.html#indexing",
+    "href": "slides_qmd/R_introduction_v5.html#indexing",
+    "title": "R - An Introduction",
+    "section": "Indexing",
+    "text": "Indexing\n\nIndexing is a way to access specific elements of an object\n\ne.g. we can access specific elements of a vector, list, or data frame using indexing\n\nThere are two main ways to index objects in R\n\nOption 1: []\n\nThis is the most common way to index objects in R\nIt works for vectors, matrices, data frames, and lists\nIt can be used to access specific elements of an object, or to subset an object\n\nOption 2: $\n\nThis is a special operator that is used to access specific elements of a list or data frame by name\nIt is often used to access columns of a data frame by name\n\n\n\n\n\nIndexing is done using square brackets []\nIndexing can be done using either numeric or logical vectors\n\nNumeric indexing refers to the position of the element in the object\nLogical indexing refers to a logical vector that indicates which elements to keep\n\nIndexing can also be done using names\n\ne.g. we can access specific elements of a data frame using the column names"
+  },
+  {
+    "objectID": "slides_qmd/R_introduction_v5.html#indexing-1",
+    "href": "slides_qmd/R_introduction_v5.html#indexing-1",
+    "title": "R - An Introduction",
+    "section": "Indexing",
+    "text": "Indexing\n\nuse [] to index objects that we create in R\n\n. . .\n\n\nCode\na = 1:10\na[4] ## Get the 4th element of object \"a\"\na[c(4, 6)] ## Get the 4th and 6th elements\n\n\n\nIt also works on larger arrays (vectors, matrices, data frames, and lists)\n\n. . .\n\n\nCode\nlibrary(dplyr)\nstarwars[1, 1] ## Show the cell corresponding to the 1st row & 1st column of the data frame\n\n\n\nWhat does starwars[1:3, 1] give you?\nWhat does starwars[-1, 1] give you?\nwhat if we want to get the 1st column of the data frame?\n\n. . .\n\n\nCode\nstarwars[, 1] ## Get the 1st column of the starwars data frame\n\n\n\nwe can use $ to access the columns of a data frame by name\n\n. . .\n\n\nCode\nstarwars$name ## Get the \"name\" column of the starwars data frame\n\n\n\n\nWhat if you want to get the names of the columns in a data frame? . . .\n\n\n[1] Indexing in R begins at 1. Not 0 like some languages (e.g. Python and JavaScript)"
+  },
+  {
+    "objectID": "slides_qmd/R_introduction_v5.html#indexing-2",
+    "href": "slides_qmd/R_introduction_v5.html#indexing-2",
+    "title": "R - An Introduction",
+    "section": "Indexing",
+    "text": "Indexing\n\nlists are a more complex type of array object in R\n\nthey can contain a random assortment of objects that don’t share the same class\n\ne.g. a list can contain a vector, a data frame, and a matrix\nor even lists of lists\n\nlists are very flexible and can be used to store any type of object\n\nThe relevance to indexing is that lists require two square brackets [[]] to index the parent list item and then the standard [] within that parent item\nThis is different from the single square brackets that we use to index vectors, matrices, and data frames\n\nThe double square brackets are used to extract the object itself, rather than a subset of the list"
+  },
+  {
+    "objectID": "slides_qmd/R_introduction_v5.html#indexing-3",
+    "href": "slides_qmd/R_introduction_v5.html#indexing-3",
+    "title": "R - An Introduction",
+    "section": "Indexing",
+    "text": "Indexing\n\nLet’s look at an example of a list to see how it works in practice\n\nWe’ll use the my_list object, which contains three objects: a character string, a numeric vector, and a data frame\n\nAs before, we have two options for indexing lists\nOption 1: [[ ]]\n\nuse double square brackets to index a list\nthis will return the object itself, rather than a subset of the list\ne.g. my_list[[1]] will return the first object in the list\nwe can also use my_list[[2]][3] to return the third element of the second object\n\n\n. . .\n\n\nCode\nmy_list = list(a = \"hello\", b = c(1,2,3), c = data.frame(x = 1:5, y = 6:10))\n\nmy_list[[1]] \n\nmy_list[[\"a\"]]\n\nmy_list[[2]][3]"
+  },
+  {
+    "objectID": "slides_qmd/R_introduction_v5.html#indexing-4",
+    "href": "slides_qmd/R_introduction_v5.html#indexing-4",
+    "title": "R - An Introduction",
+    "section": "Indexing",
+    "text": "Indexing\n\nOption 2: $\n\nlists provide a nice segue to our other indexing operator: $\nLet’s continue with the my_list example\n\n\n. . .\n\n\nCode\nmy_list\n\nmy_list$a\n\nmy_list$c$x\n\n\n\nThe $ form of indexing also works (and in the manner that you probably expect) for other object types in R\n\nIn some cases, you can also combine the two index options\n\n\n. . .\n\n\nCode\nmy_list$b[3]\n\nstarwars$name[1]\n\n\n\n\nnote some key differences between the output from this example and that of our previous starwars[1, 1] example\n\nWhat are they?\nHint: Apart from the visual cues, try wrapping each command in str()\n\nThe last thing that I want to say about $ is that it provides another way to avoid the “object not found” problem that we ran into with our earlier regression example\n\ne.g. lm(y ~ x) will not work, but lm(d$y ~ d$x) will work\n\n\n. . .\n\n\nCode\nd = data.frame(x = 1:10, y = 11:20)\n\nlm(y ~ x) \n\nlm(d$y ~ d$x)"
+  },
+  {
+    "objectID": "slides_qmd/R_introduction_v5.html#cleaning-up",
+    "href": "slides_qmd/R_introduction_v5.html#cleaning-up",
+    "title": "R - An Introduction",
+    "section": "cleaning up",
+    "text": "cleaning up\n\nUse rm() to remove objects from the global environment\n\ne.g. rm(a) will remove the object a from the global environment\n\n\n. . .\n\n\nCode\na = \"hello\"\nb = \"world\"\nrm(a, b)\n\n\n\nuse rm(list = ls()) to remove all objects in your working environment (except packages)\n\nBetter just to start a new R session\n\n\n\n\nbut this is frowned upon\n\n\n\nDetaching packages is more complicated\n\nthere could be many cross-dependencies (i.e. one package depends on, and might even automatically load, another package)\ne.g. detach(package:dplyr)\n\nstill, better just to restart your R session"
+  },
+  {
+    "objectID": "slides_qmd/R_introduction_v5.html#removing-plots",
+    "href": "slides_qmd/R_introduction_v5.html#removing-plots",
+    "title": "R - An Introduction",
+    "section": "Removing plots",
+    "text": "Removing plots\n\nUse dev.off() to remove the current plot\n\ne.g. dev.off() will remove the current plot from the plotting window\n\nUse graphics.off() to remove all plots\n\n. . .\n\n\nCode\nplot(1:10)\ndev.off()\n\n\n\nRStudio has convenient buttons for clearing your workspace environment and removing (individual) plots"
+  },
+  {
+    "objectID": "slides_qmd/R_introduction_v5.html#data-files-loading-and-saving",
+    "href": "slides_qmd/R_introduction_v5.html#data-files-loading-and-saving",
+    "title": "R - An Introduction",
+    "section": "Data files: Loading and saving",
+    "text": "Data files: Loading and saving\n\nR can read and write data files in various formats\n\ne.g. CSV, Excel, SPSS, Stata, etc.\nwe will focus on CSV files for now\n\nworking directory\n\nR will look for files in the current working directory\nyou can check the current working directory using getwd()\nyou can change the working directory using setwd()\ne.g. setwd(\"path/to/your/directory\")"
+  },
+  {
+    "objectID": "slides_qmd/R_introduction_v5.html#data-files-loading-and-saving-1",
+    "href": "slides_qmd/R_introduction_v5.html#data-files-loading-and-saving-1",
+    "title": "R - An Introduction",
+    "section": "Data files: Loading and saving",
+    "text": "Data files: Loading and saving\n\ngo to here to download a sample dataset\nuse read.csv() to read a CSV file into R\n\ne.g. unpop &lt;- read.csv(\"UNpop.csv\")\nthis will read the CSV file and create a data frame called unpop\n\n\n. . .\n\n\nCode\nunpop &lt;- read.csv(\"Downloads/UNpop.csv\")\n\n\n. . .\n\n\nCode\nclass(unpop)\n\n\n\nRData can be used to save and load R objects\n\ne.g. save(unpop, file = \"unpop.RData\") will save the unpop data frame as an RData file\nyou can load the RData file using load(\"unpop.RData\")\n\nRData files are useful for saving and loading multiple objects at once\n\n. . .\n\n\nCode\nsave(unpop, file = \"unpop.RData\")\n\n\n\n\na data frame is a special type of list where each element is a vector of the same length\n\ndata frames are used to store tabular data, where each column represents a variable and each row represents an observation\n\nR will save the entire workspace as .RData in the working directory without an explicit file name and automatically load it next time we launch\n\nThis is not recommended practice because the .RData file is invisible to users of many operating systems and R will not tell us what objects are loaded unless we explicitly issue the ls() function"
+  },
+  {
+    "objectID": "slides_qmd/R_introduction_v5.html#data-files-loading-and-saving-2",
+    "href": "slides_qmd/R_introduction_v5.html#data-files-loading-and-saving-2",
+    "title": "R - An Introduction",
+    "section": "Data files: Loading and saving",
+    "text": "Data files: Loading and saving\n\nuseful functions for exploring data frames\n\nnames() to view the names of the columns in a data frame\nnrow() to view the number of rows in a data frame\nncol() to view the number of columns in a data frame\ndim() to view the dimensions of a data frame (number of rows and columns)\nstr() to view the structure of a data frame\nhead() to view the first few rows of a data frame\ntail() to view the last few rows of a data frame\n\nuse write.csv() to write a data frame to a CSV file\n\ne.g. write.csv(unpop, \"UNpop.csv\")\nthis will write the unpop data frame to a CSV file called UNpop.csv"
+  },
+  {
+    "objectID": "slides_qmd/R_introduction_v5.html#data-files-loading-and-saving-3",
+    "href": "slides_qmd/R_introduction_v5.html#data-files-loading-and-saving-3",
+    "title": "R - An Introduction",
+    "section": "Data files: Loading and saving",
+    "text": "Data files: Loading and saving\n\nload data in other formats\nR can read and write data files in various formats, including SPSS, Stata, and Excel\nforeign package can read and write data files in SPSS, Stata, and other formats\n\nit is part of the base R installation and is widely used for reading and writing data files\n\nhaven package is designed to be fast and efficient\n\nit can read and write data files in SPSS, Stata, and SAS formats\nit is part of the tidyverse and is designed to be fast and efficient\n\nreadr package can read and write data files in CSV, TSV, and other text formats\n\nit is part of the tidyverse and is designed to be fast and efficient\n\nreadxl package can read and write Excel files\nwritexl package can write data frames to Excel files\n\n. . .\n\n\nCode\n#install.packages(\"haven\")\n\nlibrary(\"haven\")\n\n\n. . .\n\n\nCode\n# Read Stata file\nurl_stata&lt;-\"https://github.com/kwan-MSDA/MSDA-Bootcamp/blob/main/dataset/UNpop.dta?raw=true\"\nunpop_stata&lt;- read_dta(url_stata)"
+  },
+  {
+    "objectID": "slides_qmd/R_introduction_v5.html#references",
+    "href": "slides_qmd/R_introduction_v5.html#references",
+    "title": "R - An Introduction",
+    "section": "References",
+    "text": "References\n\n\nImai, Kosuke, and Nora Webb Williams. 2022. Quantitative Social Science : An Introduction in Tidyverse. Princeton University Press.\n\n\nWickham, Hadley. 2016. Ggplot2 : Elegrant Graphics for Data Analysis. Second edition. Use r! Springer.\n\n\nWickham, Hadley. 2019. Advanced r. Second edition. The r Series. CRC Press.\n\n\nWickham, Hadley, and Garrett Grolemund. 2023. R for Data Science : Import, Tidy, Transform, Visualize, and Model Data. Second edition. O’Reilly."
+  },
+  {
+    "objectID": "slides_qmd/Maths - Calculus_slimversion.html",
+    "href": "slides_qmd/Maths - Calculus_slimversion.html",
+    "title": "Maths - Calculus",
+    "section": "",
+    "text": "Functions\nLimits\nDerivatives\nOptimization\nHigher-order derivatives\nSome common rules\nPartial derivatives\nIntegrals\nConstraint optimization"
+  },
+  {
+    "objectID": "slides_qmd/Maths - Calculus_slimversion.html#outline",
+    "href": "slides_qmd/Maths - Calculus_slimversion.html#outline",
+    "title": "Maths - Calculus",
+    "section": "",
+    "text": "Functions\nLimits\nDerivatives\nOptimization\nHigher-order derivatives\nSome common rules\nPartial derivatives\nIntegrals\nConstraint optimization"
+  },
+  {
+    "objectID": "slides_qmd/Maths - Calculus_slimversion.html#functions",
+    "href": "slides_qmd/Maths - Calculus_slimversion.html#functions",
+    "title": "Maths - Calculus",
+    "section": "Functions",
+    "text": "Functions\n\nWhat is a function?\n\ndomain\nrange\nmapping\n\nWhat is not a function?"
+  },
+  {
+    "objectID": "slides_qmd/Maths - Calculus_slimversion.html#limits",
+    "href": "slides_qmd/Maths - Calculus_slimversion.html#limits",
+    "title": "Maths - Calculus",
+    "section": "Limits",
+    "text": "Limits\n\nWhat is a limit?\n\nidea of a slope\n\nDoes it always exist?\nIs it unique?"
+  },
+  {
+    "objectID": "slides_qmd/Maths - Calculus_slimversion.html#derivatives",
+    "href": "slides_qmd/Maths - Calculus_slimversion.html#derivatives",
+    "title": "Maths - Calculus",
+    "section": "Derivatives",
+    "text": "Derivatives\n\nWhat is Derivative?\n\nslope of a function\nrate of change\n\nwhy learning it?\n\noptimization\neconomics\nstatistics\nmachine learning\ndeep learning\n\nreminder about notation\n\n\\(\\frac{df(x)}{dx}\\)\n\\(\\frac{df}{dx}\\)\n\\(f'(x)\\)\n\\(\\frac{d}{dx}f(x)\\)\n\\(\\frac{d}{dx}f\\)"
+  },
+  {
+    "objectID": "slides_qmd/Maths - Calculus_slimversion.html#optimization",
+    "href": "slides_qmd/Maths - Calculus_slimversion.html#optimization",
+    "title": "Maths - Calculus",
+    "section": "Optimization",
+    "text": "Optimization\n\nHow to find the maximum or minimum of a function?\n\nlet us think about a quadratic function, \\(y=ax^2+bx+c\\)\n\n\n\n\nHow to find out the maximum or minimum of a function?\n\nfirst-order condition\ncritical points"
+  },
+  {
+    "objectID": "slides_qmd/Maths - Calculus_slimversion.html#higher-order-derviatives",
+    "href": "slides_qmd/Maths - Calculus_slimversion.html#higher-order-derviatives",
+    "title": "Maths - Calculus",
+    "section": "Higher-order derviatives",
+    "text": "Higher-order derviatives\n\nsecond-order derivative\n\nconcave\nconvex\ninflection point\n\nthird-order derivative\nn-th order derivative\nlocal vs global maximum/minimum\n\n\n\nOptimizing functions. Taking the first derivative and setting it equal to 0 gives us either a minimum or maximum. The second derivative allows us to discern between the two.\nhigher-order derivatives can be used to construct useful approximations (i.e. Taylor’s approximation) to complex functions that are important in understanding the properties of various statistical estimators."
+  },
+  {
+    "objectID": "slides_qmd/Maths - Calculus_slimversion.html#some-common-rules-of-derivatives",
+    "href": "slides_qmd/Maths - Calculus_slimversion.html#some-common-rules-of-derivatives",
+    "title": "Maths - Calculus",
+    "section": "Some common rules of derivatives",
+    "text": "Some common rules of derivatives\n\nHow to calculate Derivative?\n\npower rule\n\n\\(\\frac{dx^n}{dx}=nx^{n-1}\\)\n\nproduct rule\n\n\\(\\frac{d}{dx}f(x)g(x)=f'(x)g(x) +f(x)g'(x)\\)\n\nquotient rule\n\n\\(\\frac{d}{dx}\\frac{f(x)}{g(x)}=\\frac{f'(x)g(x)-f(x)g'(x)}{(g(x))^2}\\)\n\nchain rule\n\n\\(\\frac{d}{dx}f(g(x))=f'(g(x))g'(x)\\)\n\nspecial rules for logs and exponents\n\n\\(\\frac{d}{dx}\\ln(x)=\\frac{1}{x}\\)\n\\(\\frac{d}{dx}e^{x}=e^{x}\\)\n\n\n\n\n\n\\(\\frac{d}{dx}\\ln(f(x))=\\frac{f'(x)}{f(x)}\\)\n\\(\\frac{d}{dx}e^{f(x)}=f'(x)e^{f(x)}\\)"
+  },
+  {
+    "objectID": "slides_qmd/Maths - Calculus_slimversion.html#exercises",
+    "href": "slides_qmd/Maths - Calculus_slimversion.html#exercises",
+    "title": "Maths - Calculus",
+    "section": "Exercises:",
+    "text": "Exercises:\n\n\\(\\frac{d}{dx}(6x^3+5)\\)\n\\(\\frac{d}{dx}\\sqrt{(5x^3+3x+5)}\\)\nlet \\(h(x)=2x+3; g(x)=5x^2+3x\\), let \\(f(x)=h(x)*g(x)\\), \\(\\frac{df(x)}{dx}\\)\nlet \\(p(x)=\\frac{h(x)}{g(x)}\\), \\(\\frac{dp(x)}{dx}\\)\n\\(\\frac{d(g(h(x)))}{dx}\\)\n\\(\\frac{d}{dx}\\ln(x^6+8)\\)\n\\(\\frac{d}{dx}e^{6x+3}\\)\n\\(\\frac{d}{dx}x^3e^{x}\\)"
+  },
+  {
+    "objectID": "slides_qmd/Maths - Calculus_slimversion.html#partial-derviatives",
+    "href": "slides_qmd/Maths - Calculus_slimversion.html#partial-derviatives",
+    "title": "Maths - Calculus",
+    "section": "Partial derviatives",
+    "text": "Partial derviatives\n\nWhat is a partial derivative?\n\nLet \\(z=f(x,y)\\)\n\\(\\frac{\\partial f}{\\partial x}\\)\n\\(\\frac{\\partial f}{\\partial y}\\)\n\nExercise:\n\nlet \\(f(x,y)=x^2 y^3+3x+2y\\)\nfind \\(\\frac{\\partial f}{\\partial x}\\) and \\(\\frac{\\partial f}{\\partial y}\\)"
+  },
+  {
+    "objectID": "slides_qmd/Maths - Calculus_slimversion.html#integrals",
+    "href": "slides_qmd/Maths - Calculus_slimversion.html#integrals",
+    "title": "Maths - Calculus",
+    "section": "Integrals",
+    "text": "Integrals\n\nWhat is an integral?\n\narea under the curve\nanti-derivative\n\nNotation\n\n\\(\\int^b_a f(x)dx\\)\n\\(\\int_X f(x)dx\\)\n\nWe are most interested in the concept rather than actual (hand) calculation of the integrals"
+  },
+  {
+    "objectID": "slides_qmd/Maths - Calculus_slimversion.html#constraint-optimization",
+    "href": "slides_qmd/Maths - Calculus_slimversion.html#constraint-optimization",
+    "title": "Maths - Calculus",
+    "section": "Constraint optimization",
+    "text": "Constraint optimization\n\nWhat is constraint optimization?\n\noptimization with constraints\nLagrange multiplier\n\nThe idea is to optimize a function subject to some constraints\nThe problem can be stated as:\n\nmaximize \\(f(x,y)\\) subject to \\(g(x,y)=0\\)\nminimize \\(f(x,y)\\) subject to \\(g(x,y)=0\\)"
+  },
+  {
+    "objectID": "slides_qmd/Maths - Calculus_slimversion.html#constraint-optimization-1",
+    "href": "slides_qmd/Maths - Calculus_slimversion.html#constraint-optimization-1",
+    "title": "Maths - Calculus",
+    "section": "Constraint optimization",
+    "text": "Constraint optimization\n\nlet us learn some economics\nin economics, a consumer faces the problem of maximizing her utility subject to the income constraint:\n\n. . .\n\\[\n\\max_{x_1,x_2} u(x_1,x_2) \\quad s.t. \\; p_1x_1 + p_2x_2=y\n\\]\n\nwe can visualize and “solve” the problem using graph"
+  },
+  {
+    "objectID": "slides_qmd/Maths - Calculus_slimversion.html#constraint-optimization-2",
+    "href": "slides_qmd/Maths - Calculus_slimversion.html#constraint-optimization-2",
+    "title": "Maths - Calculus",
+    "section": "Constraint optimization",
+    "text": "Constraint optimization\n\nthe optimal solution is at the point where the budget line is tangent to the indifference curve\n\n. . .\n\\[\n\\frac{MU_1}{MU_2}=\\frac{p_1}{p_2}\n\\]\n\\(\\quad\\) where \\(MU_1\\) and \\(MU_2\\) are the marginal utilities of good 1 and good 2 respectively\n\nwe can solve this problem using the “identity”\n\n. . .\n\\[\nu(x_1, x^U_2(x_1))=\\bar{u}\n\\]\n\nwe need to solve two equations simultaneously"
+  },
+  {
+    "objectID": "slides_qmd/Maths - Calculus_slimversion.html#constraint-optimization-3",
+    "href": "slides_qmd/Maths - Calculus_slimversion.html#constraint-optimization-3",
+    "title": "Maths - Calculus",
+    "section": "Constraint optimization",
+    "text": "Constraint optimization\n\nthe Lagrange multiplier is a method to solve the optimization problem with constraints\nthe Lagrange function is defined as:\n\n. . .\n\\[\nL(x_1,x_2,\\lambda)=u(x_1,x_2)+\\lambda(y-(p_1x_1+p_2x_2))\n\\]\n\nthe first-order conditions are\n\n. . .\n\\[\n\\begin{align*}\n\\frac{\\partial u}{\\partial x_1} - \\lambda p_1 &=0 \\\\\n\\frac{\\partial u}{\\partial x_2} - \\lambda p_2 &=0 \\\\\ny-(p_1x_1+p_2x_2) &=0\n\\end{align*}\n\\]"
+  },
+  {
+    "objectID": "slides_qmd/Maths - Calculus_slimversion.html#constraint-optimization-4",
+    "href": "slides_qmd/Maths - Calculus_slimversion.html#constraint-optimization-4",
+    "title": "Maths - Calculus",
+    "section": "Constraint optimization",
+    "text": "Constraint optimization\n\nthe Lagrange multiplier could be interpreted as the “marginal utility of income” in our example\nin economics, the Lagrange multiplier could be interpreted as the “shadow price” of the constraint\n\ne.g. the Lagrange multiplier could be interpreted as the “marginal cost” in production optimization\n\nReminder: the Lagrange multiplier could be zero, positive or negative\nthe Lagrange multiplier could be used in very general optimization problems\n\n. . .\n\\[\n\\max_{x_1, \\dots, x_n} f(x_1,\\dots, x_n) \\quad s.t. \\; g_i(x_1,\\dots, x_n)=c_i, \\quad i=1,\\dots,m\n\\]"
+  },
+  {
+    "objectID": "slides_qmd/Maths - Calculus_slimversion.html#constraint-optimization-5",
+    "href": "slides_qmd/Maths - Calculus_slimversion.html#constraint-optimization-5",
+    "title": "Maths - Calculus",
+    "section": "Constraint optimization",
+    "text": "Constraint optimization\n\nInequality-Constrained Optimization\n\n. . .\n\\[\n\\max_{x_1, \\dots, x_n} f(x_1,\\dots, x_n) \\quad s.t. \\; g_i(x_1,\\dots, x_n)\\leq c_i, \\quad i=1,\\dots,m\n\\]\n\nlet us think about a (very) simple situation first\n\n. . .\n\\[\n\\max_{x} f(x) \\quad s.t. \\; x \\geq 0\n\\]\n\nif \\(x^*&gt;0\\), what the necessary condition should be?\nthe FOC for the problem is\n\n. . .\n\\[\n\\frac{df}{dx}(x^*)\n\\begin{cases}\n\\leq 0 & \\text{if } x^*=0 \\\\\n=0 & \\text{if } x^*&gt;0\n\\end{cases}\n\\]"
+  },
+  {
+    "objectID": "slides_qmd/Maths - Calculus_slimversion.html#constraint-optimization-6",
+    "href": "slides_qmd/Maths - Calculus_slimversion.html#constraint-optimization-6",
+    "title": "Maths - Calculus",
+    "section": "Constraint optimization",
+    "text": "Constraint optimization\n\nHere we have the following theorem\n\n. . .\n\n\n\n\n\n\nImportantTheorem\n\n\n\nSuppose that \\(f: \\mathcal{R} \\rightarrow \\mathcal{R}\\) is a \\(C^1\\) function. Then, if \\(x^*\\) maximizes \\(f(x)\\) for all \\(x \\geq 0\\), then \\(x^*\\) satisfies\n\\[\n\\begin{align*}\n\\frac{df}{dx}(x^*) &\\leq 0\\\\\n\\ x^* \\frac{df}{dx}(x^*) &= 0 \\\\\nx^* & \\geq 0\n\\end{align*}\n\\]"
+  },
+  {
+    "objectID": "slides_qmd/Maths - Calculus_slimversion.html#constraint-optimization-7",
+    "href": "slides_qmd/Maths - Calculus_slimversion.html#constraint-optimization-7",
+    "title": "Maths - Calculus",
+    "section": "Constraint optimization",
+    "text": "Constraint optimization\n\nwhen we form the Lagrange function, we have\n\n. . .\n\\[\nL(x,\\lambda)=f(x)+\\lambda x\n\\]\n\nthe FOC is\n\n. . .\n\\[\n\\begin{align*}\n\\frac{dL}{dx}(x^*, \\lambda^*) &= \\frac{df}{dx}(x^*) + \\lambda^*=0 \\\\\n\\frac{dL}{d\\lambda}(x^*, \\lambda^*) &= x^* \\geq 0 \\\\\n\\lambda^* &\\geq 0, \\; \\lambda^* \\frac{dL}{d \\lambda}(x^*, \\lambda^*)=0\n\\end{align*}\n\\]\n\nthe first and second equation is the same as the FOC for the equality-constrained optimization problem\nthe third equation is the complementary slackness condition\nthese FOCs are called Kuhn-Tucker conditions"
+  },
+  {
+    "objectID": "slides_qmd/Maths - Calculus_slimversion.html#constraint-optimization-8",
+    "href": "slides_qmd/Maths - Calculus_slimversion.html#constraint-optimization-8",
+    "title": "Maths - Calculus",
+    "section": "Constraint optimization",
+    "text": "Constraint optimization\n\nMixed Constraints Problem\n\nthe mixed constraints problem is\n\n\n\\[\\begin{gather*}\n\\max_{x_1, \\dots, x_n} f(x_1,\\dots, x_n) \\\\\ns.t. \\; g_i(x_1,\\dots, x_n)\\geq c_i, \\quad i=1,\\dots,m \\\\\nh_j(x_1,\\dots, x_n)=d_j, \\quad j=1,\\dots,k\n\\end{gather*}\\]\n\n\n\nthe Kuhn-Tucker conditions are necessary conditions for the optimization problem\nthe Kuhn-Tucker conditions are also sufficient under some conditions\n\ne.g. the objective function is concave\nthe constraint functions are convex\nthe constraint qualification is satisfied\n\nKuhn and Tucker (1951) are two economists who independently derived the conditions\n\nthe conditions are also called the Karush-Kuhn-Tucker conditions\nthe conditions are also called the KKT conditions"
+  },
+  {
+    "objectID": "slides_qmd/Maths - Calculus_slimversion.html#constraint-optimization-9",
+    "href": "slides_qmd/Maths - Calculus_slimversion.html#constraint-optimization-9",
+    "title": "Maths - Calculus",
+    "section": "Constraint optimization",
+    "text": "Constraint optimization\n\n\n\n\n\n\nImportantTheorem of Kuhn-Tucker Conditions\n\n\n\nSuppose that \\(f: R^N \\rightarrow R\\), \\(g: R^n \\rightarrow R^m\\), and \\(h: R^n \\rightarrow R^k\\) are \\(C^1\\) functions.\nLet \\(x^*\\) be a local maximum of \\(f(x)\\) subject to the constraints \\(g(x)\\geq c\\) and \\(h(x)=d\\).\nThen there exist \\(\\lambda^* \\in R^m\\) and \\(\\mu^* \\in R^k\\) such that\n\\[\n\\begin{align*}\n\\frac{df}{dx}(x^*) + \\lambda^* \\frac{dg}{dx}(x^*) + \\mu^* \\frac{dh}{dx}(x^*) &=0 \\\\\n\\lambda^* \\geq 0, \\; \\lambda^* \\cdot (g(x^*)-c) &=0 \\\\\n\\mu^* \\geq 0, \\; \\mu^* \\cdot (h(x^*)-d) &=0\n\\end{align*}\n\\]"
+  },
+  {
+    "objectID": "slides_qmd/Maths - Calculus_slimversion.html#constraint-optimization-10",
+    "href": "slides_qmd/Maths - Calculus_slimversion.html#constraint-optimization-10",
+    "title": "Maths - Calculus",
+    "section": "Constraint optimization",
+    "text": "Constraint optimization\n\nExercise 1 — Kuhn-Tucker Conditions\n\n. . .\n\\[\n\\max_{x_1, x_2} f(x_1, x_2)=x_1 \\quad s.t. \\; x_1^3+x_2^2 \\leq 0\n\\]\n\nExercise 2 — Kuhn-Tucker Conditions\n\n. . .\n\\[\n\\max_{x, u} U(x,y) \\quad s.t. \\; p_x x+p_y y \\leq M \\text{ and } \\; x,y \\geq 0\n\\]\n\n\n\\(L(x, y, \\lambda)=U(x,y)+\\lambda_M(M-p_xx-p_yy) +\\lambda_x x + \\lambda_y y\\)\nthe FOCs are\n\n\\[\n\\begin{align*}\n\\frac{\\partial L}{\\partial x} &= \\frac{\\partial U}{\\partial x} - \\lambda_x - \\lambda_M p_x =0 \\\\\n\\frac{\\partial L}{\\partial y} &= \\frac{\\partial U}{\\partial y} - \\lambda_y - \\lambda_M p_y =0 \\\\\n\\frac{\\partial L}{\\partial \\lambda_M} &= M-p_xx-p_yy \\geq 0 \\\\\n\\frac{\\partial L}{\\partial \\lambda_x} &= x \\geq 0 \\\\\n\\frac{\\partial L}{\\partial \\lambda_y} &= y \\geq 0 \\\\\n\\lambda_M(M-p_xx-p_yy) &=0 \\\\\n\\lambda_x x &=0 \\\\\n\\lambda_y y &=0\n\\end{align*}\n\\]\n\nthe last three equations are the complementary slackness conditions"
+  },
+  {
+    "objectID": "slides_qmd/Maths - Calculus_slimversion.html#constraint-optimization-11",
+    "href": "slides_qmd/Maths - Calculus_slimversion.html#constraint-optimization-11",
+    "title": "Maths - Calculus",
+    "section": "Constraint optimization",
+    "text": "Constraint optimization\n\nExercise 3 — Kuhn-Tucker Conditions\nConsider a situation with multiple linear constraints\n\na consumer faces the typical budget constraint, but also has a coupon constraint\nSuppose we have \\(U = xy^2\\), \\(M = 100, p_x = p_y = 1, C = 120, c_x = 2, c_y = 1\\) and \\(x, y ≥ 0\\)\nSolve the solutions\n\n\n\n\nthe Lagrangian can be written: \\(L = xy^2 + λ_1[100 − x − y] + λ_2[120 − 2x − y]\\)\nthe FOCs are\n\n\\[\n\\begin{align*}\n\\frac{∂L}{∂x} &= y^2 − λ_1 − 2λ_2 \\leq 0 \\\\\n\\frac{∂L}{∂y} &= 2xy − λ_1 − λ_2 \\leq 0 \\\\\n\\frac{∂L}{∂λ_1} &= 100 − x − y \\geq 0 \\\\\n\\frac{∂L}{∂λ_2} &= 120 − 2x − y \\geq 0 \\\\\nx L_x &= 0 \\\\\ny L_y &= 0 \\\\\nλ_1(100 − x − y) &= 0 \\\\\nλ_2(120 − 2x − y) &= 0\n\\end{align*}\n\\]\n\nNote that we can dispense with thinking about corner solution here\n\ngiven the utility function, it should be clear that positive amounts of both goods need to be consumed\ncheck the situations for each of the two budget constraints\n\nlet the first budget constraint be binding but not the second\n\nthe solution is $x = 100/3, y = 200/3, λ_1 = 4000/9\nbut this violates the second budget constraint\nso it is not a solution\n\nlet the second budget constraint be binding but not the first\n\nthe solution is \\(x = 20, y = 80, λ_2 = 3200\\)\nthis is a solution even though the first budget constraint is binding\nthe second constraint holds with equality, but there is no value in relaxing the constraint\nThus, this is both the solution when only the second constraint binds, and the solution when both constraints bind"
+  },
+  {
+    "objectID": "slides_qmd/Maths - Calculus_slimversion.html#references",
+    "href": "slides_qmd/Maths - Calculus_slimversion.html#references",
+    "title": "Maths - Calculus",
+    "section": "References",
+    "text": "References\n\n\nChiang, Alpha, Chung-i, and Kevin. Wainwright. 2005. Fundamental Methods of Mathematical Economics. 4th ed. / [rev. by] Kevin Wainwright. McGraw-Hill.\n\n\nSimon, Carl P., and Lawrence. Blume. 1994. Mathematics for Economists. 1st ed. W.W. Norton."
+  },
+  {
+    "objectID": "slides_qmd/Probability and Distribution_v2.html",
+    "href": "slides_qmd/Probability and Distribution_v2.html",
+    "title": "Probability and Distribution",
+    "section": "",
+    "text": "in many cases we must figure out ways to distinguish systematic patterns from noise\nProbability is a set of mathematical tools that measure and model randomness in the world\nin social sciences, we use probability to model the randomly determined nature of various realworld events as well as human behavior and beliefs\n\nour task is to identify systematic patterns from apparently noisy data\n\nwe use probability to quantify the degree of uncertainty about empirical findings\n\n\n\nQuantifying the degree of statistical uncertainty about empirical findings\nNoise, also known as random error, is the irrelevant variation that occurs in every realworld data set\nRandomness does not necessarily imply complete unpredictability"
+  },
+  {
+    "objectID": "slides_qmd/Probability and Distribution_v2.html#motivation",
+    "href": "slides_qmd/Probability and Distribution_v2.html#motivation",
+    "title": "Probability and Distribution",
+    "section": "",
+    "text": "in many cases we must figure out ways to distinguish systematic patterns from noise\nProbability is a set of mathematical tools that measure and model randomness in the world\nin social sciences, we use probability to model the randomly determined nature of various realworld events as well as human behavior and beliefs\n\nour task is to identify systematic patterns from apparently noisy data\n\nwe use probability to quantify the degree of uncertainty about empirical findings\n\n\n\nQuantifying the degree of statistical uncertainty about empirical findings\nNoise, also known as random error, is the irrelevant variation that occurs in every realworld data set\nRandomness does not necessarily imply complete unpredictability"
+  },
+  {
+    "objectID": "slides_qmd/Probability and Distribution_v2.html#two-schools-of-thought-in-probability",
+    "href": "slides_qmd/Probability and Distribution_v2.html#two-schools-of-thought-in-probability",
+    "title": "Probability and Distribution",
+    "section": "Two schools of thought in probability",
+    "text": "Two schools of thought in probability\n\nFrequentist\n\nprobability represents the limit of the relative frequency\n\nthe ratio between the number of times the event occurs and the number of trials, in repeated trials under the same conditions\n\nobjective interpretation of probability\nassumes that all outcomes are equally likely\n\nBayesian\n\nprobability is a measure of one’s subjective belief or certainty about the likelihood of event occurrence\nnamed after a eighteenth century English mathematician and minister, Thomas Bayes\n\nProbability was established as a mathematical theory by Russian mathematician Andrey Kolmogorov in the early twentieth century\n\nKolmogorov’s axioms of probability provide a mathematical foundation for both frequentist and Bayesian interpretations\n\n\n\n\nunder the Bayesian framework, probability simply becomes a tool to describe one’s belief system rather than real-world phenomena\nFrequentist: probability is the long-run relative frequency of an event occurring in repeated trials\nBayesian: probability is a measure of one’s subjective belief about the likelihood of event occurrence\nKolmogorov’s axioms of probability provide a mathematical foundation for both frequentist and Bayesian interpretations\nKolmogorov’s axioms are a set of three rules that define the properties of probability measures\nKolmogorov’s work established probability theory as a rigorous mathematical discipline, providing a framework for both frequentist and Bayesian approaches"
+  },
+  {
+    "objectID": "slides_qmd/Probability and Distribution_v2.html#deinfition-of-probability",
+    "href": "slides_qmd/Probability and Distribution_v2.html#deinfition-of-probability",
+    "title": "Probability and Distribution",
+    "section": "Deinfition of Probability",
+    "text": "Deinfition of Probability\n\nThe definition of probability involves three concepts\n\nexperiment: an action or a set of actions that produce stochastic events of interest\nsample space: a set of all possible outcomes of the experiment, typically denoted by \\(\\Omega\\)\nevent: a subset of the sample space\n\nAn event represents any subset of sample space\n\nit may include multiple outcomes\nthe entire sample space that contains all outcomes is also an event\nan event occurs if the set that defines the event includes an actual outcome of the experiment\n\nthe probability of event \\(A\\) occurring, denoted by \\(P(A)\\), can be computed as the ratio of the number of elements in the corresponding set \\(A\\) to that in the entire sample space \\(\\Omega\\)\n\n. . .\n\\[\nP(A) = \\frac{\\text{number of elements in } A}{\\text{number of elements in } \\Omega}\n\\]\n\n\nan experiment of tossing a fair coin three times\nWhen each outcome is equally likely, in order to compute the probability of event A\n\nwe need to count the number of elements in the event A, as well as the total number of elements in the sample space "
+  },
+  {
+    "objectID": "slides_qmd/Probability and Distribution_v2.html#axioms-of-probability",
+    "href": "slides_qmd/Probability and Distribution_v2.html#axioms-of-probability",
+    "title": "Probability and Distribution",
+    "section": "Axioms of Probability",
+    "text": "Axioms of Probability\n\nThe probability axioms are given by the three rules below\n\nThe probability of any event A is nonnegative: \\(P(A) ≥ 0\\)\nThe probability that one of the outcomes in the sample space occurs is 1: \\(P(\\Omega)= 1\\)\nIf events A and B are mutually exclusive, then \\(P(A \\textrm{ or } B) = P(A) + P(B)\\)\n\nFor any given events A and B, the addition rule is given by \\(P(A \\textrm{ or } B) = P(A) + P(B) − P(A \\textrm{ and } B)\\)\nthe complement of a set - all elements in the sample space except those in the set\n\nthe complement of event A is denoted by \\(A^c\\), and its probability is given by \\(P(A^c) = 1 - P(A)\\)\ne.g the complement of the event \\({A \\textrm{ or } B}\\) is \\({A^c \\textrm{ and } B^c}\\)\n\nFor any given events A and B, the law of total probability is given by\n\n. . .\n\\[\nP(A) = P(A \\textrm{ and } B) + P(A \\textrm{ and } B^c)\n\\]\n\n\nThe first two axioms together imply that probability ranges from 0 to 1\n“Mutually exclusive” in the last axiom means that two events A and B do not share an outcome\n\nUsing the Venn diagram, mutually exclusive events imply two disjoint sets, which do not share any element\n\ndecompose the event \\({A \\textrm{ or } B\\) into three mutually exclusive events\n\n\\({A \\textrm{ and } B^c}\\), \\({A^c \\textrm{ and } B}\\), and \\({A \\textrm{ and } B}\\)"
+  },
+  {
+    "objectID": "slides_qmd/Probability and Distribution_v2.html#permutations",
+    "href": "slides_qmd/Probability and Distribution_v2.html#permutations",
+    "title": "Probability and Distribution",
+    "section": "Permutations",
+    "text": "Permutations\n\nPermutation is an arrangement of objects in a specific order\ne.g. the number of ways to arrange three objects A, B, and C is \\(6\\)\n\n\\(ABC, ACB, BAC, BCA, CAB, CBA\\)\n\nthe number of permutations of n objects is given by n! (n factorial)\nthe factorial of a non-negative integer \\(n\\) is the product of all positive integers less than or equal to \\(n\\)\n\n\\(n! = n \\times (n-1) \\times (n-2) \\times ... \\times 3 \\times 2 \\times 1\\)\ne.g. \\(3! = 3 \\times 2 \\times 1 = 6\\)\n\nthe factorial of 0 is defined as 1, i.e. \\(0! = 1\\)\nThe number of permutations when arranging \\(k\\) objects out of \\(n\\) unique objects is given by \\(_nP_k=\\frac{n!}{(n-k)!}\\)\ne.g. the number of ways in which you can arrange 4 cards out of 13 unique cards\n\n\\(_{13}P_4 = \\frac{13!}{(13-4)!} = \\frac{13!}{9!} = 13 \\times 12 \\times 11 \\times 10 = 17160\\)\n\n\n\n\nPermutations refers to the number of ways in which objects can be arranged\n\nthe order of arrangement matters\ne.g. the number of ways to arrange three objects A, B, and C is 6\n\nABC, ACB, BAC, BCA, CAB, CBA"
+  },
+  {
+    "objectID": "slides_qmd/Probability and Distribution_v2.html#permutations---the-birthday-problem",
+    "href": "slides_qmd/Probability and Distribution_v2.html#permutations---the-birthday-problem",
+    "title": "Probability and Distribution",
+    "section": "Permutations - The birthday problem",
+    "text": "Permutations - The birthday problem\n\nthe number of people one needs in order for the probability that at least two people have the same birthday to exceed 0.5, assuming that each birthday is equally likely\n\n. . .\n\\[\n\\begin{align*}\nP(\\textrm{at least two people have the same birthday}) & \\\\\n= 1 − P(\\textrm{nobody has the same birthday})\n\\end{align*}\n\\]\n. . .\n\\[\n\\begin{align*}\n\\implies P(\\textrm{nobody has the same birthday}) & \\\\\n= \\frac{_{365}P_k}{365^k} = \\frac{365!}{(365-k)! \\cdot 365^k}\n\\end{align*}\n\\]"
+  },
+  {
+    "objectID": "slides_qmd/Probability and Distribution_v2.html#permutations---the-birthday-problem-1",
+    "href": "slides_qmd/Probability and Distribution_v2.html#permutations---the-birthday-problem-1",
+    "title": "Probability and Distribution",
+    "section": "Permutations - The birthday problem",
+    "text": "Permutations - The birthday problem\n\\[\n\\begin{align*}\n\\implies \\log P(\\textrm{nobody has the same birthday}) & \\\\\n= \\log 365! - k \\log 365 - \\log(365-k)!\n\\end{align*}\n\\]\n\nuse R to compute the probability\n\n. . .\n\n\nCode\n# create a new function\nbirthday &lt;- function(k) {\n                  logdenom &lt;- k * log(365) + lfactorial(365 - k)\n                  lognumer &lt;- lfactorial(365)\n                  pr &lt;- 1 - exp(lognumer - logdenom)\n                  pr\n}\n\n\n. . .\n\n\nCode\nlibrary(tidyverse)\n\n# create a data frame with k values from 1 to 100\n\nk_values &lt;- tibble(k = 1:100) %&gt;%\n  mutate(probability = birthday(k))\n\n# plot the probability\n\nggplot(k_values, \n       aes(x = k, y = probability)) +\n  geom_line() +\n  geom_point() +\n  geom_hline(yintercept = 0.5, linetype = \"dashed\", color = \"red\") +\n  labs(title = \"Probability of at least two people having the same birthday\",\n       x = \"Number of people (k)\",\n       y = \"Probability\") +\n  theme_minimal() +\n  scale_y_continuous(\n    str_c(\"Probability that at least two\", \"people have the same birthday\", sep = \"\\n\"),\n    limits = c(0, 1), \n    breaks = seq(0, 1, by = 0.1))\n\n\n\nwhen the number of people equals \\(23\\), the probability of at least two people having the same birthday exceeds \\(0.5\\)\n\nwhen the number of people is more than \\(50\\), this probability is close to \\(1\\)\n\n\n\n\nBirthday problem: the answer is only 23 people, which is much lower than what most people think\nTo solve this problem using permutations, first notice the following relationship:\n\n\\(P(\\textrm{at least two people have the same birthday}= 1 − P(\\textrm{nobody has the same birthday})\\)\n\nLet \\(k\\) be the number of people\n\nthe number of ways in which \\(k\\) unique birthdays can be arranged out of 365 days\n\n\\(_{365}P_k = \\frac{365!}{(365-k)!}\\)\n\nthe total number of elements in the sample space is equal to the total number of ways to select \\(k\\) possibly non-unique birthdays out of 365 days\n\n\\(P(\\textrm{nobody has the same birthday})\\)= \\(\\frac{\\textrm{# of ways in which k unique birthdays can be arranged}}{\\textrm{# of ways in which k possibly nonunique birthdays can be arranged}}\\)\n\nthe number of ways in which \\(k\\) unique birthdays can be arranged is given by \\(_{365}P_k = \\frac{365!}{(365-k)!}\\)\nthe total number of ways in which \\(k\\) possibly nonunique birthdays can be arranged is given by \\(365^k\\)\n\nthis is because each person can have any of the 365 days as their birthday, and there are \\(k\\) people\n\nthus, the probability that nobody has the same birthday is given by\n\n\\(P(\\textrm{nobody has the same birthday}) = \\frac{_{365}P_k}{365^k} = \\frac{365!}{(365-k)! \\cdot 365^k}\\)"
+  },
+  {
+    "objectID": "slides_qmd/Probability and Distribution_v2.html#sampling-with-and-without-replacement",
+    "href": "slides_qmd/Probability and Distribution_v2.html#sampling-with-and-without-replacement",
+    "title": "Probability and Distribution",
+    "section": "Sampling with and without replacement",
+    "text": "Sampling with and without replacement\n\nThe Monte Carlo simulation method\n\na general class of stochastic methods that can be used to approximately solve analytical problems by randomly generating quantities of interest\n\nFor the birthday problem, we sample \\(k\\) possibly nonunique birthdays out of 365 days and check whether or not the sampled \\(k\\) birthdays are all different\n\nthis is called sampling with replacement\nfor each of \\(k\\) draws, every one of 365 days is equally likely to be sampled regardless of which dates were sampled before\n\n\n. . .\n\n\nCode\nset.seed(123) # for reproducibility\nk&lt;-23\n\nn_trials &lt;- 10000 # number of simulation trials\nevent&lt;- 0\n\nfor (i in 1:n_trials) {\n  # sample k birthdays with replacement\n  birthdays &lt;- sample(1:365, k, replace = TRUE)\n  \n  # check if there are any duplicates\n  if (length(unique(birthdays)) &lt; k) {\n    event &lt;- event + 1\n  }\n}\n\n# compute the probability\nprobability &lt;- event / n_trials\n\nprint(probability)\n\n\n\n\nrepeating this sampling procedure many times, we compute the fraction of simulation trials where at least two birthdays are the same, and this fraction serves as an estimate of the corresponding probability\nThis difference (from 0.507) is called the Monte Carlo error, which is an inevitable consequence of the simulation approach\n\nThe size of the Monte Carlo error depends on the nature of the problem\nIt is difficult to eliminate such an error but possible to reduce it\nTo obtain a more accurate estimate, we increase the number of simulations"
+  },
+  {
+    "objectID": "slides_qmd/Probability and Distribution_v2.html#combinations",
+    "href": "slides_qmd/Probability and Distribution_v2.html#combinations",
+    "title": "Probability and Distribution",
+    "section": "Combinations",
+    "text": "Combinations\n\ncombinations refers to the number of ways to choose \\(k\\) distinct elements out of \\(n\\) elements without regard to their order\ntwo different permutations AB and BA represent an identical combination\ne.g. choose \\(2\\) distinct elements out of \\(3\\) elements A, B, and C\n\nthe number of permutations is \\(_3P_2 = 6\\)\nthe number of combinations is \\(3\\)\n\nThe number of combinations when choosing \\(k\\) distinct elements from \\(n\\) elements is denoted by \\({n \\choose k}\\)\n\n. . .\n\\[\n{n \\choose k} = \\frac{n!}{k!(n-k)!}\n\\]\n\ne.g. Suppose that we are creating a committee of 5 out of 20 people (10 men and 10 women), assuming that each person is equally likely to be assigned to the committee\n\nWhat is the probability that at least 2 women are on the committee?\n\n\n\n\nP(at least 2 women are on the committee)= = 1 − P(no woman is on the committee) − P(exactly one woman is on the committee)"
+  },
+  {
+    "objectID": "slides_qmd/Probability and Distribution_v2.html#conditonal-probability",
+    "href": "slides_qmd/Probability and Distribution_v2.html#conditonal-probability",
+    "title": "Probability and Distribution",
+    "section": "Conditonal Probability",
+    "text": "Conditonal Probability\n\nConditional Probability concerns how the probability of an event changes after we observe other events\n\nenables us to take into account observed evidence\n\nThe conditional probability of event A occurring given that event B occurred is defined as\n\n. . .\n\\[\nP(A|B)= \\frac{P(A \\textrm{ and B})}{P(B)}\n\\]\n\nwhere \\(P(A \\textrm{ and B})\\) is the joint probability of events A and B occurring together, and \\(P(B)\\) is the marginal probability of event B occurring"
+  },
+  {
+    "objectID": "slides_qmd/Probability and Distribution_v2.html#conditonal-probability-1",
+    "href": "slides_qmd/Probability and Distribution_v2.html#conditonal-probability-1",
+    "title": "Probability and Distribution",
+    "section": "Conditonal Probability",
+    "text": "Conditonal Probability\n\nWe can also express the joint probability of events A and B in terms of conditional probabilities\n\n. . .\n\\[\nP(A \\textrm{ and } B) = P(A|B) \\cdot P(B) = P(B|A) \\cdot P(A)\n\\]\n\nwe can write the law of total probability in terms of conditional probabilities\n\n. . .\n\\[\nP(A) = P(A|B) \\cdot P(B) + P(A|B^c) \\cdot P(B^c)\n\\]"
+  },
+  {
+    "objectID": "slides_qmd/Probability and Distribution_v2.html#conditonal-probability---example-1",
+    "href": "slides_qmd/Probability and Distribution_v2.html#conditonal-probability---example-1",
+    "title": "Probability and Distribution",
+    "section": "Conditonal Probability - Example 1",
+    "text": "Conditonal Probability - Example 1\n\nconsider two couples who are expecting twins\n\nOne couple had an ultrasound exam but the technician was only able to determine that one of the two children was a boy\nThe other couple did not find out the sex of their twins until the delivery, when they saw the first baby was a boy\n\nQuestion: What is the probability that both babies are boys?\n\n\n\nthe sample space = \\(\\{GG, GB, BG, BB\\}\\)\n\ne.g. \\(GB\\) means that the elder twin is a girl and the younger one is a boy\n\n\\(P(BB| \\textrm{ at least one is a boy }=\\frac{P(BB)}{P(BB \\text{ or } BG \\textrm{ or } GB)}=\\frac{1}{3}\\)\n\\(P(BB | \\textrm{ elder twin is a boy } = \\frac{P(BB)}{P(BB \\textrm{ or } BG)}=\\frac{1}{2}\\)"
+  },
+  {
+    "objectID": "slides_qmd/Probability and Distribution_v2.html#conditonal-probability---example-2",
+    "href": "slides_qmd/Probability and Distribution_v2.html#conditonal-probability---example-2",
+    "title": "Probability and Distribution",
+    "section": "Conditonal Probability - Example 2",
+    "text": "Conditonal Probability - Example 2\n\nuse a random sample of 10000 registered voters from Florida\n\n. . .\n\n\nCode\nlibrary(tidyverse)\n\n# load the data\nvoters &lt;- read_csv(\"https://raw.githubusercontent.com/kwan-MSDA/soci7016_2025/refs/heads/main/data/FLVoters.csv\")\n\ndim(voters)\n\nglimpse(voters)\n\n\n\nwhere county stands for county id of voter’s residence and VTD stands for voting district id of voter’s residence\nremove those voters who contain a missing value\n\n. . .\n\n\nCode\nvoters&lt;- voters %&gt;% \n  na.omit()\n\ndim(voters)\n\n\n\nthe dataset contains 9113 voters, with 5 variables\n\ntreat this sample of 9113 voters as a population of interest\n\n\n\n\ncounty - County id of voter’s residence\nVTD - Voting district id of voter’s residence\nage - Age\ngender - Gender: m = male and f = female\nrace - Self-reported race"
+  },
+  {
+    "objectID": "slides_qmd/Probability and Distribution_v2.html#conditonal-probability---example-2-1",
+    "href": "slides_qmd/Probability and Distribution_v2.html#conditonal-probability---example-2-1",
+    "title": "Probability and Distribution",
+    "section": "Conditonal Probability - Example 2",
+    "text": "Conditonal Probability - Example 2\n\ncompute the marginal probability for each racial category\n\n. . .\n\n\nCode\nmargin_race&lt;- \n  voters %&gt;% \n  count(race) %&gt;% \n  mutate(prop= n / sum(n))\n\nmargin_race\n\n\n\nlet us calculate the marginal probabilities of gender\n\n. . .\n\n\nCode\nmargin_gender&lt;- \n  voters %&gt;% \n  count(gender) %&gt;% \n  mutate(prop=n/sum(n))\n\nmargin_gender\n\n\n\ncompute the conditional probability of race given gender\n\n. . .\n\n\nCode\nmargin_race_f&lt;- voters %&gt;%\n                  filter(gender==\"f\") %&gt;% \n                  count(race) %&gt;% \n                  mutate(prop=n/sum(n))\n\nmargin_race_f\n\n\n. . .\n\n\nCode\nmargin_race_m&lt;- voters %&gt;% \n                  filter(gender==\"m\") %&gt;% \n                  count(race) %&gt;% \n                  mutate(prop=n/sum(n))\n\nmargin_race_m\n\n\n\n\nuse the count() function to tally the number of observations for each value of the race variable\n\nThis is useful as it saves us from having to use the group() and ungroup() functions"
+  },
+  {
+    "objectID": "slides_qmd/Probability and Distribution_v2.html#conditonal-probability---example-2-2",
+    "href": "slides_qmd/Probability and Distribution_v2.html#conditonal-probability---example-2-2",
+    "title": "Probability and Distribution",
+    "section": "Conditonal Probability - Example 2",
+    "text": "Conditonal Probability - Example 2\n\ncompute the joint probability of race and gender\n\n. . .\n\n\nCode\njoint_p &lt;- voters %&gt;% \n  count(gender, race) %&gt;% \n  mutate(prop = n / sum(n))\n\njoint_p\n\n\n\nQuestion: compute the probability of being an African American voter\n\n. . .\n\n\nCode\njoint_p_wider&lt;- joint_p %&gt;% \n  select(-n) %&gt;% \n  pivot_wider(names_from = gender,\n              values_from = prop) %&gt;% \n  mutate(total_prop=f+m)\n\njoint_p_wider\n\n\n\nQuestion: computer the marginal probability of gender\n\n. . .\n\n\nCode\njoint_p_wider&lt;- joint_p %&gt;% \n  select(-n) %&gt;% \n  pivot_wider(names_from=race,\n              values_from=prop) %&gt;% \n  mutate(total_prop=rowSums(across(where(is.numeric))))\n\njoint_p_wider\n\n\n\nalternatively\n\n. . .\n\n\nCode\njoint_p %&gt;% \n  group_by(gender) %&gt;% \n  summarise(prop =sum(prop))\n\n\n\n\nThis joint probability gives \\(P\\)(black and female) = 0.07 and \\(P\\)(white and male) = 0.32\n\nFrom this joint probability, we can compute the marginal and conditional probabilities\n\nto obtain the marginal probability we apply the law of total probability\n\n\\(P(\\textrm{black})=P(\\textrm{black and female}) + P(\\textrm{black and male})\\)\n\nsumming over gender columns for each racial row results in the marginal probability of race\nTo save us from having to type out the names of each race column in the mutate() function to create the total_prop variable\n\nwe use the rowSums() function with additional helper functions\nThe where() function allows us to select columns that match the specified criteria—here we select all the variables that are numeric\nThe across() function applies a transformation over a series of columns\nIn short, the rowSums(across(where(is.numeric))) portion of the code tells R to sum the values of all the columns that are numeric"
+  },
+  {
+    "objectID": "slides_qmd/Probability and Distribution_v2.html#conditonal-probability---example-2-3",
+    "href": "slides_qmd/Probability and Distribution_v2.html#conditonal-probability---example-2-3",
+    "title": "Probability and Distribution",
+    "section": "Conditonal Probability - Example 2",
+    "text": "Conditonal Probability - Example 2\n\nthe conditional probability of being African American among female voters is calculated as\n\n. . .\n\\[\nP(\\textrm{ black  } | \\textrm{ female }) = \\frac{P(\\textrm{black and female})}{P(\\textrm{ female })} = \\frac{0.0744}{0.536}=0.139\n\\]"
+  },
+  {
+    "objectID": "slides_qmd/Probability and Distribution_v2.html#conditonal-probability---example-2-4",
+    "href": "slides_qmd/Probability and Distribution_v2.html#conditonal-probability---example-2-4",
+    "title": "Probability and Distribution",
+    "section": "Conditonal Probability - Example 2",
+    "text": "Conditonal Probability - Example 2\n\na further example for conditional probability by creating \\(4\\) age groups\n\n20 and below, 21–40, 41–60, and above 60\n\n\n. . .\n\n\nCode\nvoters &lt;- voters %&gt;% \n  mutate(age_group = cut(age, \n                            breaks = c(0, 20, 40, 60, Inf),\n                            right = TRUE,\n                            labels = c(\"20 and below\", \"21-40\", \"41-60\", \"Above 60\")))\nvoters\n\n\n\ncalculate the marginal probability of the age groups\n\n. . .\n\n\nCode\nmargin_age &lt;- voters %&gt;% \n  count(age_group) %&gt;% \n  mutate(margin_age = n / sum(n)) %&gt;% \n  select(-n)\n\nmargin_age"
+  },
+  {
+    "objectID": "slides_qmd/Probability and Distribution_v2.html#conditonal-probability---example-2-5",
+    "href": "slides_qmd/Probability and Distribution_v2.html#conditonal-probability---example-2-5",
+    "title": "Probability and Distribution",
+    "section": "Conditonal Probability - Example 2",
+    "text": "Conditonal Probability - Example 2\n\ncreate a joint probability table across the three factors of race, gender, and age\n\n. . .\n\n\nCode\njoint3&lt;- voters %&gt;% \n  count(race, age_group, gender) %&gt;% \n  mutate(prop = n / sum(n))\n\nhead(joint3)\n\n\n\ncompute the conditional probability of being African American and female given that a voter is above 60 years old\n\n. . .\n\n\nCode\njoint3&lt;- left_join(joint3, margin_age, by = \"age_group\") %&gt;% \n  mutate(cond_prob_age = prop / margin_age)\n\njoint3 \n\n\n\nconditional probability of African American female given 60 years old above\n\n. . .\n\n\nCode\nfilter(joint3, race==\"black\", gender==\"f\",\n       age_group==\"Above 60\") %&gt;% \n  select(race, age_group, gender, cond_prob_age)"
+  },
+  {
+    "objectID": "slides_qmd/Probability and Distribution_v2.html#conditonal-probability---example-2-6",
+    "href": "slides_qmd/Probability and Distribution_v2.html#conditonal-probability---example-2-6",
+    "title": "Probability and Distribution",
+    "section": "Conditonal Probability - Example 2",
+    "text": "Conditonal Probability - Example 2\n\nQuestion: the conditional probability of being African American given that a voter is female and above 60 years old\n\ni.e. \\(P(\\textrm{black| female and 60 years old })\\)\nit can be computed by dividing the three-way joint probability \\(P(\\textrm{ black and above 60 and female})\\) by the two-way joint probability \\(P(\\textrm{above 60 and female})\\)\n\n\n\n\nCode\njoint2&lt;- voters %&gt;% \n  count(age_group, gender) %&gt;% \n  ungroup() %&gt;%\n  mutate(prob_age_gender = n / sum(n)) %&gt;% \n  select(-n)\n\n\n\nmerge with the 3-way joint probability and calculate conditional prob of race given age and gender\n\n. . .\n\n\nCode\njoint3 &lt;- left_join(joint3, joint2, by = c(\"age_group\", \"gender\")) %&gt;%\n  mutate(con_prob_race = prop / prob_age_gender)\n\n\n\ncompute conditional prob of African American given female and above 60\n\n. . .\n\n\nCode\nfilter(joint3, gender==\"f\", age_group==\"Above 60\", race==\"black\") %&gt;% \n  select(con_prob_race)\n\n\n\n\nthe cut() function is used to create a new variable age_group based on the age variable\n\nbreaks = c(0, 20, 40, 60, Inf) specifies the breakpoints for the age groups\nright = TRUE indicates that the intervals are closed on the right side\nlabels = c(“20 and below”, “21-40”, “41-60”, “Above 60”) specifies the labels for each age group\n\ncould do this using case_when"
+  },
+  {
+    "objectID": "slides_qmd/Probability and Distribution_v2.html#independence",
+    "href": "slides_qmd/Probability and Distribution_v2.html#independence",
+    "title": "Probability and Distribution",
+    "section": "Independence",
+    "text": "Independence\n\nthe independence of two events implies that knowledge of one event does not give us any additional information about the occurrence of the other event\nTwo events A and B are independent if and only if\n\n. . .\n\\[\nP(A|B) = P(A) \\textrm{ and } P(B|A) = P(B)\n\\]\n\nEquivalently, two events A and B are independent if and only if\n\n. . .\n\\[\nP(A \\textrm{ and } B) = P(A) \\cdot P(B)\n\\]"
+  },
+  {
+    "objectID": "slides_qmd/Probability and Distribution_v2.html#independence-1",
+    "href": "slides_qmd/Probability and Distribution_v2.html#independence-1",
+    "title": "Probability and Distribution",
+    "section": "Independence",
+    "text": "Independence\n\ncontinue our example\n\nuse the crossing() function to make a data set with every combination of the race and gender marginal probabilities\n\nthen merge that with the two-way joint probability table of race and gender, joint_p\n\n\n\n. . .\n\n\nCode\nlibrary(tidyr)\n\n## rename needed variables\nmargin_race &lt;- select(margin_race, race, prob_race = prop)\n\nmargin_gender &lt;- select(margin_gender, gender, prob_gender = prop)\n\n## combine the marginal probabilities and link to joint probabilities\n\nrace_gender_indep &lt;- tidyr::crossing(margin_race, margin_gender) %&gt;%\n  left_join(select(joint_p, gender, race, prob_joint = prop),by = c(\"gender\", \"race\")) %&gt;%\n  ## calculate the independent prob comparison\n  mutate(prob_indp = prob_race * prob_gender)\n\nrace_gender_indep\n\n\n\nplot it for female\n\n. . .\n\n\nCode\nggplot(filter(race_gender_indep, gender==\"f\"),\n       aes(x=prob_indp, y=prob_joint)) +\n  geom_point(shape=1) +\n  geom_abline(intercept=0, slope=1, color=\"black\", size=0.5) +\n  coord_fixed() +\n  labs(title=\"Joint vs Independent Probabilities\",\n       x=expression(P(\"race\") * P(\"gender\")),\n       y=expression(P(\"race and gender\")))"
+  },
+  {
+    "objectID": "slides_qmd/Probability and Distribution_v2.html#independence-2",
+    "href": "slides_qmd/Probability and Distribution_v2.html#independence-2",
+    "title": "Probability and Distribution",
+    "section": "Independence",
+    "text": "Independence\n\nif we have three events A, B, and C, the joint independence among these events implies that the joint probability can be written as the product of marginal probabilities\n\n. . .\n\\[\nP(A \\textrm{ and } B \\textrm{ and } C) = P(A) \\cdot P(B) \\cdot P(C)\n\\]\n\nThe conditional independence of events A and B given event C implies that the joint probability of A and B given C is equal to the product of two conditional probabilities\n\n. . .\n\\[\nP(A \\textrm{ and } B | C) = P(A | C) \\cdot P(B | C)\n\\]\n\nnotice that joint independence implies pairwise independence\n\n\n\nThis result can be obtained by applying the law of total probability: \\[\n\\begin{align*}\nP(\\textrm{A and B}) &= P(\\textrm{A and B and C}) + P({\\textrm{A and B and } C^c}) \\\\\n&= P(A)P(B)P(C) + P(A)P(B)P(C^c) \\\\\n&= P(A)P(B)\\{P(C) + P(C^c)\\} = P(A)P(B)\n\\end{align*}\n\\]"
+  },
+  {
+    "objectID": "slides_qmd/Probability and Distribution_v2.html#independence-3",
+    "href": "slides_qmd/Probability and Distribution_v2.html#independence-3",
+    "title": "Probability and Distribution",
+    "section": "Independence",
+    "text": "Independence\n\nexamine the joint independence among the sample of registered Florida voters\n\n. . .\n\n\nCode\nmargin_age &lt;- select(margin_age, age_group, prob_age = margin_age)\n\n## combine the marginal probabilities and link to joint probabilities\njoint_indep &lt;- \n  tidyr::crossing(margin_age, margin_gender, margin_race) %&gt;%\n  mutate(indep_prob = prob_race * prob_age * prob_gender) %&gt;%\n  left_join(select(joint3, race, age_group, gender, prob_joint = prop), by = c(\"gender\", \"age_group\", \"race\"))\n\n\n\nplot joint versus independent prob\n\n. . .\n\n\nCode\nggplot(filter(joint_indep, age_group == \"Above 60\", gender == \"f\"),\n       aes(x = prob_joint, y = indep_prob)) +\n  geom_abline(intercept = 0, slope = 1, color = \"black\", size = 0.5) +\n  geom_point(shape = 1) +\n  coord_fixed() +\n  labs(x = \"P(race and above 60 and female)\",\n       y = \"P(race) * P(above 60) * P(female)\",\n       title = \"Joint independence\")\n\n\n\nconditional prob of race and age given gender\n\n. . .\n\n\nCode\ncond_prob_gender &lt;- left_join(select(joint3, race, age_group, gender, joint_prob = prop), margin_gender,\n                              by = c(\"gender\")) %&gt;%\n  mutate(cond_prob_gender = joint_prob / prob_gender)\n\n\n\nconditional prob of race given gender\n\n. . .\n\n\nCode\ncond_prob_race_gender &lt;-\n  left_join(select(joint_p, race, gender, prob_race_gender = prop), margin_gender, by = \"gender\") %&gt;%\n  mutate(cond_prob_race_gender = prob_race_gender / prob_gender) %&gt;%\n  select(race, gender, cond_prob_race_gender)"
+  },
+  {
+    "objectID": "slides_qmd/Probability and Distribution_v2.html#independence-4",
+    "href": "slides_qmd/Probability and Distribution_v2.html#independence-4",
+    "title": "Probability and Distribution",
+    "section": "Independence",
+    "text": "Independence\n\nconditional prob of age given gender\n\n. . .\n\n\nCode\ncond_prob_age_gender &lt;- left_join(select(joint2, age_group, gender, prob_age_gender), margin_gender,\n                                  by = \"gender\") %&gt;%\n  mutate(cond_prob_age_gender = prob_age_gender / prob_gender) %&gt;%\n  select(age_group, gender, cond_prob_age_gender)\n\n\n\nindependent probability of race and age\n\n. . .\n\n\nCode\nindep_cond_gender &lt;- full_join(cond_prob_race_gender, cond_prob_age_gender,\n                               by = \"gender\") %&gt;%\n  mutate(indep_prob = cond_prob_race_gender * cond_prob_age_gender)\n\n## merge the independent probability with the conditional probability\n\nmaster &lt;- left_join(cond_prob_gender, indep_cond_gender,\n                    by = c(\"gender\", \"age_group\", \"race\"))\n\n\n\nplotting for women over 60\n\n. . .\n\n\nCode\nggplot( filter(master, age_group == \"Above 60\", gender == \"f\"),\n        aes(x = cond_prob_gender, y = indep_prob)) +\n  geom_abline(intercept = 0, slope = 1, color = \"black\", size = 0.5) +\n  geom_point(shape = 1) +\n  coord_fixed() +\n  labs(x = \"P(race and above 60 | female)\",\n       y = \"P(race | female) * P(above 60 | female)\",\n       title = \"Marginal independence\")"
+  },
+  {
+    "objectID": "slides_qmd/Probability and Distribution_v2.html#bayes-rule",
+    "href": "slides_qmd/Probability and Distribution_v2.html#bayes-rule",
+    "title": "Probability and Distribution",
+    "section": "Bayes’ rule",
+    "text": "Bayes’ rule\n\nBayes’ rule shows how updating beliefs after observing some data\nBayes’ rule is a fundamental theorem of probability that relates the conditional and marginal probabilities of random events\nBayes’ rule is given by\n\n. . .\n\\[\nP(A|B) = \\frac{P(B|A) \\cdot P(A)}{P(B)}\n\\]\n\n\\(P(A)\\) is called the prior probability and reflects one’s initial belief about the likelihood of event A occurring\nAfter observing the data, represented as event B, we update our belief and obtain \\(P(A | B)\\), which is called the posterior probability"
+  },
+  {
+    "objectID": "slides_qmd/Probability and Distribution_v2.html#bayes-rule-1",
+    "href": "slides_qmd/Probability and Distribution_v2.html#bayes-rule-1",
+    "title": "Probability and Distribution",
+    "section": "Bayes’ rule",
+    "text": "Bayes’ rule\n\nA well-known application of Bayes’ rule is the interpretation of medical diagnostic tests\nConsider the following first-trimester screening test problem\n\nA 35-year-old pregnant woman is told that 1 in 378 women of her age will have a baby with Down syndrome (DS)\nA first-trimester ultrasound screening procedure indicates that she is in a high-risk category (HR)\nOf 100 cases of DS, 86 mothers will receive a high-risk result (HR) and 14 cases of DS will be missed\nAlso, there is a 1 in 20 chance for a non-high-risk pregnancy to be diagnosed as high risk\n\nGiven the result of the screening procedure\n\nwhat is the probability that her baby has DS?\nWhat would the probability be if the result had been negative?\n\n\n\n\nP(DS | HR) = \\(\\frac{P(HR | DS) P(DS)}{P(HR)}= \\frac{P(HR | DS) P(DS)}{P(HR | DS)P(DS) + P(HR | \\textrm{not DS})P(\\textrm{not DS})}=\\frac{0.86*\\frac{1}{378}}{0.86*\\frac{1}{378}+ 0.05*\\frac{377}{378}}\\approx 0.04\\)\nP(DS | ) = \\(\\frac{P(\\textrm{not HR} | DS) P(DS)}{P(\\textrm{not HR})}= \\frac{P(\\textrm{not HR} | DS) P(DS)}{P(\\textrm{not HR} | DS)P(DS) + P(\\textrm{not HR} | \\textrm{not DS})P(\\textrm{not DS})}=\\frac{0.14*\\frac{1}{378}}{0.14*\\frac{1}{378}+ 0.95*\\frac{377}{378}}\\approx 0.0005\\)"
+  },
+  {
+    "objectID": "slides_qmd/Probability and Distribution_v2.html#example-monty-hall-game",
+    "href": "slides_qmd/Probability and Distribution_v2.html#example-monty-hall-game",
+    "title": "Probability and Distribution",
+    "section": "Example — Monty Hall Game",
+    "text": "Example — Monty Hall Game\n\nThe Monty Hall problem is a famous probability puzzle based on a game show scenario\n\nnamed after the original host of the American television game show Let’s Make a Deal, Monty Hall\n\nThe game involves three doors, behind one of which is a car (the prize), and behind the other two are goats (not the prize)\nThe contestant chooses one door, then the host, who knows where the car is, opens one of the other two doors to reveal a goat\n\nThe contestant is then given the option to either stick with their original choice or switch to the other unopened door\n\n\n. . .\n\n\nCode\n# create a function that simulates the game\nsims &lt;- 10000\ndoors &lt;- c(\"goat\", \"goat\", \"car\")\nresult.switch &lt;- result.noswitch &lt;- rep(NA, sims)\n\nfor (i in 1:sims) {\n  ## randomly choose the initial door\n  first &lt;- sample(1:3, size = 1)\n  result.noswitch[i] &lt;- doors[first]\n  remain &lt;- doors[-first] # remaining two doors\n  ## Monty chooses one door with a goat\n  if (doors[first] == \"car\") # two goats left\n    monty &lt;- sample(1:2, size = 1)\n  else # one goat and one car left\n    monty &lt;- (1:2)[remain == \"goat\"]\n  result.switch[i] &lt;- remain[-monty]\n  }\n\nmean(result.noswitch == \"car\")\n\nmean(result.switch == \"car\")"
+  },
+  {
+    "objectID": "slides_qmd/Probability and Distribution_v2.html#random-variables-and-probability-distributions",
+    "href": "slides_qmd/Probability and Distribution_v2.html#random-variables-and-probability-distributions",
+    "title": "Probability and Distribution",
+    "section": "Random Variables and Probability Distributions",
+    "text": "Random Variables and Probability Distributions\n\nA random variable assigns a number to each event\n\ntwo outcomes of a coin flip can be represented by a binary random variable where 1 indicates landing on heads and 0 denotes landing on tails\n\nThe values of random variables must represent mutually exclusive and exhaustive events\nA random variable can be discrete or continuous\n\nA discrete random variable can take on a finite or countably infinite number of values\n\ne.g. the number of heads in 10 coin flips\n\nA continuous random variable can take on any value within a given range\n\ne.g. the height of a person\n\n\n\n\n\nconsider a random variable that represents one’s racial group using five unique integers\n\nblack = 1, white = 2, hispanic = 3, asian = 4, and others = 5\nsomeone who self-identifies as African American and White will be assigned the value of 5 instead of taking the values of 1 and 2 at the same time\n\nOnce we define a random variable, we can formalize a probability model using the distribution of the random variable"
+  },
+  {
+    "objectID": "slides_qmd/Probability and Distribution_v2.html#bernoulli-distributions",
+    "href": "slides_qmd/Probability and Distribution_v2.html#bernoulli-distributions",
+    "title": "Probability and Distribution",
+    "section": "Bernoulli Distributions",
+    "text": "Bernoulli Distributions\n\nA Bernoulli distribution is a discrete probability distribution for a random variable, \\(X\\), that can take on only two possible outcomes\n\ne.g. flipping a coin, where heads is represented by \\(1\\) and tails by \\(0\\)\nThe Bernoulli distribution is parameterized by the probability of success, \\(p\\), which is the probability of obtaining a \\(1\\)\n\nThe distribution of a discrete random variable can be characterized by the probability mass function (pmf)\nThe pmf \\(f(x)\\) of a random variable \\(X\\) is defined as the probability that the random variable takes a particular value, i.e. \\(f(x) = P(X = x)\\)\nThe pmf of a Bernoulli distribution is given by\n\n. . .\n\\[\nf(x) = \\begin{cases}\np & \\textrm{if } x = 1 \\\\\n1-p & \\textrm{if } x = 0 \\\\\n0 & \\textrm{otherwise }\n\\end{cases}\n\\]"
+  },
+  {
+    "objectID": "slides_qmd/Probability and Distribution_v2.html#bernoulli-distributions-1",
+    "href": "slides_qmd/Probability and Distribution_v2.html#bernoulli-distributions-1",
+    "title": "Probability and Distribution",
+    "section": "Bernoulli Distributions",
+    "text": "Bernoulli Distributions\n\nthe cumulative distribution function (CDF), \\(F(x)\\) represents the cumulative probability that a random variable \\(X\\) takes a value equal to or less than a specific value x, i.e., \\(F(x) = P(X ≤ x)\\)\nthe relationship between the PMF \\(f(x)\\) and the CDF \\(F(x)\\) for a discrete random variable can be written as\n\n. . .\n\\[\nF(x) = P(X ≤ x) =  \\sum_{k\\leq x} f(k)\n\\]\n\nwhere \\(k\\) represents all values the random variable \\(X\\) can take that are less than or equal to \\(x\\)\n\n\nThe CDF of a Bernoulli distribution is given by\n\n. . .\n\\[\nF(x) = \\begin{cases}\n0 & \\textrm{if } x &lt; 0 \\\\\n1-p & \\textrm{if } 0 \\leq x &lt; 1 \\\\\n1 & \\textrm{if } x \\geq 1\n\\end{cases}\n\\]\n. . ."
+  },
+  {
+    "objectID": "slides_qmd/Probability and Distribution_v2.html#uniform-distribution",
+    "href": "slides_qmd/Probability and Distribution_v2.html#uniform-distribution",
+    "title": "Probability and Distribution",
+    "section": "Uniform Distribution",
+    "text": "Uniform Distribution\n\nA uniform distribution is a continuous probability distribution where all outcomes are equally likely within a specified range, \\([a,b]\\)\n\nThe uniform distribution is parameterized by two parameters, \\(a\\) and \\(b\\), which represent the lower and upper bounds of the distribution, respectively\n\nuse the (probability) density function (pdf) \\(f(x)\\) to quantifies the likelihood that a continuous random variable \\(X\\) will take a specific value \\(x\\)\nThe pdf of a uniform distribution is given by\n\n. . .\n\\[\nf(x) = \\begin{cases}\n\\frac{1}{b-a} & \\textrm{if } a \\leq x \\leq b \\\\\n0 & \\textrm{otherwise}\n\\end{cases}\n\\]\n\nthe CDF of a uniform distribution is given by\n\n. . .\n\\[\nF(x) = \\begin{cases}\n0 & \\textrm{if } x &lt; a \\\\\n\\frac{x-a}{b-a} & \\textrm{if } a \\leq x &lt; b \\\\\n1 & \\textrm{if } x \\geq b\n\\end{cases}\n\\]\n\nin general, the CDF of a continuous random variable \\(X\\) can be expressed as\n\n. . .\n\\[\nF(x) = P(X ≤ x) = \\int_{-\\infty}^{x} f(t) dt\n\\]\n. . .\n\n\nCode\ndunif(0.5, min=0, max=1)\n\n\npunif(1, min=-2, max=2)"
+  },
+  {
+    "objectID": "slides_qmd/Probability and Distribution_v2.html#bernoulli-and-uniform-distributions",
+    "href": "slides_qmd/Probability and Distribution_v2.html#bernoulli-and-uniform-distributions",
+    "title": "Probability and Distribution",
+    "section": "Bernoulli and Uniform Distributions",
+    "text": "Bernoulli and Uniform Distributions\n\nWe can use a uniform random variable to generate a Bernoulli random variable\nin order to generate a Bernoulli random variable \\(Y\\) with success probability \\(p\\), we can first sample a uniform random variable \\(X\\) and then set \\(Y = 1\\) when \\(X\\) is less than \\(p\\) (similarly, set \\(Y = 0\\) if \\(X ≥ p\\)) so that Y takes a value of 1 with probability \\(p\\)\n\n. . .\n\n\nCode\nset.seed(123)\n\nsims &lt;- 10000\n\np &lt;- 0.5 # success probabilities\n\nx &lt;- runif(sims, min = 0, max = 1) # uniform [0,1]\n\nhead(x)\n\n\n. . .\n\n\nCode\ny &lt;- as.integer(x &lt;= p) # Bernoulli; turn TRUE/FALSE to 1/0\n\nhead(y)\n\nmean(y)"
+  },
+  {
+    "objectID": "slides_qmd/Probability and Distribution_v2.html#binomial-distribution",
+    "href": "slides_qmd/Probability and Distribution_v2.html#binomial-distribution",
+    "title": "Probability and Distribution",
+    "section": "binomial distribution",
+    "text": "binomial distribution\n\na binomial random variable \\(X\\) records the number of successes in a total of \\(n\\) independent and identical trials with success probability \\(p\\)\n\ne.g. the number of heads in \\(10\\) coin flips\n\nThe probability mass function of a binomial random variable with success probability \\(p\\) and \\(n\\) trials is given by\n\n. . .\n\\[\nf(x) = P(X = x) = \\binom{n}{x} p^x (1-p)^{n-x}\n\\]\n\nwhere \\(\\binom{n}{x}\\) is the binomial coefficient, which represents the number of ways to choose \\(x\\) successes from \\(n\\) trials"
+  },
+  {
+    "objectID": "slides_qmd/Probability and Distribution_v2.html#binomial-distribution-1",
+    "href": "slides_qmd/Probability and Distribution_v2.html#binomial-distribution-1",
+    "title": "Probability and Distribution",
+    "section": "binomial distribution",
+    "text": "binomial distribution\n\nthe cdf of a binomial random variable is given by\n\n. . .\n\\[\nF(x) = P(X ≤ x) = \\sum_{k=0}^{x} \\binom{n}{k} p^k (1-p)^{n-k}\n\\]\n\nfor \\(x = 0, 1, ..., n\\)\n\n\nuse R to compute the probability of getting exactly \\(2\\) heads in \\(10\\) flips of a fair coin\n\n. . .\n\n\nCode\ndbinom(2, size = 10, prob = 0.5) # probability of getting 2 heads in 10 flips\n\n\n\nthe cdf of a binomial random variable can be computed using the pbinom() function\n\n. . .\n\n\nCode\npbinom(2, size = 10, prob = 0.5) # probability of getting at most 2 heads in 10 flips\n\n\n\n\na binomial random variable is the sum of n independently and identically distributed (or i.i.d. in short) Bernoulli random variables\nRecall that a Bernoulli random variable equals either 1 or 0 with success probability p\n\nThus, X can take an integer value from 0 to n"
+  },
+  {
+    "objectID": "slides_qmd/Probability and Distribution_v2.html#normal-distribution",
+    "href": "slides_qmd/Probability and Distribution_v2.html#normal-distribution",
+    "title": "Probability and Distribution",
+    "section": "Normal Distribution",
+    "text": "Normal Distribution\n\nA normal distribution is a continuous probability distribution that is symmetric about its mean, \\(\\mu\\), and characterized by its standard deviation, \\(\\sigma\\)\n\nThe normal distribution is often referred to as the Gaussian distribution\n\nThe probability density function (pdf) of a normal distribution is given by\n\n. . .\n\\[\nf(x) = \\frac{1}{\\sigma \\sqrt{2\\pi}} e^{-\\frac{(x - \\mu)^2}{2\\sigma^2}} \\quad \\textrm{for } -\\infty &lt; x &lt; \\infty\n\\]\n\nThe cumulative distribution function (cdf) of a normal distribution is given by\n\n. . .\n\\[\nF(x) = P(X ≤ x) = \\int_{-\\infty}^{x} f(t) dt \\quad \\textrm{for } -\\infty &lt; x &lt; \\infty\n\\]\n\n\\(X \\sim N(\\mu, \\sigma^2)\\); when \\(\\mu=0\\) and \\(\\sigma^2=1\\), \\(X\\) is said to follow standard normal distribution\n\n\n\nnotice that the cdf of a normal distribution does not have a closed-form expression, but it can be computed using numerical methods"
+  },
+  {
+    "objectID": "slides_qmd/Probability and Distribution_v2.html#normal-distribution-1",
+    "href": "slides_qmd/Probability and Distribution_v2.html#normal-distribution-1",
+    "title": "Probability and Distribution",
+    "section": "Normal Distribution",
+    "text": "Normal Distribution\n\nThe normal distribution \\(X \\sim N(\\mu, \\sigma^2)\\) has two important properties. Let \\(c\\) be a constant\n\nlet \\(Z=X+c\\), then \\(Z \\sim N(\\mu+c, \\sigma^2)\\)\nlet \\(Z=cX\\), then \\(Z \\sim N(c\\mu, c^2\\sigma^2)\\)\n\nz-score of a normal random variable \\(X\\) is defined as\n\n. . .\n\\[\n\\textrm{z-score} = \\frac{X - \\mu}{\\sigma} \\sim N(0,1)\n\\]"
+  },
+  {
+    "objectID": "slides_qmd/Probability and Distribution_v2.html#normal-distribution-2",
+    "href": "slides_qmd/Probability and Distribution_v2.html#normal-distribution-2",
+    "title": "Probability and Distribution",
+    "section": "Normal Distribution",
+    "text": "Normal Distribution\n\nnote that when the data are distributed according to the normal distribution\n\nabout two-thirds are within \\(1\\) standard deviation from the mean\napproximately 95% are within the \\(2\\) standard deviations from the mean\n\n\n. . .\n\\[\nP(\\mu - k\\sigma \\leq X \\leq \\mu + k\\sigma) \\approx \\begin{cases}\n0.68 & \\textrm{if } k = 1 \\\\\n0.95 & \\textrm{if } k = 2 \\\\\n0.997 & \\textrm{if } k = 3\n\\end{cases}\n\\]\n\nwe can express the above probabilities in terms of z-score\n\n. . .\n\\[\nP(\\mu - k\\sigma \\leq X \\leq \\mu + k\\sigma) = P(-k \\leq Z \\leq k)=F(k) - F(-k)\n\\]\n\nuse the pnorm() function in R to compute the cumulative distribution function of a normal distribution\n\n. . .\n\n\nCode\npnorm(1) - pnorm(-1) # probability of being within 1 standard deviation from the mean\n\npnorm(2) - pnorm(-2) # probability of being within 2 standard deviations from the mean\n\npnorm(3) - pnorm(-3) # probability of being within 3 standard deviations from the mean\n\n\n\nwe can directly specify mean and standard deviation\n\n. . .\n\n\nCode\nmu &lt;- 5\nsigma &lt;- 2\n\npnorm(mu + sigma, mean = mu, sd = sigma) - pnorm(mu - sigma, mean = mu, sd = sigma)\n\npnorm(mu + 2 * sigma, mean = mu, sd = sigma) - pnorm(mu - 2 * sigma, mean = mu, sd = sigma)"
+  },
+  {
+    "objectID": "slides_qmd/Probability and Distribution_v2.html#expectation",
+    "href": "slides_qmd/Probability and Distribution_v2.html#expectation",
+    "title": "Probability and Distribution",
+    "section": "Expectation",
+    "text": "Expectation\n\nwe used means and standard deviations in order to measure the center and spread of a distribution\nSample mean refers to the average of a variable in a particular data set\nthe expectation (or population mean) represents the mean value under a probability distribution\nSample mean fluctuates from one sample to another\n\nbut the expectation of a random variable is of a theoretical nature and is fixed given a probability model\n\nThe expectation of a random variable \\(X\\) is defined as\n\n. . .\n\\[\nE(X) = \\sum_{x} x \\cdot P(X = x)\n\\]\n\nwhere the sum is taken over all possible values of \\(X\\) and \\(P(X = x)\\) is the probability mass function of the random variable \\(X\\)\n\n\nThe expectation of a continuous random variable \\(X\\) is defined as\n\n. . .\n\\[\nE(X) = \\int_{-\\infty}^{\\infty} x \\cdot f(x) dx\n\\]\n\nwhere \\(f(x)\\) is the probability density function of the random variable \\(X\\)"
+  },
+  {
+    "objectID": "slides_qmd/Probability and Distribution_v2.html#expectation---some-examples",
+    "href": "slides_qmd/Probability and Distribution_v2.html#expectation---some-examples",
+    "title": "Probability and Distribution",
+    "section": "Expectation - some examples",
+    "text": "Expectation - some examples\n\nConsider a Bernoulli random variable \\(X\\) with success probability \\(p\\)\n\nThe expectation of a Bernoulli random variable is given by\n\n\n. . .\n\\[\nE(X) = 0 \\cdot (1-p) + 1 \\cdot p = p\n\\]\n\nConsider a binomial random variable \\(X\\) with success probability \\(p\\) and \\(n\\) trials\n\nThe expectation of a binomial random variable is given by\n\n\n. . .\n\\[\nE(X) = \\sum_{x=0}^{n} x \\cdot P(X = x) = \\sum_{x=0}^{n} x \\cdot \\binom{n}{x} p^x (1-p)^{n-x} = n \\cdot p\n\\]\n\nConsider a uniform random variable \\(X\\) with the interval \\([a, b]\\)\n\nThe expectation of a uniform random variable is given by\n\n\n. . .\n\\[\nE(X) = \\int_{a}^{b} x \\cdot f(x) dx = \\int_{a}^{b} x \\cdot \\frac{1}{b-a} dx = \\frac{a + b}{2}\n\\]"
+  },
+  {
+    "objectID": "slides_qmd/Probability and Distribution_v2.html#expectation---some-properties",
+    "href": "slides_qmd/Probability and Distribution_v2.html#expectation---some-properties",
+    "title": "Probability and Distribution",
+    "section": "Expectation - some properties",
+    "text": "Expectation - some properties\n\nLet \\(X\\) and \\(Y\\) be random variables and \\(a\\) and \\(b\\) be arbitrary constants\nThe expectation is a linear operator that satisfies the following equality\n\n. . .\n\\[\nE(aX + bY) = aE(X) + bE(Y)\n\\]\n\nExample - the expectation of a binomial random variable \\(X\\) with success probability \\(p\\) and \\(n\\) trials\n\n. . .\n\\[\nE(X) = E\\left(\\sum_{i=1}^{n} Y_i\\right) = \\sum_{i=1}^{n} E(Y_i) = nE(Y_1) = np\n\\]\n\nwhere \\(Y_i\\) is a Bernoulli random variable with success probability \\(p\\) and \\(E(Y_i) = p\\)\n\n\nA key result: if \\(X\\) and \\(Y\\) are independent random variables, then\n\n. . .\n\\[\nE(XY) = E(X)E(Y)\n\\]"
+  },
+  {
+    "objectID": "slides_qmd/Probability and Distribution_v2.html#variance",
+    "href": "slides_qmd/Probability and Distribution_v2.html#variance",
+    "title": "Probability and Distribution",
+    "section": "Variance",
+    "text": "Variance\n\nThe variance of a random variable \\(X\\) is a measure of the spread of the distribution of \\(X\\) around its expectation\nThe variance of a random variable \\(X\\) is defined as\n\n. . .\n\\[\n\\textrm{Var}(X) = E((X - E(X))^2) = E(X^2) - (E(X))^2\n\\]\n\nthe expectation of \\(X^2\\) is called the second moment of the random variable \\(X\\)\nthe square root of the variance is called the standard deviation of the random variable \\(X\\)\nexample\n\nthe variance of a Bernoulli random variable \\(X\\) with success probability \\(p\\) is given by\n\n\n. . .\n\\[\n\\textrm{Var}(X) = E(X^2) - (E(X))^2 = p(1-p) - p^2 = p(1-p)\n\\]"
+  },
+  {
+    "objectID": "slides_qmd/Probability and Distribution_v2.html#variance---properties",
+    "href": "slides_qmd/Probability and Distribution_v2.html#variance---properties",
+    "title": "Probability and Distribution",
+    "section": "Variance - properties",
+    "text": "Variance - properties\n\nLet \\(X\\) and \\(Y\\) be random variables and \\(a\\) and \\(b\\) be arbitrary constants\nThe variance operator \\(V\\) has the following properties\n\n\\(V(a)=0\\)\n\\(V(X+b) = V(X)\\)\n\\(V(aX) = a^2V(X)\\)\n\nif \\(X\\) and \\(Y\\) are independent, \\(V(aX + bY) = a^2V(X) + b^2V(Y)\\)\nExample 1\n\nthe variance of a binomial random variable \\(X\\) with success probability \\(p\\) and \\(n\\) trials is given by\n\n\n. . .\n\\[\nV(X) = V\\left(\\sum_{i=1}^{n} Y_i\\right) = \\sum_{i=1}^{n} V(Y_i) = nV(Y_1) = np(1-p)\n\\]\n\nwhere \\(Y_i\\) is a Bernoulli random variable with success probability \\(p\\) and \\(V(Y_i) = p(1-p)\\)\n\n\nExample 2\n\nthe variance of the sum of two independent normal random variable \\(X \\sim N(\\mu_X, \\sigma^2_X)\\) and \\(Y \\sim N(\\mu_Y, \\sigma^2_Y)\\) can be computed as\n\n\n. . .\n\\[\nV(X + Y) = V(X) + V(Y) = \\sigma^2_X + \\sigma^2_Y\n\\]"
+  },
+  {
+    "objectID": "slides_qmd/Probability and Distribution_v2.html#example---predicting-election-outcomes-with-uncertainty",
+    "href": "slides_qmd/Probability and Distribution_v2.html#example---predicting-election-outcomes-with-uncertainty",
+    "title": "Probability and Distribution",
+    "section": "Example - Predicting election outcomes with uncertainty",
+    "text": "Example - Predicting election outcomes with uncertainty\n\nthe prediction of election outcomes using pre-election polls\n\nthe prediction of election outcomes is often based on pre-election polls, which are surveys conducted to estimate the preferences of voters before an election\n\npolling has sampling variability because we only interview a fraction of a large population\nLet us focus our discussion on the US 2008 election\n\nSuppose that the Election Day outcome represents the true proportion of Obama and McCain supporters in the population of voters within each state and we assume that the fraction of voters who support a third-party candidate is negligible\n\nthe two-party support rate for Obama \\(p_j\\), and McCain \\(1 − p_j\\), within each state \\(j\\)\n\n\nThe CSV data file pres08.csv contains the 2008 US presidential election result\n\n. . .\n\n\nCode\nlibrary(tidyverse)\n\npres08&lt;- read_csv(\"https://raw.githubusercontent.com/kwan-MSDA/soci7016_2025/refs/heads/main/data/pres08.csv\")\n\n\nglimpse(pres08)\n\npres08&lt;- pres08 %&gt;% \n  mutate(p=Obama/(Obama+ McCain))\n\n\n\n\nSuppose that we conduct a preelection poll under exactly the same conditions multiple times\n\nEach time, we obtain a representative sample of the target population and yet the sample consists of different voters\nThis means that the estimated support for a candidate will differ for each sample"
+  },
+  {
+    "objectID": "slides_qmd/Probability and Distribution_v2.html#predicting-election-outcomes-with-uncertainty",
+    "href": "slides_qmd/Probability and Distribution_v2.html#predicting-election-outcomes-with-uncertainty",
+    "title": "Probability and Distribution",
+    "section": "Predicting election outcomes with uncertainty",
+    "text": "Predicting election outcomes with uncertainty\n\nMC simulation\n\nassume that for each hypothetical sampling, we will interview \\(1000\\) voters who are randomly selected from the population\nThe binomial distribution with success probability \\(p\\) and size \\(1000\\) within each state will model Obama’s support estimate\n\nUsing Monte Carlo simulation, we estimate Obama’s support within each state, then allocate that state’s Electoral College votes to the winning candidate\nrepeat this procedure many times to describe the uncertainty in pre-election polling estimates that is due to sampling variability\nuse the rbinom() function in \\(R\\) and the prob argument of this function can take a vector of success probabilities\n\n\n\n\nCode\nset.seed(123)\n\nsim_election &lt;- function(.id, df, n_draws = 1000) {\n    ## for each state randomly sample\n    mutate(df, draws = rbinom(n(), n_draws, p)) %&gt;%\n    filter(draws &gt; (n_draws / 2)) %&gt;%\n    summarize(EV = sum(EV), .id = .id)\n}"
+  },
+  {
+    "objectID": "slides_qmd/Probability and Distribution_v2.html#predicting-election-outcomes-with-uncertainty-1",
+    "href": "slides_qmd/Probability and Distribution_v2.html#predicting-election-outcomes-with-uncertainty-1",
+    "title": "Probability and Distribution",
+    "section": "Predicting election outcomes with uncertainty",
+    "text": "Predicting election outcomes with uncertainty\n\nMC simulation\n\nuse this function to simulate the election \\(10000\\) times\n\nuse the map_df() function from the purrr package to apply an action multiple times\n\nthen plot the results as a histogram - with a reference line for Obama’s actual number of electoral votes \\((364)\\)\n\n\n\nCode\nlibrary(purrr)\n\nsims&lt;- 10000\n\nsim_results &lt;- map_df(seq_len(sims),\n                      ~ sim_election(.x, pres08, n_draws=1000))\n\nggplot(sim_results, aes(x=EV, y=..density..)) +\n  geom_histogram(bins=12, fill=\"lightblue\", color=\"black\") +\n  geom_vline(xintercept=364, linetype=\"dashed\", linewidth=0.5, color=\"red\") +\n  labs(title=\"Distribution of Electoral Votes for Obama\",\n       x=\"Obama’s Electoral College votes\",\n       y=\"Density\") +\n  theme_minimal()\n\n\n\nthe mean and median values are lower than the actual number of Obama’s votes\n\n\n\nCode\nsim_results %&gt;% \n  select(EV) %&gt;% \n  summarize_all(list(mean=mean, \n                     median=median,\n                     var=var,\n                     sd=sd))\n\n\n\n\nall prediction draws are above the winning threshold of 270 votes\nWhile the highest density of the histogram roughly corresponds to the actual number of Electoral College votes Obama won, the distribution of predictions is skewed"
+  },
+  {
+    "objectID": "slides_qmd/Probability and Distribution_v2.html#predicting-election-outcomes-with-uncertainty-2",
+    "href": "slides_qmd/Probability and Distribution_v2.html#predicting-election-outcomes-with-uncertainty-2",
+    "title": "Probability and Distribution",
+    "section": "Predicting election outcomes with uncertainty",
+    "text": "Predicting election outcomes with uncertainty\n\nWe can also compute the expected value of Obama’s Electoral College votes using the probability model\n\nThe expected value is the average of all possible outcomes, weighted by their probabilities\n\nLet \\(S_j\\) represent the number of respondents (among a total of \\(1000\\) respondents) for a pre-election poll who express support for Obama in state \\(j\\)\nWe use \\(v_j\\) to denote the number of Electoral College votes for state \\(j\\)\n\nthe expected number of Obama’s Electoral College votes is\n\n\n. . .\n\\[\nE(\\textrm{Obama's votes}) = \\sum_{j=1}^{51} E(\\textrm{Obama wins state j}) \\cdot v_j = \\sum_{j=1}^{51} P(S_j &gt; 500) \\cdot v_j\n\\]\n\nwhere \\(P(S_j &gt; 500)\\) is the probability that Obama wins state \\(j\\) in the pre-election poll"
+  },
+  {
+    "objectID": "slides_qmd/Probability and Distribution_v2.html#predicting-election-outcomes-with-uncertainty-3",
+    "href": "slides_qmd/Probability and Distribution_v2.html#predicting-election-outcomes-with-uncertainty-3",
+    "title": "Probability and Distribution",
+    "section": "Predicting election outcomes with uncertainty",
+    "text": "Predicting election outcomes with uncertainty\n\nthe variance of Obama’s Electoral College votes can be computed as\n\n. . .\n\\[\n\\begin{align*}\nV(\\textrm{Obama's predicted votes}) &= \\sum_{j=1}^{51} V(v_j \\mathbb{I}\\{S_j &gt; 500\\}) \\\\\n& = \\sum_{j=1}^{51} P(S_j &gt; 500)(1 - P(S_j &gt; 500)) \\cdot v_j^2\n\\end{align*}\n\\]\n\nwhere \\(\\mathbb{I}\\{S_j &gt; 500\\}\\) is an indicator function that equals \\(1\\) if Obama wins state \\(j\\) and \\(0\\) otherwise\n\n\nuse use the pbinom() function, which evaluates the cdf of the binomial distribution at its input value\n\n. . .\n\n\nCode\nn_draws &lt;- 1000\n\npres08 %&gt;%\n  mutate(pb = pbinom(n_draws / 2, size = n_draws, prob = p, lower.tail = FALSE)) %&gt;%\n  summarize(mean = sum(pb * EV),\n            median = sum(EV * (pb &gt; 0.5)),\n            var = sum(pb * (1-pb)*EV^2),\n            sd = sqrt(var))"
+  },
+  {
+    "objectID": "slides_qmd/Probability and Distribution_v2.html#references",
+    "href": "slides_qmd/Probability and Distribution_v2.html#references",
+    "title": "Probability and Distribution",
+    "section": "References",
+    "text": "References\n\n\nImai, Kosuke, and Nora Webb Williams. 2022. Quantitative Social Science : An Introduction in Tidyverse. Princeton University Press.\n\n\nWickham, Hadley. 2016. Ggplot2 : Elegrant Graphics for Data Analysis. Second edition. Use r! Springer.\n\n\nWickham, Hadley. 2019. Advanced r. Second edition. The r Series. CRC Press.\n\n\nWickham, Hadley, and Garrett Grolemund. 2023. R for Data Science : Import, Tidy, Transform, Visualize, and Model Data. Second edition. O’Reilly."
   }
 ]

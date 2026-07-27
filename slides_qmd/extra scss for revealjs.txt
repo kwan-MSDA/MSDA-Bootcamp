@@ -1,0 +1,96 @@
+$font-family: "Roboto", sans-serif !default;
+$base-font-size: 42px !default;
+$code-block-font-size: 0.8rem !default; /* Relative to base font size */
+$title-email-font-size: 0.6rem !default; /* Relative to base font size */
+$title-affiliation-font-size: 0.6rem !default; /* Relative to base font size */
+$title-abstract-font-size: 0.8rem !default; /* Relative to base font size */
+
+
+
+
+.inline-math {
+  font-size: 80%; /* Adjust the value to your desired size */
+}
+
+.display-math {
+  font-size: 100%; /* Adjust the value to your desired size */
+  margin: 0; /* Reset margins */
+  padding: 0; /* Reset padding */
+  margin-top: 1.28em; /* Adjust the value to increase/decrease space before */
+  margin-bottom: 1.28em; /* Adjust the value to increase/decrease space after */
+}
+
+code.sourceCode {
+  font-size: 1.18rem; /* Adjust the font size as needed */
+}
+
+code.sourceCode div.cell-output-stdout {
+  font-size: 1.18rem; /* Adjust the font size as needed */
+  width: 100%;
+}
+
+div.cell-output-stdout {
+  font-size: 1.18rem; /* Adjust the font size as needed */
+  width: 100%;
+}
+
+blockquote {
+    border-left: solid 5px lightgray;
+    padding-left: 1em;
+    margin: 0 ; /* Remove default margin to avoid extra space */
+    line-height: 1.5; /* Consistent line height with your slide text; adjust as needed */
+    display: flex; /* Makes the blockquote hug the text content tightly */
+    vertical-align: middle;
+    border-radius: 0; /* Removes any border radius */
+    min-height: 1.2em;  
+    align-items: center; /* Vertically centers the text with the bar */
+}
+
+
+blockquote p {
+    margin: 0;
+    padding: 0;
+    line-height: 1.5; /* Consistent line height with your slide text; adjust as needed */
+    font-size: 1.18em; /* Adjust the font size as needed */
+    font-weight: lighter; /* Lighter font weight for consistency */
+    color: $jet; /* Use the same color as the slide text */
+    font-family: "Roboto", sans-serif; /* Use the same font family as the slide text */
+    display: block !important; /* Makes the text inline to avoid extra space */
+    vertical-align: middle; /* Aligns the text vertically with the blockquote */
+    margin-left: 8px; /* Adds a small space between the bar and the text */
+    margin-right: 8px; /* Adds a small space after the text */
+    padding: 0; /* Removes any padding around the text */
+    background-color: transparent; /* Ensures the background is transparent */
+    border-radius: 0; /* Removes any border radius */
+    box-shadow: none; /* Removes any box shadow */
+    text-align: left; /* Aligns the text to the left */
+    width: auto; /* Allows the blockquote to hug the text tightly */
+    max-width: 100%; /* Ensures the blockquote does not overflow the slide */
+    overflow-wrap: break-word; /* Allows long words to break and wrap within the blockquote */
+    word-wrap: break-word; /* Ensures long words wrap correctly */
+    white-space: normal; /* Allows the text to wrap normally */
+}
+
+
+.reveal {
+  font-family: 'Roboto', sans-serif;
+}
+
+.reveal pre {
+  width: 100% !important;
+  white-space: pre-wrap;
+  overflow-x: auto;
+}
+
+
+/*
+.reveal code {
+  width: 100% !important;
+  height: 88%;
+  display: block;
+}
+*/
+
+//pre, code, .sourceCode {
+//  font-size: 1.18rem;
+//}

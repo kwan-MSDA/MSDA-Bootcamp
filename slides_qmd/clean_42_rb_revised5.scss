@@ -1,0 +1,426 @@
+/*-- scss:defaults --*/
+
+// Custom colours and variables
+
+$jet: #131516;
+$accent: #107895;
+$accent2: #9a2515;
+// $accent2: #e64173;
+$right-arrow: "\2192"; // Unicode character for right arrow
+
+// fonts
+
+/*
+Note: This theme uses the Roboto font family, which it imports from Google
+  Fonts to ensure consistent weighting in addition to availability. While
+  you can use a local installation of Roboto, this is generally not 
+  recommended since the weighting will likely be wrong (probably too
+  light). OTOH, importing from Google Fonts can cause some issues in
+  certain secure environments due the external CDN (see:
+  https://github.com/grantmcdermott/quarto-revealjs-clean/issues/7). If
+  that's the case for you, simply comment out the `@import url(...)` line
+  below and it will default for the default Sans Serif font on your system
+  (e.g., Helvetica on a Mac). Circling back to the earlier point about
+  preserving consistent font weights, you may also wish to remove "Roboto"
+  from the choice set if the family is installed locally.
+*/
+@import url('https://fonts.googleapis.com/css?family=Roboto:200,200i,300,300i,350,350i,400,400i&display=swap');
+$font-family-sans-serif: "Roboto", sans-serif !default;
+$presentation-heading-font: "Roboto", sans-serif !default;
+
+$presentation-heading-color: $jet !default;
+$presentation-heading-font-weight: lighter;
+//$presentation-heading-line-height: 2;
+//$presentation-block-margin: 28px;
+$presentation-font-size-root: 42px;
+
+// colors
+//$body-bg: #f0f1eb !default;
+$body-color: $jet !default;
+$link-color: $accent !default;
+$selection-bg: #26351c !default;
+
+// Font sizes
+
+$font-family: "Roboto", sans-serif !default;
+$base-font-size: 42px !default;
+$code-block-font-size: 0.8em !default; /* Relative to base font size */
+//$title-email-font-size: 0.5em !default; /* Relative to base font size */
+//$title-affiliation-font-size: 0.5em !default; /* Relative to base font size */
+//$title-date-font-size: 0.68em !default; /* Relative to base font size */
+$title-abstract-font-size: 0.5em !default; /* Relative to base font size */
+
+
+/*-- scss:rules --*/
+
+/* Set global font family and base font size for slide content */
+.reveal {
+  font-family: $font-family;
+  font-size: $base-font-size;
+}
+
+/* Code chunks and output */
+.reveal .slide code.sourceCode,
+.reveal .slide div.cell-output-stdout {
+  font-size: $code-block-font-size;
+}
+
+/* Inline math */
+.reveal .math.inline {
+  font-size: 0.88em; /* Smaller than base font size (42px * 0.9 = ~37.8px) */
+}
+
+/* Display math */
+.reveal .math.display {
+  font-size: 1.08em; /* Larger than base font size (42px * 1.1 = ~46.2px) */
+  margin-top: 0.18em; /* Reduced top margin for narrower separation from above */
+  margin-bottom: 0.18em; /* Reduced bottom margin for narrower separation from below */
+}
+
+/* Ensure display math within lists has even tighter spacing */
+.reveal ul .math.display,
+.reveal ol .math.display {
+  margin-top: 0.18em; /* Tighter spacing above display math in lists */
+  margin-bottom: 0.18em; /* Tighter spacing below display math in lists */
+}
+
+/*-- scss:rules --*/
+
+// title and headings
+
+#title-slide {
+  text-align: left;
+
+  .title {
+    font-family: "Roboto", sans-serif;
+    color: $body-color;
+    font-size: 1.88em;
+    // font-weight: 350;
+    font-weight: lighter;
+  }
+
+  .subtitle {
+    color: $accent;
+    font-style: italic;
+    margin-top: 0em;
+    font-weight: lighter;
+  }
+
+  .author,
+  .quarto-title-author-name {
+    color: $body-color;
+    font-size: 0.88em;
+    margin-top: 0.5em;
+  }
+
+  .quarto-title-authors {
+    display: flex;
+    justify-content: left;
+
+    .quarto-title-author {
+      padding-left: 0em;
+      padding-right: 0em;
+      width: 100%;
+    }
+  }
+  .email,
+  .quarto-title-email,
+  .quarto-title-author-email {
+    font-size: 0.68em !important; /* Reduced from 18px to ~16px (42px * 0.38) */
+    color: $accent2 !important;
+    font-style: italic;
+    display: block;
+    margin-top: 0.2em;
+  }
+
+  .institute,
+  .affiliation,
+  .quarto-title-affiliation,
+  .quarto-title-affiliation-name {
+    font-size: 0.68em !important; /* Smaller than before (~13.4px) */
+    color: #7F7F7F;
+    font-style: italic;
+    display: block;
+    margin-top: 0.2em;
+  }
+
+
+  .date {
+    font-size: 0.68em !important;
+    color: $body-color;
+    margin-top: 0.5em;
+  }
+
+        
+  .abstract,
+  .quarto-title-abstract {
+    display: block !important;
+    font-size: 0.68em !important; /* Increased from 0.5em to ~28.6px (42px * 0.68) */
+    color: $accent2;
+    font-style: italic;
+    margin-top: 1em;
+    max-width: 88%;
+  }
+}
+
+.footnote-bottom {
+  position: absolute;
+  bottom: 1em;
+  left: 0;
+  width: 100%;
+  font-size: 0.7em;
+  color: #888;
+}
+
+.reveal a {
+  line-height: 1.28em;
+}
+
+.reveal p {
+  // font-weight: 300;
+  font-weight: lighter;
+  font-size: 1em !important; /* Match base font size */
+  margin-top: 1.18em;
+}
+
+.reveal h1 {
+  color: $presentation-heading-color;
+  font-family: $presentation-heading-font;
+  font-weight: $presentation-heading-font-weight;
+  font-size: 2.88em;
+  line-height: 1.2em;
+  margin-top: 0.5em;
+}
+
+.reveal h2 {
+  // font-weight: 350;
+  font-weight: lighter;
+  font-size: 1.8em;
+}
+
+.reveal h3 {
+  color: $accent;
+  font-style: italic;
+  // font-weight: 350;
+  font-weight: lighter;
+  font-size: 1.18em;
+}
+
+.reveal h4 {
+  color: $accent2;
+  // font-weight: 350;
+  font-weight: normal;
+  margin-top: 1.08em;
+}
+
+.no-bullet {
+  list-style-type: none; /* Removes the bullet */
+  margin-left: 1.5em; /* Matches default bullet list indentation */
+  font-size: inherit; /* Ensures same font size as other list items */
+  line-height: inherit; /* Matches line height of list items */
+}
+
+.no-bullet-nested {
+  margin-left: 3em; /* Matches typical nested list indentation */
+  font-size: inherit; /* Matches font size of list items */
+  line-height: inherit; /* Matches line height of list items */
+}
+
+// alerts etc.
+
+.alert {
+  color: $accent2;
+}
+
+.r {
+  color: #FF3131;
+}
+
+.v {
+    color: #7F00FF;
+}
+
+.b {
+  color: #80b3ff;
+}
+
+.fg {
+  color: var(--col, $jet);
+}
+
+.bg {
+  background-color: var(--col, #fff);
+  padding: 0.1em;
+  border-radius: 5px;
+  display: inline-block;
+}
+
+.large {
+  font-size: 1.18em;
+}
+
+.small {
+  font-size: 0.8em;
+}
+
+// lists
+
+// Unordered lists
+
+.reveal ul {
+  // font-weight: 300;
+  font-weight: lighter;
+  padding-left: 16px;
+  font-size: 1em !important;
+
+  li::marker {
+    color: mix($accent, white, 70%);
+    font-size: 50px;
+  }
+}
+
+.reveal ul ul {
+  list-style: none;
+  font-size: 1em !important;
+
+  li:before {
+    content: '▶';
+    color: mix($accent, white, 60%);
+    font-size: 28px;
+    display: inline-block;
+    margin-left: -1em;
+    margin-right: 0.5em;
+  }
+}
+
+.reveal ul ul ul {
+  list-style: none;
+  font-size: 1em !important;
+
+  li:before {
+    //content: $right-arrow;
+    content: '▪';
+    color: mix($accent, white, 60%);
+    display: inline-block;
+    font-size: 50px;
+    //width: 1em;
+    margin-left: -1em;
+    margin-right: 0.2em;
+  }
+}
+
+// Ordered lists
+
+.reveal ol {
+  // font-weight: 300;
+  font-weight: lighter;
+  padding-left: 16px;
+
+  li::marker {
+    color: $accent;
+  }
+}
+
+// Move "hamburger" menu button to top right
+
+.reveal .slide-menu-button {
+  position: fixed;
+  top: 38px;
+  right: 0;
+  display: flex;
+  justify-content: flex-end;
+  align-items: flex-start;
+  pointer-events: none;
+}
+
+.reveal .slide-menu-button > * {
+  pointer-events: auto;
+}
+
+
+// Same for chalkboard buttons (with an offset)
+
+.reveal .slide-chalkboard-buttons {
+  position: fixed;
+  top: 28px;
+  right: 28px;
+  display: flex;
+  justify-content: flex-end;
+  align-items: flex-start;
+  pointer-events: none;
+}
+
+.reveal .slide-chalkboard-buttons > * {
+  pointer-events: auto;
+}
+
+// Beamer-style button link environment
+
+.button {
+  display: inline-block;
+  padding: 8px 18px;
+  margin-bottom: 0;
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 1.42857143;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: middle;
+  cursor: pointer;
+  background-color: $accent;
+  border: 1px solid $accent;
+  color: #fff !important;
+  text-decoration: none;
+  border-radius: 4px;
+  transition: all 0.2s ease-in-out;
+}
+
+.button:hover {
+  background-color: #0056b3;
+  border-color: #0056b3;
+}
+
+.button::before {
+  content: "▶";
+  margin-right: 5px;
+}
+
+// Special catch for etable environment to ensure these table images
+// don't overflow the slide.
+// See: https://lrberge.github.io/fixest/articles/etable_new_features.html
+
+.etable {
+  width: 100%;
+  height: calc(100% - 3em); /* Adjust 3em based on the height of your header, if necessary */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.etable img {
+  max-width: 100%;
+  max-height: 100%;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+}
+
+table {
+  font-size: 38px; /* Adjust this value to change the font size */
+  font-family: Arial, sans-serif; /* Change the font family as needed */
+  border-collapse: collapse;
+  width: 100%;
+  border-top: 5px solid #dddddd; /* Border at the top of the table */
+  border-bottom: 5px solid #dddddd; /* Border at the bottom of the table */
+}
+
+th, td {
+  border: 2px solid #dddddd;
+  text-align: left;
+  padding: 8px;
+}
+
+th {
+  background-color: #f2f2f2; /* Light grey background for header */
+  border-bottom: 5px solid #000000; /* Thicker line to separate header and content */
+}
