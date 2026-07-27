@@ -1,11 +1,12 @@
 ---
 title: "MSDA Bootcamp 2026 Summer"
 author: "KT Wong"
+affiliation: "HKU FOSS"
 date: "`r Sys.Date()`"
 format:
   html:
     theme: cosmo
-    fontsize: 0.85em
+    fontsize: 0.68em
     toc: false
     toc-depth: 2
     code-fold: true
