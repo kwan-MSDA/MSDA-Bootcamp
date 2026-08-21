@@ -1,6 +1,6 @@
 ---
 title: "Maths - Calculus"
-subtitle: "MSDA - Bootcamp 2025 Summer"
+subtitle: "MSDA - Bootcamp 2026 Summer"
 
 author:
     - name: KT Wong
@@ -11,25 +11,14 @@ affiliation: "Faculty of Social Sciences, HKU"
 abstract: |
  The materials in this topic are drawn from @Simon1994 and @Chiang2005
 
-date: "2025-08-26"
+date: today
 date-format: medium
 
 bibliography: reference_bootcamp.bib
 
-# format:
-#   beamer:
-#     pdf_engine: xelatex
-#     navigation: horizontal
-#     incremental: False
-#     aspectratio: 169
-#     theme: CambridgeUS
-#     slide-level: 2
-#     smaller: False
-#     fontsize: 38pt
-
 format:
   revealjs:
-    theme: clean_42_rb.scss
+    theme: clean_42_rb_revised5.scss
     self-contained-math: true
     embed-resources: true
     multiplex: false
@@ -60,11 +49,11 @@ include-in-header:
       }
       </style>
 
-# execution:
-#   cache: yes
-
 jupyter: python3
 engine: knitr
+
+execute: 
+  cache: true
 
 knitr:
   opts_chunk:
@@ -73,7 +62,6 @@ knitr:
 fig-cap-location: bottom
 fig-width: 9
 fig-height: 5
-#fig-dpi: 300
 lightbox: false
 ---
 

@@ -1,6 +1,6 @@
 ---
 title: "Probability and Distribution"
-subtitle: "MSDA - Bootcamp 2025 Summer"
+subtitle: "MSDA - Bootcamp 2026 Summer"
 author: "KT Wong"
 email: "kwanto@hku.hk"
 affiliation: "Faculty of Social Sciences, HKU"
@@ -15,7 +15,7 @@ format:
     self-contained-math: true
     embed-resources: true
     show-notes: false
-    multiplex: false
+    multiplex: true
     slide-number: c/t
     preview-links: auto
     margin: 0.03
@@ -47,8 +47,8 @@ knitr:
     message: false
     warning: false
     error: false
-    results: 'hide'
-    fig.show: 'hide'
+    results: 'markup'
+    fig.show: 'hold'
     fig-cap-location: bottom
     fig-asp: 0.618
 
@@ -86,7 +86,7 @@ lightbox: auto
   + assumes that all outcomes are equally likely
 
 + **Bayesian**
-  + probability is a measure of one's **subjective belief** or certainty about the likelihood of event occurrence
+  + probability is a measure of one's **subjective belief** about the likelihood of event occurrence
   + named after a eighteenth century English mathematician and minister, Thomas Bayes
 
 + Probability was established as a mathematical theory by Russian mathematician **Andrey Kolmogorov** in the early twentieth century
@@ -116,7 +116,7 @@ lightbox: auto
   + the entire sample space that contains all outcomes is also an event
   + an event occurs if the set that defines the event includes an actual outcome of the experiment
   
-+ the probability of event $A$ occurring, denoted by $P(A)$, can be computed as the ratio of the number of elements in the corresponding set $A$ to that in the entire sample space $\Omega$
++ the probability of event $A$ occurring, denoted by $P(A)$, can be computed as 
 
 . . .
 
@@ -198,7 +198,9 @@ $$
 
 ## Permutations - The birthday problem
 
-+ the number of people one needs in order for the probability that at least two people have the same birthday to exceed 0.5, assuming that each birthday is equally likely
++ the number of people one needs in order for the probability that at least two people have the same birthday to exceed $0.5$, assuming that each birthday is equally likely
+
++ let $k$ be the number of people
 
 . . .
 
@@ -230,26 +232,28 @@ $$
 
 + use R to compute the probability
 
-. . .
-
-
 ```{r}
+#| echo: True
+#| class: fragment
+#| code-summary: "Compute the probability of the birthday problem"
 
 # create a new function
 birthday <- function(k) {
-                  logdenom <- k * log(365) + lfactorial(365 - k)
-                  lognumer <- lfactorial(365)
-                  pr <- 1 - exp(lognumer - logdenom)
-                  pr
+  logdenom <- k * log(365) + lfactorial(365 - k)
+  lognumer <- lfactorial(365)
+  pr <- 1 - exp(lognumer - logdenom)
+  pr
 }
-
 ```
-
-. . .
 
 ```{r}
 #| echo: True
-#| output-location: fragment
+#| output-location: column-fragment
+#| class: fragment
+#| code-summary: "Plot the probability of the birthday problem"
+#| fig-width: 6
+#| fig-height: 4
+#| out-height: 4in
 
 library(tidyverse)
 
@@ -260,26 +264,31 @@ k_values <- tibble(k = 1:100) %>%
 
 # plot the probability
 
-ggplot(k_values, 
-       aes(x = k, y = probability)) +
+ggplot(k_values, aes(x = k, y = probability)) +
   geom_line() +
   geom_point() +
   geom_hline(yintercept = 0.5, linetype = "dashed", color = "red") +
-  labs(title = "Probability of at least two people having the same birthday",
-       x = "Number of people (k)",
-       y = "Probability") +
+  labs(
+    title = "Probability of at least two people having the same birthday",
+    x = "Number of people (k)",
+    y = "Probability"
+  ) +
   theme_minimal() +
   scale_y_continuous(
-    str_c("Probability that at least two", "people have the same birthday", sep = "\n"),
-    limits = c(0, 1), 
-    breaks = seq(0, 1, by = 0.1))
-
+    str_c(
+      "Probability that at least two",
+      "people have the same birthday",
+      sep = "\n"
+    ),
+    limits = c(0, 1),
+    breaks = seq(0, 1, by = 0.1)
+  )
 ```
+
+::: notes
 
 + when the number of people equals $23$, the probability of at least two people having the same birthday exceeds $0.5$
   + when the number of people is more than $50$, this probability is close to $1$
-
-::: notes
 
 +  Birthday problem: the answer is only 23 people, which is much lower than what most people think
   + To solve this problem using permutations, first notice the following relationship:
@@ -303,28 +312,27 @@ ggplot(k_values,
 + The Monte Carlo simulation method
   + a general class of stochastic methods that can be used to approximately solve analytical problems by randomly generating quantities of interest
   
-+ For the birthday problem, we sample $k$ possibly nonunique birthdays out of 365 days and check whether or not the sampled $k$ birthdays are all different
++ For the birthday problem, we sample $k$ possibly nonunique birthdays out of $365$ days and check whether or not the sampled $k$ birthdays are all different
   + this is called **sampling with replacement**
-  + for each of $k$ draws, every one of 365 days is equally likely to be sampled regardless of which dates were sampled before
-
-. . .
-
-
+  + for each of $k$ draws, every one of $365$ days is equally likely to be sampled regardless of which dates were sampled before
 
 ```{r}
 #| echo: True
 #| output-location: fragment
+#| class: fragment
+#| code-fold: true
+#| code-summary: "Monte Carlo simulation for the birthday problem"
 
 set.seed(123) # for reproducibility
-k<-23
+k <- 23
 
 n_trials <- 10000 # number of simulation trials
-event<- 0
+event <- 0
 
 for (i in 1:n_trials) {
   # sample k birthdays with replacement
   birthdays <- sample(1:365, k, replace = TRUE)
-  
+
   # check if there are any duplicates
   if (length(unique(birthdays)) < k) {
     event <- event + 1
@@ -334,9 +342,13 @@ for (i in 1:n_trials) {
 # compute the probability
 probability <- event / n_trials
 
-print(probability)
-
-
+cat(
+  "Estimated probability of at least two people having the same birthday (k =",
+  k,
+  "):",
+  probability,
+  "\n"
+)
 ```
 
 ::: notes
@@ -352,7 +364,7 @@ print(probability)
 
 ## Combinations
 
-+ combinations refers to the number of ways to choose $k$ distinct elements out of $n$ elements without regard to their order
++ the number of ways to choose $k$ distinct elements out of $n$ elements without regard to their order
 
 + two different permutations **AB** and **BA** represent an identical combination
 
@@ -433,45 +445,39 @@ $$
 
 ## Conditonal Probability - Example 2
 
-+ use a random sample of 10000 registered voters from Florida
-
-. . .
++ a random sample of 10000 registered voters from Florida
 
 ```{r}
 #| echo: True
 #| output-location: fragment
+#| class: fragment
 
 library(tidyverse)
 
 # load the data
-voters <- read_csv("https://raw.githubusercontent.com/kwan-MSDA/soci7016_2025/refs/heads/main/data/FLVoters.csv")
+voters <- read_csv(
+  "https://raw.githubusercontent.com/kwan-MSDA/soci7016_2025/refs/heads/main/data/FLVoters.csv"
+)
 
 dim(voters)
 
 glimpse(voters)
-
-
 ```
 
-+ where county stands for county id of voter’s residence and VTD stands for voting district id of voter’s residence
++ county stands for county id of voter’s residence; VTD stands for voting district id of voter’s residence
 
 + remove those voters who contain a missing value
-
-. . .
 
 ```{r}
 #| echo: True
 #| output-location: fragment
+#| class: fragment
 
-voters<- voters %>% 
+voters <- voters %>%
   na.omit()
 
 dim(voters)
-
 ```
-
-+ the dataset contains 9113 voters, with 5 variables
-  + treat this sample of 9113 voters as a population of interest
 
 ::: notes
 
@@ -481,71 +487,86 @@ dim(voters)
 + gender - Gender: m = male and f = female
 + race - Self-reported race
 
++ the dataset contains 9113 voters, with 5 variables
+  + treat this sample of 9113 voters as a population of interest
+  
 :::
 
 
 ## Conditonal Probability - Example 2
 
-+ compute the marginal probability for each racial category 
+:::: {.columns}
 
-. . .
+::: {.column width="50%"}
 
 ```{r}
 #| echo: True
 #| output-location: fragment
+#| class: fragment
+#| code-summary: "Compute the marginal probability of race"
 
-margin_race<- 
-  voters %>% 
-  count(race) %>% 
-  mutate(prop= n / sum(n))
+margin_race <-
+  voters %>%
+  count(race) %>%
+  mutate(prop = n / sum(n))
 
 margin_race
-
 ```
 
-+ let us calculate the marginal probabilities of gender
-
-. . .
-
 ```{r}
+#| echo: True
+#| output-location: fragment
+#| class: fragment
+#| code-summary: "Compute the marginal probability of gender"
 
-margin_gender<- 
-  voters %>% 
-  count(gender) %>% 
-  mutate(prop=n/sum(n))
+margin_gender <-
+  voters %>%
+  count(gender) %>%
+  mutate(prop = n / sum(n))
 
 margin_gender
-
 ```
 
-+  compute the conditional probability of race given gender
+:::
 
-. . .
+::: {.column width="50%"}
+```{r}
+#| echo: True
+#| output-location: fragment
+#| class: fragment
+#| code-summary: "Compute the conditional probability of race given female"
+
+margin_race_f <- voters %>%
+  filter(gender == "f") %>%
+  count(race) %>%
+  mutate(prop = n / sum(n))
+
+cat(
+  "Conditional probability of race given female voters:\n",
+  paste(margin_race_f$race, ":", round(margin_race_f$prop, 4), collapse = "\n")
+)
+```
 
 ```{r}
+#| echo: True
+#| output-location: fragment
+#| class: fragment
+#| code-summary: "Compute the conditional probability of race given male"
 
-margin_race_f<- voters %>%
-                  filter(gender=="f") %>% 
-                  count(race) %>% 
-                  mutate(prop=n/sum(n))
+margin_race_m <- voters %>%
+  filter(gender == "m") %>%
+  count(race) %>%
+  mutate(prop = n / sum(n))
 
-margin_race_f
-
+cat(
+  "Conditional probability of race given male voters:\n",
+  paste(margin_race_m$race, ":", round(margin_race_m$prop, 4), collapse = "\n")
+)
 ```
 
-. . .
+:::
 
-```{r}
-
-
-margin_race_m<- voters %>% 
-                  filter(gender=="m") %>% 
-                  count(race) %>% 
-                  mutate(prop=n/sum(n))
-
-margin_race_m
-
-```
+::::
 
 ::: notes
 
@@ -557,65 +578,232 @@ margin_race_m
 
 ## Conditonal Probability - Example 2
 
-+ compute the joint probability of race and gender
+:::: {.columns}
 
-. . .
+::: {.column width="50%"}
 
 ```{r}
+#| echo: True
+#| output-location: fragment
+#| class: fragment
+#| code-summary: "Compute the joint probability of race and gender"
 
-joint_p <- voters %>% 
-  count(gender, race) %>% 
+library(gt)
+library(gtExtras)
+
+joint_p <- voters %>%
+  count(gender, race) %>%
   mutate(prop = n / sum(n))
 
-joint_p
-
+joint_p %>%
+  select(gender, race, prop) %>%
+  arrange(gender, race) %>%
+  gt() %>%
+  tab_header(
+    title = "Joint Probability of Race and Gender",
+    subtitle = "Among Registered Florida Voters"
+  )
 ```
 
-+ Question: compute the probability of being an African American voter
+:::
+
+::: {.column width="50%"}
+```{r}
+#| echo: True
+#| output-location: fragment
+#| class: fragment
+#| code-summary: "Compute the probability of being an African American voter"
+
+prob_black <- margin_race |>
+  filter(race == "black") |>
+  pull(prop)
+
+cat(
+  "Probability of being an African American voter:\n",
+  round(prob_black, 4)
+)
+```
 
 
-. . .
+:::
+
+::::
+
+## The Marginal Probability of Race
 
 ```{r}
+#| echo: True
+#| output-location: fragment
+#| class: fragment
+#| code-summary: "the marginal probability of race"
 
-joint_p_wider<- joint_p %>% 
-  select(-n) %>% 
-  pivot_wider(names_from = gender,
-              values_from = prop) %>% 
-  mutate(total_prop=f+m)
+joint_p_wider <- joint_p %>%
+  select(-n) %>%
+  pivot_wider(names_from = gender, values_from = prop) %>%
+  mutate(total_prop = f + m)
 
-joint_p_wider
+joint_p_wider %>% 
+  gt() %>%
+  tab_header(
+    title = "Marginal Probability of Race",
+    subtitle = "Among Registered Florida Voters"
+  ) %>% 
+  gt_theme_538() %>%
+  #gt_plt_bar(total_prop, palette = "blue") %>% 
+  cols_label(
+    race = "Race",
+    f = "Female",
+    m = "Male",
+    total_prop = "Marginal Probability"
+  ) %>% 
+    text_transform(
+      locations = cells_body(columns=race),
+      fn = function(x) {
+        case_when(
+          x == "black" ~ "African American",
+          x == "white" ~ "White",
+          x == "hispanic" ~ "Hispanic",
+          x == "asian" ~ "Asian",
+          x == "other" ~ "Other",
+          .default = x
+        )
+      }
+    ) %>% 
+      tab_style(
+        style = cell_text(size = px(28)),
+        locations = cells_body(columns = everything())
+      ) %>% 
+      tab_style(
+        style = cell_text(size = px(28)),
+        locations = cells_title(groups = "title")
+      ) %>% 
+      tab_style(
+        style = cell_text(size = px(24)),
+        locations = cells_title(groups = "subtitle")
+      ) %>% 
+      tab_style(
+        style = cell_text(size = px(22)),
+        locations = cells_column_labels(columns = everything())
+      )
 
 ```
 
-+ Question:  computer the marginal probability of gender 
+:::: {.columns}
 
-. . .
+::: {.column width="68%"}
 
 ```{r}
+#| echo: True
+#| output-location: fragment
+#| class: fragment
+#| code-summary: "the marginal probability of gender"
 
-joint_p_wider<- joint_p %>% 
-  select(-n) %>% 
-  pivot_wider(names_from=race,
-              values_from=prop) %>% 
-  mutate(total_prop=rowSums(across(where(is.numeric))))
+joint_p_wider <- joint_p %>%
+  select(-n) %>%
+  pivot_wider(names_from = race, values_from = prop) %>%
+  mutate(total_prop = rowSums(across(where(is.numeric))))
 
-joint_p_wider
+joint_p_wider %>% 
+  gt() %>%
+  tab_header(
+    title = "Marginal Probability of Gender",
+    subtitle = "Among Registered Florida Voters"
+  ) %>%
+  gt_theme_538() %>%
+  cols_label(
+    gender = "Gender",
+    black = "Black",
+    white = "White",
+    hispanic = "Hispanic",
+    asian = "Asian",
+    other = "Other",
+    total_prop = "Marginal Probability"
+  ) %>% 
+    text_transform(
+      locations = cells_body(columns=gender),
+      fn = function(x) {
+        case_when(
+          x == "f" ~ "Female",
+          x == "m" ~ "Male",
+          .default = x
+        )
+      }
+    ) %>% 
+      tab_style(
+        style = cell_text(size = px(22)),
+        locations = cells_body(columns = everything())
+      ) %>% 
+      tab_style(
+        style = cell_text(size = px(28)),
+        locations = cells_title(groups = "title")
+      ) %>% 
+      tab_style(
+        style = cell_text(size = px(24)),
+        locations = cells_title(groups = "subtitle")
+      ) %>% 
+      tab_style(
+        style = cell_text(size = px(22)),
+        locations = cells_column_labels(columns = everything())
+      )
 
 
 ```
 
-+ alternatively
+:::
 
-. . .
+::: {.column width="32%"}
 
 ```{r}
+#| echo: True
+#| output-location: fragment
+#| class: fragment
+#| code-summary: "alternative method"
 
-joint_p %>% 
-  group_by(gender) %>% 
-  summarise(prop =sum(prop))
+joint_p %>%
+  group_by(gender) %>%
+  summarise(prop = sum(prop)) %>% 
+  gt() %>%
+  tab_header(
+    title = "Marginal Probability of Gender",
+    subtitle = "Among Registered Florida Voters"
+  ) %>%
+  gt_theme_538() %>%
+  cols_label(
+    gender = "Gender",
+    prop = "Marginal Probability"
+  ) %>%
+    text_transform(
+      locations = cells_body(columns=gender),
+      fn = function(x) {
+        case_when(
+          x == "f" ~ "Female",  
+        x == "m" ~ "Male",
+          .default = x
+        )
+      }
+    ) %>% 
+      tab_style(
+        style = cell_text(size = px(28)),
+        locations = cells_body(columns = everything())
+      ) %>% 
+      tab_style(
+        style = cell_text(size = px(28)),
+        locations = cells_title(groups = "title")
+      ) %>% 
+      tab_style(
+        style = cell_text(size = px(24)),
+        locations = cells_title(groups = "subtitle")
+      ) %>% 
+      tab_style(
+        style = cell_text(size = px(22)),
+        locations = cells_column_labels(columns = everything())
+      )
 
 ```
+
+:::
+
+::::
 
 
 ::: notes
@@ -651,120 +839,359 @@ $$
 
 + a further example for conditional probability by creating $4$ age groups
   + **20 and below**, **21–40**, **41–60**, and **above 60**
-  
-. . .
+
+:::: {.columns}
+
+::: {.column width="50%"}
 
 ```{r}
-
-voters <- voters %>% 
-  mutate(age_group = cut(age, 
-                            breaks = c(0, 20, 40, 60, Inf),
-                            right = TRUE,
-                            labels = c("20 and below", "21-40", "41-60", "Above 60")))
-voters
+#| echo: True
+#| output-location: fragment
+#| class: fragment
+#| code-summary: "Create age groups"
 
 
+voters <- voters %>%
+  mutate(
+    age_group = cut(
+      age,
+      breaks = c(0, 20, 40, 60, Inf),
+      right = TRUE,
+      labels = c("20 and below", "21-40", "41-60", "Above 60")
+    )
+  )
+
+voters %>% 
+  head() %>%
+  gt() %>%
+  tab_header(
+    title = "Sample of Registered Florida Voters",
+    subtitle = "With Age Groups"
+  ) %>%
+  gt_theme_538() %>%
+  cols_label(
+    county = "County",
+    VTD = "Voting District",
+    age = "Age",
+    gender = "Gender",
+    race = "Race",
+    age_group = "Age Group"
+  ) %>%
+    tab_style(
+      style = cell_text(size = px(28)),
+      locations = cells_body(columns = everything())
+    ) %>%
+    tab_style(
+      style = cell_text(size = px(28)),
+      locations = cells_title(groups = "title")
+    ) %>%
+    tab_style(
+      style = cell_text(size = px(24)),
+      locations = cells_title(groups = "subtitle")
+    ) %>%
+    tab_style(
+      style = cell_text(size = px(22)),
+      locations = cells_column_labels(columns = everything())
+    )
+  
 ```
 
-+ calculate the marginal probability of the age groups
+:::
 
-. . .
+::: {.column width="50%"}
 
 ```{r}
+#| echo: True
+#| output-location: fragment
+#| class: fragment
+#| code-summary: "Compute the marginal probability of age groups"
 
-margin_age <- voters %>% 
-  count(age_group) %>% 
-  mutate(margin_age = n / sum(n)) %>% 
+
+margin_age <- voters %>%
+  count(age_group) %>%
+  mutate(margin_age = n / sum(n)) %>%
   select(-n)
 
-margin_age
-
+margin_age %>% 
+  gt() %>%
+  tab_header(
+    title = "Marginal Probability of Age Groups",
+    subtitle = "Among Registered Florida Voters"
+  ) %>%
+  gt_theme_538() %>%
+  cols_label(
+    age_group = "Age Group",
+    margin_age = "Marginal Probability"
+  ) %>%
+    tab_style(
+      style = cell_text(size = px(28)),
+      locations = cells_body(columns = everything())
+    ) %>%
+    tab_style(
+      style = cell_text(size = px(28)),
+      locations = cells_title(groups = "title")
+    ) %>%
+    tab_style(
+      style = cell_text(size = px(24)),
+      locations = cells_title(groups = "subtitle")
+    ) %>%
+    tab_style(
+      style = cell_text(size = px(22)),
+      locations = cells_column_labels(columns = everything())
+    )
 
 ```
+
+:::
+
+::::
 
 ## Conditonal Probability - Example 2
 
 + create a joint probability table across the three factors of race, gender, and age
 
-. . .
-
 ```{r}
+#| echo: True
+#| output-location: fragment
+#| class: fragment
+#| code-summary: "Compute the joint probability of race, age group, and gender"
 
-joint3<- voters %>% 
-  count(race, age_group, gender) %>% 
+
+joint3 <- voters %>%
+  count(race, age_group, gender) %>%
   mutate(prop = n / sum(n))
 
-head(joint3)
-
-
-```
-
-+ compute the conditional probability of being African American and female given that a voter is above 60 years old 
-
-. . .
-
-
-```{r}
-
-joint3<- left_join(joint3, margin_age, by = "age_group") %>% 
-  mutate(cond_prob_age = prop / margin_age)
-
-joint3 
-
-```
-
-+ conditional probability of African American female given 60 years old above
-
-. . .
-
-```{r}
-
-filter(joint3, race=="black", gender=="f",
-       age_group=="Above 60") %>% 
-  select(race, age_group, gender, cond_prob_age)
-
+head(joint3) %>% 
+  gt() %>%
+  tab_header(
+    title = "Joint Probability of Race, Age Group, and Gender",
+    subtitle = "Among Registered Florida Voters"
+  ) %>%
+  gt_theme_538() %>%
+  cols_label(
+    race = "Race",
+    age_group = "Age Group",
+    gender = "Gender",
+    prop = "Joint Probability"
+  ) %>%
+    tab_style(
+      style = cell_text(size = px(28)),
+      locations = cells_body(columns = everything())
+    ) %>%
+    tab_style(
+      style = cell_text(size = px(28)),
+      locations = cells_title(groups = "title")
+    ) %>%
+    tab_style(
+      style = cell_text(size = px(24)),
+      locations = cells_title(groups = "subtitle")
+    ) %>%
+    tab_style(
+      style = cell_text(size = px(22)),
+      locations = cells_column_labels(columns = everything())
+    )
 ```
 
 ## Conditonal Probability - Example 2
 
-+ Question: the conditional probability of being African American given that a voter is female and above 60 years old
++ the conditional probability of being African American and female given that a voter is above 60 
+
+:::: {.columns}
+
+::: {.column width="50%"}
+
+```{r}
+#| echo: True
+#| output-location: fragment
+#| class: fragment
+#| code-summary: "the conditional probability of race and gender given age group"
+
+joint3 <- left_join(joint3, margin_age, by = "age_group") %>%
+  mutate(cond_prob_age = prop / margin_age)
+
+joint3 %>% 
+  head(10) %>%
+  gt() %>%
+  tab_header(
+    title = "Conditional Probability of Race and Gender Given Age Group",
+    subtitle = "Among Registered Florida Voters"
+  ) %>%
+  gt_theme_538() %>%
+  cols_label(
+    race = "Race",
+    age_group = "Age Group",
+    gender = "Gender",
+    cond_prob_age = "Conditional Probability"
+  ) %>%
+    tab_style(
+      style = cell_text(size = px(28)),
+      locations = cells_body(columns = everything())
+    ) %>%
+    tab_style(
+      style = cell_text(size = px(28)),
+      locations = cells_title(groups = "title")
+    ) %>%
+    tab_style(
+      style = cell_text(size = px(24)),
+      locations = cells_title(groups = "subtitle")
+    ) %>%
+    tab_style(
+      style = cell_text(size = px(22)),
+      locations = cells_column_labels(columns = everything())
+    )
+
+```
+
+:::
+
+:::: {.column width="50%"}
+
+```{r}
+#| echo: True
+#| output-location: fragment
+#| class: fragment  
+#| code-summary: "the conditional probability of being African American female given the voter is above 60"
+
+filter(joint3, race == "black", gender == "f", age_group == "Above 60") %>%
+  select(race, age_group, gender, cond_prob_age) %>% 
+  gt() %>%
+  tab_header(
+    title = "Conditional Probability of Being African American and Female Given Age Group Above 60",
+    subtitle = "Among Registered Florida Voters"
+  ) %>%
+  gt_theme_538() %>%
+  cols_label(
+    race = "Race",
+    age_group = "Age Group",
+    gender = "Gender",
+    cond_prob_age = "Conditional Probability"                                   
+  ) %>%
+    tab_style(
+      style = cell_text(size = px(28)),
+      locations = cells_body(columns = everything())
+    ) %>% 
+    tab_style(
+      style = cell_text(size = px(28)),
+      locations = cells_title(groups = "title")
+    ) %>%
+    tab_style(
+      style = cell_text(size = px(24)),
+      locations = cells_title(groups = "subtitle")
+    ) %>%
+    tab_style(
+      style = cell_text(size = px(22)),
+      locations = cells_column_labels(columns = everything())
+    ) 
+
+```
+
+:::
+
+::::
+
+## Conditonal Probability - Example 2
+
++ Q: the conditional probability of being African American given that a voter is female and above $60$
   + i.e. $P(\textrm{black| female and 60 years old })$
   + it can be computed by dividing the three-way joint probability $P(\textrm{ black and above 60 and female})$ by the two-way joint probability $P(\textrm{above 60 and female})$
 
 
 ```{r}
+#| echo: True
+#| output-location: fragment
+#| class: fragment
+#| code-summary: "Compute the two-way joint probability of age group and gender"
 
-joint2<- voters %>% 
-  count(age_group, gender) %>% 
+joint2 <- voters %>%
+  count(age_group, gender) %>%
   ungroup() %>%
-  mutate(prob_age_gender = n / sum(n)) %>% 
+  mutate(prob_age_gender = n / sum(n)) %>%
   select(-n)
 
 ```
 
 + merge with the 3-way joint probability and calculate conditional prob of race given age and gender
 
-. . .
 
 ```{r}
+#| echo: True
+#| output-location: fragment
+#| class: fragment
+#| code-summary: "Compute the conditional probability"
+#| results: hide
 
 joint3 <- left_join(joint3, joint2, by = c("age_group", "gender")) %>%
   mutate(con_prob_race = prop / prob_age_gender)
 
+joint3 %>%
+  gt() %>%
+  tab_header(
+    title = "Conditional Probability of Race Given Age Group and Gender",
+    subtitle = "Among Registered Florida Voters"
+  ) %>%
+  gt_theme_538() %>%
+  cols_label(
+    race = "Race",
+    age_group = "Age Group",
+    gender = "Gender",
+    con_prob_race = "Conditional Probability"
+  ) %>%
+    tab_style(
+      style = cell_text(size = px(28)),
+      locations = cells_body(columns = everything())
+    ) %>%
+    tab_style(
+      style = cell_text(size = px(28)),
+      locations = cells_title(groups = "title")
+    ) %>%
+    tab_style(
+      style = cell_text(size = px(24)),
+      locations = cells_title(groups = "subtitle")
+    ) %>%
+    tab_style(
+      style = cell_text(size = px(22)),
+      locations = cells_column_labels(columns = everything())
+    )
+
 ```
 
-
-+ compute conditional prob of African American given female and above 60
-
-. . .
-
 ```{r}
+#| echo: True
+#| output-location: fragment
+#| class: fragment
+#| code-summary: "Compute the conditional probability of being African American given female and above 60"
 
-filter(joint3, gender=="f", age_group=="Above 60", race=="black") %>% 
-  select(con_prob_race)
-    
+filter(joint3, gender == "f", age_group == "Above 60", race == "black") %>%
+  select(con_prob_race) %>% 
+  gt() %>%
+  tab_header(
+    title = "Conditional Probability of Being African American Given Female and Age Group Above 60",
+    subtitle = "Among Registered Florida Voters"
+  ) %>%
+  gt_theme_538() %>%
+  cols_label(
+    con_prob_race = "Conditional Probability"
+  ) %>%
+    tab_style(
+      style = cell_text(size = px(28)),
+      locations = cells_body(columns = everything())
+    ) %>% 
+    tab_style(
+      style = cell_text(size = px(28)),
+      locations = cells_title(groups = "title")
+    ) %>%
+    tab_style(
+      style = cell_text(size = px(24)),
+      locations = cells_title(groups = "subtitle")
+    ) %>%
+    tab_style(
+      style = cell_text(size = px(22)),
+      locations = cells_column_labels(columns = everything())
+    )
+
 ```       
        
+
 
 ::: notes
 
@@ -781,14 +1208,15 @@ filter(joint3, gender=="f", age_group=="Above 60", race=="black") %>%
 #| include: False
 #| output-location: fragment
 
-voters <- voters %>% 
-  mutate(age_group = case_when(
-    age <= 20 ~ "20 and below",
-    age <= 40 ~ "21-40",
-    age <= 60 ~ "41-60",
-    TRUE ~ "Above 60"
-  ))
-
+voters <- voters %>%
+  mutate(
+    age_group = case_when(
+      age <= 20 ~ "20 and below",
+      age <= 40 ~ "21-40",
+      age <= 60 ~ "41-60",
+      TRUE ~ "Above 60"
+    )
+  )
 ```
 
 :::
@@ -816,13 +1244,19 @@ $$
 
 ## Independence
 
-+ continue our example
-  + use the `crossing()` function to make a data set with every combination of the race and gender marginal probabilities
++ use our example to check whether the race and gender of registered Florida voters are independent
+  + `crossing()` function: make every combination of the race and gender marginal probabilities
     + then merge that with the two-way joint probability table of race and gender, **joint_p**
     
-. . .
+:::: {.columns}
+
+::: {.column width="50%"}
 
 ```{r}
+#| echo: True
+#| output-location: fragment
+#| class: fragment
+#| code-summary: "Check independence of race and gender"
 
 library(tidyr)
 
@@ -834,31 +1268,74 @@ margin_gender <- select(margin_gender, gender, prob_gender = prop)
 ## combine the marginal probabilities and link to joint probabilities
 
 race_gender_indep <- tidyr::crossing(margin_race, margin_gender) %>%
-  left_join(select(joint_p, gender, race, prob_joint = prop),by = c("gender", "race")) %>%
+  left_join(
+    select(joint_p, gender, race, prob_joint = prop),
+    by = c("gender", "race")
+  ) %>%
   ## calculate the independent prob comparison
   mutate(prob_indp = prob_race * prob_gender)
 
-race_gender_indep
+race_gender_indep %>% 
+  gt() %>%
+  tab_header(
+    title = "Joint vs Independent Probabilities",
+    subtitle = "Among Registered Florida Voters"
+  ) %>%
+  gt_theme_538() %>%
+  cols_label(
+    race = "Race",
+    gender = "Gender",
+    prob_joint = "Joint Probability",
+    prob_indp = "Independent Probability"
+  ) %>%
+    tab_style(
+      style = cell_text(size = px(18)),
+      locations = cells_body(columns = everything())
+    ) %>%
+    tab_style(
+      style = cell_text(size = px(22)),
+      locations = cells_title(groups = "title")
+    ) %>%
+    tab_style(
+      style = cell_text(size = px(20)),
+      locations = cells_title(groups = "subtitle")
+    ) %>%
+    tab_style(
+      style = cell_text(size = px(20)),
+      locations = cells_column_labels(columns = everything())
+    )
+
 
 ```
 
-+ plot it for female
+:::
 
-. . .
+::: {.column width="50%"}
 
 ```{r}
+#| echo: True
+#| output-location: fragment
+#| class: fragment
+#| code-summary: "Plot joint vs independent probabilities for female"
 
-ggplot(filter(race_gender_indep, gender=="f"),
-       aes(x=prob_indp, y=prob_joint)) +
-  geom_point(shape=1) +
-  geom_abline(intercept=0, slope=1, color="black", size=0.5) +
+ggplot(
+  filter(race_gender_indep, gender == "f"),
+  aes(x = prob_indp, y = prob_joint)
+) +
+  geom_point(shape = 1) +
+  geom_abline(intercept = 0, slope = 1, color = "black", size = 0.5) +
   coord_fixed() +
-  labs(title="Joint vs Independent Probabilities",
-       x=expression(P("race") * P("gender")),
-       y=expression(P("race and gender"))) 
+  labs(
+    title = "Joint vs Independent Probabilities",
+    x = expression(P("race") * P("gender")),
+    y = expression(P("race and gender"))
+  )
 
 ```
 
+:::
+
+::::
 
 ## Independence
 
@@ -899,60 +1376,82 @@ $$
 
 + examine the joint independence among the sample of registered Florida voters
 
-. . .
-
 ```{r}
+#| echo: True
+#| output-location: fragment
+#| class: fragment
+#| code-summary: "Check joint independence of race, age group, and gender"
 
-margin_age <- select(margin_age, age_group, prob_age = margin_age)
+margin_age <- voters |>
+  count(age_group) |>
+  mutate(prob_age = n / sum(n)) |>
+  select(age_group, prob_age)
 
 ## combine the marginal probabilities and link to joint probabilities
-joint_indep <- 
+joint_indep <-
   tidyr::crossing(margin_age, margin_gender, margin_race) %>%
   mutate(indep_prob = prob_race * prob_age * prob_gender) %>%
-  left_join(select(joint3, race, age_group, gender, prob_joint = prop), by = c("gender", "age_group", "race"))
-
+  left_join(
+    select(joint3, race, age_group, gender, prob_joint = prop),
+    by = c("gender", "age_group", "race")
+  )
 ```
 
-+ plot joint versus independent prob
-
-. . .
-
 ```{r}
+#| echo: True
+#| output-location: fragment
+#| class: fragment
+#| code-summary: "Plot joint vs independent probabilities for female above 60"
 
-ggplot(filter(joint_indep, age_group == "Above 60", gender == "f"),
-       aes(x = prob_joint, y = indep_prob)) +
+ggplot(
+  filter(joint_indep, age_group == "Above 60", gender == "f"),
+  aes(x = prob_joint, y = indep_prob)
+) +
   geom_abline(intercept = 0, slope = 1, color = "black", size = 0.5) +
   geom_point(shape = 1) +
   coord_fixed() +
-  labs(x = "P(race and above 60 and female)",
-       y = "P(race) * P(above 60) * P(female)",
-       title = "Joint independence")
-
+  labs(
+    x = "P(race and above 60 and female)",
+    y = "P(race) * P(above 60) * P(female)",
+    title = "Joint independence"
+  )
 ```
 
 
 +  conditional prob of race and age given gender
 
-. . .
-
 ```{r}
+#| echo: True
+#| output-location: fragment
+#| class: fragment
+#| code-summary: "Compute the conditional probability of race and age given gender"
 
-cond_prob_gender <- left_join(select(joint3, race, age_group, gender, joint_prob = prop), margin_gender,
-                              by = c("gender")) %>%
+cond_prob_gender <- left_join(
+  select(joint3, race, age_group, gender, joint_prob = prop),
+  margin_gender,
+  by = c("gender")
+) %>%
   mutate(cond_prob_gender = joint_prob / prob_gender)
 
 ```
 
 + conditional prob of race given gender
 
-. . .
-
 ```{r}
+#| echo: True
+#| output-location: fragment
+#| class: fragment
+#| code-summary: "Compute the conditional probability of race given gender"
 
 cond_prob_race_gender <-
-  left_join(select(joint_p, race, gender, prob_race_gender = prop), margin_gender, by = "gender") %>%
+  left_join(
+    select(joint_p, race, gender, prob_race_gender = prop),
+    margin_gender,
+    by = "gender"
+  ) %>%
   mutate(cond_prob_race_gender = prob_race_gender / prob_gender) %>%
   select(race, gender, cond_prob_race_gender)
+
 
 ```
 
@@ -960,49 +1459,66 @@ cond_prob_race_gender <-
 
 + conditional prob of age given gender
 
-. . .
-
 ```{r}
+#| echo: True
+#| output-location: fragment
+#| class: fragment
+#| code-summary: "Compute the conditional probability of age given gender"
 
-cond_prob_age_gender <- left_join(select(joint2, age_group, gender, prob_age_gender), margin_gender,
-                                  by = "gender") %>%
+cond_prob_age_gender <- left_join(
+  select(joint2, age_group, gender, prob_age_gender),
+  margin_gender,
+  by = "gender"
+) %>%
   mutate(cond_prob_age_gender = prob_age_gender / prob_gender) %>%
   select(age_group, gender, cond_prob_age_gender)
-
 ```
 
 + independent probability of race and age
 
-. . .
-
 ```{r}
+#| echo: True
+#| output-location: fragment
+#| class: fragment
+#| code-summary: "Compute the independent probability of race and age given gender"
 
-indep_cond_gender <- full_join(cond_prob_race_gender, cond_prob_age_gender,
-                               by = "gender") %>%
+indep_cond_gender <- full_join(
+  cond_prob_race_gender,
+  cond_prob_age_gender,
+  by = "gender"
+) %>%
   mutate(indep_prob = cond_prob_race_gender * cond_prob_age_gender)
 
 ## merge the independent probability with the conditional probability
 
-master <- left_join(cond_prob_gender, indep_cond_gender,
-                    by = c("gender", "age_group", "race"))
+master <- left_join(
+  cond_prob_gender,
+  indep_cond_gender,
+  by = c("gender", "age_group", "race")
+)
 
 ```
 
 + plotting for women over 60
 
-. . .
-
 ```{r}
+#| echo: True
+#| output-location: fragment
+#| class: fragment
+#| code-summary: "Plot conditional vs independent probabilities for female above 60"
 
-ggplot( filter(master, age_group == "Above 60", gender == "f"),
-        aes(x = cond_prob_gender, y = indep_prob)) +
+ggplot(
+  filter(master, age_group == "Above 60", gender == "f"),
+  aes(x = cond_prob_gender, y = indep_prob)
+) +
   geom_abline(intercept = 0, slope = 1, color = "black", size = 0.5) +
   geom_point(shape = 1) +
   coord_fixed() +
-  labs(x = "P(race and above 60 | female)",
-       y = "P(race | female) * P(above 60 | female)",
-       title = "Marginal independence")
-
+  labs(
+    x = "P(race and above 60 | female)",
+    y = "P(race | female) * P(above 60 | female)",
+    title = "Marginal independence"
+  )
 ```
 
 
@@ -1060,6 +1576,10 @@ probability**
 . . .
 
 ```{r}
+#| echo: True
+#| output-location: fragment
+#| class: fragment
+#| code-summary: "Simulate the Monty Hall game"
 
 # create a function that simulates the game
 sims <- 10000
@@ -1072,17 +1592,35 @@ for (i in 1:sims) {
   result.noswitch[i] <- doors[first]
   remain <- doors[-first] # remaining two doors
   ## Monty chooses one door with a goat
-  if (doors[first] == "car") # two goats left
+  if (doors[first] == "car") {
+    # two goats left
     monty <- sample(1:2, size = 1)
-  else # one goat and one car left
+  } else {
+    # one goat and one car left
     monty <- (1:2)[remain == "goat"]
-  result.switch[i] <- remain[-monty]
   }
+  result.switch[i] <- remain[-monty]
+}
+
+```
+
+```{r}
+#| echo: True
+#| output-location: fragment
+#| class: fragment
+#| code-summary: "Compute the probability of winning the car when switching and not switching"
 
 mean(result.noswitch == "car")
 
-mean(result.switch == "car")
+```
 
+```{r}
+#| echo: True
+#| output-location: fragment
+#| class: fragment
+#| code-summary: "Compute the probability of winning the car when switching"
+
+mean(result.switch == "car")
 
 ```
 
@@ -1116,15 +1654,16 @@ mean(result.switch == "car")
 library(tidyverse)
 
 # load the data
-cnames <- read_csv("https://raw.githubusercontent.com/kwan-MSDA/soci7016_2025/refs/heads/main/data/cnames.csv")
+cnames <- read_csv(
+  "https://raw.githubusercontent.com/kwan-MSDA/soci7016_2025/refs/heads/main/data/cnames.csv"
+)
 
 glimpse(cnames)
 
-cnames<- cnames %>% 
+cnames <- cnames %>%
   select(-1)
 
 glimpse(cnames)
-
 ```
 
 + The total number of surnames contained in this data set is $151671$
@@ -1151,18 +1690,19 @@ in other states where such information is not available
 
 ```{r}
 
-most_likely_race<- cnames %>% 
-  select(-count) %>% 
-  pivot_longer(cols=-surname,
-               names_to="race_pred",
-               values_to="highest_pct") %>% 
-  mutate(race_pred=str_replace(race_pred, "pct", "")) %>% 
-  group_by(surname) %>% 
-  filter(row_number(desc(highest_pct))==1) %>%
+most_likely_race <- cnames %>%
+  select(-count) %>%
+  pivot_longer(
+    cols = -surname,
+    names_to = "race_pred",
+    values_to = "highest_pct"
+  ) %>%
+  mutate(race_pred = str_replace(race_pred, "pct", "")) %>%
+  group_by(surname) %>%
+  filter(row_number(desc(highest_pct)) == 1) %>%
   ungroup()
 
-cnames<- full_join(cnames, most_likely_race, by="surname")
-
+cnames <- full_join(cnames, most_likely_race, by = "surname")
 ```
 
 + use the `inner_join()` function to match names between the voter file and census name data
@@ -1173,14 +1713,12 @@ cnames<- full_join(cnames, most_likely_race, by="surname")
 
 ```{r}
 
-FLVotersJoin<- voters %>% 
-  inner_join(cnames, by="surname")
+FLVotersJoin <- voters %>%
+  inner_join(cnames, by = "surname")
 
 dim(FLVotersJoin)
 
 glimpse(FLVotersJoin)
-
-
 ```
 
 ## Predicting race using surname and residence location
@@ -1196,22 +1734,20 @@ glimpse(FLVotersJoin)
 unique(FLVotersJoin$race)
 
 unique(FLVotersJoin$race_pred)
-
 ```
 . . .
 
 ```{r}
 
-FLVotersJoin<- FLVotersJoin %>%
-  mutate(race=recode(race, "native"="other"),
-         race_pred=recode(race_pred,
-                          "api"="asian",
-                          "others"="other"))
+FLVotersJoin <- FLVotersJoin %>%
+  mutate(
+    race = recode(race, "native" = "other"),
+    race_pred = recode(race_pred, "api" = "asian", "others" = "other")
+  )
 
 unique(FLVotersJoin$race)
 
 unique(FLVotersJoin$race_pred)
-
 ```
 
 + calculate the true positive rate for each racial group
@@ -1220,13 +1756,12 @@ unique(FLVotersJoin$race_pred)
 
 ```{r}
 
-race_tp<- FLVotersJoin %>% 
-  group_by(race) %>% 
-  summarize(tp=mean(race==race_pred)) %>% 
+race_tp <- FLVotersJoin %>%
+  group_by(race) %>%
+  summarize(tp = mean(race == race_pred)) %>%
   arrange(desc(tp))
 
 race_tp
-
 ```
 
 ::: notes
@@ -1244,13 +1779,12 @@ race_tp
 
 ```{r}
 
-race_fp<- FLVotersJoin %>% 
-  group_by(race_pred) %>% 
-  summarize(fp=mean(race !=race_pred)) %>% 
+race_fp <- FLVotersJoin %>%
+  group_by(race_pred) %>%
+  summarize(fp = mean(race != race_pred)) %>%
   arrange(desc(fp))
 
 race_fp
-
 ```
 
 
@@ -1331,22 +1865,21 @@ $$
 library(tidyverse)
 
 # load the data
-FLCensus <- read_csv("https://raw.githubusercontent.com/kwan-MSDA/soci7016_2025/refs/heads/main/data/FLCensusVTD.csv")
+FLCensus <- read_csv(
+  "https://raw.githubusercontent.com/kwan-MSDA/soci7016_2025/refs/heads/main/data/FLCensusVTD.csv"
+)
 
-FLCensus<- FLCensus %>% 
-  rename("asian"="api", "other"="others")
+FLCensus <- FLCensus %>%
+  rename("asian" = "api", "other" = "others")
 
 race_prop <- FLCensus %>%
   select(total.pop, white, black, asian, hispanic, other) %>%
-  pivot_longer(cols = - total.pop, names_to = "race",
-               values_to = "pct") %>%
+  pivot_longer(cols = -total.pop, names_to = "race", values_to = "pct") %>%
   group_by(race) %>%
   summarize(race_prop = weighted.mean(pct, w = total.pop)) %>%
   arrange(desc(race_prop))
 
 race_prop
-
-
 ```
 
 + compute $P(\textrm{surname | race})$
@@ -1358,26 +1891,31 @@ race_prop
 ```{r}
 
 ## merge the race probability with the existing data
-FLVotersJoin<- left_join(FLVotersJoin, race_prop, by="race")
+FLVotersJoin <- left_join(FLVotersJoin, race_prop, by = "race")
 
 ## calculate prob of surname given race total number of individuals
-total.count<- sum(cnames$count)
+total.count <- sum(cnames$count)
 
-cnames_reshape<- cnames %>% 
+cnames_reshape <- cnames %>%
   select(-race_pred, -highest_pct) %>%
-  pivot_longer(cols=starts_with("pct"),
-               names_to="race",
-               values_to="pct") %>% 
-  mutate(race=str_replace(race, "pct", ""),
-         race=recode(race, "api"="asian", "others"="other"),
-         race_surname=pct/100) %>% 
-  select(-pct) %>% 
-  left_join(race_prop, by="race") %>% 
-  mutate(prob_surname_race=race_surname * (count/total.count)/race_prop) %>% 
-  rename("posib_race"=race)
+  pivot_longer(
+    cols = starts_with("pct"),
+    names_to = "race",
+    values_to = "pct"
+  ) %>%
+  mutate(
+    race = str_replace(race, "pct", ""),
+    race = recode(race, "api" = "asian", "others" = "other"),
+    race_surname = pct / 100
+  ) %>%
+  select(-pct) %>%
+  left_join(race_prop, by = "race") %>%
+  mutate(
+    prob_surname_race = race_surname * (count / total.count) / race_prop
+  ) %>%
+  rename("posib_race" = race)
 
 cnames_reshape
-
 ```
 
 
@@ -1397,19 +1935,19 @@ cnames_reshape
 
 ## reshape the FL census data so we have race as a variable, then pct of pop
 merge_temp <- FLCensus %>%
-  pivot_longer(cols = c(white, black, hispanic, asian, other),
-               names_to = "pop_race",
-               values_to = "pop_pct") %>%
+  pivot_longer(
+    cols = c(white, black, hispanic, asian, other),
+    names_to = "pop_race",
+    values_to = "pop_pct"
+  ) %>%
   inner_join(voters, by = c("county", "VTD")) %>%
-  inner_join(cnames_reshape, by = c("surname",
-                                    "pop_race" = "posib_race")) %>%
+  inner_join(cnames_reshape, by = c("surname", "pop_race" = "posib_race")) %>%
   mutate(race_residence = prob_surname_race * pop_pct)
 
 ## then calculate the summation
 name_residence <- merge_temp %>%
   group_by(surname, county, VTD) %>%
   summarize(name_residence = sum(race_residence))
-
 ```
 
 + now we have all quantities of interest, can merge all together and calculate the predicted race
@@ -1422,7 +1960,6 @@ FLVoters_full <- merge_temp %>%
   inner_join(name_residence, by = c("surname", "county", "VTD")) %>%
   mutate(pred_race = prob_surname_race * pop_pct / name_residence) %>%
   select(surname, pop_race, race, pred_race, county, VTD)
-
 ```
 
 ::: notes
@@ -1455,7 +1992,6 @@ race_tp_new <- FL_updated %>%
   arrange(desc(tp))
 
 race_tp_new
-
 ```
 
 +  proportion of African Americans among those with surname "White"
@@ -1467,7 +2003,6 @@ race_tp_new
 filter(cnames, surname == "WHITE") %>%
   select(pctblack) %>%
   pull()
-
 ```
 
 
@@ -1480,7 +2015,6 @@ filter(cnames, surname == "WHITE") %>%
 filter(FLVoters_full, surname == "WHITE", pop_race == "black") %>%
   select(pred_race) %>%
   summary()
-
 ```
 
 + compute the false positive rate for each race
@@ -1495,7 +2029,6 @@ race_fp_new <- FL_updated %>%
   arrange(desc(fp))
 
 race_fp_new
-
 ```
 
 
@@ -1615,9 +2148,14 @@ f(x) = \begin{cases}
 \end{cases}
 $$
 
-+ the CDF of a uniform distribution is given by
+## Uniform Distribution
 
-. . .
+:::: {.columns}
+
+::: {.column width="50%"}
+
+the CDF of a uniform distribution is given by
+
 
 $$
 F(x) = \begin{cases}
@@ -1627,22 +2165,39 @@ F(x) = \begin{cases}
 \end{cases}
 $$
 
-+ in general, the CDF of a continuous random variable $X$ can be expressed as
+::: 
 
-. . .
+::: {.column width="50%"}
+
+in general, the CDF of a continuous random variable $X$ can be expressed as
 
 $$
 F(x) = P(X ≤ x) = \int_{-\infty}^{x} f(t) dt
 $$
 
-. . .
+:::
+
+::::
+
 
 ```{r}
+#| echo: True
+#| output-location: fragment
+#| class: fragment
+#| code-summary: "Compute the density of a uniform distribution"
 
-dunif(0.5, min=0, max=1)
 
+dunif(0.5, min = 0, max = 1)
 
-punif(1, min=-2, max=2)
+```
+
+```{r}
+#| echo: True
+#| output-location: fragment
+#| class: fragment
+#| code-summary: "Compute the cumulative probability of a uniform distribution"
+
+punif(1, min = -2, max = 2)
 
 ```
 
@@ -1666,7 +2221,6 @@ p <- 0.5 # success probabilities
 x <- runif(sims, min = 0, max = 1) # uniform [0,1]
 
 head(x)
-
 ```
 
 . . .
@@ -1678,8 +2232,6 @@ y <- as.integer(x <= p) # Bernoulli; turn TRUE/FALSE to 1/0
 head(y)
 
 mean(y)
-
-
 ```
 
 
@@ -1721,7 +2273,6 @@ for $x = 0, 1, ..., n$
 ```{r}
 
 dbinom(2, size = 10, prob = 0.5) # probability of getting 2 heads in 10 flips
-
 ```
 
 
@@ -1732,8 +2283,6 @@ dbinom(2, size = 10, prob = 0.5) # probability of getting 2 heads in 10 flips
 ```{r}
 
 pbinom(2, size = 10, prob = 0.5) # probability of getting at most 2 heads in 10 flips
-
-
 ```
 
   
@@ -1824,8 +2373,6 @@ pnorm(1) - pnorm(-1) # probability of being within 1 standard deviation from the
 pnorm(2) - pnorm(-2) # probability of being within 2 standard deviations from the mean
 
 pnorm(3) - pnorm(-3) # probability of being within 3 standard deviations from the mean
-
-
 ```
 + we can directly specify mean and standard deviation 
 
@@ -1837,10 +2384,11 @@ pnorm(3) - pnorm(-3) # probability of being within 3 standard deviations from th
 mu <- 5
 sigma <- 2
 
-pnorm(mu + sigma, mean = mu, sd = sigma) - pnorm(mu - sigma, mean = mu, sd = sigma)
+pnorm(mu + sigma, mean = mu, sd = sigma) -
+  pnorm(mu - sigma, mean = mu, sd = sigma)
 
-pnorm(mu + 2 * sigma, mean = mu, sd = sigma) - pnorm(mu - 2 * sigma, mean = mu, sd = sigma)
-
+pnorm(mu + 2 * sigma, mean = mu, sd = sigma) -
+  pnorm(mu - 2 * sigma, mean = mu, sd = sigma)
 ```
 
 ## Expectation
@@ -2021,14 +2569,15 @@ $$
 
 library(tidyverse)
 
-pres08<- read_csv("https://raw.githubusercontent.com/kwan-MSDA/soci7016_2025/refs/heads/main/data/pres08.csv")
+pres08 <- read_csv(
+  "https://raw.githubusercontent.com/kwan-MSDA/soci7016_2025/refs/heads/main/data/pres08.csv"
+)
 
 
 glimpse(pres08)
 
-pres08<- pres08 %>% 
-  mutate(p=Obama/(Obama+ McCain))
-
+pres08 <- pres08 %>%
+  mutate(p = Obama / (Obama + McCain))
 ```
 
 ::: notes
@@ -2056,13 +2605,11 @@ pres08<- pres08 %>%
 set.seed(123)
 
 sim_election <- function(.id, df, n_draws = 1000) {
-    ## for each state randomly sample
-    mutate(df, draws = rbinom(n(), n_draws, p)) %>%
+  ## for each state randomly sample
+  mutate(df, draws = rbinom(n(), n_draws, p)) %>%
     filter(draws > (n_draws / 2)) %>%
     summarize(EV = sum(EV), .id = .id)
 }
-
-
 ```
 
 ## Predicting election outcomes with uncertainty
@@ -2079,20 +2626,24 @@ sim_election <- function(.id, df, n_draws = 1000) {
 
 library(purrr)
 
-sims<- 10000
+sims <- 10000
 
-sim_results <- map_df(seq_len(sims),
-                      ~ sim_election(.x, pres08, n_draws=1000))
+sim_results <- map_df(seq_len(sims), ~ sim_election(.x, pres08, n_draws = 1000))
 
-ggplot(sim_results, aes(x=EV, y=..density..)) +
-  geom_histogram(bins=12, fill="lightblue", color="black") +
-  geom_vline(xintercept=364, linetype="dashed", linewidth=0.5, color="red") +
-  labs(title="Distribution of Electoral Votes for Obama",
-       x="Obama’s Electoral College votes",
-       y="Density") +
+ggplot(sim_results, aes(x = EV, y = ..density..)) +
+  geom_histogram(bins = 12, fill = "lightblue", color = "black") +
+  geom_vline(
+    xintercept = 364,
+    linetype = "dashed",
+    linewidth = 0.5,
+    color = "red"
+  ) +
+  labs(
+    title = "Distribution of Electoral Votes for Obama",
+    x = "Obama’s Electoral College votes",
+    y = "Density"
+  ) +
   theme_minimal()
-
-
 ```
 
 
@@ -2101,13 +2652,9 @@ ggplot(sim_results, aes(x=EV, y=..density..)) +
 ```{r}
 #| class: fragment
 
-sim_results %>% 
-  select(EV) %>% 
-  summarize_all(list(mean=mean, 
-                     median=median,
-                     var=var,
-                     sd=sd))
-
+sim_results %>%
+  select(EV) %>%
+  summarize_all(list(mean = mean, median = median, var = var, sd = sd))
 ```
 
 
@@ -2166,12 +2713,15 @@ where $\mathbb{I}\{S_j > 500\}$ is an indicator function that equals $1$ if Obam
 n_draws <- 1000
 
 pres08 %>%
-  mutate(pb = pbinom(n_draws / 2, size = n_draws, prob = p, lower.tail = FALSE)) %>%
-  summarize(mean = sum(pb * EV),
-            median = sum(EV * (pb > 0.5)),
-            var = sum(pb * (1-pb)*EV^2),
-            sd = sqrt(var))
-
+  mutate(
+    pb = pbinom(n_draws / 2, size = n_draws, prob = p, lower.tail = FALSE)
+  ) %>%
+  summarize(
+    mean = sum(pb * EV),
+    median = sum(EV * (pb > 0.5)),
+    var = sum(pb * (1 - pb) * EV^2),
+    sd = sqrt(var)
+  )
 ```
 
 
