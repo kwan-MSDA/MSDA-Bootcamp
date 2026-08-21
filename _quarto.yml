@@ -3,7 +3,7 @@ project:
   output-dir: docs
 
 website:
-  title: "A New Journey: HKU MSDA Bootcamp 2026 Summer"
+  title: "A New Journey: HKU MSDA Summer Bootcamp 2026"
   navbar:
     left:
       - href: index.qmd
