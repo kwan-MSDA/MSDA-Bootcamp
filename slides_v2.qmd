@@ -37,11 +37,13 @@ execute:
 
 5. [Data Wrangling](slides/Data Wrangling with R_v4.html){download="slides/Data Wrangling with R_v4.html"}
 
-<!--
-6. Probability and Statistics
--->
-
 6. [Probability and Statistics](slides/Probability and Distribution_v2.html){download="slides/Probabiliy and Distribution_v2.html"}
+
+<!--
+
+6. Probability and Statistics
+
+-->
 
 
 

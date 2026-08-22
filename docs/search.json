@@ -4,7 +4,7 @@
     "href": "index.html",
     "title": "MSDA Summer Bootcamp 2026",
     "section": "",
-    "text": "Our bootcamp covers three areas of knowledge essential for data analytics in social sciences\n1. Mathematical foundations for data analytics (Calculus and Linear Algebra)\n2. R (and R Studio) for data visualization and data wrangling\n3. Probability and Statistics"
+    "text": "Our bootcamp covers three areas of knowledge essential for data analytics in social sciences\n\nMathematical foundations for data analytics (Calculus and Linear Algebra)\nR (and R Studio) for data visualization and data wrangling\nProbability and Statistics"
   },
   {
     "objectID": "about.html",
@@ -2636,7 +2636,7 @@
     "href": "index.html#welcome-to-msda-bootcamp",
     "title": "MSDA Summer Bootcamp 2026",
     "section": "",
-    "text": "Our bootcamp covers three areas of knowledge essential for data analytics in social sciences\n1. Mathematical foundations for data analytics (Calculus and Linear Algebra)\n2. R (and R Studio) for data visualization and data wrangling\n3. Probability and Statistics"
+    "text": "Our bootcamp covers three areas of knowledge essential for data analytics in social sciences\n\nMathematical foundations for data analytics (Calculus and Linear Algebra)\nR (and R Studio) for data visualization and data wrangling\nProbability and Statistics"
   },
   {
     "objectID": "R_introduction.html#basic-arithmetic",
@@ -4855,7 +4855,7 @@
     "href": "slides_v2.html",
     "title": "MSDA Bootcamp Notes",
     "section": "",
-    "text": "NoneSlides\n\n\n\n\nCalculus\nLinear Algebra\nIntroduction to R\nData Visualization\nData Wrangling\n\n\n\nProbability and Statistics\n\n–&gt;"
+    "text": "NoneSlides\n\n\n\n\nCalculus\nLinear Algebra\nIntroduction to R\nData Visualization\nData Wrangling\nProbability and Statistics"
   },
   {
     "objectID": "Linear_Algebra_slimversion_v2.html#outline",

@@ -7,6 +7,7 @@ date: "`r Sys.Date()`"
 format:
   html:
     theme: cosmo
+    
     fontsize: 0.68em
     toc: false
     toc-depth: 2
@@ -36,9 +37,11 @@ description: |
 
 Our bootcamp covers three areas of knowledge essential for data analytics in social sciences
     
-    1. Mathematical foundations for data analytics (Calculus and Linear Algebra)
-    2. R (and R Studio) for data visualization and data wrangling
-    3. Probability and Statistics
+1. Mathematical foundations for data analytics (Calculus and Linear Algebra)
+
+2. R (and R Studio) for data visualization and data wrangling
+
+3. Probability and Statistics
 
 ## Schedule
 
