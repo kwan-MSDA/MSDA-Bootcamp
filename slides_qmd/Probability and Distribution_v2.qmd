@@ -1,6 +1,6 @@
 ---
 title: "Probability and Distribution"
-subtitle: "MSDA - Bootcamp 2026 Summer"
+subtitle: "MSDA - Summer Bootcamp 2026"
 author: "KT Wong"
 email: "kwanto@hku.hk"
 affiliation: "Faculty of Social Sciences, HKU"
@@ -2208,9 +2208,11 @@ punif(1, min = -2, max = 2)
 
 + in order to generate a Bernoulli random variable $Y$ with success probability $p$, we can first sample a uniform random variable $X$ and then set $Y = 1$ when $X$ is less than $p$ (similarly, set $Y = 0$ if $X ≥ p$) so that Y takes a value of 1 with probability $p$
 
-. . .
-
 ```{r}
+#| echo: True
+#| output-location: fragment
+#| class: fragment
+#| code-summary: "Generate a Bernoulli random variable from a uniform random variable"
 
 set.seed(123)
 
@@ -2226,12 +2228,25 @@ head(x)
 . . .
 
 ```{r}
+#| echo: True
+#| output-location: fragment
+#| class: fragment
+#| code-summary: "Generate a Bernoulli random variable from a uniform random variable"
 
 y <- as.integer(x <= p) # Bernoulli; turn TRUE/FALSE to 1/0
 
 head(y)
 
-mean(y)
+```
+
+```{r}
+#| echo: True
+#| output-location: fragment
+#| class: fragment
+#| code-summary: "Compute the mean of the Bernoulli random variable"
+
+cat("Mean of Y:", mean(y))
+
 ```
 
 
@@ -2266,21 +2281,25 @@ $$
 for $x = 0, 1, ..., n$
 :::
 
-+ use `R` to compute the probability of getting exactly $2$ heads in $10$ flips of a fair coin
-
-. . .
++ use `dbinom()` to compute the probability of getting exactly $2$ heads in $10$ flips of a fair coin
 
 ```{r}
+#| echo: True
+#| output-location: fragment
+#| class: fragment
+#| code-summary: "Compute the probability of getting 2 heads in 10 flips of a fair coin"
 
 dbinom(2, size = 10, prob = 0.5) # probability of getting 2 heads in 10 flips
 ```
 
 
-+ the cdf of a binomial random variable can be computed using the **pbinom()** function
-
-. . .
++ the cdf of a binomial random variable can be computed using the `pbinom()` function
 
 ```{r}
+#| echo: True
+#| output-location: fragment
+#| class: fragment
+#| code-summary: "Compute the probability of getting at most 2 heads in 10 flips"
 
 pbinom(2, size = 10, prob = 0.5) # probability of getting at most 2 heads in 10 flips
 ```
@@ -2362,33 +2381,68 @@ $$
 P(\mu - k\sigma \leq X \leq \mu + k\sigma) = P(-k \leq Z \leq k)=F(k) - F(-k)
 $$
 
-+ use the **pnorm()** function in R to compute the cumulative distribution function of a normal distribution
+## Normal Distribution
 
-. . .
++ use the `pnorm()` function in R to compute the cumulative distribution function of a normal distribution
+
 
 ```{r}
+#| echo: True
+#| output-location: fragment
+#| class: fragment
+#| code-summary: "Compute the probability of being within 1 SD from $N(0, 1)$ using pnorm()"
 
 pnorm(1) - pnorm(-1) # probability of being within 1 standard deviation from the mean
 
-pnorm(2) - pnorm(-2) # probability of being within 2 standard deviations from the mean
-
-pnorm(3) - pnorm(-3) # probability of being within 3 standard deviations from the mean
 ```
-+ we can directly specify mean and standard deviation 
-
-. . .
-
 
 ```{r}
+#| echo: True
+#| output-location: fragment
+#| class: fragment
+#| code-summary: "Compute the probability of being within 2 SDs from $N(0, 1)$ using pnorm()"
 
+
+pnorm(2) - pnorm(-2) # probability of being within 2 standard deviations from the mean
+
+```
+
+```{r}
+#| echo: True
+#| output-location: fragment
+#| class: fragment
+#| code-summary: "Compute the probability of being within 3 SDs from $N(0, 1)$ using pnorm()"
+
+
+pnorm(3) - pnorm(-3) # probability of being within 3 standard deviations from the mean
+
+```
+
++ we can directly specify mean and standard deviation 
+
+```{r}
+#| echo: True
+#| output-location: fragment
+#| class: fragment
+#| code-summary: "Compute the probability of being within 1 SD from $N(5, 2^2)$ using pnorm()"
+#| 
 mu <- 5
 sigma <- 2
 
 pnorm(mu + sigma, mean = mu, sd = sigma) -
   pnorm(mu - sigma, mean = mu, sd = sigma)
 
+```
+
+```{r}
+#| echo: True
+#| output-location: fragment
+#| class: fragment
+#| code-summary: "Compute the probability of being within 2 SDs from $N(5, 2^2)$ using pnorm()"
+
 pnorm(mu + 2 * sigma, mean = mu, sd = sigma) -
   pnorm(mu - 2 * sigma, mean = mu, sd = sigma)
+
 ```
 
 ## Expectation
@@ -2402,21 +2456,25 @@ pnorm(mu + 2 * sigma, mean = mu, sd = sigma) -
 + Sample mean fluctuates from one sample to another
   + but the expectation of a random variable is of a theoretical nature and is fixed given a probability model
 
-+ The expectation of a random variable $X$ is defined as
+:::: {.columns}
 
-. . .
+::: {.column width="50%"}
+
++ When $X$ is discrete
 
 $$
 E(X) = \sum_{x} x \cdot P(X = x)
 $$
 
 ::: {.no-bullet}
-where the sum is taken over all possible values of $X$ and $P(X = x)$ is the probability mass function of the random variable $X$
+where $P(X = x)$ is the probability mass function of the random variable $X$
 :::
 
-+ The expectation of a continuous random variable $X$ is defined as
+:::
 
-. . .
+::: {.column width="50%"}
+
++ When $X$ is continuous
 
 $$
 E(X) = \int_{-\infty}^{\infty} x \cdot f(x) dx
@@ -2425,6 +2483,9 @@ $$
 ::: {.no-bullet}
 where $f(x)$ is the probability density function of the random variable $X$
 :::
+
+:::
+::::
 
 
 ## Expectation - some examples
@@ -2447,6 +2508,8 @@ $$
 E(X) = \sum_{x=0}^{n} x \cdot P(X = x) = \sum_{x=0}^{n} x \cdot \binom{n}{x} p^x (1-p)^{n-x} = n \cdot p
 $$
 
+
+## Expectation - some examples
 
 + Consider a **uniform** random variable $X$ with the interval $[a, b]$
   + The expectation of a uniform random variable is given by
@@ -2483,6 +2546,8 @@ $$
 where $Y_i$ is a Bernoulli random variable with success probability $p$ and $E(Y_i) = p$
 :::
 
+<!--
+
 + A key result: if $X$ and $Y$ are independent random variables, then
 
 . . .
@@ -2490,6 +2555,7 @@ where $Y_i$ is a Bernoulli random variable with success probability $p$ and $E(Y
 $$
 E(XY) = E(X)E(Y)
 $$
+-->
 
 ## Variance
 
@@ -2540,6 +2606,8 @@ $$
 where $Y_i$ is a Bernoulli random variable with success probability $p$ and $V(Y_i) = p(1-p)$
 :::
 
+<!--
+
 + Example 2
   + the variance of the sum of two independent normal random variable $X \sim N(\mu_X, \sigma^2_X)$ and $Y \sim N(\mu_Y, \sigma^2_Y)$ can be computed as
 
@@ -2548,6 +2616,7 @@ where $Y_i$ is a Bernoulli random variable with success probability $p$ and $V(Y
 $$
 V(X + Y) = V(X) + V(Y) = \sigma^2_X + \sigma^2_Y
 $$
+-->
 
 ## Example - Predicting election outcomes with uncertainty
 
@@ -2574,10 +2643,11 @@ pres08 <- read_csv(
 )
 
 
-glimpse(pres08)
+#glimpse(pres08)
 
 pres08 <- pres08 %>%
   mutate(p = Obama / (Obama + McCain))
+
 ```
 
 ::: notes
@@ -2601,6 +2671,7 @@ pres08 <- pres08 %>%
 
 ```{r}
 #| class: fragment
+#| code-summary: "Simulate the election outcome using Monte Carlo simulation"
 
 set.seed(123)
 
@@ -2619,16 +2690,25 @@ sim_election <- function(.id, df, n_draws = 1000) {
 + use this function to simulate the election $10000$ times
   + use the `map_df()` function from the `purrr` package to apply an action multiple times
 
-+ then plot the results as a histogram - with a reference line for Obama’s actual number of electoral votes $(364)$
++ plot the results as a histogram - a reference line for Obama’s actual number of electoral votes $(364)$
 
 ```{r}
 #| class: fragment
+#| code-summary: "Simulate the election outcome 10000 times"
+#| output-location: column-fragment
+#| out-height: 5in
 
 library(purrr)
 
 sims <- 10000
 
 sim_results <- map_df(seq_len(sims), ~ sim_election(.x, pres08, n_draws = 1000))
+
+stats <- sim_results %>%
+  select(EV) %>%
+  summarize_all(list(mean = mean, median = median, var = var, sd = sd))
+
+# make the stats into the plot
 
 ggplot(sim_results, aes(x = EV, y = ..density..)) +
   geom_histogram(bins = 12, fill = "lightblue", color = "black") +
@@ -2638,23 +2718,48 @@ ggplot(sim_results, aes(x = EV, y = ..density..)) +
     linewidth = 0.5,
     color = "red"
   ) +
+    # annotate the actual number of electoral votes
+  annotate(
+    "text",
+    x = 364 + 5,
+    y = 0.03,
+    label = "Actual: 364",
+    color = "red"
+  ) +
+    # add the mean and median lines
+  geom_vline(
+    xintercept = stats$mean,
+    linetype = "dashed",
+    linewidth = 0.5,
+    color = "blue"
+  ) +
+    annotate(
+    "text",
+    x = stats$mean + 5,
+    y = 0.01,
+    label = paste("Mean:", round(stats$mean, 2)),
+    color = "blue"
+  ) +
+  geom_vline(
+    xintercept = stats$median,
+    linetype = "dashed",
+    linewidth = 0.5,
+    color = "grey20"
+  ) +
+  annotate(
+    "text",
+    x = stats$median + 5,
+    y = 0.02,
+    label = paste("Median:", round(stats$median, 2)),
+    color = "grey20"
+  ) +
+
   labs(
     title = "Distribution of Electoral Votes for Obama",
     x = "Obama’s Electoral College votes",
     y = "Density"
   ) +
   theme_minimal()
-```
-
-
-+ the mean and median values are lower than the actual number of Obama’s votes
-
-```{r}
-#| class: fragment
-
-sim_results %>%
-  select(EV) %>%
-  summarize_all(list(mean = mean, median = median, var = var, sd = sd))
 ```
 
 
@@ -2704,13 +2809,16 @@ where $\mathbb{I}\{S_j > 500\}$ is an indicator function that equals $1$ if Obam
 
 :::
 
-+ use use the `pbinom()` function, which evaluates the cdf of the binomial distribution at its input value
-
-. . .
-
 ```{r}
+#| class: fragment
+#| code-summary: "Compute the expected value and variance of Obama's Electoral College votes using pbinom()"
+#| output-location: fragment
 
 n_draws <- 1000
+
+library(gt)
+library(tidyverse)
+library(tidyverse)
 
 pres08 %>%
   mutate(
@@ -2721,7 +2829,15 @@ pres08 %>%
     median = sum(EV * (pb > 0.5)),
     var = sum(pb * (1 - pb) * EV^2),
     sd = sqrt(var)
-  )
+  ) %>% 
+    gt() %>% 
+    tab_header(
+      title = "Expected Value and Variance of Obama's Electoral College Votes"
+    ) %>%
+    tab_source_note(
+      source_note = "Note: The expected value and variance are computed using the probability model."
+    )
+
 ```
 
 
