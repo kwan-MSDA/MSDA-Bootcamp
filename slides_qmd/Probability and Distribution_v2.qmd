@@ -14,7 +14,7 @@ format:
     theme: clean_42_rb_revised5.scss
     self-contained-math: true
     embed-resources: true
-    show-notes: false
+    #show-notes: false
     multiplex: true
     slide-number: c/t
     preview-links: auto
