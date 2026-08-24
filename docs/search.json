@@ -8776,5 +8776,117 @@
     "title": "Probability and Distribution",
     "section": "Expectation - some examples",
     "text": "Expectation - some examples\n\nConsider a uniform random variable \\(X\\) with the interval \\([a, b]\\)\n\nThe expectation of a uniform random variable is given by\n\n\n\n\\[\nE(X) = \\int_{a}^{b} x \\cdot f(x) dx = \\int_{a}^{b} x \\cdot \\frac{1}{b-a} dx = \\frac{a + b}{2}\n\\]"
+  },
+  {
+    "objectID": "slides_qmd/Maths - Calculus_slimversion_240826.html#outline",
+    "href": "slides_qmd/Maths - Calculus_slimversion_240826.html#outline",
+    "title": "Probability and Distribution",
+    "section": "Outline",
+    "text": "Outline\n\nFunctions\nLimits\nDerivatives\nOptimization\nHigher-order derivatives\nSome common rules\nPartial derivatives\nIntegrals\nConstraint optimization"
+  },
+  {
+    "objectID": "slides_qmd/Maths - Calculus_slimversion_240826.html#functions",
+    "href": "slides_qmd/Maths - Calculus_slimversion_240826.html#functions",
+    "title": "Probability and Distribution",
+    "section": "Functions",
+    "text": "Functions\n\nWhat is a function?\n\ndomain\nrange\nmapping\n\nWhat is not a function?"
+  },
+  {
+    "objectID": "slides_qmd/Maths - Calculus_slimversion_240826.html#limits",
+    "href": "slides_qmd/Maths - Calculus_slimversion_240826.html#limits",
+    "title": "Probability and Distribution",
+    "section": "Limits",
+    "text": "Limits\n\nWhat is a limit?\n\nidea of a slope\n\nDoes it always exist?\nIs it unique?"
+  },
+  {
+    "objectID": "slides_qmd/Maths - Calculus_slimversion_240826.html#derivatives",
+    "href": "slides_qmd/Maths - Calculus_slimversion_240826.html#derivatives",
+    "title": "Probability and Distribution",
+    "section": "Derivatives",
+    "text": "Derivatives\n\n\n\nWhat is Derivative?\n\nslope of a function\nrate of change\n\nwhy learning it?\n\noptimization\neconomics\nstatistics\nmachine learning\ndeep learning\n\n\n\n\nreminder about notation\n\n\\(\\frac{df(x)}{dx}\\)\n\\(\\frac{df}{dx}\\)\n\\(f'(x)\\)\n\\(\\frac{d}{dx}f(x)\\)\n\\(\\frac{d}{dx}f\\)"
+  },
+  {
+    "objectID": "slides_qmd/Maths - Calculus_slimversion_240826.html#optimization",
+    "href": "slides_qmd/Maths - Calculus_slimversion_240826.html#optimization",
+    "title": "Probability and Distribution",
+    "section": "Optimization",
+    "text": "Optimization\n\nHow to find the maximum or minimum of a function?\n\nlet us think about a quadratic function, \\(y=ax^2+bx+c\\)\n\n\n\n\nHow to find out the maximum or minimum of a function?\n\nfirst-order condition\ncritical points"
+  },
+  {
+    "objectID": "slides_qmd/Maths - Calculus_slimversion_240826.html#higher-order-derviatives",
+    "href": "slides_qmd/Maths - Calculus_slimversion_240826.html#higher-order-derviatives",
+    "title": "Probability and Distribution",
+    "section": "Higher-order derviatives",
+    "text": "Higher-order derviatives\n\nsecond-order derivative\n\nconcave\nconvex\ninflection point\n\nthird-order derivative\nn-th order derivative\nlocal vs global maximum/minimum\n\n\n\nOptimizing functions. Taking the first derivative and setting it equal to 0 gives us either a minimum or maximum. The second derivative allows us to discern between the two.\nhigher-order derivatives can be used to construct useful approximations (i.e. Taylor’s approximation) to complex functions that are important in understanding the properties of various statistical estimators."
+  },
+  {
+    "objectID": "slides_qmd/Maths - Calculus_slimversion_240826.html#some-common-rules-of-derivatives",
+    "href": "slides_qmd/Maths - Calculus_slimversion_240826.html#some-common-rules-of-derivatives",
+    "title": "Probability and Distribution",
+    "section": "Some common rules of derivatives",
+    "text": "Some common rules of derivatives\n\n\n\nBasic Rules to calculate Derivative\n\npower rule\n\n\\(\\frac{dx^n}{dx}=nx^{n-1}\\)\n\nproduct rule\n\n\\(\\frac{d}{dx}f(x)g(x)=f'(x)g(x) +f(x)g'(x)\\)\n\nquotient rule\n\n\\(\\frac{d}{dx}\\frac{f(x)}{g(x)}=\\frac{f'(x)g(x)-f(x)g'(x)}{(g(x))^2}\\)\n\n\nSpecial cases\n\nderivative of a constant is zero\nderivative of a linear function is the slope\n\n\n\n\nSpecial cases for composite functions and some typical functions\n\nchain rule\n\n\\(\\frac{d}{dx}f(g(x))=f'(g(x))g'(x)\\)\n\nspecial rules for logs and exponents\n\n\\(\\frac{d}{dx}\\ln(x)=\\frac{1}{x}\\)\n\\(\\frac{d}{dx}e^{x}=e^{x}\\)\n\nspecial rules for sine, cosine, tangent functions\n\n\\(\\frac{d}{dx}\\sin(x)=\\cos(x)\\)\n\\(\\frac{d}{dx}\\cos(x)=-\\sin(x)\\)\n\\(\\frac{d}{dx}\\tan(x)=\\sec^2(x)\\) where \\(\\sec(x)=\\frac{1}{\\cos(x)}\\)\n\n\n\n\n\n\n\\(\\frac{d}{dx}\\ln(f(x))=\\frac{f'(x)}{f(x)}\\)\n\\(\\frac{d}{dx}e^{f(x)}=f'(x)e^{f(x)}\\)"
+  },
+  {
+    "objectID": "slides_qmd/Maths - Calculus_slimversion_240826.html#exercises",
+    "href": "slides_qmd/Maths - Calculus_slimversion_240826.html#exercises",
+    "title": "Probability and Distribution",
+    "section": "Exercises:",
+    "text": "Exercises:\n\n\\(\\frac{d}{dx}(6x^3+5)\\)\n\\(\\frac{d}{dx}\\sqrt{(5x^3+3x+5)}\\)\nlet \\(h(x)=2x+3; g(x)=5x^2+3x\\), let \\(f(x)=h(x)*g(x)\\), \\(\\frac{df(x)}{dx}\\)\nlet \\(p(x)=\\frac{h(x)}{g(x)}\\), \\(\\frac{dp(x)}{dx}\\)\n\\(\\frac{d(g(h(x)))}{dx}\\)\n\\(\\frac{d}{dx}\\ln(x^6+8)\\)\n\\(\\frac{d}{dx}e^{6x+3}\\)\n\\(\\frac{d}{dx}x^3e^{x}\\)"
+  },
+  {
+    "objectID": "slides_qmd/Maths - Calculus_slimversion_240826.html#partial-derviatives",
+    "href": "slides_qmd/Maths - Calculus_slimversion_240826.html#partial-derviatives",
+    "title": "Probability and Distribution",
+    "section": "Partial derviatives",
+    "text": "Partial derviatives\n\nWhat is a partial derivative?\n\nLet \\(z=f(x,y)\\)\n\\(\\frac{\\partial f}{\\partial x}\\)\n\\(\\frac{\\partial f}{\\partial y}\\)\n\nExercise:\n\nlet \\(f(x,y)=x^2 y^3+3x+2y\\)\nfind \\(\\frac{\\partial f}{\\partial x}\\) and \\(\\frac{\\partial f}{\\partial y}\\)"
+  },
+  {
+    "objectID": "slides_qmd/Maths - Calculus_slimversion_240826.html#integrals",
+    "href": "slides_qmd/Maths - Calculus_slimversion_240826.html#integrals",
+    "title": "Probability and Distribution",
+    "section": "Integrals",
+    "text": "Integrals\n\nWhat is an integral?\n\narea under the curve\nanti-derivative\n\nNotation\n\n\\(\\int^b_a f(x)dx\\)\n\\(\\int_X f(x)dx\\)\n\nWe are most interested in the concept rather than actual (hand) calculation of the integrals"
+  },
+  {
+    "objectID": "slides_qmd/Maths - Calculus_slimversion_240826.html#constraint-optimization",
+    "href": "slides_qmd/Maths - Calculus_slimversion_240826.html#constraint-optimization",
+    "title": "Probability and Distribution",
+    "section": "Constraint optimization",
+    "text": "Constraint optimization\n\nWhat is constraint optimization?\n\noptimization with constraints\nLagrange multiplier\n\nThe idea is to optimize a function subject to some constraints\nThe problem can be stated as:\n\nmaximize \\(f(x,y)\\) subject to \\(g(x,y)=0\\)\nminimize \\(f(x,y)\\) subject to \\(g(x,y)=0\\)"
+  },
+  {
+    "objectID": "slides_qmd/Maths - Calculus_slimversion_240826.html#constraint-optimization-1",
+    "href": "slides_qmd/Maths - Calculus_slimversion_240826.html#constraint-optimization-1",
+    "title": "Probability and Distribution",
+    "section": "Constraint optimization",
+    "text": "Constraint optimization\n\nlet us learn some economics\nin economics, a consumer faces the problem of maximizing her utility subject to the income constraint:\n\n\n\\[\n\\max_{x_1,x_2} u(x_1,x_2) \\quad s.t. \\; p_1x_1 + p_2x_2=y\n\\]\n\nwe can visualize and “solve” the problem using graph"
+  },
+  {
+    "objectID": "slides_qmd/Maths - Calculus_slimversion_240826.html#constraint-optimization-2",
+    "href": "slides_qmd/Maths - Calculus_slimversion_240826.html#constraint-optimization-2",
+    "title": "Probability and Distribution",
+    "section": "Constraint optimization",
+    "text": "Constraint optimization\n\nthe optimal solution is at the point where the budget line is tangent to the indifference curve\n\n\n\\[\n\\frac{MU_1}{MU_2}=\\frac{p_1}{p_2}\n\\]\n\\(\\quad\\) where \\(MU_1\\) and \\(MU_2\\) are the marginal utilities of good 1 and good 2 respectively\n\nwe can solve this problem using the “identity”\n\n\n\n\\[\nu(x_1, x^U_2(x_1))=\\bar{u}\n\\]\n\nwe need to solve two equations simultaneously"
+  },
+  {
+    "objectID": "slides_qmd/Maths - Calculus_slimversion_240826.html#constraint-optimization-3",
+    "href": "slides_qmd/Maths - Calculus_slimversion_240826.html#constraint-optimization-3",
+    "title": "Probability and Distribution",
+    "section": "Constraint optimization",
+    "text": "Constraint optimization\n\nthe Lagrange multiplier is a method to solve the optimization problem with constraints\nthe Lagrange function is defined as:\n\n\n\\[\nL(x_1,x_2,\\lambda)=u(x_1,x_2)+\\lambda(y-(p_1x_1+p_2x_2))\n\\]\n\nthe first-order conditions are\n\n\n\n\\[\n\\begin{align*}\n\\frac{\\partial u}{\\partial x_1} - \\lambda p_1 &=0 \\\\\n\\frac{\\partial u}{\\partial x_2} - \\lambda p_2 &=0 \\\\\ny-(p_1x_1+p_2x_2) &=0\n\\end{align*}\n\\]"
+  },
+  {
+    "objectID": "slides_qmd/Maths - Calculus_slimversion_240826.html#constraint-optimization-4",
+    "href": "slides_qmd/Maths - Calculus_slimversion_240826.html#constraint-optimization-4",
+    "title": "Probability and Distribution",
+    "section": "Constraint optimization",
+    "text": "Constraint optimization\n\nthe Lagrange multiplier could be interpreted as the “marginal utility of income” in our example\nin economics, the Lagrange multiplier could be interpreted as the “shadow price” of the constraint\n\ne.g. the Lagrange multiplier could be interpreted as the “marginal cost” in production optimization\n\nReminder: the Lagrange multiplier could be zero, positive or negative\nthe Lagrange multiplier could be used in very general optimization problems\n\n\n\\[\n\\max_{x_1, \\dots, x_n} f(x_1,\\dots, x_n) \\quad s.t. \\; g_i(x_1,\\dots, x_n)=c_i, \\quad i=1,\\dots,m\n\\]"
+  },
+  {
+    "objectID": "slides_qmd/Maths - Calculus_slimversion_240826.html#references",
+    "href": "slides_qmd/Maths - Calculus_slimversion_240826.html#references",
+    "title": "Probability and Distribution",
+    "section": "References",
+    "text": "References\n\n\nChiang, Alpha, Chung-i, and Kevin. Wainwright. 2005. Fundamental Methods of Mathematical Economics. 4th ed. / [rev. by] Kevin Wainwright. McGraw-Hill.\n\n\nSimon, Carl P., and Lawrence. Blume. 1994. Mathematics for Economists. 1st ed. W.W. Norton."
   }
 ]

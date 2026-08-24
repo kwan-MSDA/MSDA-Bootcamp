@@ -27,7 +27,7 @@ execute:
 
 ## Slides
 
-1. [Calculus](slides/Calculus_slimversion.html){download="slides/Calculus_slimversion.html"}
+1. [Calculus](slides/Calculus_slimversion_240826.html){download="slides/Calculus_slimversion_240826.html"}
 
 2. [Linear Algebra](slides/Linear_Algebra_slimversion_v3.html){download="slides/Linear_Algebra_slimversion_v3.html"}
 
