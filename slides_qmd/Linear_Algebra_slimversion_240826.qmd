@@ -1,0 +1,2682 @@
+---
+title: "Linear Algebra"
+subtitle: "MSDA - Summer Bootcamp 2026"
+author: "KT Wong"
+email: "kwanto@hku.hk"
+affiliation: "Faculty of Social Sciences, HKU"
+date: "`r format(Sys.time(), '%B %d, %Y')`"
+
+abstract: |
+ The materials in this topic are drawn from @Stachurski2016
+
+bibliography: reference_bootcamp.bib
+format:
+   revealjs:
+    theme: clean_42_rb_revised5.scss
+    embed-resources: true
+    multiplex: false
+    slide-number: c/t
+    preview-links: auto
+    height: 1080
+    width: 1920
+    max-scale: 1 
+    smaller: false
+    scrollable: True
+    incremental: True
+    template-partials:
+      - title-slide.html
+    controls: true
+    touch: false
+    
+include-in-header:
+  text: |
+      <style>
+      #title-slide .abstract {
+        font-size: 28px;
+        color: #F15D50;
+      }
+      </style>
+
+execute:
+   engine: knitr
+   cache: true
+   echo: false
+   warning: false
+   message: false
+   error: false
+
+knitr:
+  opts_chunk:
+    echo: true
+fig-cap-location: bottom
+fig-width: 9
+fig-height: 5
+fig-dpi: 300
+
+lightbox: auto
+---
+
+## Outline
+
+```{r setup}
+#| echo: false
+library(here)
+library(reticulate)
+
+# 1. Create the environment
+#virtualenv_create("bootcamp_python")
+
+# 2. Install packages into it
+#virtualenv_install("bootcamp_python", packages = c("numpy", "pandas", "matplotlib", "scipy", "seaborn", "jupyter", "scikit-learn", "statsmodels", "plotly"))
+
+# 3. Tell reticulate to use it
+use_virtualenv("bootcamp_python", required = TRUE)
+```
+
+1. Vectors
+
+2. Matrix operations
+
+3. Linear Transformation
+
+4. System of Linear Equations
+
+5. Vector Spaces
+
+4. Eigenvalues and Eigenvectors
+
+5. ~~Applications for calculus~~
+
+## Vectors
+
++ A **vector** of length $n$ is just a sequence of $n$ numbers
+    + $x=(x_1, \ldots, x_n)$ or 
+    + $x=\begin{bmatrix}x_1, \ldots, x_n\end{bmatrix}$
+
++ vectors in 2-D space
+
+. . .
+
+::: fragment
+
+```{python plot_vectors}
+#| echo: false
+#| out-height: 68%
+#| results: hide
+
+import numpy as np
+import matplotlib.pyplot as plt
+
+plt.figure(figsize=(3,3))
+fig, ax=plt.subplots()
+
+# set the axes through the origin
+for spine in ['left', 'bottom']:
+    ax.spines[spine].set_position('zero')
+for spine in ['right', 'top']:
+    ax.spines[spine].set_color('none')
+    
+ax.set(xlim=(-5,5), ylim=(-5,5))
+
+vecs=((2,4), (-3,3), (4,-3))
+for v in vecs:
+    ax.annotate('', xy=v, xytext=(0,0), 
+                arrowprops=dict(facecolor='blue', 
+                shrink=0,
+                alpha=0.8,
+                width=0.5))
+    ax.text(1.1*v[0], 1.1*v[1], str(v))
+plt.tight_layout()
+plt.show()
+
+```
+
+:::
+
+## Vectors
+
++ row vector
+
+. . .
+
+$$
+u=\begin{bmatrix} 1 & 0 \end{bmatrix}
+$$
+
++ column vector
+
+. . .
+
+$$
+v=\begin{bmatrix} 1 \\ 0 \end{bmatrix}
+$$
+
++ $v=u^T$
+
+## Vector Operations
+
++ addition and subtraction
+    + do the operation element-by-element
+    + check the dimension of the vectors
+
+. . .
+
+```{python}
+#| echo: false
+#| results: hide
+#| out-height: 68%
+
+import numpy as np
+import matplotlib.pyplot as plt
+
+plt.figure(figsize=(3,3))
+fig, ax = plt.subplots()
+# Set the axes through the origin
+for spine in ['left', 'bottom']:
+    ax.spines[spine].set_position('zero')
+for spine in ['right', 'top']:
+    ax.spines[spine].set_color('none')
+
+ax.set(xlim=(-2, 10), ylim=(-3, 6))
+# ax.grid()
+vecs = ((5, -2), (3, 5), (8, 3))
+tags = (r'$(x_1, x_2)$', r'$(y_1, y_2)$', r'$(x_1+y_1, x_2 +y_2)$')
+colors = ('blue', 'green', 'red')
+for i, v in enumerate(vecs):
+    ax.annotate('', xy=v, xytext=(0, 0),
+                arrowprops=dict(color=colors[i],
+                shrink=0,
+                alpha=0.7,
+                width=0.5,
+                headwidth=8,
+                headlength=15))
+    ax.text(v[0] + 0.2, v[1] + 0.1, tags[i])
+
+for i, v in enumerate(vecs):
+    ax.annotate('', xy=(8, 3), xytext=v,
+                arrowprops=dict(color='gray',
+                shrink=0,
+                alpha=0.3,
+                width=0.5,
+                headwidth=5,
+                headlength=20))
+
+plt.tight_layout()
+plt.show()
+
+```
+
+## Vector Operations
+
++ vector multiplication
+    + multiply vectors with scalars
+    + dot product (inner product)
+
+. . .
+
+```{python}
+#| echo: false
+#| results: hide
+#| out-height: 50%
+
+plt.figure(figsize=(3,3))
+fig, ax = plt.subplots()
+# Set the axes through the origin
+for spine in ['left', 'bottom']:
+    ax.spines[spine].set_position('zero')
+for spine in ['right', 'top']:
+    ax.spines[spine].set_color('none')
+
+ax.set(xlim=(-8, 8), ylim=(-10, 10))
+x = (3, 5)
+ax.annotate('', xy=x, xytext=(0, 0),
+            arrowprops=dict(facecolor='blue',
+            shrink=0,
+            alpha=1,
+            width=0.5))
+ax.text(x[0] + 0.4, x[1] - 0.2, '$x$', fontsize='16')
+
+scalars = (-2, 2)
+x = np.array(x)
+
+for s in scalars:
+    v = s * x
+    ax.annotate('', xy=v, xytext=(0, 0),
+                arrowprops=dict(facecolor='red',
+                shrink=0,
+                alpha=0.5,
+                width=0.5))
+    ax.text(v[0] + 0.4, v[1] - 0.2, f'${s} x$', fontsize='16')
+
+plt.tight_layout()
+plt.show()
+
+```
+
+## Vector Operations
+
+The [**dot product**](https://www.mathsisfun.com/algebra/vectors-dot-product.html) of vectors $x,y \in \mathbb R^n$ is defined as
+
+. . .
+
+$$
+\begin{array}{rl}
+x^\top y &= {\color{red}{x_1 y_1}} + {\color{blue}{x_2 y_2}} + \cdots + x_n y_n \\
+&= \sum_{i=1}^n x_i y_i
+\end{array}
+$$
+
++ the dot product could be written as $x \cdot y$ or $x'y$
+
++ the dot product could be expressed in cosine form
+
+. . .
+
+$$
+x \cdot y = \|x\| \|y\| \cos \theta
+$$
+
+```{python}
+#| eval: false
+#| echo: false
+#| results: hide
+#| out-height: 50%
+#| fig-align: center
+
+plt.figure(figsize=(3,3))
+fig, ax = plt.subplots()
+# Set the axes through the origin
+for spine in ['left', 'bottom']:
+    ax.spines[spine].set_position('zero')
+for spine in ['right', 'top']:
+    ax.spines[spine].set_color('none')
+    
+ax.set(xlim=(-5,5), ylim=(-5,5))
+
+x=(3,4)
+y=(4,-1)
+
+cos_angle = np.dot(x,y)/(np.linalg.norm(x)*np.linalg.norm(y))
+angle = np.arccos(cos_angle)
+
+ax.annotate('', xy=x, xytext=(0,0), 
+            arrowprops=dict(facecolor='blue', 
+            shrink=0,
+            alpha=0.7,
+            width=0.5))
+ax.text(x[0]+0.5, x[1]-0.5, '$x$', fontsize='16')
+
+ax.annotate('', xy=y, xytext=(0,0), 
+            arrowprops=dict(facecolor='green', 
+            shrink=0,
+            alpha=0.7,
+            width=0.5))
+ax.text(y[0]+0.5, y[1]-0.5, '$y$', fontsize='16')
+
+ax.plot((0,x[0]), (0,x[1]), 'r--')
+ax.plot((0,y[0]), (0,y[1]), 'r--')
+
+ax.text(1, 1, f'$\\theta={angle:.2f}$', fontsize='16')
+
+ax.text(1, 3, f'$x \\cdot y = {np.dot(x,y)}$', fontsize='16')
+
+plt.tight_layout()
+plt.show()
+
+```
+
+```{python}
+#| include: false
+
+x=np.ones(3)
+y=np.array((2,4,6))
+x+y
+4*x
+np.dot(x,y)
+x@y
+np.sum(x*y)
+
+np.sqrt(np.sum(x**2))
+
+np.linalg.norm(x)
+
+```
+
+## Matrix Algebra
+
++ what is a matrix?
+    + a matrix is a rectangular array of numbers
+    + $A_{m \times n} = \begin{bmatrix} a_{11} & a_{12} & \cdots & a_{1n} \\ a_{21} & a_{22} & \cdots & a_{2n} \\ \vdots & \vdots & \ddots & \vdots \\ a_{m1} & a_{m2} & \cdots & a_{mn} \end{bmatrix}$
+
+## Matrix Algebra
+
++ matrix addition and subtraction
+    + $A_{m \times n} \pm B_{m \times n} = C_{m \times n}$
+        + e.g. $A = \begin{bmatrix} 1 & 2 \\ 3 & 4 \end{bmatrix}$, $B = \begin{bmatrix} 5 & 6 \\ 7 & 8 \end{bmatrix}$, $A+B = \begin{bmatrix} 6 & 8 \\ 10 & 12 \end{bmatrix}$
+    + check the dimension of the matrices
+
++ In general,
+
+. . .
+
+$$
+A + B =
+\begin{bmatrix}
+    a_{11} & \cdots & a_{1k} \\
+    \vdots & \vdots & \vdots \\
+    a_{n1} & \cdots & a_{nk}
+\end{bmatrix} +
+\begin{bmatrix}
+    b_{11} & \cdots & b_{1k} \\
+    \vdots & \vdots & \vdots \\
+    b_{n1} & \cdots & b_{nk}
+\end{bmatrix} =
+\begin{bmatrix}
+    a_{11} + b_{11} &  \cdots & a_{1k} + b_{1k} \\
+    \vdots & \vdots & \vdots \\
+    a_{n1} + b_{n1} &  \cdots & a_{nk} + b_{nk}
+\end{bmatrix}
+$$
+
+## Matrix Algebra
+
++ scale multiplication
+    + In general for a number $\gamma$ and any matrix $A$,
+
+. . .
+
+$$
+\gamma A =
+\gamma
+\begin{bmatrix}
+    a_{11} &  \cdots & a_{1k} \\
+    \vdots & \vdots  & \vdots \\
+    a_{n1} &  \cdots & a_{nk}
+\end{bmatrix} :=
+\begin{bmatrix}
+    \gamma a_{11} & \cdots & \gamma a_{1k} \\
+    \vdots & \vdots & \vdots \\
+    \gamma a_{n1} & \cdots & \gamma a_{nk}
+\end{bmatrix}
+$$
+
+## Matrix multiplication
+
++ The rule for matrix multiplication generalizes the idea of inner products  
+    + If $A$ is $n \times k$ and $B$ is $j \times m$, then to multiply $A$ and $B$
+        + any requirement on the dimensions of $A$ and $B$ for the matrix multiplication?
+        + what will be dimension of the resulting matrix $A B$
+  
++ Here's an example of a $2 \times 2$ matrix multiplied by a $2 \times 1$ vector
+
+. . .
+
+$$
+Ax =
+\begin{bmatrix}
+    \color{red}{a_{11}} & \color{red}{a_{12}} \\
+    a_{21} & a_{22}
+\end{bmatrix}
+\begin{bmatrix}
+    \color{red}{x_1} \\
+    \color{red}{x_2}
+\end{bmatrix}
+=
+\begin{bmatrix}
+    \color{red}{a_{11}x_1 + a_{12}x_2} \\
+    a_{21}x_1 + a_{22}x_2
+\end{bmatrix}
+$$
+    
++ Here is a simple illustration of multiplication of two matrices
+
+. . .
+
+$$
+AB =
+\begin{bmatrix}
+    a_{11} & a_{12} \\
+    \color{red}{a_{21}} & \color{red}{a_{22}} \\
+\end{bmatrix}
+\begin{bmatrix}
+    b_{11} & \color{red}{b_{12}} \\
+    b_{21} & \color{red}{b_{22}} \\
+\end{bmatrix} :=
+\begin{bmatrix}
+    a_{11}b_{11} + a_{12}b_{21} & a_{11}b_{12} + a_{12}b_{22} \\
+    a_{21}b_{11} + a_{22}b_{21} & \color{red}{a_{21}b_{12} + a_{22}b_{22}}
+\end{bmatrix}
+$$
+
+## Matrix multiplication
+
++ Notice that $AB \neq BA$ in general
+   
++ There are many tutorials to help you further visualize this operation, like [this one](http://www.mathsisfun.com/algebra/matrix-multiplying.html) 
+  
++ One important special case is the [identity matrix](https://en.wikipedia.org/wiki/Identity_matrix), which has ones on the principal diagonal and zero elsewhere:
+
+. . .
+
+$$
+I = \begin{bmatrix}
+        1 & \cdots & 0 \\
+        \vdots & \ddots & \vdots \\
+        0 &  \cdots & 1
+    \end{bmatrix}
+$$
+
++ Execises:
+    + if $A$ is $n \times k$ and $I$ is the $k \times k$ identity matrix, then $AI = A$
+    + if $I$ is the $n \times n$ identity matrix, then $IA = A$ 
+  
+## Exercise
+
+$$
+Y=\begin{bmatrix} 3 & 1 & -2 \\ 6 & 3 & 4 \end{bmatrix}
+, \quad X=\begin{bmatrix} 4 & 2 \\ 3 & 0 \\ 1 & 2 \end{bmatrix}
+$$
+
+1. What are the dimensions of the matrices $X$ and $Y$?
+
+2. How to multiply $Y$ and $X$ to yield a $3 \times 3$ matrix? Compute it
+
+3. How to multiply $Y$ and $X$ to yield a $2 \times 2$ matrix? Compute it
+
+## Linear Transformation
+
+[Matrics as Mapping]{.large .b}
+
++ Each $n \times k$ matrix $A$ can be identified with a function $f(x) = Ax$ that maps $x \in \mathbb R ^k$ into $y = Ax \in \mathbb R ^n$
+    + these kinds of functions have a special property: they are *linear*
+
++ A function $f \colon \mathbb R ^k \to \mathbb R ^n$ is called *linear* if
+    + for all $x, y \in \mathbb R$ and all scalars $\alpha, \beta$, we have
+
+::: {.fragment}
+
+$$
+f(\alpha x + \beta y) = \alpha f(x) + \beta f(y)
+$$
+
+:::
+
++ it can be [shown](https://en.wikipedia.org/wiki/Linear_map#Matrices) that $f$ is linear *if and only if* there exists a matrix $A$ such that $f(x) = Ax$ for all $x$
+
+
+## Linear Transformation
+
+[Some examples]{.large .b}
+
+We consider how a given matrix transforms in $\mathbb R ^2$
+
+Let $\begin{bmatrix} 2 & 1 \\ -1 & 1 \end{bmatrix}$
+
+:::: {.columns}
+
+::: {.column width=50%}
+
++ it transforms the vector $x = \begin{bmatrix} 1 \\ 3 \end{bmatrix}$ to the vector $y = \begin{bmatrix} 5 \\ 2 \end{bmatrix}$ through the matrix multiplication
+
+::: {.fragment}
+
+\begin{bmatrix}
+        2 & 1 \\
+        -1 & 1
+    \end{bmatrix}
+    \begin{bmatrix}
+        1 \\
+        3
+    \end{bmatrix}
+    
+:::
+
+:::
+
+::: {.column width=50%}
+
+::: {.fragment}
+
+```{python}
+#| echo: false
+
+import matplotlib.pyplot as plt
+import numpy as np
+from numpy.linalg import matrix_power
+from matplotlib.lines import Line2D
+from matplotlib.patches import FancyArrowPatch
+from mpl_toolkits.mplot3d import proj3d
+
+```
+
+```{python}
+#| echo: false
+#| results: hide
+#| out-height: 100%
+#| fig-align: center
+
+from math import sqrt
+
+fig, ax = plt.subplots()
+# Set the axes through the origin
+
+for spine in ['left', 'bottom']:
+    ax.spines[spine].set_position('zero')
+for spine in ['right', 'top']:
+    ax.spines[spine].set_color('none')
+
+ax.set(xlim=(-2, 6), ylim=(-2, 4), aspect=1)
+
+vecs = ((1, 3), (5, 2))
+c = ['r', 'black']
+for i, v in enumerate(vecs):
+    ax.annotate('', xy=v, xytext=(0, 0),
+                arrowprops=dict(color=c[i],
+                shrink=0,
+                alpha=0.7,
+                width=0.5))
+
+ax.text(0.2 + 1, 0.2 + 3, 'x=$(1,3)$')
+ax.text(0.2 + 5, 0.2 + 2, 'Ax=$(5,2)$')
+
+ax.annotate('', xy=(sqrt(10/29) * 5, sqrt(10/29) * 2), xytext=(0, 0),
+            arrowprops=dict(color='purple',
+                            shrink=0,
+                            alpha=0.7,
+                            width=0.5))
+
+ax.annotate('', xy=(1, 2/5), xytext=(1/3, 1),
+            arrowprops={'arrowstyle': '->',
+                        'connectionstyle': 'arc3,rad=-0.3'},
+            horizontalalignment='center')
+ax.text(0.8, 0.8, f'θ', fontsize=14)
+
+plt.tight_layout()
+plt.show()
+
+```
+
+::: 
+
+:::
+
+::::
+
+::: {.fragment}
+
++ Ex: with the same vector $x$, now, the matrix becomes $A = \begin{bmatrix} 1 & 2 \\ 3 & 4 \end{bmatrix}$, what will be the $y$?
+
+:::
+
+## Linear Transformation
+
+[Some examples - Scaling]{.large .b}
+
+```{python}
+#| echo: false
+#| results: hide
+#| out-height: 80%
+#| out-width: 80%
+#| fig-align: center
+
+import numpy as np
+import matplotlib.pyplot as plt
+
+def colorizer(x, y):
+    r = min(1, 1-y/3)
+    g = min(1, 1+y/3)
+    b = 1/4 + x/16
+    return (r, g, b)
+
+
+def grid_transform(A=np.array([[1, -1], [1, 1]])):
+    xvals = np.linspace(-4, 4, 9)
+    yvals = np.linspace(-3, 3, 7)
+    xygrid = np.column_stack([[x, y] for x in xvals for y in yvals])
+    uvgrid = A @ xygrid
+
+    colors = list(map(colorizer, xygrid[0], xygrid[1]))
+
+    fig, ax = plt.subplots(1, 2, figsize=(10, 5))
+
+    for axes in ax:
+        axes.set(xlim=(-11, 11), ylim=(-11, 11))
+        axes.set_xticks([])
+        axes.set_yticks([])
+        for spine in ['left', 'bottom']:
+            axes.spines[spine].set_position('zero')
+        for spine in ['right', 'top']:
+            axes.spines[spine].set_color('none')
+
+    # Plot x-y grid points
+    ax[0].scatter(xygrid[0], xygrid[1], s=36, c=colors, edgecolor="none")
+    # ax[0].grid(True)
+    # ax[0].axis("equal")
+    ax[0].set_title(r"points $x_1, x_2, \cdots, x_k$")
+
+    # Plot transformed grid points
+    ax[1].scatter(uvgrid[0], uvgrid[1], s=36, c=colors, edgecolor="none")
+    # ax[1].grid(True)
+    # ax[1].axis("equal")
+    ax[1].set_title(r"points $Ax_1, Ax_2, \cdots, Ax_k$")
+    
+    plt.tight_layout()
+    plt.show()
+
+
+def circle_transform(A=np.array([[-1, 2], [0, 1]])):
+
+    fig, ax = plt.subplots(1, 2, figsize=(10, 5))
+
+    for axes in ax:
+        axes.set(xlim=(-4, 4), ylim=(-4, 4))
+        axes.set_xticks([])
+        axes.set_yticks([])
+        for spine in ['left', 'bottom']:
+            axes.spines[spine].set_position('zero')
+        for spine in ['right', 'top']:
+            axes.spines[spine].set_color('none')
+
+    θ = np.linspace(0, 2 * np.pi, 150)
+    r = 1
+
+    θ_1 = np.empty(12)
+    for i in range(12):
+        θ_1[i] = 2 * np.pi * (i/12)
+
+    x = r * np.cos(θ)
+    y = r * np.sin(θ)
+    a = r * np.cos(θ_1)
+    b = r * np.sin(θ_1)
+    a_1 = a.reshape(1, -1)
+    b_1 = b.reshape(1, -1)
+    colors = list(map(colorizer, a, b))
+    ax[0].plot(x, y, color='black', zorder=1)
+    ax[0].scatter(a_1, b_1, c=colors, alpha=1, s=60,
+                  edgecolors='black', zorder=2)
+    ax[0].set_title(r"unit circle in $\mathbb{R}^2$")
+
+    x1 = x.reshape(1, -1)
+    y1 = y.reshape(1, -1)
+    ab = np.concatenate((a_1, b_1), axis=0)
+    transformed_ab = A @ ab
+    transformed_circle_input = np.concatenate((x1, y1), axis=0)
+    transformed_circle = A @ transformed_circle_input
+    ax[1].plot(transformed_circle[0, :],
+               transformed_circle[1, :], color='black', zorder=1)
+    ax[1].scatter(transformed_ab[0, :], transformed_ab[1:,],
+                  color=colors, alpha=1, s=60, edgecolors='black', zorder=2)
+    ax[1].set_title(r"transformed circle")
+    
+    plt.tight_layout()
+    plt.show()
+
+
+def circle_transform(A=np.array([[-1, 2], [0, 1]])):
+
+    fig, ax = plt.subplots(1, 2, figsize=(10, 5))
+
+    for axes in ax:
+        axes.set(xlim=(-4, 4), ylim=(-4, 4))
+        axes.set_xticks([])
+        axes.set_yticks([])
+        for spine in ['left', 'bottom']:
+            axes.spines[spine].set_position('zero')
+        for spine in ['right', 'top']:
+            axes.spines[spine].set_color('none')
+
+    θ = np.linspace(0, 2 * np.pi, 150)
+    r = 1
+
+    θ_1 = np.empty(12)
+    for i in range(12):
+        θ_1[i] = 2 * np.pi * (i/12)
+
+    x = r * np.cos(θ)
+    y = r * np.sin(θ)
+    a = r * np.cos(θ_1)
+    b = r * np.sin(θ_1)
+    a_1 = a.reshape(1, -1)
+    b_1 = b.reshape(1, -1)
+    colors = list(map(colorizer, a, b))
+    ax[0].plot(x, y, color='black', zorder=1)
+    ax[0].scatter(a_1, b_1, c=colors, alpha=1, s=60,
+                  edgecolors='black', zorder=2)
+    ax[0].set_title(r"unit circle in $\mathbb{R}^2$")
+
+    x1 = x.reshape(1, -1)
+    y1 = y.reshape(1, -1)
+    ab = np.concatenate((a_1, b_1), axis=0)
+    transformed_ab = A @ ab
+    transformed_circle_input = np.concatenate((x1, y1), axis=0)
+    transformed_circle = A @ transformed_circle_input
+    ax[1].plot(transformed_circle[0, :],
+               transformed_circle[1, :], color='black', zorder=1)
+    ax[1].scatter(transformed_ab[0, :], transformed_ab[1:,],
+                  color=colors, alpha=1, s=60, edgecolors='black', zorder=2)
+    ax[1].set_title(r"transformed circle")
+
+    plt.tight_layout()
+    plt.show()
+        
+```
+
+:::: {.columns}
+
+::: {.column width=50%}
+
+A matrix of the form 
+
+$$
+\begin{bmatrix} 
+\alpha & 0 
+\\ 0 & \beta 
+\end{bmatrix}
+$$
+
+scales vectors across the x-axis by a factor $\alpha$ and along the y-axis by a factor $\beta$
+
++ a simple example where $\alpha = \beta = 3$
+
+:::
+
+::: {.column width=50%}
+
+```{python}
+#| echo: false
+#| results: hide
+#| out-height: 88%
+#| out-width: 88%
+#| fig-align: center
+
+A = np.array([[3, 0],  # scaling by 3 in both directions
+              [0, 3]])
+grid_transform(A)
+circle_transform(A)
+```
+:::
+
+::::
+
+## Linear Transformation
+
+[Some examples - Shearing]{.large .b}
+
+:::: {.columns}
+
+::: {.column width=50%}
+
+A "shear" matrix of the form 
+
+$$
+    \begin{bmatrix} 
+        1 & \lambda \\ 
+        0 & 1 
+    \end{bmatrix}
+$$ 
+
+stretches vectors along the x-axis by an amount proportional to the y-coordinate of a point
+
+:::
+
+::: {.column width=50%}
+
+```{python}
+#| echo: false
+#| results: hide
+#| out-height: 88%
+#| out-width: 88%
+#| fig-align: center
+
+A = np.array([[1, 2],     # shear along x-axis
+              [0, 1]])
+grid_transform(A)
+circle_transform(A)
+```
+
+:::
+
+::::
+
+## Linear Transformation
+
+[Some examples - Rotation]{.large .b}
+
+:::: {.columns}
+
+::: {.column width=50%}
+
+A matrix of the form 
+
+$$
+\begin{bmatrix} 
+\cos \theta & \sin \theta 
+\\ - \sin \theta & \cos \theta 
+\end{bmatrix}
+$$
+
+is called a _rotation matrix_
+
++ This matrix rotates vectors clockwise by an angle $\theta$
+    + 45 degree clockwise rotation
+
+:::
+
+::: {.column width=50%}
+
+
+```{python}
+#| echo: false
+
+θ = np.pi/4  # 45 degree clockwise rotation
+A = np.array([[np.cos(θ), np.sin(θ)],
+              [-np.sin(θ), np.cos(θ)]])
+grid_transform(A)
+```
+
+:::
+
+::::
+
+## Linear Transformation
+
+[Some examples - Permutation]{.large .b}
+
+
+:::: {.columns}
+
+::: {.column width=50%} 
+
+The permutation matrix 
+
+$$
+\begin{bmatrix} 
+0 & 1 \\ 
+1 & 0 
+\end{bmatrix}
+$$ 
+
+interchanges the coordinates of a vector
+
+:::
+
+::: {.column width=50%}
+
+```{python}
+#| echo: false
+
+A = np.column_stack([[0, 1], [1, 0]])
+grid_transform(A)
+```
+
+:::
+
+::::
+
+## Matrix multiplication as composition
+
+[Linear compositions]{.large .b}
+
+Consider the two matrices 
+
+$$
+    A = 
+        \begin{bmatrix} 
+            0 & 1 \\ 
+            -1 & 0 
+        \end{bmatrix}
+        \quad \text{and} \quad
+    B = 
+        \begin{bmatrix} 
+            1 & 2 \\ 
+            0 & 1 
+        \end{bmatrix}
+$$ 
+
++ What will the output be when we try to obtain $ABx$ for some $2 \times 1$ vector $x$?
+
+. . . 
+
+$$
+\color{red}{\underbrace{
+ \color{black}{\begin{bmatrix}
+  0 & 1 \\
+ -1 & 0
+ \end{bmatrix}}
+}_{\textstyle A} }
+\color{red}{\underbrace{
+ \color{black}{\begin{bmatrix}
+  1 & 2 \\
+  0 & 1
+ \end{bmatrix}}
+}_{\textstyle B}}
+\color{red}{\overbrace{
+ \color{black}{\begin{bmatrix}
+  1 \\
+  3
+ \end{bmatrix}}
+}^{\textstyle x}}
+\rightarrow
+\color{red}{\underbrace{
+ \color{black}{\begin{bmatrix}
+  0 & 1 \\
+  -1 & -2
+ \end{bmatrix}}
+}_{\textstyle AB}}
+\color{red}{\overbrace{
+ \color{black}{\begin{bmatrix}
+  1 \\
+  3
+ \end{bmatrix}}
+}^{\textstyle x}}
+\rightarrow
+\color{red}{\overbrace{
+ \color{black}{\begin{bmatrix}
+  3 \\
+  -7
+ \end{bmatrix}}
+}^{\textstyle y}}
+$$
+
+## Matrix multiplication as composition
+
+[Linear compositions]{.large .b}
+
+$$
+\color{red}{\underbrace{
+ \color{black}{\begin{bmatrix}
+  0 & 1 \\
+ -1 & 0
+ \end{bmatrix}}
+}_{\textstyle A} }
+\color{red}{\underbrace{
+ \color{black}{\begin{bmatrix}
+  1 & 2 \\
+  0 & 1
+ \end{bmatrix}}
+}_{\textstyle B}}
+\color{red}{\overbrace{
+ \color{black}{\begin{bmatrix}
+  1 \\
+  3
+ \end{bmatrix}}
+}^{\textstyle x}}
+\rightarrow
+\color{red}{\underbrace{
+ \color{black}{\begin{bmatrix}
+  0 & 1 \\
+  -1 & 0
+ \end{bmatrix}}
+}_{\textstyle A}}
+\color{red}{\overbrace{
+ \color{black}{\begin{bmatrix}
+  7 \\
+  3
+ \end{bmatrix}}
+}^{\textstyle Bx}}
+\rightarrow
+\color{red}{\overbrace{
+ \color{black}{\begin{bmatrix}
+  3 \\
+  -7
+ \end{bmatrix}}
+}^{\textstyle y}}
+$$
+
++ We can observe that applying the transformation $AB$ on the vector $x$ is the
+same as first applying $B$ on $x$ and then applying $A$ on the vector $Bx$.
+
++ the matrix product $AB$ is the composition of the matrix transformations $A$ and $B$
+    + first apply transformation $B$ and then transformation $A$
+
+::: {.notes}
+
++ When we matrix multiply an $n \times m$ matrix $A$ with an $m \times k$ matrix
+$B$ the obtained matrix product is an $n \times k$ matrix $AB$
+
+Thus, if $A$ and $B$ are transformations such that $A \colon \mathbb{R}^m \to
+\mathbb{R}^n$ and $B \colon \mathbb{R}^k \to \mathbb{R}^m$, then $AB$
+transforms $\mathbb{R}^k$ to $\mathbb{R}^n$.
+
+::: 
+
++ notice that $AB$ is generally not equal to $BA$
+
+## Matrix multiplication as composition
+
+[Linear compositions - examples]{.large .b}
+
++ Let $A$ be the $90^{\circ}$ clockwise rotation matrix given by $\begin{bmatrix} 0 & 1 \\ -1 & 0 \end{bmatrix}$
++ Let $B$ be a shear matrix along the x-axis given by $\begin{bmatrix} 1 & 2 \\ 0 & 1 \end{bmatrix}$
+
++ visualize how a grid of points changes when we apply the transformation $AB$ and then compare it with the transformation $BA$
+
+```{python}
+#| echo: false
+
+def grid_composition_transform(A=np.array([[1, -1], [1, 1]]),
+                               B=np.array([[1, -1], [1, 1]])):
+    xvals = np.linspace(-4, 4, 9)
+    yvals = np.linspace(-3, 3, 7)
+    xygrid = np.column_stack([[x, y] for x in xvals for y in yvals])
+    uvgrid = B @ xygrid
+    abgrid = A @ uvgrid
+
+    colors = list(map(colorizer, xygrid[0], xygrid[1]))
+
+    fig, ax = plt.subplots(1, 3, figsize=(15, 5))
+
+    for axes in ax:
+        axes.set(xlim=(-12, 12), ylim=(-12, 12))
+        axes.set_xticks([])
+        axes.set_yticks([])
+        for spine in ['left', 'bottom']:
+            axes.spines[spine].set_position('zero')
+        for spine in ['right', 'top']:
+            axes.spines[spine].set_color('none')
+
+    # Plot grid points
+    ax[0].scatter(xygrid[0], xygrid[1], s=36, c=colors, edgecolor="none")
+    ax[0].set_title(r"points $x_1, x_2, \cdots, x_k$")
+
+    # Plot intermediate grid points
+    ax[1].scatter(uvgrid[0], uvgrid[1], s=36, c=colors, edgecolor="none")
+    ax[1].set_title(r"points $Bx_1, Bx_2, \cdots, Bx_k$")
+
+    # Plot transformed grid points
+    ax[2].scatter(abgrid[0], abgrid[1], s=36, c=colors, edgecolor="none")
+    ax[2].set_title(r"points $ABx_1, ABx_2, \cdots, ABx_k$")
+
+    plt.tight_layout()
+    plt.show()
+    
+```
+
+
+```{python}
+#| echo: false
+
+A = np.array([[0, 1],     # 90 degree clockwise rotation
+              [-1, 0]])
+B = np.array([[1, 2],     # shear along x-axis
+              [0, 1]])
+```
+
+## Matrix multiplication as composition
+
+[Linear compositions - examples]{.large .b}
+
+[Shear then rotate]{.r}
+
+```{python}
+#| echo: false
+
+grid_composition_transform(A, B)  # transformation AB
+
+```
+
+## Matrix multiplication as composition
+
+[Linear compositions - examples]{.large .b}
+
+[Rotate then shear]{.r}
+
+```{python}
+#| echo: false
+
+grid_composition_transform(B,A)         # transformation BA
+
+```
+
++ it demonstrates that the transformation $AB$ is not the same as the transformation $BA$
+
+## Matrix multiplication as composition
+
+[Linear compositions - Iterating on a fixed map]{.large .b}
+
+In economics, we are often interested in analyzing behavior where we repeatedly apply a fixed matrix
+
+For example, given a vector $v$ and a matrix $A$, we are interested in studying the sequence
+
+$$ 
+    v, \quad
+    Av, \quad
+    AAv = A^2v, \quad \ldots
+$$
+
+## Matrix multiplication as composition
+
+[Linear compositions - Iterating on a fixed map]{.large .b}
+
++ Example of a sequence of iterates $(A^k v)_{k \geq 0}$ under map $A=\begin{bmatrix} \sqrt{3}+1 & -2 \\ 1 & \sqrt{3}-1  \end{bmatrix}$
+
++ let $v = (-3, -3)$
+
+::: {.fragment}
+
+```{python}
+#| echo: false
+
+def plot_series(A, v, n):
+
+    B = np.array([[1, -1],
+                  [1, 0]])
+
+    fig, ax = plt.subplots()
+
+    ax.set(xlim=(-4, 4), ylim=(-4, 4))
+    ax.set_xticks([])
+    ax.set_yticks([])
+    for spine in ['left', 'bottom']:
+        ax.spines[spine].set_position('zero')
+    for spine in ['right', 'top']:
+        ax.spines[spine].set_color('none')
+
+    θ = np.linspace(0, 2 * np.pi, 150)
+    r = 2.5
+    x = r * np.cos(θ)
+    y = r * np.sin(θ)
+    x1 = x.reshape(1, -1)
+    y1 = y.reshape(1, -1)
+    xy = np.concatenate((x1, y1), axis=0)
+
+    ellipse = B @ xy
+    ax.plot(ellipse[0, :], ellipse[1, :], color='black',
+            linestyle=(0, (5, 10)), linewidth=0.5)
+
+    # Initialize holder for trajectories
+    colors = plt.cm.rainbow(np.linspace(0, 1, 20))
+
+    for i in range(n):
+        iteration = matrix_power(A, i) @ v
+        v1 = iteration[0]
+        v2 = iteration[1]
+        ax.scatter(v1, v2, color=colors[i])
+        if i == 0:
+            ax.text(v1+0.25, v2, f'$v$')
+        elif i == 1:
+            ax.text(v1+0.25, v2, f'$Av$')
+        elif 1 < i < 4:
+            ax.text(v1+0.25, v2, f'$A^{i}v$')
+    
+    plt.tight_layout()
+    plt.show()
+
+```
+
+
+```{python}
+#| echo: false
+#| results: hide
+#| out-height: 68%
+#| out-width: 68%
+#| fig-align: center
+
+A = np.array([[sqrt(3) + 1, -2],
+              [1, sqrt(3) - 1]])
+A = (1/(2*sqrt(2))) * A
+v = (-3, -3)
+n = 12
+
+plot_series(A, v, n)
+
+```
+
+:::
+
+::: {.notes}
+
++ Here with each iteration the vectors get shorter, i.e., move closer to the origin
+
++ In this case, repeatedly multiplying a vector by $A$ makes the vector "spiral in"
+
+:::
+
+## Matrix multiplication as composition
+
+[Linear compositions - Iterating on a fixed map]{.large .b}
+
++ Example of a sequence of iterates $(A^k v)_{k \geq 0}$ under map $A=\begin{bmatrix} \sqrt{3}+1 & -2 \\ 1 & \sqrt{3}-1  \end{bmatrix}$
+
++ let $v = (2.5, 0)$
+
+::: {.fragment}
+
+```{python}
+#| echo: false
+#| results: hide
+#| out-height: 68%
+#| out-width: 68%
+#| fig-align: center
+
+B = np.array([[sqrt(3) + 1, -2],
+              [1, sqrt(3) - 1]])
+B = (1/2) * B
+v = (2.5, 0)
+n = 12
+
+plot_series(B, v, n)
+
+```
+
+:::
+
++ In this case, repeatedly multiplying a vector by $A$ simply “rotates it around an ellipse”
+
+## Matrix multiplication as composition
+
+[Linear compositions - Iterating on a fixed map]{.large .b}
+
++ Example of a sequence of iterates $(A^k v)_{k \geq 0}$ under map $A=\begin{bmatrix} \sqrt{3}+1 & -2 \\ 1 & \sqrt{3}-1  \end{bmatrix}$
+
++ let $v = (-1, -0.25)$
+
+::: {.fragment}
+
+```{python}
+#| echo: false
+#| results: hide
+#| out-height: 68%
+#| out-width: 68%
+#| fig-align: center
+
+B = np.array([[sqrt(3) + 1, -2],
+              [1, sqrt(3) - 1]])
+B = (1/sqrt(2)) * B
+v = (-1, -0.25)
+n = 6
+
+plot_series(B, v, n)
+
+```
+
+:::
+
++ In this case, repeatedly multiplying a vector by $A$ makes the vector “spiral out”
+
+## System of Linear Equations
+
++ Two equations in two unknowns
+
+. . .
+
+$$
+\begin{aligned}
+    y_1 = a x_1 + b x_2 \\
+    y_2 = c x_1 + d x_2
+\end{aligned}
+$$
+
++ How we solve it?
+    + substitution and elimination
+
++ Let us work on a simple example
+
+. . .
+
+$$
+\begin{aligned}
+    3x + 5y &= 7 \\
+    x - 2y &= 3 
+\end{aligned}
+$$
+
++ what are $x$ and $y$?
+
+## General linear systems
+
+A more general version looks as follows
+
+$$
+\begin{matrix}
+    a_{11} x_1 & + & a_{12} x_2 & + & \cdots & + & a_{1n} x_n & = & b_1 \\
+    \vdots & & \vdots & & & & \vdots & & \vdots \\
+    a_{n1} x_1 & + & a_{n2} x_2 & + & \cdots & + & a_{nn} x_n & = & b_n
+\end{matrix}
+$$
+
++ The objective here is to solve for the “unknowns” $x_1, \ldots, x_n$
+
++ We take as given the coefficients $a_{11}, \ldots, a_{nn}$ and constants $b_1, \ldots, b_n$
+
++ this is a setting where the number of unknowns equals the number of equations 
+    + this is the case where we are most likely to find a well-defined solution
+
+::: {.notes}
+
++ (The other cases are referred to as [overdetermined](https://en.wikipedia.org/wiki/Overdetermined_system) and [underdetermined](https://en.wikipedia.org/wiki/Underdetermined_system) systems
+of equations)
+
+:::
+
+
+## Solving systems of equations
+
+$$
+A x = b
+    \quad \text{where} \quad
+    A = 
+    \begin{bmatrix}
+        a_{11} &  \cdots & a_{1n} \\
+        \vdots & \vdots  & \vdots \\
+        a_{n1} &  \cdots & a_{nn}
+    \end{bmatrix}
+    \quad \text{and} \quad
+    b =
+    \begin{bmatrix}
+        b_1 \\
+        \vdots \\
+        b_n
+    \end{bmatrix}
+$$
+
++   find a vector $x \in \mathbb R^n$ that solves the equations, taking $b$ and $A$ as given
+
+## Some examples
+
+Consider the system of equations given by
+
+:::: {.columns}
+
+::: {.column width=50%}
+
+$$
+\begin{aligned}
+    x + 3y &= 3 \\
+    2x + 6y &= -8
+\end{aligned}
+$$
+
+:::
+
+::: {.column width=50%}
+
+::: {.fragment}
+
+```{python}
+#| echo: false
+#| out-height: 88%
+#| out-width: 88%
+#| fig-align: center
+
+plt.figure(figsize=(5, 3))
+fig, ax=plt.subplots()
+x=np.linspace(-10,10)
+plt.plot(x, (3-x)/3, label=f'$x+3y=3$')
+plt.plot(x, (-8-2*x)/6, label=f'$2x+6y=-8$')
+plt.legend()
+plt.show()
+
+```
+:::
+
+:::
+
+::::
+
+::: {.notes}
+
+- the rows of $A$ are called linearly dependent
+
+:::
+
+
+## Some examples
+
+Consider the system of equations given by
+
+$$
+\begin{aligned}
+    x - 2y &= -4 \\
+    -2x + 4y &= 8
+\end{aligned}
+$$
+
+Any vector $v = (x,y)$ such that $x = 2y - 4$ will solve the above system
+
+Since we can find infinite such vectors this system has infinitely many solutions
+
+This is because the rows of the corresponding matrix are linearly dependent
+
+
+## Nonsingular matrices
+
++ A square matrix $A$ is nonsingular if and only if the rows and columns of $A$ are linearly independent
+
++ To every square matrix we can assign a unique number called the [determinant](https://en.wikipedia.org/wiki/Determinant).
+
++ For $2 \times 2$ matrices, the determinant is given by,
+
+::: {.fragment}
+
+$$
+\begin{bmatrix}
+    \color{red}{a} & \color{blue}{b} \\
+    \color{blue}{c} & \color{red}{d}
+\end{bmatrix}
+=
+{\color{red}{ad}} - {\color{blue}{bc}}
+$$
+
+:::
+
++ the determinant of a $3 \times 3$ matrix
+
+::: {.fragment}
+
+$$
+det \begin{bmatrix}
+    a & b & c \\
+    d & e & f \\
+    g & h & i
+\end{bmatrix}
+= a(ei - fh) - b(di - fg) + c(dh - eg)
+$$
+
+:::
+
++ If the determinant of $A$ is not zero, then we say that $A$ is *nonsingular*
+
+::: {.notes}
+
+* The determinant of a $2 \times 2$ matrix is also the area of the parallelogram spanned by the column vectors
+
+* The determinant of a $2 \times 2$ matrix is also the factor by which the matrix scales the area of any set of points in the plane
+    + if the determinant is negative, the matrix also flips the orientation of the plane
+    + if the determinant is zero, the matrix collapses the plane to a line or lower-dimensional space
+    + if the determinant is one, the matrix preserves the area of the plane
+    + if the determinant is greater than one, the matrix expands the area of the plane
+    + if the determinant is less than one, the matrix shrinks the area of the plane
+
+
+```{python}
+#| echo: false
+#| results: hide
+#| out-height: 88%
+
+import matplotlib.pyplot as plt
+import numpy as np
+
+fig, ax = plt.subplots()
+
+# Draw the unit square
+square = np.array([[0, 1, 1, 0, 0], [0, 0, 1, 1, 0]])
+ax.plot(square[0], square[1], 'b-', lw=2, alpha=0.6)
+
+# Draw the unit square transformed by a matrix
+A = np.array([[1, 2], [2, 1]])
+transformed_square = A @ square
+ax.plot(transformed_square[0], transformed_square[1], 'r-', lw=2, alpha=0.6)
+
+# Annotate the plot
+ax.text(0.5, 0.5, r'$1$', fontsize=14)
+ax.text(1.5, 1.5, r'$2$', fontsize=14)
+ax.text(1.5, 0.5, r'$3$', fontsize=14)
+ax.text(0.5, 1.5, r'$4$', fontsize=14)
+
+ax.set(xlim=(0, 3), ylim=(0, 3))
+ax.set_xticks([])
+ax.set_yticks([])
+plt.show()
+
+```
+
+:::  
+
+## Nonsingular matrices
+
++ a square matrix $A$ has a nonzero determinant, if and only if it possesses an *inverse matrix* $A^{-1}$, with the property that $A A^{-1} =A^{-1} A = I$.
+
++ As a consequence, if we pre-multiply both sides of $Ax = b$ by $A^{-1}$, we get
+
+. . .
+
+$$
+x = A^{-1} b
+$$
+
+This is the solution to $Ax = b$ —-- the solution we are looking for
+
++ A more detailed explanation of matrix inverse can be found [here](https://www.mathsisfun.com/algebra/matrix-inverse.html)
+
+## When the matrices have more rows than columns
+
+$A_{n \times k}$ matrix with $n > k$
+
++ this is important in many settings, including linear regression
+
++ Given arbitrary $y \in \mathbb R ^n$, we seek an $x \in \mathbb R ^k$ such that $y = Ax$
+    + the existence of a solution is highly unlikely
+
++ focusing on the case where the columns of $A$ are linearly independent.
+    + the span of the columns of $A$ is a $k$-dimensional subspace of $\mathbb R ^n$.
+
+::: {.notes}
+
+* This span is very “unlikely” to contain arbitrary $y \in \mathbb R ^n$.
+
+* To see why, recall the [figure above](#la-3dvec), where $ k=2 $ and $n=3$.
+
+* Imagine an arbitrarily chosen $ y \in \mathbb R ^3 $, located somewhere in that three-dimensional space.
+
+* What’s the likelihood that $y$ lies in the span of $\{a_1, a_2\}$ (i.e., the two dimensional plane through these points)?
+
+* In a sense, it must be very small, since this plane has zero “thickness”.
+
+:::
+
++ in the $n > k$ case we usually give up on existence
+    + instead, seek the best approximation, looking for $x$ that makes the distance $\| y - Ax\|$ as small as possible
+    + one can use either calculus or the theory of orthogonal projections
+
+
+## When the matrices have more columns than rows
+
+$A_{n \times k}$ matrix with $n < k$
+
++ there are either no solutions or infinitely many — in other words, uniqueness never holds
+
++ For example, consider the case where $k=3$ and $n=2$
+    + the columns of $A$ consists of 3 vectors in $\mathbb R ^2$
+    + this set can never be linearly independent
+    + hence, one column is a linear combination of the other two
+    + let’s say that $a_1 = \alpha a_2 + \beta a_3$
+    + then if $y = Ax = x_1 a_1 + x_2 a_2 + x_3 a_3$, we can also write
+
+. . .
+
+$$
+y
+= x_1 (\alpha a_2 + \beta a_3) + x_2 a_2 + x_3 a_3
+= (x_1 \alpha + x_2) a_2 + (x_1 \beta + x_3) a_3
+$$
+
+## Vector Spaces
+
+### Span
+
+* Given a set of vectors $A := \{a_1, \ldots, a_k\}$ in  $\mathbb R ^n$
+    + new vectors can be created by performing linear operations
+
+* new vectors created in this manner are called *linear combinations* of $A$
+
+* In particular, $y \in \mathbb R ^n$ is a linear combination of $A := \{a_1, \ldots, a_k\}$ if
+
+::: fragment
+
+$$
+y = \beta_1 a_1 + \cdots + \beta_k a_k, \quad 
+\text{ for some scalars } \beta_1, \ldots, \beta_k
+$$
+
+:::
+
+* the values $\beta_1, \ldots, \beta_k$ are called the *coefficients* of the linear combination
+
+* The set of linear combinations of $A$ is called the *span* of $A$
+
+## Vector Spaces
+
+### Span
+
+The figure shows the span of $A = \{a_1, a_2\}$ in $\mathbb R ^3$
+
+The span is a two-dimensional plane passing through these two points and the origin
+
+```{python}
+#| echo: false
+#| results: hide
+#| out-height: 88%
+
+import matplotlib.pyplot as plt
+from  matplotlib import cm
+
+ax = plt.figure(figsize=(8, 6)).add_subplot(projection='3d')
+
+x_min, x_max = -5, 5
+y_min, y_max = -5, 5
+
+α, β = 0.2, 0.1
+
+ax.set(xlim=(x_min, x_max), ylim=(x_min, x_max), zlim=(x_min, x_max),
+       xticks=(0,), yticks=(0,), zticks=(0,))
+
+gs = 3
+z = np.linspace(x_min, x_max, gs)
+x = np.zeros(gs)
+y = np.zeros(gs)
+ax.plot(x, y, z, 'k-', lw=2, alpha=0.5)
+ax.plot(z, x, y, 'k-', lw=2, alpha=0.5)
+ax.plot(y, z, x, 'k-', lw=2, alpha=0.5)
+
+
+# Fixed linear function, to generate a plane
+def f(x, y):
+    return α * x + β * y
+
+# Vector locations, by coordinate
+x_coords = np.array((3, 3))
+y_coords = np.array((4, -4))
+z = f(x_coords, y_coords)
+for i in (0, 1):
+    ax.text(x_coords[i], y_coords[i], z[i], f'$a_{i+1}$', fontsize=14)
+
+# Lines to vectors
+for i in (0, 1):
+    x = (0, x_coords[i])
+    y = (0, y_coords[i])
+    z = (0, f(x_coords[i], y_coords[i]))
+    ax.plot(x, y, z, 'b-', lw=1.5, alpha=0.6)
+
+
+# Draw the plane
+grid_size = 20
+xr2 = np.linspace(x_min, x_max, grid_size)
+yr2 = np.linspace(y_min, y_max, grid_size)
+x2, y2 = np.meshgrid(xr2, yr2)
+z2 = f(x2, y2)
+ax.plot_surface(x2, y2, z2, rstride=1, cstride=1, cmap=cm.jet,
+                linewidth=0, antialiased=True, alpha=0.2)
+plt.tight_layout()
+plt.show()
+
+```
+
+## Vector Spaces
+
+### Span - Example
+
+If $A = \{e_1, e_2, e_3\}$ consists  of the *canonical basis vectors* of $\mathbb R ^3$, that is
+
+$$
+e_1 :=
+\begin{bmatrix}
+     1 \\
+     0 \\
+     0
+\end{bmatrix}
+, \quad
+e_2 :=
+\begin{bmatrix}
+     0 \\
+     1 \\
+     0
+\end{bmatrix}
+, \quad
+e_3 :=
+\begin{bmatrix}
+     0 \\
+     0 \\
+     1
+\end{bmatrix}
+$$
+
+then the span of $A$ is all of $\mathbb R ^3$, because, for any $x = (x_1, x_2, x_3) \in \mathbb R ^3$, we can write
+
+$$
+x = x_1 e_1 + x_2 e_2 + x_3 e_3
+$$
+
+* Exercise: Does $A_0 = \{e_1, e_2, e_1 + e_2\}$ span $\mathbb{R}^3$
+
+
+## Vector Spaces
+
+### Linear Independence (Re-cap)
+
++ a collection of vectors $A := \{a_1, \ldots, a_k\}$ in $\mathbb R ^n$ is said to be
+  + *linearly dependent* if some strict subset of $A$ has the same span as $A$
+  + *linearly independent* if it is not linearly dependent 
+
+
++ Put differently, a set of vectors is linearly independent if no vector is redundant to the span and linearly dependent otherwise
+
++ since $\mathbb R ^n$ can be spanned by $n$ vectors
+    + any collection of $m > n$ vectors in $\mathbb R ^n$ must be linearly dependent
+
++ The following statements are equivalent to linear independence of $A= \{a_1, \ldots, a_k\} \subset \mathbb R ^n$
+
+    1. No vector in $A$ can be formed as a linear combination of the other elements
+    1. If $\beta_1 a_1 + \cdots \beta_k a_k = 0$ for scalars $\beta_1, \ldots, \beta_k$, then $\beta_1 = \cdots = \beta_k = 0$
+
+
+
+
+## Eigenvalues and Eigenvectors
+
+Let $A$ be an $n \times n$ square matrix
+
+If $\lambda$ is scalar and $v$ is a non-zero vector in $\mathbb R ^n$ such that
+
+$$
+A v = \lambda v
+$$
+
+then we say that $\lambda$ is an *eigenvalue* of $A$, and $v$ is an *eigenvector*
+
++ an eigenvector of $A$ is a vector such that when the map $f(x) = Ax$ is applied
+    + $v$ is merely scaled
+
+
+```{python}
+#| echo: false
+#| results: hide
+#| out-height: 88%
+#| include: false
+#| eval: false
+
+import numpy as np
+import matplotlib.pyplot as plt
+from matplotlib import cm
+
+#from mpl_toolkits.mplot3d import Axes3D
+from scipy.linalg import inv, solve, det, eig
+
+
+A = ((1, 2),
+     (2, 1))
+A = np.array(A)
+evals, evecs = eig(A)
+evecs = evecs[:, 0], evecs[:, 1]
+
+fig, ax = plt.subplots(figsize=(10, 8))
+# Set the axes through the origin
+for spine in ['left', 'bottom']:
+    ax.spines[spine].set_position('zero')
+for spine in ['right', 'top']:
+    ax.spines[spine].set_color('none')
+ax.grid(alpha=0.4)
+
+xmin, xmax = -3, 3
+ymin, ymax = -3, 3
+ax.set(xlim=(xmin, xmax), ylim=(ymin, ymax))
+
+# Plot each eigenvector
+for v in evecs:
+    ax.annotate('', xy=v, xytext=(0, 0),
+                arrowprops=dict(facecolor='blue',
+                shrink=0,
+                alpha=0.6,
+                width=0.5))
+
+# Plot the image of each eigenvector
+for v in evecs:
+    v = A @ v
+    ax.annotate('', xy=v, xytext=(0, 0),
+                arrowprops=dict(facecolor='red',
+                shrink=0,
+                alpha=0.6,
+                width=0.5))
+
+# Plot the lines they run through
+x = np.linspace(xmin, xmax, 3)
+for v in evecs:
+    a = v[1] / v[0]
+    ax.plot(x, a * x, 'b-', lw=0.4)
+
+plt.tight_layout()
+plt.show()
+
+```
+
+## Eigenvalues and Eigenvectors
+
++ The eigenvalue equation is equivalent to $(A - \lambda I) v = 0$
+    + this has a nonzero solution $v$ only when the columns of $A - \lambda I$ are linearly dependent
+
+::: {.notes}
+
+* This in turn is equivalent to stating that the determinant is zero.
+
+* Hence to find all eigenvalues, we can look for $ \lambda $ such that the determinant of $ A - \lambda I $ is zero
+
+
++ This problem can be expressed as one of solving for the roots of a polynomial in $\lambda$ of degree $n$
+    + this in turn implies the existence of $n$ solutions in the complex plane, although some might be repeated
+
+1. The determinant of $A$ equals the product of the eigenvalues  
+2. The trace of $A$ (the sum of the elements on the principal diagonal) equals the sum of the eigenvalues  
+
+:::
+
++ Some nice facts about the eigenvalues of a square matrix $A$ are as follows
+    1. If $A$ is symmetric, then all of its eigenvalues are real  
+    2. If $A$ is invertible and $\lambda_1, \ldots, \lambda_n$ are its eigenvalues, 
+        + then the eigenvalues of $A^{-1}$ are $1/\lambda_1, \ldots, 1/\lambda_n$  
+    3. a matrix is invertible if and only if all its eigenvalues are nonzero
+
+
+```{python}
+#| eval: false
+#| include: false
+
+from numpy.linalg import eig
+
+A = ((1, 2),
+     (2, 1))
+
+A = np.array(A)
+evals, evecs = eig(A)
+evals  # eigenvalues
+
+evecs  # eigenvectors
+
+```
+
+## Positive Definite Matrices 
+
+Let $A$ be a symmetric $n \times n$ matrix
+
++ $A$ is
+  1. *positive definite* if $x' A x > 0$ for every $x \in \mathbb R ^n \setminus \{0\}$  
+  2. *positive semi-definite* or *nonnegative definite* if $x' A x \geq 0$ for every $x \in \mathbb R ^n$  
+
+
++ Analogous definitions exist for negative definite and negative semi-definite matrices
+
++ if $A$ is positive definite, then all of its eigenvalues are strictly positive
+    + hence $A$ is invertible (with positive definite inverse)
+
+## Differentiating Linear and Quadratic Forms {visibility="hidden"}
+
+The following formulas are useful in some statistics theory.  Let
+
+- $z, x$ and $a$ all be $n \times 1$ vectors  
+- $A$ be an $n  \times n$ matrix  
+- $B$ be an $m \times n$ matrix and $y$ be an $m  \times 1$ vector  
+
++ The we have the following:
+    1. $\frac{\partial a' x}{\partial x} = a$  
+    2. $\frac{\partial A x}{\partial x} = A'$  
+    3. $\frac{\partial x'A x}{\partial x} = (A + A') x$  
+    4. $\frac{\partial y'B z}{\partial y} = B z$  
+    5. $\frac{\partial y'B z}{\partial B} = y z'$  
+
+## Generalized Eigenvalues {visibility="hidden"}
+
++ It is sometimes useful to consider the *generalized eigenvalue problem*, which, for given matrices $A$ and $B$, seeks generalized eigenvalues
+$\lambda$ and eigenvectors $v$ such that
+
+$$
+A v = \lambda B v
+$$
+
++ This can be solved in SciPy via `scipy.linalg.eig(A, B)`.
+
++ if $B$ is square and invertible, then we can treat the generalized eigenvalue problem as an ordinary eigenvalue problem $B^{-1} A v = \lambda v$, but this is not always the case
+
+
+## Matrix Norms {visibility="hidden"}
+
+Let $A$ be a square matrix, and let
+
+$$
+\| A \| := \max_{\| x \| = 1} \| A x \|
+$$
+
++ The norms on the right-hand side are ordinary vector norms, while the norm on the left-hand side is a *matrix norm*
+    + it is also called *spectral norm*.
+
++ For example, for a square matrix $S$, the condition $\| S \| < 1$ means that $S$ is *contractive*   
+    + it pulls all vectors towards the origin
+    
+## Neumann’s Theorem {visibility="hidden"}
+
+Let $A$ be a square matrix and let $A^k := A A^{k-1}$ with $A^1 := A$
+
+::: {.callout-note icon=false}
+
+## Neumann’s theorem 
+
+Let $A$ be a square matrix and let $A^k$ be the $k$-th power of $A$ with $A^1 := A$,
+
+Let $r(A)$ be the **spectral radius** of $A$, defined as $\max_i |\lambda_i|$, where
+
+- $\{\lambda_i\}_i$ is the set of eigenvalues of $A$ and  
+- $|\lambda_i|$ is the modulus of the complex number $\lambda_i$ 
+
+If $r(A) < 1$,
+then $I - A$ is invertible, and
+
+$$
+(I - A)^{-1} = \sum_{k=0}^{\infty} A^k
+$$
+
+:::
+
+
+```{python}
+#| eval: false
+#| include: false
+
+import numpy as np
+from scipy.linalg import eig
+
+A = np.array([[0.4, 0.1],
+              [0.7, 0.2]])
+
+evals, evecs = eig(A)   # finding eigenvalues and eigenvectors
+
+r = max(abs(λ) for λ in evals)    # compute spectral radius
+print(r)
+
+I = np.identity(2)  # 2 x 2 identity matrix
+B = I - A
+
+B_inverse = np.linalg.inv(B)  # direct inverse method
+
+
+A_sum = np.zeros((2, 2))  # power series sum of A
+A_power = I
+for i in range(50):
+    A_sum += A_power
+    A_power = A_power @ A
+    
+
+np.allclose(A_sum, B_inverse)
+
+
+```
+
+
+## Spectral Radius {visibility="hidden"}
+
+::: {.notes}
+
+- A result known as Gelfand’s formula
+
+:::
+
+For any square matrix $A$,
+
+$$
+\rho(A) = \lim_{k \to \infty} \| A^k \|^{1/k}
+$$
+
++ $\rho(A)$ is the *spectral radius*, defined as $\max_i |\lambda_i|$, where $\{\lambda_i\}_i$ is the set of eigenvalues of $A$
+
++ if all eigenvalues are strictly less than one in modulus, there exists a $k$ with $\| A^k \| < 1$
+
+
+## The Perron-Frobenius Theorem {visibility="hidden"}
+
+```{python}
+#| echo: false
+#| include: false
+#| eval: false
+
+#!pip install quantecon
+
+import numpy as np
+from numpy.linalg import eig
+import scipy as sp
+import quantecon as qe
+
+```
+
+### Nonnegative Matrices {visibility="hidden"}
+
++ An $n \times m$ matrix $A$ is called **nonnegative** if every element of $A$
+is nonnegative, i.e., $a_{ij} \geq 0$ for every $i,j$ --- denoted as $A \geq 0$
+
+### Irreducible matrices {visibility="hidden"}
+
++ Let $a^{k}_{ij}$ be element $(i,j)$ of $A^k$
+
++ An $n \times n$ nonnegative matrix $A$ is called **irreducible** if $A + A^2 + A^3 + \cdots \gg 0$, where $\gg 0$ indicates that every element in $A$ is strictly positive
+    + for each $i,j$ with $1 \leq i, j \leq n$, there exists a $k \geq 0$ such that $a^{k}_{ij} > 0$
+
++ Here are some examples for illustration:
+
+$$
+A = \begin{bmatrix} 0.5 & 0.1 \\ 
+                    0.2 & 0.2 
+\end{bmatrix}
+, \quad
+B = \begin{bmatrix} 0 & 1 \\ 
+                    1 & 0 
+\end{bmatrix}
+, \quad
+C = \begin{bmatrix} 1 & 0 \\ 
+                    0 & 1 
+\end{bmatrix}
+$$
+
+
+```{python}
+#| echo: false
+#| include: false
+#| eval: false
+
+A = np.array([[0, 1, 0],
+              [.5, 0, .5],
+              [0, 1, 0]])
+              
+eig(A)
+
+
+```
+
+
+::: {.notes}
+
++ $A$ is irreducible since $a_{ij}>0$ for all $(i,j)$
+
++ $B$ is irreducible since $B + B^2$ is a matrix of ones
+
++ $C$ is not irreducible since $C^k = C$ for all $k \geq 0$ and thus $c^{k}_{12},c^{k}_{21} = 0$ for all $k \geq 0$
+
+:::
+
+## The Perron-Frobenius Theorem {visibility="hidden"}
+
+### Left eigenvectors
+
++ A vector $w$ is called a left eigenvector of $A$ if $w$ is a right eigenvector of $A^\top$
+    + if $w$ is a left eigenvector of matrix $A$, then $A^\top w = \lambda w$, where $\lambda$ is the eigenvalue associated with the left eigenvector $v$
+
++ Left eigenvectors will play important roles in what follows, including that of stochastic steady states for dynamic models under a Markov assumption
+
+```{python}
+#| echo: false
+#| include: false
+
+import scipy as sp
+from scipy.linalg import eig
+
+A = np.array([[3, 2],
+              [1, 4]])
+
+# Compute eigenvalues and right eigenvectors
+λ, v = eig(A)
+
+# Compute eigenvalues and left eigenvectors
+λ, w = eig(A.T)
+
+# Keep 5 decimals
+np.set_printoptions(precision=5)
+
+print(f"The eigenvalues of A are:\n {λ}\n")
+print(f"The corresponding right eigenvectors are: \n {v[:,0]} and {-v[:,1]}\n")
+print(f"The corresponding left eigenvectors are: \n {w[:,0]} and {-w[:,1]}\n")
+
+eigenvals, ε, e = sp.linalg.eig(A, left=True)
+
+print(f"The eigenvalues of A are:\n {eigenvals.real}\n")
+print(f"The corresponding right eigenvectors are: \n {e[:,0]} and {-e[:,1]}\n")
+print(f"The corresponding left eigenvectors are: \n {ε[:,0]} and {-ε[:,1]}\n")
+
+```
+
+
+## The Perron-Frobenius Theorem {visibility="hidden" .nonincremental}
+
+::: {.callout-note icon=false}
+
+## The Perron-Frobenius Theorem
+
+If a matrix $A\geq 0$, then
+
+1. the dominant eigenvalue of $A$, $r(A)$ is real-valued and nonnegative
+2. for any other eigenvalues $\lambda$ of $A$, $|\lambda| \leq r(A)$
+3. we can find a nonnegative and nonzero eigenvector $v$ such that $A v = r(A) v$
+
+In addition, if $A$ is irreducible, then
+
+1. the eigenvector $v$ associated with eigenvector $r(A)$ is strictly positive
+2. there exists no other positive eigenvector $v$ associated with $r(A)$
+
+:::
+
+::: {.notes}
+
++ For a square nonnegative matrix $A$, the behavior of $A^k$ as $k \to \infty$ is controlled by the eigenvalue with the largest absolute value, often called the **dominant eigenvalue**
+
++ For any such matrix $A$, the Perron-Frobenius Theorem characterizes certain properties of the dominant eigenvalue and its corresponding eigenvector
+
+:::
+
+
+## The Perron-Frobenius Theorem {visibility="hidden"}
+
+### Primitive matrices
+
+Let $A$ be a square nonnegative matrix and let $A^k$ be the $k^{th}$ power of $A$
+
+A matrix is called **primitive** if there exists a $k \in \mathbb{N}$ such that $A^k$ is everywhere positive
+
++ Recall the examples given in irreducible matrices:
+
+::: {.fragment}
+
+$$
+A = \begin{bmatrix} 0.5 & 0.1 \\ 
+                    0.2 & 0.2 
+\end{bmatrix}
+$$
+
+<ul style="list-style-type:none">
+    <li> $A$ is also a primitive matrix since $A^k$ is everywhere nonnegative for $k \in \mathbb{N}$ </li>
+</ul>
+
+<ul style="list-style-type:none">
+    <li> $B = \begin{bmatrix} 0 & 1 \\  1 & 0  \end{bmatrix}$ is irreducible but not primitive </li>
+</ul> 
+
+:::
+
+::: {.notes}
+
++ since there are always zeros in either principal diagonal or secondary diagonal
+
++ $\implies$ if a matrix is primitive, then it implies the matrix is irreducible but not vice versa
+
+:::
+
+
+```{python}
+#| eval: false
+#| include: false
+#| echo: false
+
+B = np.array([[0, 1, 1],
+              [1, 0, 1],
+              [1, 1, 0]])
+
+np.linalg.matrix_power(B, 2)
+
+eig(B)
+
+```
+
+
+## Perron-Frobenius Theorem {visibility="hidden"}
+
+If $A$ is primitive then,
+
+1. the inequality $|\lambda| \leq r(A)$ is **strict** for all eigenvalues $\lambda$ of $A$ distinct from $r(A)$, and  
+2. with $v$ and $w$ normalized so that the inner product of $w$ and  $v = 1$, we have $r(A)^{-m} A^m$ converges to $v w^{\top}$ when $m \rightarrow \infty$
+    + The matrix $v w^{\top}$ is called the **Perron projection** of $A$
+
+## QR decomposition {visibility="hidden"}
+
+The QR decomposition (also called the QR factorization) of a matrix is a decomposition of a matrix into the product of  an orthogonal matrix and a triangular matrix.
+
+A QR decomposition of a real matrix $A$
+takes the form
+
+$$
+A=QR
+$$
+
+where
+
+- $Q$ is an orthogonal matrix (so that  $Q^TQ = I$)  
+- $R$ is an upper triangular matrix  
+
+
++ use a **Gram-Schmidt process** to compute a QR decomposition
+
+## QR decomposition {visibility="hidden"}
+
+### Gram-Schmidt process
+
+Start with a **square** matrix $A$
+
+If a square matrix $A$ is nonsingular, then a $QR$ factorization is unique
+
+let
+
+$$
+A= \left[ \begin{array}{c|c|c|c} a_1 & a_2 & \cdots & a_n \end{array} \right], \quad || · ||:= L2 \text{ norm }
+$$
+
+The Gram-Schmidt algorithm repeatedly combines the following  two steps in a particular order
+
+- **normalize** a vector to have unit norm  
+- **orthogonalize** the next vector  
+
+
+To begin, we set $u_1 = a_1$ and then **normalize**:
+
+$$
+u_1=a_1, \ \ \ e_1=\frac{u_1}{||u_1||}
+$$
+
+We **orgonalize** first to compute $u_2$ and then **normalize** to create $e_2$:
+
+$$
+u_2=a_2-(a_2· e_1)e_1, \ \ \  e_2=\frac{u_2}{||u_2||}
+$$
+
+
++ $e_1$ is orthogonal to $e_2$ by checking that $e_1 \cdot e_2 = 0$
+
+The Gram-Schmidt procedure continues iterating
+    + for $k= 2, \ldots, n-1$ we construct
+
+$$
+u_{k+1}=a_{k+1}-(a_{k+1}· e_1)e_1-\cdots-(a_{k+1}· e_k)e_k, \ \ \ e_{k+1}=\frac{u_{k+1}}{||u_{k+1}||}
+$$
+
+::: {.notes}
+
+Here $ (a_j \cdot e_i) $ can be interpreted as the linear least squares **regression coefficient** of $ a_j $ on $ e_i $
+
+- it is the inner product of $ a_j $ and $ e_i $ divided by the inner product of $ e_i $ where
+  $ e_i \cdot e_i = 1 $, as *normalization* has assured us.  
+- this regression coefficient has an interpretation as being  a **covariance** divided by a **variance**  
+
+:::
+
+
+it can  be verified that
+
+$$
+A= \left[ \begin{array}{c|c|c|c} a_1 & a_2 & \cdots & a_n \end{array} \right]=
+\left[ \begin{array}{c|c|c|c} e_1 & e_2 & \cdots & e_n \end{array} \right]
+\left[ \begin{matrix} a_1·e_1 & a_2·e_1 & \cdots & a_n·e_1\\ 0 & a_2·e_2 & \cdots & a_n·e_2 
+\\ \vdots & \vdots & \ddots & \vdots \\ 0 & 0 & \cdots & a_n·e_n \end{matrix} \right]
+$$
+
+Thus, we have constructed the decomposision
+
+$$
+A = Q R
+$$
+
+where
+
+$$
+Q = \left[ \begin{array}{c|c|c|c} a_1 & a_2 & \cdots & a_n \end{array} \right]=
+\left[ \begin{array}{c|c|c|c} e_1 & e_2 & \cdots & e_n \end{array} \right]
+$$
+
+and
+
+$$
+R = \left[ \begin{matrix} a_1·e_1 & a_2·e_1 & \cdots & a_n·e_1\\ 0 & a_2·e_2 & \cdots & a_n·e_2 
+\\ \vdots & \vdots & \ddots & \vdots \\ 0 & 0 & \cdots & a_n·e_n \end{matrix} \right]
+$$
+
+
+## QR decomposition {visibility="hidden"}
+
+### Gram-Schmidt process
+
+suppose that $A$ is an $n \times m$ matrix where $m > n$
+
+Then a $QR$ decomposition is
+
+$$
+A= \left[ \begin{array}{c|c|c|c} a_1 & a_2 & \cdots & a_m \end{array} \right]=\left[ \begin{array}{c|c|c|c} e_1 & e_2 & \cdots & e_n \end{array} \right]
+\left[ \begin{matrix} a_1·e_1 & a_2·e_1 & \cdots & a_n·e_1 & a_{n+1}\cdot e_1 & \cdots & a_{m}\cdot e_1 \\
+0 & a_2·e_2 & \cdots & a_n·e_2 & a_{n+1}\cdot e_2 & \cdots & a_{m}\cdot e_2 \\ \vdots & \vdots & \ddots & \quad  \vdots & \vdots & \ddots & \vdots
+\\ 0 & 0 & \cdots & a_n·e_n & a_{n+1}\cdot e_n & \cdots & a_{m}\cdot e_n \end{matrix} \right]
+$$
+
+which implies that
+
+$$
+\begin{align*}
+a_1 & = (a_1\cdot e_1) e_1 \cr
+a_2 & = (a_2\cdot e_1) e_1 + (a_2\cdot e_2) e_2 \cr
+\vdots & \quad \vdots \cr
+a_n & = (a_n\cdot e_1) e_1 + (a_n\cdot e_2) e_2 + \cdots + (a_n \cdot e_n) e_n  \cr
+a_{n+1} & = (a_{n+1}\cdot e_1) e_1 + (a_{n+1}\cdot e_2) e_2 + \cdots + (a_{n+1}\cdot e_n) e_n  \cr
+\vdots & \quad \vdots \cr
+a_m & = (a_m\cdot e_1) e_1 + (a_m\cdot e_2) e_2 + \cdots + (a_m \cdot e_n) e_n  \cr
+\end{align*}
+$$
+
+```{python}
+#| eval: false
+
+
+import numpy as np
+from scipy.linalg import qr
+
+def QR_Decomposition(A):
+    n, m = A.shape # get the shape of A
+
+    Q = np.empty((n, n)) # initialize matrix Q
+    u = np.empty((n, n)) # initialize matrix u
+
+    u[:, 0] = A[:, 0]
+    Q[:, 0] = u[:, 0] / np.linalg.norm(u[:, 0])
+
+    for i in range(1, n):
+
+        u[:, i] = A[:, i]
+        for j in range(i):
+            u[:, i] -= (A[:, i] @ Q[:, j]) * Q[:, j] # get each u vector
+
+        Q[:, i] = u[:, i] / np.linalg.norm(u[:, i]) # compute each e vetor
+
+    R = np.zeros((n, m))
+    for i in range(n):
+        for j in range(i, m):
+            R[i, j] = A[:, j] @ Q[:, i]
+
+    return Q, R
+  
+def diag_sign(A):
+    "Compute the signs of the diagonal of matrix A"
+
+    D = np.diag(np.sign(np.diag(A)))
+
+    return D
+
+def adjust_sign(Q, R):
+    """
+    Adjust the signs of the columns in Q and rows in R to
+    impose positive diagonal of Q
+    """
+
+    D = diag_sign(Q)
+
+    Q[:, :] = Q @ D
+    R[:, :] = D @ R
+
+    return Q, R
+  
+A = np.array([[1.0, 1.0, 0.0], [1.0, 0.0, 1.0], [0.0, 1.0, 1.0]])
+# A = np.array([[1.0, 0.5, 0.2], [0.5, 0.5, 1.0], [0.0, 1.0, 1.0]])
+# A = np.array([[1.0, 0.5, 0.2], [0.5, 0.5, 1.0]])
+
+A
+
+Q, R = adjust_sign(*QR_Decomposition(A))
+
+Q
+
+R
+
+Q_scipy, R_scipy = adjust_sign(*qr(A))
+
+print('Our Q: \n', Q)
+print('\n')
+print('Scipy Q: \n', Q_scipy)
+
+
+```
+
+## Singular Value Decomposition {visibility="hidden"}
+
+A **singular value decomposition** of an $m \times n$ matrix $X$ of rank $p \leq \min(m,n)$ is
+
+$$
+X  = U \Sigma V^\top 
+$$
+
+where
+
+$$
+\begin{aligned}
+UU^\top  &  = I  &  \quad U^\top  U = I \cr
+VV^\top  & = I & \quad V^\top  V = I
+\end{aligned}
+$$
+
+and
+
+- $U$ is an $m \times m$ orthogonal  matrix of **left singular vectors** of $X$  
+- Columns of $U$ are eigenvectors of $X X^\top$  
+- $V$ is an $n \times n$ orthogonal matrix of **right singular vectors** of  $X$  
+- Columns of $V$  are eigenvectors of $X^\top  X$  
+- $\Sigma$ is an $m \times n$ matrix in which the first $p$ places on its main diagonal are positive numbers $\sigma_1, \sigma_2, \ldots, \sigma_p$ called **singular values**; remaining entries of $\Sigma$ are all zero  
+- The $p$ singular values are positive square roots of the eigenvalues of the $m \times m$ matrix  $X X^\top$ and also of the $n \times n$ matrix $X^\top  X$  
+- We adopt a convention that when $U$ is a complex valued matrix, $U^\top$ denotes the **conjugate-transpose** or **Hermitian-transpose** of $U$, meaning that
+  $U_{ij}^\top$ is the complex conjugate of $U_{ji}$.  
+- Similarly, when $V$ is a complex valued matrix, $V^\top$ denotes the **conjugate-transpose** or **Hermitian-transpose** of $V$  
+
+
+## Applications in Calculus {visibility="hidden"}
+
+### Revisit the optimization problem
+
++ Suppose we have a function $f: \mathbb{R}^n \to \mathbb{R}$ that is twice continuously differentiable. If $x^*$ is a local minimizer/maximizer of $f$, then the gradient of $f$ at $x^*$ is zero,
+
+::: {.fragment}
+
+$$
+\nabla f(x^*) = 0 \quad \text{ i.e. } \begin{bmatrix} \frac{\partial f}{\partial x_1} \\ \vdots \\ \frac{\partial f}{\partial x_n} \end{bmatrix} = \begin{bmatrix} 0 \\ \vdots \\ 0 \end{bmatrix}
+$$
+
+::: 
+
++ Exercise
+    - Find the gradient of the function $f(x, y) = 8x^3 + 2xy - -3x^2 + y^2 + 1$
+
+::: {.notes}
+
++ (0,0) and (1/3, -1/3) are the critical points of the function
+
+:::
+
+```{python}
+#| eval: false
+#| include: false
+#| echo: false
+
+import sympy as sp
+
+x, y = sp.symbols('x y')
+f = 8*x**3 + 2*x*y - 3*x**2 + y**2 + 1
+
+grad_f = [sp.diff(f, x), sp.diff(f, y)]
+grad_f
+
+```
+
+## Applications in Calculus {visibility="hidden"}
+
+### Revisit the optimization problem
+
++ Let A be a symmetric $n × n$ matrix
+
++  The matrix A is positive definite if $x' A x > 0$ for every $x \in \mathbb R ^n \setminus \{0\}$
+    + it is positive semi-definite if $x' A x \geq 0$ for every $x \in \mathbb R ^n$
+    
++ The matrix A is negative definite if $x' A x < 0$ for every $x \in \mathbb R ^n \setminus \{0\}$
+    + it is negative semi-definite if $x' A x \leq 0$ for every $x \in \mathbb R ^n$
+    
++ The matrix A is indefinite if there exist $x, y \in \mathbb R ^n$ such that $x' A x > 0$ and $y' A y < 0$
+
+## Applications in Calculus {visibility="hidden"}
+
+### Revisit the optimization problem
+
++ Let $λ_1,  λ_2, \dots, λ_n$ be the eigenvalues of A
+    + A is positive definite $\Leftrightarrow  \lambda_1, λ_2, \dots, λ_n > 0$
+    + A is positive semidefinite $\Leftrightarrow  \lambda_1, λ_2, \dots, λ_n \geq 0$
+    + A is negative definite $\Leftrightarrow  \lambda_1, λ_2, \dots, λ_n < 0$
+    + A is negative semidefinite $\Leftrightarrow  \lambda_1, λ_2, \dots, λ_n \leq 0$
+    + A is indefinite , there exists $λ_i > 0$ and $λ_j < 0$
+
++ Exercise
+    - Find the eigenvalues of the matrix $A = \begin{pmatrix} -1 & 3 & 0 \\ 3 & -9 & 0 \\ 0 & 0 & -2 \end{pmatrix}$
+
+::: {.notes}
+
++ $det(A - \lambda I) = 0$ gives the characteristic equation $-10 + 2 \lambda + 18 \lambda^2 - 2 \lambda^3 = 0$
+
++ The eigenvalues of the matrix are -10, -2, and 0
+    + the matrix is negative semidefinite
+
+:::
+
+## Applications in Calculus {visibility="hidden"}
+
+### Revisit the optimization problem
+
++ A minor of A of order k is a determinant of a $k × k$ sub-matrix of A
+
++ A minor of matrix $A$ of order $k$ is principal if it is obtained by deleting $n − k$ rows and the $n − k$ columns with the same numbers
+
++ The leading principal minor of A of order k is the minor of order k obtained by deleting the `last` $n − k$ rows and columns
+
++ The leading principal minors of a matrix are the determinants of the leading principal minors
+
++ Exercise
+    - Find the leading principal minors of the matrix $A = \begin{pmatrix} a & b \\ b & c  \end{pmatrix}$
+        + show that the matrix is positive definite if $a > 0$ and $ac > b^2$
+    - Find the leading principal minors of the matrix $A = \begin{pmatrix} 1 & 0 & 2 \\ 0 & 2 & 4 \\ 0 & 2 & 2 \end{pmatrix}$
+    
+::: {.notes}
+
++ Let A be an m × n matrix. The rank of A is the maximal order of a non-zero minor of A
+
++ the leading principal minors are $D_1 = a$ and $D_2 = ac − b^2$ for the $2 \times 2$ symmetric matrix
+
+::: 
+
+## Applications in Calculus {visibility="hidden"}
+
+### Revisit the optimization problem
+
++ Let us consider $n=2$ and $f: \mathbb{R}^2 \to \mathbb{R}$ for some intuition first
+
++ The Hessian matrix of $f$ at $x^*$ is the matrix of second partial derivatives of $f$ at $x^*$
+
+$$
+H(x^*) = \begin{bmatrix} \frac{\partial^2 f}{\partial x_1^2} & \frac{\partial^2 f}{\partial x_1 \partial x_2} \\ \frac{\partial^2 f}{\partial x_2 \partial x_1} & \frac{\partial^2 f}{\partial x_2^2} \end{bmatrix}
+$$
+
+
+
+::: {.callout-important icon=false}
+
+## Theorem
+
++ Suppose that $f: \mathbb{R}^n \to \mathbb{R}$ is twice continuously differentiable,
+    + if $x^*$ is a local minimizer of $f$, then the Hessian matrix of $f$ at $x^*$ is positive semidefinite
+    + if $x^*$ is a local maximizer of $f$, then the Hessian matrix of $f$ at $x^*$ is negative semidefinite
+
+
+:::
+
+
++ Exercise
+    - Find the Hessian matrix of the function $f(x, y) = 8x^3 + 2xy - -3x^2 + y^2 + 1$
+
+::: {.notes}
+
++ The Hessian matrix of the function is $\begin{bmatrix} 48x - 6 & 2 \\ 2 & 2 \end{bmatrix}$
+
++ The Hessian matrix at the critical point (0,0) is $\begin{bmatrix} -6 & 2 \\ 2 & 2 \end{bmatrix}$
+    + H(0,0) has leading principal minors of -6, and -16, which are all negative
+    + it is indefinite, so it is a saddle point
+
++ The Hessian matrix at the critical point (1/3, -1/3) is $\begin{bmatrix} 10 & 2 \\ 2 & 2 \end{bmatrix}$
+    + H(1/3, -1/3) has leading principal minors of 10, and 36, which are all positive
+    + it is positive definite, so it is a local minimum
+
+:::
+
+## Applications in Calculus {visibility="hidden"}
+
+### Revisit the optimization problem
+
++ The **second derivative test** is a test that can help determine whether a critical point is a local minimum, local maximum, or a saddle point
+
++ The test is based on the sign of the determinant of the leading principal minors of the Hessian matrix of the function
+    + the leading principal minors are the determinants of the submatrices of the Hessian matrix formed by taking the first $k$ rows and columns for $k=1,2,\ldots,n$
+    + if the leading principal minors are all positive (i.e. $D_k >0$), then the critical point is a local minimum
+    + if the leading principal minors alternate in sign (i.e. $(-1)^k D_k >0$), then the critical point is a saddle point
+
+::: {.notes}
+
++ A is positive semidefinite $\Leftrightarrow$ $∆k ≥ 0$ for all principal minors
+
++ A is negative semidefinite  $\Leftrightarrow$ $(−1)k∆k ≥ 0$ for all principal minors
+
+:::
+
+    
+## Applications in Calculus {visibility="hidden"}
+
+### Revisit the optimization problem
+
++ The matrix associated with the Langrange multiplier method is
+
+$$
+\begin{bmatrix} 0 & \nabla g(x) \\ \nabla g(x) & \nabla^2 f(x) \end{bmatrix}
+$$
+
++ the matrix is called the bordered Hessian matrix, $\bar{H}$
+
++ For a function $f: \mathbb{R}^2 \to \mathbb{R}$ and a constraint $g: \mathbb{R}^2 \to \mathbb{R}$, le the Lagrangian be $L(x, y, \lambda) = f(x, y) - \lambda g(x, y)$
+
++ the bordered Hessian matrix is
+
+$$
+\begin{bmatrix} 0 & \nabla g(x) \\ \nabla g(x) & \nabla^2 f(x) \end{bmatrix} = \begin{bmatrix} 0 & \frac{\partial g}{\partial x} & \frac{\partial g}{\partial y} \\ \frac{\partial g}{\partial x} & \frac{\partial L}{\partial x^2 } & \frac{\partial L}{\partial x \partial y} \\ \frac{\partial g}{\partial y} & \frac{\partial L}{\partial y \partial x} & \frac{\partial L}{\partial y^2 } \end{bmatrix}
+$$
+
+
+    
+::: {.notes}
+
++ Exercise: 
+    + Find the bordered Hessian matrix of the function $f(x, y) = -ax^2 -by^2$ subject to the constraint $x + y= 1$ where $a, b >0$
+
++ The bordered Hessian matrix is $\begin{bmatrix} 0 & 1 & 1 \\ 1 & -2a & 0 \\ 1 & 0 & -2b \end{bmatrix}$
+    + the leading principal minors are 0, $-1$, and $2(a+b)$
+    + the critical point is $(x^*_1, x^*_2, \lambda^*)= (\frac{b}{a+b}, \frac{a}{a+b}, -\frac{2ab}{a+b})$
+    + the critical point is a local maximum
+
++ Ex: Find the bordered Hessian matrix of the function $f(x, y) = -ax^2 -by^2$ subject to the constraint $x + y= 1$ where $a, b >0$
+
+:::
+
+## Applications in Calculus {visibility="hidden"}
+### Revisit the optimization problem
+
++ consider a general function $f: \mathbb{R}^n \to \mathbb{R}$ and a constraint $g_j: \mathbb{R}^n \to \mathbb{R}, j=1, \dots,m$
+
++ the Lagrangian is $L(x, \lambda) = f(x) - \sum_{j=1}^m \lambda_j g_j(x)$
+
++ the bordered Hessian matrix is
+
+::: {.fragment}
+
+$$
+\begin{bmatrix} 0 & \cdots & 0 & \frac{\partial g_1(\cdot)}{\partial x_1} &  \cdots & \frac{\partial g_1(\cdot)}{\partial x_n}\\ \vdots & \ddots & \vdots & \vdots & \ddots & \vdots \\
+0 & \cdots & 0 & \frac{\partial g_m(\cdot)}{\partial x_1} &  \cdots & \frac{\partial g_m(\cdot)}{\partial x_n} \\
+\frac{\partial g_1(\cdot)}{\partial x_1} &  \cdots & \frac{\partial g_m(\cdot)}{\partial x_1} & \frac{\partial^2 L(\cdot)}{\partial x_1^2} &  \cdots & \frac{\partial^2 L(\cdot)}{\partial x_1 \partial x_n} \\
+\vdots & \ddots & \vdots & \vdots & \ddots & \vdots \\
+\frac{\partial g_1(\cdot)}{\partial x_n} &  \cdots & \frac{\partial g_m(\cdot)}{\partial x_n} & \frac{\partial^2 L(\cdot)}{\partial x_n \partial x_1} &  \cdots & \frac{\partial^2 L(\cdot)}{\partial x_n^2} \\
+\end{bmatrix}
+$$
+
+:::
+
+## Applications in Calculus {visibility="hidden"}
+### Revisit the optimization problem
+
++ Let $(x^*, \lambda^*)$ solve the FOC of the Lagrangian, then 
+    + $X^*$ is a local minimizer if the bordered Hessian matrix is positive definite
+        + $|\bar{H}_{2m}|$ and all the leading principal minors have the same sign as $(-1)^m$
+    + $X^*$ is a local maximizer if the bordered Hessian matrix is negative definite
+        + $|\bar{H}_{2m}|$ has the same sign as $(-1)^m$ and the leading principal minors alternate in sign thereafter
+
+::: {.notes}
+
++ The first $m$ leading principle minors are zero matrices (every element of the matrix, $|\bar{H}_1|$ through $|\bar{H}_m|$ is zero)
+• The next $m − 1$ leading principle minors will have a determinant of zero (every element of the matrix, $|\bar{H}_{m+1}|$ through $|\bar{H}_{2m-1}|$ is zero)
+
++ For example:
+    + 0 Borders: −; +; −; + : : : (max) or +; +; +; +; : : : (min)
+    + 1 Border: +; −; +; −; : : : (max) or −; −; −; −; : : : (min)
+    + 2 Borders: −; +; −; +; : : : (max) or +; +; +; +; : : : (min)
+
+:::
+
+
+## References {visibility="uncounted"}
+
+::: {#refs}
+:::
+
+    
