@@ -9,7 +9,7 @@ format:
     theme: cosmo
     css: styles.css
     fontsize: 1.18em
-    linestretch: 1.6
+    linestretch: 1.38
     embed-resources: true
     toc: false
     toc-depth: 2
@@ -31,7 +31,7 @@ execute:
 #jupyter: python3
 
 description: |
-  This webpage provides an overview of the MSDA Bootcamp 2026 Summer, including the schedule and topics covered.
+  This webpage provides an overview of the MSDA Summer Bootcamp 2026, including schedule and topics
   
 ---
 
@@ -86,20 +86,19 @@ schedule <- tibble(
 schedule <- schedule %>%
   mutate(Date = format(as.Date(Date), "%B %d, %Y"))
 
-# Create the table
-
-# kable(schedule, format = "html", table.attr = "class='table table-striped'",
-#       col.names = c("Date", "Time", "Topic")) %>%
-#   kable_styling(full_width = F, position = "left") %>%
-#   column_spec(column = 3, width = "50%")
-
 # Create a basic HTML table
 kable(
   schedule,
   format = "html",
   col.names = c("Date", "Time", "Topic"),
   align = "l"
-)
+) %>% 
+kable_styling(bootstrap_options = c("striped", "hover", "condensed"), full_width = FALSE) %>%
+  row_spec(0, bold = TRUE, color = "white", background = "#007BFF") %>%
+  column_spec(1, width = "15em") %>%
+  column_spec(2, width = "15em") %>%
+  column_spec(3, width = "30em")
+
 ```
 
 
