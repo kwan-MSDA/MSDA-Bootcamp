@@ -1,0 +1,1217 @@
+---
+title: "Data Visualization with R"
+subtitle: "MSDA - Summer Bootcamp 2026"
+author: "KT Wong"
+email: "kwanto@hku.hk"
+affiliation: "Faculty of Social Sciences, HKU"
+date: "`r format(Sys.time(), '%B %d, %Y')`"
+
+abstract: |
+    The materials in this topic are drawn from @QSS, @Wickham2023, @Wickham2019 and @Wickham2016 as well as other sources, including Princeton Sociology Methods Camp 2023. The materials are for educational purposes only.
+
+bibliography: reference_bootcamp.bib
+
+format:
+  revealjs:
+    theme: clean_42_rb_revised5.scss
+    css: |
+      .reveal .slide img {
+        aspect-ratio: 16 / 9; /* Example: 16:9 aspect ratio */
+        max-width: 88%;
+        height: auto;
+      }
+    self-contained-math: true
+    embed-resources: true
+    show-notes: false
+    multiplex: false
+    slide-number: c/t
+    preview-links: auto
+    margin: 0.03
+    height: 1080
+    width: 1920
+    max-scale: 2
+    smaller: false
+    scrollable: true
+    incremental: false
+    template-partials:
+     - title-slide.html
+    controls: true
+    touch: false
+    code-fold: true
+    code-overflow: scroll
+    code-line-numbers: true
+  
+  touying-typst:
+    include-in-header:
+      text: |
+        #import "@preview/touying-quarto-clean:0.2.0": *
+    theme-typst: clean-theme
+
+
+execute:
+    cache: true
+
+jupyter: python3
+engine: knitr
+
+knitr:
+  opts_chunk:
+    echo: true
+    fig-cap-location: bottom
+    fig-asp: 0.618
+
+lightbox: auto
+---
+
+## ggplot2
+
+it starts from the grammar of graphics @Wickham2016
+
+:::: {.columns}
+
+::: {.column width="30%"}
+    
++ data
++ aesthetics
++ geoms
++ facets
++ stats
++ scales
++ coordinates
++ themes
+    
+
+:::
+
+::: {.column width="70%"}
+
+![Source: [The Grammar of Graphics](https://link.springer.com/book/10.1007/0-387-28695-0)](pic/grammar_of_graphics.png){fig-aling="center" width="88%" .lightbulb}
+
+:::
+
+::::
+
+::: notes
+
++ Aesthetics
+  + specifiy how we want our data to map onto our plot
+    + Which variable belongs on the x-axis? What about the y-axis? 
+    + Are we going to convey additional dimenisons of data with colour, or shape, or opacity?
+
++ Scale
+  + When setting scales, we need to allow for easy data visualisation
+  + Most of the time we'll use a linear scale
+  + but can also use other options such as geometric, or logarithmic, if the data is distributed differently and would better suit these transformations
+
++ Geoms
+  + Geoms are the actual visual elements that we use to represent our data
+    + Points, lines, bars, etc.
+    + Geoms are the building blocks of our plot
+    
++ Statistics
+  + We need to think about summarising our data
+  + Statistics are used to summarise the data
+  
++ Facets
+  + Facets allow us to create multiple plots that each display a subset of the data
+  + This is useful for comparing different groups or categories within the data
+
+:::
+
+
+## ggplot2
+
++ Every ggplot2 plot has three key components:
+    + data
+    + A set of **aesthetic mappings** between variables in the data and visual properties
+    + At least one layer which describes how to render each observation
+        + Layers are usually created with a geom function
+
+## ggplot2 - data illustration
+
++ Use built-in dataset from ggplot2: [**mpg**](https://ggplot2.tidyverse.org/reference/mpg.html)
+    + information about the fuel economy of popular car models in 1999 and 2008
+    + collected by the [US Environmental Protection Agency](http://fueleconomy.gov)
+    + here are some of the variables in the dataset:
+
+```{r data_description}
+#| echo: false
+library(knitr)
+variables <- data.frame(
+  Variable = c(
+    "manufacturer",
+    "model",
+    "year",
+    "displ",
+    "hwy",
+    "cty",
+    "cyl",
+    "drv",
+    "class",
+    "trans",
+    "fl"
+  ),
+  Description = c(
+    "Car manufacturer",
+    "Car model",
+    "Year of manufacture",
+    "Engine displacement (litres)",
+    "Miles per gallon (highway)",
+    "Miles per gallon (city)",
+    "Number of cylinders",
+    "Drive type (f = front, r = rear, 4 = 4wd)",
+    "Type of car",
+    "Type of transmission",
+    "Fuel type"
+  )
+)
+
+kable(variables, format = "markdown")
+```
+
+<style>
+table {
+  width: 80%;
+  margin: 0 auto;
+  font-size: 0.68em;
+  table-layout: fixed;
+  overflow-wrap: break-word;
+}
+
+td:first-child, th:first-child {
+  width: 25%;
+  padding: 8px;
+  text-align: left;
+}
+
+td:nth-child(2), th:nth-child(2) {
+  width: 75%;
+  padding: 8px;
+  text-align: left;
+}
+</style>
+
+::: {.notes}
+
+        + manufacturer, model, year
+        + displ (engine displacement in litres)
+        + hwy (miles per gallon on the highway)
+        + cty (miles per gallon in the city)
+        + cyl (number of cylinders)
+        + drv (f = front-wheel drive, r = rear wheel drive, 4 = 4wd)
+        + class (type of car)
+        + trans (type of transmission)
+        + fl (fuel type)
+        
++   The mpg dataset is a tibble, a modern version of a data frame
+
++   The mpg dataset is part of the ggplot2 package
+
++   The mpg dataset is a tidy dataset
+
++   This dataset suggests many interesting questions
+    + How are engine size and fuel economy related? 
+    + Do certain manufacturers care more about fuel economy than others?
+    + Has fuel economy improved in the last ten years?
+
++   List five functions that you could use to get more information about the mpg dataset
+
++   How can you find out what other datasets are included with ggplot2?
+
++   Apart from the US, most countries use fuel consumption (fuel consumed over fixed distance) rather than fuel economy (distance travelled with fixed amount of fuel). How could you convert cty and hwy into the European standard of l/100km?
+
++   Which manufacturer has the most models in this dataset? 
+    +   Which model has the most variations? 
+    +   Does your answer change if you remove the redundant specification of drive train (e.g. “pathfinder 4wd”, “a4 quattro”) from the model name?
+    
+:::
+
+## ggplot2
+
++ Let us plot the relationship between engine size and fuel economy
+
+. . . 
+
+```{r ggplot2}
+#| echo: true
+#| output-location: fragment
+
+library(ggplot2)
+
+data(mpg)
+
+ggplot(data = mpg, mapping = aes(x = displ, y = hwy)) +
+  geom_point()
+```
+
+. . .
+
++ How would you describe the relationship between displ and hwy?
+
+## ggplot2
+
+```{r ggplot2a}
+#| output-location: fragment
+
+ggplot(mpg, aes(cty, hwy)) +
+  geom_point()
+```
+
+. . .
+
++ How would you describe the relationship between cty and hwy?
+
+
+::: notes
+
++ Other example - histogram of cty
+
+```{r histogram}
+#| output-location: fragment
+
+ggplot(mpg, aes(cty)) +
+  geom_histogram()
+```
+
+
+ggplot(diamonds, 
+       aes(carat, price)) +
+  geom_point()
+
+ggplot(economics, 
+       aes(date, unemploy)) +
+  geom_line()
+
+:::
+
+
+## ggplot2
+
+### Colour, size, shape and other aesthetic attributes
+
++   Aesthetics are visual properties of the objects in the plot
+    +   colour, size, shape, linetype, fill, alpha
+
++  Aesthetics can be mapped to variables in the data
+    +   aes(colour=variable)
+    +   aes(size=variable)
+    +   aes(shape=variable)
+    +   aes(linetype=variable)
+    +   aes(fill=variable)
+    +   aes(alpha=variable)
+
+
+## ggplot2
+
+Colour, size, shape and other aesthetic attributes
+
+. . .
+
+:::: .columns
+
+::: {.column width="50%"}
+```{r ggplot2b}
+#| output-location: fragment
+
+ggplot(mpg, aes(displ, hwy, colour = class)) +
+  geom_point()
+```
+
+:::
+
+::: {.column width="50%"}
+
+```{r ggplot2c}
+#| output-location: fragment
+
+ggplot(mpg, aes(trans, hwy, colour = class)) +
+  geom_point()
+```
+
+:::
+
+::::
+
+
+::: {.notes}
+
++ ggplot2 takes care of the details of converting data (e.g., ‘f’, ‘r’, ‘4’) into aesthetics (e.g., ‘red’, ‘yellow’, ‘green’) with a scale
+    + There is one scale for each aesthetic mapping in a plot
+    + The scale is also responsible for creating a guide, an axis or legend, that allows you to read the plot, converting aesthetic values back into data values
+    
++  The scale functions are:
+    + scale_colour_manual()
+    + scale_size_manual()
+    + scale_shape_manual()
+    + scale_linetype_manual()
+    + scale_fill_manual()
+    + scale_alpha_manual()
+    
++ What happens when you map them to continuous values?
+
++ What about categorical values? 
+
++ What happens when you use more than one aesthetic in a plot?
+
+:::
+
+## ggplot2 --- labels
+
++ Labels are important for making your plot understandable
+    + xlab() and ylab() functions
+    + labs() function
+    
+. . .
+
+```{r ggplot2ca}
+#| output-location: fragment
+#| fig-width: 8
+#| out-width: 8in
+
+ggplot(mpg, aes(displ, hwy)) +
+  geom_point(aes(color = class)) +
+  labs(
+    x = "Engine size (litres)",
+    y = "Highway fuel economy (miles per gallon)",
+    title = "Relationship between engine size and fuel economy",
+    color = "Car type",
+    caption = "Source: mpg dataset"
+  ) +
+  theme_bw()
+```
+
+
+## ggplot2
+
+### [ggthemes](https://jrnold.github.io/ggthemes)
+
+
+```{r ggplot2cb}
+#| output-location: fragment
+#| fig-width: 9
+#| out-width: 9in
+
+library(ggthemes)
+
+ggplot(mpg, aes(displ, hwy)) +
+  geom_point(aes(color = class)) +
+  labs(
+    x = "Engine size (litres)",
+    y = "Highway fuel economy (miles per gallon)",
+    title = "Relationship between engine size and fuel economy",
+    color = "Car type",
+    caption = "Source: mpg dataset"
+  ) +
+  theme_economist() +
+  scale_color_tableau() +
+  theme(
+    axis.title.x = element_text(margin = margin(t = 10)),
+    axis.title.y = element_text(margin = margin(r = 10))
+  )
+```
+
+
+## ggplot2 --- Facets
+
++ Facets allow you to create multiple plots that each display a subset of the data
+  + facet_wrap() creates a grid of plots
+  + facet_grid() creates a matrix of plots
+
+. . .
+
+```{r ggplot2d}
+#| output-location: fragment
+
+ggplot(mpg, aes(displ, hwy)) +
+  geom_point() +
+  facet_wrap(~class)
+```
+
+
+## ggplot2
+
+### Plot geoms
+
++   Geoms are the geometric objects that represent the data in the plot
+    +   geom_point() creates a scatterplot
+    +   geom_smooth() creates a smoothed line plot
+    +   geom_histogram() creates a histogram
+    +   geom_boxplot() creates a boxplot
+    +   geom_bar() creates a bar plot
+    +   geom_line() creates a line plot
+    +   geom_vline() adds a vertical line to the plot
+    +   geom_hline() adds a horizontal line to the plot
+    +   geom_abline() adds a diagonal line to the plot
+
+
+## ggplot2
+
+### Adding a smoother to a plot
+
+```{r ggplot2e}
+#| output-location: fragment
+#| fig-width: 9
+#| out-width: 9in
+
+ggplot(mpg, aes(displ, hwy)) +
+  geom_point() +
+  geom_smooth(span = 0.3)
+```
+
+## ggplot2 --- Boxplots and related plots
+
++ Boxplots, violin and jittered points are useful for visualizing the distribution of a continuous variable
+
+
+```{r ggplot2f}
+#| output-location: fragment
+#| fig-height: 8
+#| out-height: 8in
+
+library(ggpubr)
+
+boxplot <- ggplot(mpg, aes(drv, hwy)) +
+  geom_boxplot()
+
+violin <- ggplot(mpg, aes(drv, hwy)) + geom_violin()
+
+
+jitter <- ggplot(mpg, aes(drv, hwy)) +
+  geom_jitter()
+
+ggarrange(boxplot, violin, jitter, ncol = 3)
+```
+
+::: {.notes}
+
++ A boxplot is a type of visual shorthand for measures of position (percentiles) that describe a distribution
+    + It is also useful for identifying potential outliers in the data
+    + Visual points that display observations that fall more than 1.5 times the IQR from either edge of the box
+    + These outlying points are unusual so are plotted individually
+    
++ A violin plot is a combination of a boxplot and a kernel density plot
+    + It shows the distribution of the data, the median, and the interquartile range
+    + It is useful for comparing the distribution of a continuous variable across different categories
+    
++ A jittered point plot is useful for visualizing the distribution of a continuous variable across different categories
+    + It is useful for identifying potential outliers in the data
+  
+:::
+
+## ggplot2 --  Boxplots 
+
+```{r ggplot2fa}
+#| output-location: fragment
+#| fig-width: 8
+
+ggplot(mpg, aes(class, hwy)) +
+  geom_boxplot() +
+  labs(
+    title = "Highway fuel economy by car type",
+    x = "Car type",
+    y = "Highway fuel economy (miles per gallon)"
+  ) +
+  coord_flip() +
+  theme_economist()
+```
+
+
+## ggplot2 --- Bar plots
+
++ Bar plots are useful for visualizing the distribution of a categorical variable
+
+:::: {.columns}
+
+::: {.column width="50%"}
+
+```{r ggplot2g}
+#| output-location: fragment
+#| fig-width: 8
+
+ggplot(mpg, aes(class)) +
+  geom_bar()
+```
+
+:::
+
+::: {.column width="50%"}
+
+```{r ggplot2h}
+#| output-location: fragment
+#| fig-width: 8
+
+ggplot(mpg, aes(class, fill = drv)) +
+  geom_bar()
+```
+
+:::
+
+::::
+
+::: notes
+
++ manufacturer - car manufacturer -	15 manufacturers
+
++ model	- car model	- 38 models
+
++ displ - engine displacement (litres) -	1.8, 2.0, 2.4, 3.5 etc
+
++ class	- vehicle class	- 7 types (compact, SUV, minivan etc.)
+
++ fl - fuel type	- 5 fuel types (diesel, petrol, electric, etc.)
+
++ drv	- drive type - f, r, 4 (f=front wheel, r=rear wheel, 4=4 wheel)
+
++ trans	- type of transmission - automatic, manual (many sub types)
+
++ year - year of manufacturing -	1999, 2008
+
+
+:::
+
+
+## ggplot2
+
+### Histograms and density plots
+
++ Histograms and density plots are useful for visualizing the distribution of a continuous variable
+
+:::: {.columns}
+
+::: {.column width="50%"}
+
+
+```{r ggplot2hh}
+#| output-location: fragment
+
+ggplot(mpg, aes(hwy)) +
+  geom_histogram()
+```
+
+:::
+
+
+::: {.column width="50%"}
+
+
+```{r ggplot2i}
+#| output-location: fragment
+
+ggplot(mpg, aes(hwy)) +
+  geom_density()
+```
+
+:::
+
+::::
+
+
+## ggplot2
+
+### Histograms and density plots
+
+```{r ggplot2j}
+#| output-location: fragment
+#| fig-height: 8
+#| fig-aspect-ratio: 0.618
+#| out-height: 8in
+
+den <- ggplot(mpg, aes(displ, colour = drv)) +
+  geom_density(linewidth = 0.8)
+
+hist <- ggplot(mpg, aes(displ, fill = drv)) +
+  geom_histogram(binwidth = 0.5) +
+  facet_wrap(~drv, ncol = 1)
+
+ggarrange(den, hist, ncol = 2)
+```
+
+## ggplot2
+
+### [ggsave](https://ggplot2.tidyverse.org/reference/ggsave.html) -  save the graph as an image file
+
+
+```{r ggplot2k}
+#| output-location: fragment
+
+ggsave(filename = "mpg_displ.png", width = 6, height = 4)
+```
+
+## Example - toy imports to the US from 1996-2005
+
++ it is drawn from @scott2021
+
+```{r final_example}
+#| output-location: fragment
+
+library(tidyverse)
+
+toy_imports <- read_csv(
+  "https://raw.githubusercontent.com/kwan-MSDA/Bootcamp_2024/main/dataset/toyimports.csv"
+)
+
+head(toy_imports)
+```
+
+
+## Example - toy imports to the US from 1996-2005
+
++ Task: make a graph showing total toy imports over time for the U.S.’s top 5 trading partners by total dollar value of toys imported
+
+
+```{r final_example0}
+#| output-location: fragment
+#| fig-width: 6
+#| fig-height: 4
+#| fig-caption: Total toy imports to the U.S. from 1996-2005
+#| fig-pos: H
+#| fig-align: center
+
+country_total <- toy_imports %>%
+  group_by(partner_name) %>%
+  summarize(total_import = sum(US_report_import)) %>%
+  arrange(desc(total_import)) %>%
+  head(5)
+
+country_total
+```
+
+
+::: {.notes}
+
++ the total dollar value of toys imported to the U.S. (US_report_import, in multiples of $1,000) in a specific product category from a specific country in a specific year
+
++ The product categories have unique numerical codes (product) as well as product names exciting enough to quicken the heart of any toy-loving child (“Parts and accessories :– Other,” “Toys representing animal or non-human figures,” and so on
+
++ Group all the observations by trading partner (the partner_name variable)
+
++ For each partner, calculate total dollar value by summing toy imports (US_report_import) across all categories and years
+
++ Arrange the partners by total dollar value
+
+:::
+
+
+## More Example - toy imports to the US from 1996-2005
+
+. . .
+
+```{r final_example0a}
+#| output-location: fragment
+#| fig-width: 12
+#| out-width: 12in
+
+top5_partners <- c(
+  "China",
+  "Denmark",
+  "Canada",
+  "Hong Kong, China",
+  "Switzerland"
+)
+
+options(scipen = 999)
+
+library(ggthemes)
+library(scales)
+library(plotly)
+
+p <- toy_imports %>%
+  filter(partner_name %in% top5_partners) %>%
+  group_by(year, partner_name) %>%
+  summarize(total_import = sum(US_report_import)) %>%
+  ggplot(aes(year, total_import, color = partner_name)) +
+  geom_line(size = 1.18) +
+  labs(
+    title = "Toy imports from the U.S.'s top-5 partners, 1996-2005",
+    x = "Year",
+    y = "Dollar value of imports (log scale)",
+    color = "Import Region"
+  ) +
+  scale_x_continuous(breaks = 1996:2005) +
+  scale_y_log10(
+    breaks = trans_breaks("log10", function(x) 10^x),
+    labels = trans_format("log10", math_format(.x))
+  ) +
+  #labels = trans_format("log10", math_format(10^.x))) +
+  theme_economist() +
+  theme(
+    plot.title = element_text(
+      size = 22,
+      face = "bold",
+      hjust = 0.5,
+      margin = margin(b = 15)
+    ), # Larger, bold, centered title
+    axis.title.x = element_text(size = 16, margin = margin(t = 10)), # Larger x-axis label
+    axis.title.y = element_text(size = 16, margin = margin(r = 15)), # Larger y-axis label with right margin for spacing
+    axis.text = element_text(size = 12), # Larger tick labels
+    axis.ticks.y = element_line(color = "black", size = 0.5), # Clearer y-ticks
+    axis.ticks.length.y = unit(0.3, "cm"), # Slightly longer y-ticks for prominence
+    legend.title = element_text(size = 18), # Larger legend title
+    legend.text = element_text(size = 16), # Larger legend text
+    legend.position = "right" # Position legend on the right (optional)
+  )
+
+
+ggplotly(p)
+```
+
+
+## More Example
+
+### The five coldest months in Rapid City from 1995 to 2011
+
+
+```{r final_example1}
+#| output-location: fragment
+
+library(tidyverse)
+
+rapidcity <- read_csv(
+  "https://raw.githubusercontent.com/kwan-MSDA/Bootcamp_2024/main/dataset/rapidcity.csv"
+)
+
+top_5_coldest <- rapidcity %>%
+  group_by(Year, Month) %>%
+  summarize(
+    avg_Temp = mean(Temp),
+    lowest_temp = min(Temp),
+    highest_temp = max(Temp)
+  ) %>%
+  arrange(avg_Temp) %>%
+  round(1) %>%
+  mutate(
+    Month_Year = paste(month.abb[Month], Year, sep = "-"),
+    .after = Month
+  ) %>%
+  head(n = 5)
+
+top_5_coldest
+```
+
+. . .
+
+
++ Bar chart
+
+. . .
+
+```{r}
+#| output-location: fragment
+
+# Reshape data to long format
+top_5_long <- top_5_coldest %>%
+  pivot_longer(
+    cols = c(avg_Temp, lowest_temp, highest_temp),
+    names_to = "Temp_Type",
+    values_to = "Temperature"
+  ) %>%
+  mutate(
+    Temp_Type = factor(
+      Temp_Type,
+      levels = c("lowest_temp", "avg_Temp", "highest_temp"),
+      labels = c("Lowest", "Average", "Highest")
+    )
+  )
+
+# Create the ggplot
+p <- ggplot(
+  top_5_long,
+  aes(x = Month_Year, y = Temperature, fill = Temp_Type)
+) +
+  geom_bar(
+    stat = "identity",
+    position = position_dodge(width = 1),
+    alpha = 0.6
+  ) +
+  scale_fill_manual(
+    values = c("Lowest" = "purple", "Average" = "blue", "Highest" = "red")
+  ) +
+  labs(
+    title = "Top 5 Coldest Months in Rapid City",
+    x = "Month-Year",
+    y = "Temperature (°F)",
+    fill = "Temperature Type"
+  ) + # Add legend title
+  theme_minimal() +
+  theme(
+    legend.title = element_text(face = "bold", size = 12, color = "black"), # Style legend title
+    legend.text = element_text(size = 10), # Style legend text
+    axis.text.x = element_text(angle = 45, hjust = 1) # Rotate x-axis labels
+  )
+
+# Convert to interactive plotly plot
+ggplotly(p, tooltip = c("x", "y", "fill"))
+
+htmlwidgets::saveWidget(ggplotly(p), "top_5_coldest_months.html")
+```
+
+::: {.notes}
+
++ Import the data set
++ Split the data set into individual months in individual years: January 1995, February 1995, March 1995, and so on, all the way through December 2011.
++ For each individual month, calculate the average of the Temp variable (along with any other summaries we might find interesting).
++ Sort the individual months according to their average temperatures.
++ Make a table of the five coldest months
+
++ mutate(Month = match(Month, month.name)) # Convert full month names to numbers
+
++ mutate(Month_Name = paste(month.abb[Month], "’", str_sub(Year, 3, 4), sep = "")) # e.g., "Jan ’10"
+
++ theme(legend.position = "top")
+
+
+
+:::
+
+
+## One more Example - Survival on the Titanic
+
+Q: how did survival among adult passengers vary by sex and cabin class? 
+
+. . .
+
+```{r final_example2}
+#| output-location: fragment
+
+titanic <- read_csv(
+  "https://raw.githubusercontent.com/kwan-MSDA/Bootcamp_2024/main/dataset/titanic.csv"
+)
+
+head(titanic)
+```
+
+
+. . .
+
+```{r final_example3}
+#| output-location: fragment
+
+surv_adults <- titanic %>%
+  mutate(Adult = age >= 18) %>%
+  filter(Adult) %>%
+  group_by(sex, passengerClass) %>%
+  summarize(
+    total_count = n(),
+    survived = sum(survived == "yes"),
+    survival_rate = survived / total_count
+  )
+
+
+surv_adults
+```
+
+## An Example - Survival on the Titanic
+
+:::: {.columns}
+
+::: {.column width="50%"}
+
+```{r final_example4}
+#| output-location: fragment
+
+library(ggthemes)
+
+ggplot(surv_adults) +
+  geom_col(aes(x = sex, y = survival_rate)) +
+  facet_wrap(~passengerClass, nrow = 1) +
+  labs(
+    title = "Survival rate by gender and passenger class",
+    y = "Survival rate",
+    x = "gender"
+  ) +
+  theme_economist()
+```
+
+:::
+
+::: {.column width="50%"}
+
+```{r}
+#| output-location: fragment
+
+library(ggplot2)
+library(ggthemes)
+library(scales) # For percent formatting
+
+class_labels <- function(passengerClass) {
+  dplyr::case_when(
+    passengerClass == "1st" ~ "First Class",
+    passengerClass == "2nd" ~ "Second Class",
+    passengerClass == "3rd" ~ "Third Class",
+    TRUE ~ as.character(passengerClass) # Fallback for unexpected values
+  )
+}
+
+ggplot(surv_adults, aes(x = sex, y = survival_rate, fill = sex)) +
+  geom_col(position = "dodge", width = 0.45, color = "black", alpha = 0.85) + # Add outline and transparency
+  facet_wrap(
+    ~passengerClass,
+    nrow = 1,
+    labeller = labeller(passengerClass = class_labels)
+  ) + # Clear facet labels
+  geom_text(
+    aes(label = scales::percent(survival_rate, accuracy = 1)),
+    vjust = -0.5,
+    size = 4
+  ) + # Add percentage labels above bars
+  scale_y_continuous(
+    labels = scales::percent_format(accuracy = 1),
+    limits = c(0, 1),
+    expand = c(0, 0.05)
+  ) + # Y-axis as percentage, 0-1 range
+  scale_fill_brewer(palette = "Set2") + # Colorblind-friendly palette
+  labs(
+    title = "Survival Rate by Gender and Passenger Class",
+    y = "Survival Rate",
+    x = "Gender"
+  ) +
+  theme_economist() +
+  theme(
+    plot.title = element_text(
+      size = 16,
+      face = "bold",
+      hjust = 0.5,
+      margin = margin(b = 15)
+    ),
+    axis.title.x = element_text(size = 12, margin = margin(t = 10)),
+    axis.title.y = element_text(size = 12, margin = margin(r = 10)),
+    axis.text.x = element_text(size = 10, margin = margin(t = 5)),
+    axis.text.y = element_text(size = 10, margin = margin(r = 5)),
+    strip.text = element_text(
+      size = 11,
+      face = "bold",
+      margin = margin(t = 5, r = 5, b = 10, l = 5)
+    ), # Increased bottom margin
+    panel.spacing = unit(1.5, "lines"), # Increased space between facets
+    legend.position = "none"
+  )
+```
+
+:::
+
+::::
+
+::: {.notes}
+
++ create a new variable, which we’ll call Adult, that determines whether a passenger is at least 18 years old.
++ filter the data set down to adults only.
++ group the filtered data set by sex and cabin class (2 sexes× × 3 classes = 6 groups).
++ calculate the survival percentage for each group.
+
+:::
+
+
+## Extra: Gapminder data {visibility="shown"}
+
+```{r final_example5}
+#| output-location: fragment
+#| fig-align: center
+
+library(gapminder)
+
+data(gapminder)
+
+gapminder %>%
+  group_by(year, continent) %>%
+  mutate(median_lifeExp = median(lifeExp)) %>%
+  ggplot(aes(year, median_lifeExp, color = continent)) +
+  geom_line() +
+  labs(
+    title = "Life expectancy by continent and year",
+    x = "Year",
+    y = "Life expectancy"
+  ) +
+  theme_economist()
+```
+
+```{r final_example6}
+#| output-location: fragment
+
+ggplot(gapminder, aes(x = continent, y = lifeExp)) +
+  geom_boxplot(outlier.colour = "hotpink") +
+  geom_jitter(
+    position = position_jitter(width = 0.1, height = 0),
+    alpha = 1 / 4
+  )
+```
+
+## Extra: Gapminder data {visibility="shown"}
+
+### this is from [BBC style](https://medium.com/bbc-visual-and-data-journalism/how-the-bbc-visual-and-data-journalism-team-works-with-graphics-in-r-ed0b35693535)
+
+```{r final_example7}
+#| output-location: fragment
+
+# install.packages('devtools')
+#devtools::install_github('bbc/bbplot'))
+
+library(ggpubr)
+
+source("https://raw.githubusercontent.com/kwan-MSDA/R/main/bbc_style.R")
+
+gapminder %>%
+  group_by(year, continent) %>%
+  summarize(median_lifeExp = median(lifeExp)) %>%
+  ggplot(aes(year, median_lifeExp, color = continent)) +
+  geom_line() +
+  labs(
+    title = "Life expectancy by continent and year",
+    x = "Year",
+    y = "Life expectancy"
+  ) +
+  bbc_style()
+```
+
+::: {.notes}
+
++ source 1: <https://bbc.github.io/rcookbook/#do_something_else_entirely>
+
++ source 2: <https://github.com/bbc/bbplot?tab=readme-ov-file>
+
++ source 3: <https://noeliagorod.com/2020/07/23/bbc-visual-and-data-journalism-cookbook-for-r-graphics/>
+
+:::
+
+## Extra: Gapminder data {visibility="shown"}
+
+```{r final_example8a}
+#| output-location: fragment
+
+library("ggalt")
+library("tidyr")
+
+library(gapminder)
+
+dumbbell_df <- gapminder %>%
+  filter(year == 1967 | year == 2007) %>%
+  select(country, year, lifeExp) %>%
+  spread(year, lifeExp) %>%
+  mutate(gap = `2007` - `1967`) %>%
+  arrange(desc(gap)) %>%
+  head(10)
+
+#Make plot
+ggplot(
+  dumbbell_df,
+  aes(x = `1967`, xend = `2007`, y = reorder(country, gap), group = country)
+) +
+  geom_dumbbell(
+    colour = "#dddddd",
+    size = 3,
+    colour_x = "#FAAB18",
+    colour_xend = "#1380A1"
+  ) +
+  bbc_style() +
+  labs(
+    title = "We're living longer",
+    subtitle = "Biggest life expectancy rise, 1967-2007"
+  )
+```
+
+## Extra: Gapminder data {visibility="shown"}
+
+
+```{r final_example8}
+#| output-location: fragment
+
+library(hrbrthemes)
+library(viridis)
+
+gapminder %>%
+  filter(year == 2007) %>%
+  mutate(country = factor(country, levels = unique(country))) %>%
+  arrange(desc(pop)) %>%
+  ggplot(aes(x = gdpPercap, y = lifeExp, size = pop, fill = continent)) +
+  geom_point(alpha = 0.6, shape = 21, color = "black") +
+  scale_size(range = c(.1, 24), name = "Population (M)") +
+  scale_fill_viridis(discrete = TRUE, guide = FALSE, option = "A") +
+  theme_ipsum() +
+  theme(legend.position = "none") +
+  labs(
+    title = "Life expectancy by continent in 2007",
+    x = "GDP per capita",
+    y = "Life Expectancy"
+  )
+```   
+
+## Extra: Gapminder data {visibility="shown"}
+
+
+```{r final_example9}
+#| output-location: fragment
+#| out-width: 100%
+#| out-height: 100%
+
+library(gganimate)
+
+gapminder %>%
+  ggplot(aes(
+    x = gdpPercap,
+    y = lifeExp,
+    size = pop,
+    fill = continent,
+    frame = year
+  )) +
+  geom_point(alpha = 0.6, shape = 21, color = "black") +
+  scale_size(range = c(.1, 22), name = "Population (M)") +
+  scale_fill_viridis(discrete = TRUE, guide = FALSE, option = "A") +
+  theme_ipsum() +
+  theme(legend.position = "none") +
+  labs(
+    title = "Life expectancy by continent in {frame_time}",
+    x = "GDP per capita",
+    y = "Life Expectancy"
+  ) +
+  geom_text(
+    data = gapminder %>% filter(pop > 1e+8),
+    aes(label = country),
+    size = 5,
+    nudge_x = 0.1,
+    nudge_y = 0.1
+  ) +
+  transition_time(year) +
+  enter_fade() +
+  exit_fade()
+
+anim_save("gapminder_gganimate.gif")
+```
+
+## Extra: Gapminder data {visibility="shown"}
+
+### [source](http://euclid.psych.yorku.ca/www/psy6135/tutorials/gapminder.html)
+
+```{r final_example10}
+#| output-location: fragment
+
+library(plotly)
+library(hrbrthemes)
+library(viridis)
+
+g <- crosstalk::SharedData$new(
+  gapminder %>%
+    mutate(country = factor(country, levels = unique(country))) %>%
+    arrange(desc(pop)),
+  ~continent
+)
+gg <- g %>%
+  ggplot(aes(x = gdpPercap, y = lifeExp, fill = continent, frame = year)) +
+  geom_point(aes(size = pop, alpha = 0.6, ids = country)) +
+  scale_size(range = c(.1, 24), name = "Population (M)") +
+  scale_fill_viridis(discrete = TRUE, guide = FALSE, option = "A") +
+  scale_alpha(range = c(0.6, 1), guide = FALSE) +
+  theme_ipsum() +
+  # theme(legend.position="none")+
+  labs(
+    title = "Life expectancy by continent between 1952-2007",
+    x = "GDP per capita",
+    y = "Life Expectancy"
+  )
+
+ggplotly(gg, height = 500, width = 800)
+```
+
+## References {visibility="uncounted"}
+
+::: {#refs}
+:::
+

@@ -31,11 +31,11 @@ execute:
 
 2. [Linear Algebra](slides/Linear_Algebra_slimversion_240826.html){download="slides/Linear_Algebra_slimversion_240826.html"}
 
-3. [Introduction to R](slides/R_introduction_v5.html){download="slides/R_introduction_v5.html"}
+3. [Introduction to R](slides/R_introduction_v5_240826.html){download="slides/R_introduction_v5_240826.html"}
 
-4. [Data Visualization](slides/Data Visualization with R_v3.html){download="slides/Data Visualization with R_v3.html"}
+4. [Data Visualization](slides/Data Visualization with R_v3_240826.html){download="slides/Data Visualization with R_v3_240826.html"}
 
-5. [Data Wrangling](slides/Data Wrangling with R_v4.html){download="slides/Data Wrangling with R_v4.html"}
+5. [Data Wrangling](slides/Data Wrangling with R_v4_240826.html){download="slides/Data Wrangling with R_v4_240826.html"}
 
 6. [Probability and Statistics](slides/Probability and Distribution_v2.html){download="slides/Probabiliy and Distribution_v2.html"}
 

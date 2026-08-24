@@ -1,0 +1,1364 @@
+---
+title: "Data Wrangling with R"
+subtitle: "MSDA - Summer Bootcamp 2026"
+author: "KT Wong"
+email: "kwanto@hku.hk"
+affiliation: "Faculty of Social Sciences, HKU"
+
+date: "`r format(Sys.time(), '%B %d, %Y')`"
+
+abstract: |
+    The materials in this topic are drawn from @QSS, @Wickham2023, @Wickham2019 and @Wickham2016 as well as other sources, including Princeton Sociology Methods Camp 2023. The materials are for educational purposes only.
+
+bibliography: reference_bootcamp.bib
+
+format:
+  revealjs:
+    theme: clean_42_rb_revised5.scss
+    self-contained-math: true
+    embed-resources: true
+    show-notes: false
+    multiplex: false
+    slide-number: c/t
+    preview-links: auto
+    margin: 0.03
+    height: 1080
+    width: 1920
+    max-scale: 2
+    smaller: false
+    scrollable: true
+    incremental: true
+    template-partials:
+     - title-slide.html
+    controls: true
+    touch: false
+    code-fold: true
+    code-overflow: scroll
+    code-line-numbers: true
+
+execute:
+    cache: true
+
+jupyter: python3
+engine: knitr
+
+knitr:
+  opts_chunk:
+    echo: true
+    eval: false
+    message: false
+    warning: false
+    error: false
+    results: 'hide'
+    fig.show: 'hide'
+    fig-cap-location: bottom
+    fig-asp: 0.618
+
+lightbox: auto
+---
+
+
+```{r setup}
+#| echo: false
+#| eval: false
+#| include: false
+
+knitr::opts_chunk$set(warning = FALSE, message = FALSE)
+
+library(tidyverse)
+```
+
+## Introduction
+
++ Data wrangling is the process of transforming and cleaning data to make it suitable for analysis
+    +   it is an essential step in the data analysis process
+    +   it involves a variety of tasks, including:
+        +   loading data
+        +   exploring data
+        +   subsetting data
+        +   manipulating data
+        +   recoding variables
+        +   reshaping data
+        
+
++ we use the `tidyverse` package -  a collection of packages for data manipulation and visualization
+    + the core of tidyverse package for data manipulation is the `dplyr` package
+    + also use the `tidyr` package for reshaping data later
+    
+## Loading Data
+
++   The first step in any data analysis is to load the data into R
+    +   the data can be in a variety of formats
+    +   the most common formats are CSV, Excel, and SPSS
+    +   the `readr` package is part of the tidyverse and is used to read data into R
+
+
+```{css echo=FALSE}
+code.sourceCode {
+  font-size: 168%;
+  /* or try font-size: xx-large; */
+}
+```
+
+. . .
+
+```{r read_data}
+
+#install.packages("tidyverse")
+library(tidyverse)
+
+
+# check your working directory
+getwd()
+
+## read data file
+
+addh <- read_csv(
+  "https://raw.githubusercontent.com/kwan-MSDA/Bootcamp_2024/main/dataset/addhealthfake.csv"
+)
+```
+
+## Add health dataset
+
++ Here are some details about the [dataset](https://addhealth.cpc.unc.edu/data/#public-use)
+    + The National Longitudinal Study of Adolescent to Adult Health (Add Health)
+    + a longitudinal study of a nationally representative sample of adolescents in **grades 7-12** in the United States during the 1994-95 school year (Wave I)
+    + The Add Health cohort has been followed into young adulthood with four in-home interviews for Wave I-IV by 2008
+        + the Wave V conducted during 2016-2018 included a mixed-mode survey
+    + respondents’ social, economic, psychological, and physical well-being
+        + along with contextual data on the family, neighborhood, community, school, friendships, peer groups, and romantic relationships
+    + study developmental trajectories of health and risk behaviors throughout the life course
+                               
++ The dataset used here is a subset of the Add Health dataset
+    + 3000 observations and 11 variables
+    
+<!--
+
+## Explore data
+
++ The dataset used here is a subset of the Add Health dataset
+    + 3000 observations and 11 variables
+        
++   After the dataset is loaded in R, it is important to explore the data to understand its structure and content
+
++   The following steps are recommended to explore the data:
+    +   check the data types of key variables
+    +   check the dimensions of the data
+    +   look at a few rows and variables
+
+. . .
+
+```{r explore_data}
+
+class(addh$age)
+
+class(addh$gender)
+
+class(addh$love)
+```
+
+## Explore data
+
++   For more information on the dataset (some re-cap), 
+    + summary(): numeric summaries
+    + str(): data types and sample data
+    + colnames() or names(): names of columns/variables
+    + dim(): dimensions
+    + View(): view all data in RStudio viewer
+    + head(): top 6 rows
+    + tail(): bottom 6 rows
+
+
+
+## Explore data
+
+```{r explore_data1}
+
+str(addh)
+```
+. . .
+
+```{r explore_data2}
+
+head(addh, n = 5)
+```
+
+. . .
+
+```{r explore_data2a}
+
+tail(addh, n = 5)
+```
+
+. . .
+
+```{r}
+
+colnames(addh)
+```
+
+
+::: {.notes}
+
++ (in dplyr) slice_sample(): randomly select n rows
+
+::: 
+
+
+## Explore data
+
++   To get information about one variable, use the following functions:
+    + table(): get a table summarizing counts
+    + unique(): get the unique responses for a variable
+    + sort(): sort the numerically (or alphabetically)
+    + hist(): produce a histogram
+
+. . .
+
+```{r explore_data3}
+
+table(addh$gender)
+```
+
+
+. . .
+
+
+```{r explore_data4}
+
+table(addh$age)
+```
+
+. . .
+
+```{r explore_data5}
+
+sort(unique(addh$age))
+```
+
+## Subset data
+
++ let us recap by using the base R subsetting syntax with [row index, column index]
+
+. . .
+
+```{r subset_data1}
+#| eval: false
+
+# get first column, rows 1 through 3
+addh[1:3, 1]
+```
+
++ **Exercise**: How would you subset the observation in the third row and the fifth column?
+
++ we can use `-` to exclude rows or columns
+
+. . .
+
+```{r subset_data2}
+#| eval: false
+
+# get everything besides first row
+addh[-1, ]
+```
+
+## Exercises
+
++ Suppose that you want to know a few things from the dataset:
+    + What’s the median income of this sample? What’s the mean age?
+    + What are the answer choices for debt?
+    + On average, do the young adults surveyed think money, no cheating, or love is more important in a relationship?
+    
+
++ hint: for simple calculations, you can use the base R functions mean(), median(), and table()
+
+. . .
+
+```{r exercises}
+#| eval: false
+
+median(addh$income)
+
+mean(addh$age)
+
+unique(addh$debt)
+```
+. . . 
+
+```{r exercises1}
+#| eval: false
+
+# as a precursor to the next section, we can use dplyr to do the same thing
+
+library(dplyr)
+
+addh %>%
+  summarise(
+    mean_money = mean(money),
+    mean_nocheating = mean(nocheating),
+    mean_love = mean(love)
+  )
+```
+
+-->
+
+## Data Manipulation
+
++ The `dplyr` package is part of the tidyverse and is used for data manipulation
+    
++ dplyr functions include:
+    + `filter()`: subset rows
+    + `select()`: subset columns
+    + `mutate()`: create new variables
+    + `summarise()`: summarize data
+    + `arrange()`: sort data
+    + `group_by()`: group data
+
++ very important function: pipe operator `%>%` from the **magrittr** package
+    + allows you to chain functions together
+
++ basic structure of the dplyr functions
+    + function(dataframe, operation 1 to perform, opertaion 2 to perform,...)
+
+## Data Manipulation
+
+[*`dplyr` - select*]{.big}
+
++ it can be used with [operations](https://dplyr.tidyverse.org/reference/select.html), like
+    + `starts_with()`
+    + `ends_with()`
+    + `contains()`
+    + `matches()`
+    + etc...
+
+. . .
+
+```{r dplyr_select}
+#| eval: false
+
+pay_variables <- select(addh, contains("pay"))
+
+head(pay_variables, 5)
+```
+
+
+## Data Manipulation
+
+[*`dplyr` - filter*]{.big}
+
++ filter rows based on conditions
+
+. . .
+
+```{r dplyr_filter1}
+#| eval: false
+
+nodebt_income <- filter(addh, debt == "nodebt" & income >= 10000)
+
+nrow(nodebt_income)
+```
+. . .
+
+```{r dplyr_filter2}
+#| eval: false
+
+nomissing_income <- filter(addh, !is.na(income)) # only keep obs that are NOT missing
+
+nrow(nomissing_income)
+
+nomissing_income2 <- drop_na(addh, income) # alternate function from tidyr
+
+nrow(nomissing_income2)
+```
+
+::: {.notes}
+
+#nomissing_income <- drop_na(addh, income) # alternate function from tidyr
+
+:::
+
+
+## Data Manipulation
+
+[*`dplyr` - arrange*]{.big}
+
++ sort data based on one or more columns
+
++ task: find the two observations who think money is extremely important for a relationship (10 on **money**) but who pay for the fewest percentage of dates (**paypercent**)
+
+. . .
+
+```{r dplyr_arrange}
+#| eval: false
+
+addh %>%
+  filter(money == 10) %>%
+  arrange(paypercent) %>%
+  head(2)
+```
+
+. . .
+
+```{r}
+#| eval: false
+
+addh %>%
+  filter(money == 10) %>%
+  arrange(paypercent, gender)
+```
+
+## Data Manipulation
+
+[*`dplyr` - mutate*]{.big}
+
++ create new variables added to the dataset
+
++ task: add a variable with the average rating for nocheating, money, and love’s importance for a relationship (sum divided by 3) and another variable that logs that rating
+
+. . .
+
+```{r dplyr_mutate}
+#| eval: false
+
+addh <- mutate(
+  addh,
+  rateavg = (love + money + nocheating) / 3,
+  rateavglog = log(rateavg)
+)
+
+head(addh, 5)
+```
+
+
++ Caution
+    + using the same column name or same object name, you overwrite the original object or column
+
+
+## Data Manipulation
+
+[*`dplyr` - group_by and summarise*]{.big}
+
++ group data by one or more variables and then summarize the data according to the groups
+
++ task: find the average "not cheating importance" for different gender
+
+. . .
+
+```{r dplyr_groupby}
+#| echo: true
+#| eval: false
+
+addh %>%
+  group_by(gender) %>%
+  summarize(mean_nocheating = mean(nocheating))
+```
+
+
++   **summarise** has a number of operations for creating summary statistics
+    + mean(), median(), min(), max(), sd(), n(), n_distinct(), first, last, etc...
+
+## Exercises
+
+1. Exercise one
+    + the number of females and males by debt status
+    + the percentage in each (debt x gender) category as a fraction of all observations
+    + the number of distinct ratings of love’s importance in each of these debt x gender categories
+
+. . .
+
+```{r exercises2}
+#| eval: false
+
+addh %>%
+  group_by(gender, debt) %>%
+  summarize(percentage = n() / nrow(addh), n_distinct_love = n_distinct(love))
+```
+
+## Exercises
+
+2. Exercise two
+  + Group the data by gender and debt status first
+    + Find the average rating of love, no cheating, and money’s importance for a relationship in each group 
+    + Arrange the groups by their rating of money’s importance to a relationship from the highest to rating to the lowest rating
+
+. . .
+
+```{r exercises3}
+#| eval: false
+
+addh %>%
+  group_by(gender, debt) %>%
+  summarize(
+    mean_love = mean(love),
+    mean_nocheating = mean(nocheating),
+    mean_money = mean(money)
+  ) %>%
+  arrange(desc(mean_money))
+```
+
+## Recoding Variables
+
++   Recoding variables is a common task in data analysis for social science research
+    +   convert a variable from one format to another
+    +   create a new variable based on the values of an existing variable (or of multiple existing variables)
+
++   some typical recoding tasks
+    +   convert a continuous variable to a categorical variable
+    +   convert a categorical variable to a continuous variable
+    +   create categorical variables based on conditions
+
+::: notes
+
++   Our focus
+    + data types
+    + logical statements
+    + case_when() function
+
+:::
+
+<!--
+
+## Recoding Variables
+
+[*`changing data types`*]{.big}
+
++   use the `mutate()` function to change the data type of a variable
+    +   `as.character()`
+    +   `as.numeric()`
+    +   `as.factor()`
+    +   `as.integer()`
+    +   `as.logical()`
+
+. . .
+
+```{r recode_data1}
+
+addh2 <- addh %>%
+  mutate(
+    age = as.character(age),
+    debt = as.factor(debt)
+  )
+
+head(addh2, 3)
+```
+
+
+## Recoding Variables
+
+[*`create a vector`*]{.big}
+
++ use c to string together the elements
+
+. . .
+
+```{r create_vector}
+#| eval: false
+
+agevec <- c(18, 21, 23, 25, 27, 30)
+
+agevec
+```
+
+. . .
+
+```{r create_vector1}
+#| echo: true
+#| eval: false
+
+class(agevec)
+```
+
+. . .
+
+```{r create_vector2}
+#| echo: true
+#| eval: false
+
+gendervec <- c("male", "female", "other", "female", "female", "male")
+
+gendervec
+```
+
+. . .
+
+```{r create_vector3}
+#| eval: false
+
+class(gendervec)
+```
+
+
+## Recoding Variables
+
+[*`create a vector`*]{.big}
+
++ Elements in a vector need to be of the same type, otherwise, type coercion happens
+
+. . .
+
+```{r create_vector4}
+#| echo: true
+#| eval: false
+
+c(28, "28", TRUE)
+```
+
+. . .
+
+```{r create_vector5}
+#| echo: true
+#| eval: false
+
+c(28, "28", TRUE) %>% class()
+```
+
+. . .
+
+```{r create_vector6}
+#| echo: true
+#| eval: false
+
+c(1, 2, 3, TRUE, FALSE)
+
+c(1, 2, 3, TRUE, FALSE) %>% class()
+```
+
+## Recoding Variables
+
+[*`data types`*]{.big}
+
++ convert from one type to another using the following functions:
+    + `as.numeric()`
+    + `as.character()`
+    + `as.factor()`
+
+. . .
+
+```{r create_vector7}
+#| echo: true
+#| eval: false
+
+as.character(agevec)
+```
+
+. . .
+
+```{r create_vector8}
+#| eval: false
+
+as.numeric(gendervec)
+```
+
+## Recoding Variables
+
+[*`data types`*]{.big}
+
++ Vectors can have a factor type
+    + looks like a character vector
+    + but is actually a number under the hood (“labelled data”)
+
+. . .
+
+```{r create_vector9}
+#| eval: false
+
+genderfactorvec <- factor(gendervec, levels = c("male", "female", "other"))
+
+genderfactorvec
+```
+. . .
+
+```{r create_vector10}
+#| eval: false
+
+class(genderfactorvec)
+```
+
+. . .
+
+```{r create_vector11}
+#| eval: false
+
+as.numeric(genderfactorvec)
+```
+
+-->
+
+## Recoding Variables
+
+[*`create a vector`*]{.big}
+
++   there are functions to help you create the vector more efficiently:
+    1. `rep`: repeat the same thing multiple times
+    2. `seq`: create a sequence of numbers
+    3. `paste`: stick together character and numeric info
+    4. `sample`: for vectors where we want to randomly sample from some larger pool
+
+. . .
+
+```{r create_vector12}
+#| eval: false
+
+rep(1, 5)
+```
+
+. . .
+
+```{r create_vector12a}
+#| eval: false
+
+seq(from = 1997, to = 2025, by = 5)
+```
+
+. . .
+
+```{r create_vector13}
+#| eval: false
+
+paste("age", seq(from = 22, to = 30, by = 1), sep = "_")
+```
+
+
+
+## Recoding Variables
+
+[*`from vectors to dataframes`*]{.big}
+
++ One way to create a dataframe
+    + use `bind_cols()` to attach same-length vectors together as columns in a tibble
+    + Vectors can be different types
+
+. . .
+
+```{r create_dataframe}
+#| eval: false
+
+bind_cols(age = agevec, gender = gendervec)
+```
+
+## Exercises
+
+. . . 
+
+```{r exercises4}
+
+addh2 <- addh %>%
+  mutate(gender = factor(gender, levels = c("male", "female")))
+
+str(addh2$gender)
+
+vec1 <- as.character(addh2$gender)
+vec2 <- as.numeric(addh2$gender)
+```
+
++ convert the variable `gender` in addh to a factor variable
+
++ what happens if you try to convert the variable to character by using as.character after the factor conversion
+
++ what happens if you try to convert the variable to number by using as.numeric after the factor conversion
+
+
+## Recoding Variables
+
+[*`logical statements`*]{.big}
+
++ Recap: the main logical operators used in R are:
+    + $==$ (equal to)
+    + $!=$ (not equal to)
+    + $!$ (not)
+    + $<$ (less than)
+    + $<=$ (less than or equal to)
+    + $>$ (greater than)
+    + $>=$ (greater than or equal to)
+    + $\&$ (and)
+    + $|$ (or)
+
+
+## Recoding Variables
+### logical statements
+
++ logical statements are used to filter data, create new variables, and recode variables
+    + ifelse() function
+    
+
+```{r logical_statements}
+#| class: fragment
+
+addh2 <- addh %>%
+  mutate(
+    money_over_love = ifelse(money > love, 1, 0),
+    .after = id
+  )
+
+head(addh2, 5)
+```
+
+
+
+```{r logical_statements1}
+#| class: fragment
+
+addh3 <- addh %>%
+  mutate(
+    money_or_love = ifelse(
+      money == love,
+      "same",
+      ifelse(love > money, "love greater", "money greater")
+    ),
+    .after = id
+  )
+
+head(addh3, 5)
+```
+
+
+## Recoding Variables
+
+[*`logical statements`*]{.big}
+
++ use `case_when()` if there are 3 or more conditions for creating a variable
+
++ its syntax is the following:
+    + case_when(logical condition ~ value assigned, logical condition 2 ~ value assigned. . . .default = value if does not fit other logical conditions)
+
+
+```{r logical_statements2}
+#| class: fragment
+
+addh3 <- addh %>%
+  mutate(
+    money_or_love = case_when(
+      money == love ~ "same",
+      love > money ~ "love greater",
+      TRUE ~ "money greater"
+    ),
+    .after = id
+  )
+
+head(addh3, 5)
+```
+
+ 
+## Exercises
+
++ create a new variable called `money_or_love` in the `addh` dataset
+    + the variable should have the following categories:
+       + “extreme” if person either codes love or money as 9 or 10
+       + “lovegreater” if love > money
+       + “same” if love == money
+       + “moneygreater” if money > love
+       + NA if none of the above
+
+## Recoding Variables
+### create a binary vector
+
++ create a new variable called `high_income` in the `addh` dataset
+    + the variable should be 1 if income is above the 75th percentile and 0 otherwise
+    + use the `quantile()` function to find the 75th percentile of income
+
+```{r create_vector14}
+#| class: fragment
+
+income_75 <- quantile(addh$income)[4]
+
+addh2 <- addh %>%
+  mutate(high_income = ifelse(income > income_75, 1, 0))
+```
+
++ create a new variable called `income_level` in the `addh2` dataset
+    + the variable should have the following categories:
+       + “low” if income is below the 25th percentile
+       + “high” if income is above the 75th percentile
+       + “medium” if income is between the 25th and 75th percentiles
+       
+```{r create_vector15}
+#| class: fragment
+
+income_25 <- quantile(addh$income)[2]
+
+addh2 <- addh2 %>%
+  mutate(
+    income_level = case_when(
+      income <= income_25 ~ "low",
+      income >= income_75 ~ "high",
+      .default = "medium"
+    ),
+    .after = id
+  )
+
+head(addh2, 5)
+```
+
+## Looping
+
++   Loops are used to repeat a block of code multiple times
+    +   for loop
+    +   while loop
+    +   repeat loop
+    +   break and next statements
+    
++   Loops are useful for:
+    +   automating repetitive tasks
+    +   iterating over elements in a list or vector
+    +   creating new variables or dataframes
+    +   running simulations
+
+::: {.notes}
+
++   Loops can be slow in R
+    +   use vectorized functions whenever possible
+    +   use the apply family of functions
+    +   use the purrr package
+
+:::
+
+
+## For loops
+
++   The for loop is the most common type of loop in R
+    +   it repeats a block of code a specified number of times
+    +   it can go through every element of a vector
+        + syntax: `for (i in vector) {code to execute}`  
+    +   it can iterate through a set number of elements in a vector
+        + syntax: `for (i in 1:length(vector)) {code to execute}`
+        
++  The for loop is also useful for:
+    +   creating new variables
+    +   running simulations
+
+
+::: {.notes}
+
++ Steps to turn into a for loop:
+    1. Initialize a vector to store results- this time it will store an entire vector of results rather than one result. Can either do:
+        1.1 Initialize a vector of a certain length: vec <- vector(length = desired length)
+        1.2 Initialize an empty vector: vec <- c()
+    2. Use the for statement to tell the loop what to iterate through.
+    3. Copy and paste the code from the single-observation case into the "meat" part of the for loop sandwich
+    4. For step three, make sure to add indexing where appropriate
+
+:::
+
+## For loops --- sample means
+
++   Let us start with a simple example of a for loop
+    +   we will use the `addh` dataset to calculate the sample means of the variable `money`
+    +   we will take 1000 samples of size 800 with replacement and calculate the mean of each sample
+    
+```{r for_loop}
+#| class: fragment
+
+set.seed(123456)
+
+sample_means <- numeric(length = 1000)
+
+for (i in seq_along(sample_means)) {
+  samp <- sample(addh3$money, size = 800, replace = TRUE)
+  sample_means[i] <- mean(samp)
+}
+
+mean(sample_means)
+```
+
++ plot the distribution of sample means
+
+```{r for_loop1}
+#| class: fragment
+
+library(tidyverse)
+
+ggplot(as.data.frame(sample_means), aes(sample_means)) +
+  #geom_histogram(bins=30)+
+  geom_density() +
+  geom_vline(
+    xintercept = mean(sample_means),
+    color = "red",
+    linetype = "dashed"
+  ) +
+  labs(
+    title = "Distribution of Sample Means",
+    x = "Sample Means",
+    y = "Frequency"
+  ) +
+  theme_minimal()
+```
+
+## Write a function
+
++   Functions are blocks of code that can be reused
+    +   they take input arguments
+    +   they return output
+    +   they can be used in loops, apply functions, and other functions
+    +   they can be used to create new variables, summarize data, and run simulations
+    
++ the basic structure of a function is:
+    + `function_name <- function(input arguments) {code to execute}`
+    + `return(output)`
+
+
++ we now touch upon some basics
+
+::: {.notes}
+
+1. What problem is the function trying to solve?
+2. What are the function’s arguments in this case? (as a function’s inputs)
+3. What is the function doing with those arguments?
+4. What does the function return? What class is it? (check it using R)
+
+
+:::
+
+
+## functions - basics
+
++   Let us start with a simple function, z-score of a variable
+
+
+
+```{r function1}
+#| class: fragment
+
+zscore <- function(x) {
+  zscore <- (x - mean(x)) / sd(x)
+  return(zscore)
+}
+
+z_income <- zscore(addh$income)
+
+head(z_income, 10)
+```
+
+
++ more complicated example
+
+```{r function2}
+#| class: fragment
+
+sample_means <- function(data, n, reps) {
+  sample_means <- numeric(length = reps)
+
+  for (i in seq_along(sample_means)) {
+    samp <- sample(data, size = n, replace = TRUE)
+    sample_means[i] <- mean(samp)
+  }
+
+  return(sample_means)
+}
+```
+
+
+```{r function3}
+#| class: fragment
+
+age_sample_means <- sample_means(addh$age, 500, 1000)
+
+ggplot(as.data.frame(age_sample_means), aes(age_sample_means)) +
+  geom_density() +
+  geom_vline(
+    xintercept = mean(age_sample_means),
+    color = "red",
+    linetype = "dashed"
+  ) +
+  labs(
+    title = "Distribution of Sample Means",
+    x = "Sample Means of Age",
+    y = "Frequency"
+  ) +
+  theme_bw()
+```
+
+## Exercises
+
++ create a function that incorporate both sample means functions and the density plot as above
+
++ plot the distribution of sample means for the variable `love` in the `addh` dataset using the function
+
+
+## Lists and map functions from `purrr` library
+
++   Lists are a way to store multiple objects in R
+    +   can store vectors, dataframes, and other lists
+    +   can store objects of different classes
+
+
+```{r lists}
+#| class: fragment
+
+list1 <- list(1, c(8, 9, 10, 11, 12), data.frame(x = 1:10, y = 11:20))
+
+list1
+```
+
+
+## Lists and map functions from `purrr` library
+
++ The syntax is `map(mylist, myfunction, functionoptions)` and can change depending on the type of output for your analysis
+
++ calculate the length of each element in the list above
+
+
+
+```{r map_function}
+#| class: fragment
+
+library(purrr)
+
+map(list1, length)
+```
+
+
++ examine the class of each element in the list above
+
+. . .
+
+```{r map_function1}
+
+map(list1, class)
+```
+
++ do the summary of each element in the list above
+
+. . .
+
+```{r map_function2}
+
+map(list1, summary)
+```
+
+## Tidy approach to data
+
++   The tidy approach (@Wickham2014) to data is a way to organize data in a consistent format
+    + Each variable is a column; each column is a variable
+    + Each observation is a row; each row is an observation
+    + Each value is a cell; each cell is a single value
+
++   The tidy approach is useful for:
+    +   data manipulation
+    +   data visualization
+    +   data analysis
+    +   data sharing
+
++   The tidy approach is implemented in the `tidyr` package
+
+::: notes
+
++   The tidy approach is a way to organize data in a consistent format
+    +   it is based on the idea that data should be organized in a way that makes it easy to manipulate, visualize, and analyze
+    +   it is a way to make data more accessible and easier to work with
+
+
++  Five common problems for messy data
+    +   Column headers are values, not variable names
+    +   Multiple variables are stored in one column
+    +   Variables are stored in both rows and columns
+    +   Multiple types of observational units are stored in the same table
+    +   A single observational unit is stored in multiple tables
+    
+:::
+
+## Reshape the data
+
+### let us start from a "real" example
+
+```{r reshape_data}
+#| class: fragment
+
+library(tidyr)
+
+sleep_wide <- tibble(
+  name = c("KT", "Wincy", "Kelly"),
+  day1 = c(8, 7, 6),
+  day2 = c(4, 6, 5),
+  day3 = c(5, 4, 4),
+  day4 = c(7, 7, 6)
+)
+
+sleep_wide
+```
+
+```{r reshape_data1}
+#| class: fragment
+
+sleep_long <- sleep_wide %>%
+  pivot_longer(cols = day1:day4, names_to = "day", values_to = "sleep_hours")
+
+sleep_long
+```
+
+```{r reshape_data1a}
+#| class: fragment
+
+library(stringr)
+
+sleep_long %>%
+  mutate(day = stringr::str_sub(day, -1, -1))
+```
+
+
+::: {.notes}
+
++ separate(col = office_housing, into = c("office", "housing"), sep = "_")
+
++ sleep_united <- sleep_pls_unite %>% unite(col = "office", building, floor, sep = "")
+
+:::
+
+
+
+## Reshape the data
+
+### from long to wide
+
+```{r reshape_data2}
+#| class: fragment
+
+sleep_wide2 <- sleep_long %>%
+  pivot_wider(names_from = day, values_from = sleep_hours)
+
+sleep_wide2
+```
+
+## Execises
++   The data is in a wide format, with each day as a separate column
+    +   how to reshape the data to have each day as a separate row?
+    +   how to reshape the data to have each activity (sleep, play) as a separate column?
+    +   how to reshape the data to have each activity (sleep, play) as a separate row?
+
+```{r reshape_data3}
+#| class: fragment
+
+sleep_wide2 <- tibble(
+  name = c(rep("KT", 2), rep("Wincy", 2), rep("Kelly", 2)),
+  activity = rep(c("sleep", "play"), 3),
+  day1 = c(8, 2, 7, 2, 5, 3),
+  day2 = c(6, 1, 1, 3, 6, 2),
+  day3 = c(5, 1, 4, 1, 4, 3),
+  day4 = c(7, 2, 7, 3, 6, 2)
+)
+
+sleep_wide2
+```
+
+. . . 
+
++ how to express the data in a tidy format? 
+    + i.e. name, day, sleep, play as columns
+
+. . .
+
+```{r reshape_data4}
+#| class: fragment
+
+sleep_tidy <- sleep_wide2 %>%
+  pivot_longer(cols = day1:day4, names_to = "day", values_to = "hours") %>%
+  mutate(day = stringr::str_sub(day, -1, -1)) %>%
+  pivot_wider(names_from = activity, values_from = hours)
+
+sleep_tidy
+```
+
+## Export data - Recap
+
++   The last step in data analysis is to export the data
+    +   save the data in a format that can be shared with others
+    +   save the data in a format that can be read by other software
+    +   save the data in a format that can be used in other software
+    
++ Export command depends on the type of file you are trying to write to
+    + write.csv for CSV
+    + write.xslx for Excel 
+    + write.dta for Stata file
+    + etc
+    
++ By default, the new file will be saved in current working directory
+    + If you want to save it elsewhere, need to specify the path
+    
+. . .
+
+```{r export_data}
+write_csv(sleep_tidy, "sleep_tidy.csv")
+
+library(haven)
+write_dta(sleep_tidy, "c:/Users/KT/Downloads/sleep_tidy.dta")
+```
+
+## Basic merge
+
++ The typical merge in R is `left_join`
+    + keep all rows from “left” table even if observation doesn’t have matching row in “right” table
+    + this will drop observations from the joining data when they are not matched to the "left" table
+
+. . .
+
+```{r merge_data}
+
+sleep_tidy <- tibble(
+  name = c("KT", "Wincy", "Kelly", "May", "Mary"),
+  sleep = c(8, 7, 6, 5, 5),
+  play = c(2, 2, 3, 3, 2)
+)
+
+sleep_tidy2 <- tibble(
+  name = c("KT", "Wincy", "Kelly", "Peter", "Susan"),
+  study = c(3, 4, 5, 2, 3),
+  work = c(8, 10, 9, 6, 5)
+)
+
+sleep_tidy3 <- left_join(sleep_tidy, sleep_tidy2, by = "name")
+
+sleep_tidy3
+```
+
++ put different dataset on the left side of the join
+
+. . .
+
+```{r merge_data1}
+#| echo: true
+
+sleep_tidy4 <- left_join(sleep_tidy2, sleep_tidy, by = "name")
+
+sleep_tidy4
+```
+
+
+## Merge data
+
++ **inner join** Only keep rows of the first `data.frame` that have corresponding records in the second `data.frame`
+    + this will drop observations from both dataframes when they are not matched to each other
+
+. . . 
+
+```{r merge_data2}
+
+sleep_tidy5 <- inner_join(
+  sleep_tidy,
+  sleep_tidy2,
+  by = "name",
+  suffix = c("_sleep", "_work")
+)
+
+sleep_tidy5
+```
+
+. . .
+
++ **full join** Keep all rows from both dataframes, filling in missing values with NAs
+
+
+. . .
+
+```{r merge_data3}
+#| output-location: fragment
+
+sleep_tidy6 <- full_join(sleep_tidy, sleep_tidy2, by = "name")
+
+sleep_tidy6
+```
+
+## References {visibility="uncounted"}
+
+::: {#refs}
+:::
+
+
