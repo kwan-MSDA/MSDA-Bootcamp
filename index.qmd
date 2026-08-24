@@ -7,8 +7,10 @@ date: "`r Sys.Date()`"
 format:
   html:
     theme: cosmo
-    font-family: "Helvetica, Arial, sans-serif"
-    fontsize: 1.28em
+    css: styles.css
+    fontsize: 1.18em
+    linestretch: 1.6
+    embed-resources: true
     toc: false
     toc-depth: 2
     code-fold: true
