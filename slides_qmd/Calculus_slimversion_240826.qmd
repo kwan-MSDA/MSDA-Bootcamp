@@ -1,0 +1,567 @@
+---
+title: "A Very Slim Version of Calculus"
+subtitle: "MSDA - Summer Bootcamp 2026"
+author: "KT Wong"
+email: "kwanto@hku.hk"
+affiliation: "Faculty of Social Sciences, HKU"
+date: "`r format(Sys.time(), '%B %d, %Y')`"
+
+abstract: |
+ The materials in this topic are drawn from @Simon1994 and @Chiang2005
+
+bibliography: reference_bootcamp.bib
+
+format:
+  revealjs:
+    theme: clean_42_rb_revised5.scss
+    self-contained-math: true
+    embed-resources: true
+    #show-notes: false
+    multiplex: true
+    slide-number: c/t
+    preview-links: auto
+    margin: 0.03
+    height: 1080
+    width: 1920
+    max-scale: 2
+    smaller: false
+    scrollable: true
+    incremental: true
+    template-partials:
+     - title-slide.html
+    controls: true
+    touch: false
+    code-fold: true
+    code-overflow: scroll
+    code-line-numbers: true
+    mathjax: true
+
+execute:
+    cache: true
+
+jupyter: python3
+engine: knitr
+
+knitr:
+  opts_chunk:
+    echo: true
+    eval: true
+    message: false
+    warning: false
+    error: false
+    results: 'markup'
+    fig.show: 'hold'
+    fig-cap-location: bottom
+    fig-asp: 0.618
+
+lightbox: auto
+---
+
+
+## Outline
+
+1. Functions
+
+2. Limits
+
+3. Derivatives
+
+4. Optimization
+
+5. Higher-order derivatives
+
+6. Some common rules
+
+7. Partial derivatives
+
+8. Integrals
+
+9. Constraint optimization
+
+## Functions
+
+* What is a function?
+    + domain
+    + range
+    + mapping
+    
+* What is not a function?
+
+## Limits
+
+* What is a limit?
+    +  idea of a slope
+    
+* Does it always exist?
+
+* Is it unique?
+
+## Derivatives
+
+:::: {.columns}
+
+::: {.column width="50%"}
+
+* What is Derivative?
+    + slope of a function
+    + rate of change
+
+* why learning it?
+    + optimization
+    + economics
+    + statistics
+    + machine learning
+    + deep learning
+
+:::
+
+:::: {.column width="50%"}
+
+* reminder about notation
+    + $\frac{df(x)}{dx}$
+    + $\frac{df}{dx}$
+    + $f'(x)$
+    + $\frac{d}{dx}f(x)$
+    + $\frac{d}{dx}f$
+
+:::
+
+::::
+
+## Optimization
+
+* How to find the maximum or minimum of a function?
+    + let us think about a quadratic function, $y=ax^2+bx+c$
+
+<br>
+
+* How to find out the maximum or minimum of a function?
+    + first-order condition
+    + critical points
+
+
+
+## Higher-order derviatives
+
++ second-order derivative
+    + concave 
+    + convex
+    + inflection point
+
++ third-order derivative
++ n-th order derivative
+
++ local vs global maximum/minimum
+
+::: {.notes}
+
+* Optimizing functions. Taking the first derivative
+and setting it equal to 0 gives us either a minimum or
+maximum. The second derivative allows us to discern between
+the two.
+
+* higher-order derivatives can be used to construct useful approximations (i.e. Taylor’s
+approximation) to complex functions that are important in
+understanding the properties of various statistical estimators.
+
+:::
+  
+## Some common rules of derivatives
+
+:::: {.columns}
+
+::: {.column width="50%"}
+
+* Basic Rules to calculate Derivative
+    + power rule
+        + $\frac{dx^n}{dx}=nx^{n-1}$
+    + product rule
+        + $\frac{d}{dx}f(x)g(x)=f'(x)g(x) +f(x)g'(x)$
+    + quotient rule
+        + $\frac{d}{dx}\frac{f(x)}{g(x)}=\frac{f'(x)g(x)-f(x)g'(x)}{(g(x))^2}$
+    
+* Special cases
+    + derivative of a constant is zero
+    + derivative of a linear function is the slope 
+
+:::
+
+::: {.column width="50%"}
+
+* Special cases for composite functions and some typical functions
+    + chain rule
+        + $\frac{d}{dx}f(g(x))=f'(g(x))g'(x)$
+    + special rules for logs and exponents
+        + $\frac{d}{dx}\ln(x)=\frac{1}{x}$
+        + $\frac{d}{dx}e^{x}=e^{x}$
+    + special rules for sine, cosine, tangent functions
+        + $\frac{d}{dx}\sin(x)=\cos(x)$
+        + $\frac{d}{dx}\cos(x)=-\sin(x)$
+        + $\frac{d}{dx}\tan(x)=\sec^2(x)$ where $\sec(x)=\frac{1}{\cos(x)}$
+
+:::
+
+::::
+
+::: {.notes}
+
++ $\frac{d}{dx}\ln(f(x))=\frac{f'(x)}{f(x)}$
++ $\frac{d}{dx}e^{f(x)}=f'(x)e^{f(x)}$
+
+::: 
+
+## Exercises:
+
+1. $\frac{d}{dx}(6x^3+5)$
+2. $\frac{d}{dx}\sqrt{(5x^3+3x+5)}$
+3. let $h(x)=2x+3; g(x)=5x^2+3x$, let $f(x)=h(x)*g(x)$, $\frac{df(x)}{dx}$
+4. let $p(x)=\frac{h(x)}{g(x)}$, $\frac{dp(x)}{dx}$
+5. $\frac{d(g(h(x)))}{dx}$
+6. $\frac{d}{dx}\ln(x^6+8)$
+7. $\frac{d}{dx}e^{6x+3}$
+8. $\frac{d}{dx}x^3e^{x}$
+  
+## Partial derviatives
+
+* What is a partial derivative?
+    + Let $z=f(x,y)$
+    + $\frac{\partial f}{\partial x}$
+    + $\frac{\partial f}{\partial y}$
+    
+* Exercise:
+    + let $f(x,y)=x^2 y^3+3x+2y$
+    + find $\frac{\partial f}{\partial x}$ and $\frac{\partial f}{\partial y}$   
+
+
+## Integrals
+
+* What is an integral?
+    + area under the curve
+    + anti-derivative
+    
+* Notation
+    + $\int^b_a f(x)dx$
+    + $\int_X f(x)dx$
+    
+* We are most interested in the concept rather than actual (hand) calculation of the integrals
+
+## Constraint optimization
+
+* What is constraint optimization?
+    + optimization with constraints
+    + Lagrange multiplier
+    
+* The idea is to optimize a function subject to some constraints
+
+* The problem can be stated as:
+    + maximize $f(x,y)$ subject to $g(x,y)=0$
+    + minimize $f(x,y)$ subject to $g(x,y)=0$
+ 
+## Constraint optimization
+
++ let us learn some economics
+
++ in economics,  a consumer faces the problem of maximizing her utility subject to the income constraint:
+
+. . .
+
+$$
+\max_{x_1,x_2} u(x_1,x_2) \quad s.t. \; p_1x_1 + p_2x_2=y
+$$
+
++ we can visualize and "solve" the problem using graph
+
+## Constraint optimization
+
++ the optimal solution is at the point where the budget line is tangent to the indifference curve
+
+. . .
+
+$$
+\frac{MU_1}{MU_2}=\frac{p_1}{p_2}
+$$
+
+
+$\quad$ where $MU_1$ and $MU_2$ are the marginal utilities of good 1 and good 2 respectively
+
++ we can solve this problem using the "identity"
+
+. . .
+
+$$
+u(x_1, x^U_2(x_1))=\bar{u}
+$$
+
++ we need to solve two equations simultaneously
+
+
+
+## Constraint optimization
+
++ the Lagrange multiplier is a method to solve the optimization problem with constraints
+
++ the Lagrange function is defined as:
+
+. . .
+
+$$
+L(x_1,x_2,\lambda)=u(x_1,x_2)+\lambda(y-(p_1x_1+p_2x_2))
+$$
+
++ the first-order conditions are
+
+. . .
+
+$$
+\begin{align*}
+\frac{\partial u}{\partial x_1} - \lambda p_1 &=0 \\
+\frac{\partial u}{\partial x_2} - \lambda p_2 &=0 \\
+y-(p_1x_1+p_2x_2) &=0
+\end{align*}
+$$
+
+## Constraint optimization
+
++ the Lagrange multiplier could be interpreted as the "marginal utility of income" in our example
+
++ in economics, the Lagrange multiplier could be interpreted as the "shadow price" of the constraint
+    + e.g. the Lagrange multiplier could be interpreted as the "marginal cost" in production optimization
+
++ Reminder: the Lagrange multiplier could be zero, positive or negative
+
++ the Lagrange multiplier could be used in very general optimization problems
+
+. . .
+
+$$
+\max_{x_1, \dots, x_n} f(x_1,\dots, x_n) \quad s.t. \; g_i(x_1,\dots, x_n)=c_i, \quad i=1,\dots,m
+$$
+
+## Constraint optimization {visibility="hidden"}
+
++ Inequality-Constrained Optimization
+
+. . .
+
+$$
+\max_{x_1, \dots, x_n} f(x_1,\dots, x_n) \quad s.t. \; g_i(x_1,\dots, x_n)\leq c_i, \quad i=1,\dots,m
+$$
+  
+
++ let us think about a (very) simple situation first
+
+. . .
+
+$$
+\max_{x} f(x) \quad s.t. \; x \geq 0
+$$
+
++ if $x^*>0$, what the necessary condition should be?
+
++ the FOC for the problem is
+
+. . .
+
+$$
+\frac{df}{dx}(x^*)
+\begin{cases}
+\leq 0 & \text{if } x^*=0 \\
+=0 & \text{if } x^*>0
+\end{cases}
+$$
+
+## Constraint optimization {visibility="hidden"}
+
++ Here we have the following theorem
+
+. . .
+
+::: {.callout-important icon=false}
+
+## Theorem
+
+Suppose that $f: \mathcal{R} \rightarrow \mathcal{R}$ is a $C^1$ function. Then, if $x^*$ maximizes $f(x)$ for all $x \geq 0$,
+then $x^*$ satisfies
+
+$$
+\begin{align*}
+\frac{df}{dx}(x^*) &\leq 0\\
+\ x^* \frac{df}{dx}(x^*) &= 0 \\
+x^* & \geq 0
+\end{align*}
+$$
+
+:::
+
+## Constraint optimization {visibility="hidden"}
+
++ when we form the Lagrange function, we have
+
+. . .
+
+$$
+L(x,\lambda)=f(x)+\lambda x
+$$
+
++ the FOC is
+
+. . .
+
+$$
+\begin{align*}
+\frac{dL}{dx}(x^*, \lambda^*) &= \frac{df}{dx}(x^*) + \lambda^*=0 \\
+\frac{dL}{d\lambda}(x^*, \lambda^*) &= x^* \geq 0 \\
+\lambda^* &\geq 0, \; \lambda^* \frac{dL}{d \lambda}(x^*, \lambda^*)=0
+\end{align*}
+$$
+
++ the first and second equation is the same as the FOC for the equality-constrained optimization problem
++ the third equation is the complementary slackness condition
+
++ these FOCs are called `Kuhn-Tucker conditions`
+
+
+## Constraint optimization {visibility="hidden"}
+### Mixed Constraints Problem
+
++ the mixed constraints problem is
+
+::: fragment
+
+\begin{gather*}
+\max_{x_1, \dots, x_n} f(x_1,\dots, x_n) \\
+s.t. \; g_i(x_1,\dots, x_n)\geq c_i, \quad i=1,\dots,m \\
+h_j(x_1,\dots, x_n)=d_j, \quad j=1,\dots,k
+\end{gather*}
+
+:::
+
+::: {.notes}
+
++ the Kuhn-Tucker conditions are necessary conditions for the optimization problem
+
++ the Kuhn-Tucker conditions are also sufficient under some conditions
+    + e.g. the objective function is concave
+    + the constraint functions are convex
+    + the constraint qualification is satisfied
+
++ Kuhn and Tucker (1951) are two economists who independently derived the conditions
+    + the conditions are also called the Karush-Kuhn-Tucker conditions
+    + the conditions are also called the KKT conditions
+ 
+:::
+
+## Constraint optimization {visibility="hidden"}
+
+::: {.callout-important icon=false}
+
+## Theorem of Kuhn-Tucker Conditions 
+
+Suppose that $f: R^N \rightarrow R$, $g: R^n \rightarrow R^m$, and $h: R^n \rightarrow R^k$ are $C^1$ functions. 
+
+Let $x^*$ be a local maximum of $f(x)$ subject to the constraints $g(x)\geq c$ and $h(x)=d$.
+
+Then there exist $\lambda^* \in R^m$ and $\mu^* \in R^k$ such that
+
+$$
+\begin{align*}
+\frac{df}{dx}(x^*) + \lambda^* \frac{dg}{dx}(x^*) + \mu^* \frac{dh}{dx}(x^*) &=0 \\
+\lambda^* \geq 0, \; \lambda^* \cdot (g(x^*)-c) &=0 \\
+\mu^* \geq 0, \; \mu^* \cdot (h(x^*)-d) &=0
+\end{align*}
+$$
+
+:::
+
+
+## Constraint optimization {visibility="hidden"}
+
++ Exercise 1 --- Kuhn-Tucker Conditions
+
+. . .
+
+$$
+\max_{x_1, x_2} f(x_1, x_2)=x_1 \quad s.t. \; x_1^3+x_2^2 \leq 0
+$$
+
++ Exercise 2 --- Kuhn-Tucker Conditions
+
+. . .
+
+$$
+\max_{x, u} U(x,y) \quad s.t. \; p_x x+p_y y \leq M \text{ and } \; x,y \geq 0
+$$
+
+::: {.notes}
+
++ $L(x, y, \lambda)=U(x,y)+\lambda_M(M-p_xx-p_yy) +\lambda_x x + \lambda_y y$
+
++ the FOCs are
+
+$$
+\begin{align*}
+\frac{\partial L}{\partial x} &= \frac{\partial U}{\partial x} - \lambda_x - \lambda_M p_x =0 \\
+\frac{\partial L}{\partial y} &= \frac{\partial U}{\partial y} - \lambda_y - \lambda_M p_y =0 \\
+\frac{\partial L}{\partial \lambda_M} &= M-p_xx-p_yy \geq 0 \\
+\frac{\partial L}{\partial \lambda_x} &= x \geq 0 \\
+\frac{\partial L}{\partial \lambda_y} &= y \geq 0 \\
+\lambda_M(M-p_xx-p_yy) &=0 \\
+\lambda_x x &=0 \\
+\lambda_y y &=0
+\end{align*}
+$$
+
++ the last three equations are the complementary slackness conditions
+:::
+
+## Constraint optimization {visibility="hidden"}
+
++ Exercise 3 --- Kuhn-Tucker Conditions
+
++ Consider a situation with multiple linear constraints
+    + a consumer faces the typical budget constraint, but also has a coupon constraint 
+    + Suppose we have $U = xy^2$, $M = 100, p_x = p_y = 1, C = 120, c_x = 2, c_y = 1$ and $x, y ≥ 0$
+    
+    + Solve the solutions
+
+::: {.notes}    
+
++ the Lagrangian can be written: $L = xy^2 + λ_1[100 − x − y] + λ_2[120 − 2x − y]$
+
++ the FOCs are
+
+$$
+\begin{align*}
+\frac{∂L}{∂x} &= y^2 − λ_1 − 2λ_2 \leq 0 \\
+\frac{∂L}{∂y} &= 2xy − λ_1 − λ_2 \leq 0 \\
+\frac{∂L}{∂λ_1} &= 100 − x − y \geq 0 \\
+\frac{∂L}{∂λ_2} &= 120 − 2x − y \geq 0 \\
+x L_x &= 0 \\
+y L_y &= 0 \\
+λ_1(100 − x − y) &= 0 \\
+λ_2(120 − 2x − y) &= 0
+\end{align*}
+$$
+
++ Note that we can dispense with thinking about corner solution here
+    + given the utility function, it should be clear that positive amounts of both goods need to be consumed
+    + check the situations for each of the two budget constraints
+
++ let the first budget constraint be binding but not the second
+    + the solution is $x = 100/3, y = 200/3, λ_1 = 4000/9
+    + but this violates the second budget constraint
+    + so it is not a solution
+    
++ let the second budget constraint be binding but not the first
+    + the solution is $x = 20, y = 80, λ_2 = 3200$
+    + this is a solution even though the first budget constraint is binding
+    + the second constraint holds with equality, but there is no value in relaxing the constraint
+    + Thus, this is both the solution when only the second constraint binds, and the solution when both constraints bind
+
+:::
+
+
+## References {visibility="uncounted"}
+
+::: {#refs}
+:::
