@@ -9006,7 +9006,7 @@
     "href": "slides_qmd/Linear_Algebra_slimversion_240826.html#outline",
     "title": "Linear Algebra",
     "section": "Outline",
-    "text": "Outline\n\n\npython:         C:/Users/KT/Documents/.virtualenvs/bootcamp_python/Scripts/python.exe\nlibpython:      C:/Users/KT/AppData/Local/r-reticulate/r-reticulate/pyenv/pyenv-win/versions/3.12.10/python312.dll\npythonhome:     C:/Users/KT/Documents/.virtualenvs/bootcamp_python\nversion:        3.12.10 (tags/v3.12.10:0cc8128, Apr  8 2025, 12:21:36) [MSC v.1943 64 bit (AMD64)]\nArchitecture:   64bit\nnumpy:          C:/Users/KT/Documents/.virtualenvs/bootcamp_python/Lib/site-packages/numpy\nnumpy_version:  2.5.2\n\nNOTE: Python version was forced by RETICULATE_PYTHON\n\n\n\nVectors\nMatrix operations\nLinear Transformation\nSystem of Linear Equations\nVector Spaces\nEigenvalues and Eigenvectors\nApplications for calculus"
+    "text": "Outline\n\nVectors\nMatrix operations\nLinear Transformation\nSystem of Linear Equations\nVector Spaces\nEigenvalues and Eigenvectors\nApplications for calculus"
   },
   {
     "objectID": "slides_qmd/Linear_Algebra_slimversion_240826.html#vectors",

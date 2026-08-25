@@ -60,6 +60,11 @@ lightbox: auto
 
 ```{r setup}
 #| echo: false
+#| message: false
+#| warning: false
+#| error: false
+#| results: hide
+
 library(here)
 
 # Select Python before Reticulate initializes.
@@ -76,7 +81,7 @@ library(reticulate)
 # virtualenv_create("bootcamp_python")
 # virtualenv_install("bootcamp_python", c("numpy", "matplotlib"))
 
-py_config()
+#py_config()
 ```
 
 1. Vectors
@@ -108,6 +113,9 @@ py_config()
 #| out-height: 5in
 #| results: hide
 #| output-location: column
+#| message: false
+#| warning: false
+#| error: false
 
 import numpy as np
 import matplotlib.pyplot as plt
