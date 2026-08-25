@@ -188,7 +188,7 @@ understanding the properties of various statistical estimators.
 
 ::: {.column width="50%"}
 
-* Special cases for composite functions and some typical functions
+* An important rule for composite functions and some special functions
     + chain rule
         + $\frac{d}{dx}f(g(x))=f'(g(x))g'(x)$
     + special rules for logs and exponents
