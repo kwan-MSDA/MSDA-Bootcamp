@@ -31,7 +31,7 @@ execute:
 
 2. [Linear Algebra](slides/Linear_Algebra_slimversion_240826.html){download="slides/Linear_Algebra_slimversion_240826.html"}
 
-3. [Introduction to R](slides/R_introduction_v5_240826.html){download="slides/R_introduction_v5_240826.html"}
+3. [Introduction to R](slides/R_introduction_v5_260826.html){download="slides/R_introduction_v5_260826.html"}
 
 4. [Data Visualization](slides/Data Visualization with R_v3_240826.html){download="slides/Data Visualization with R_v3_240826.html"}
 
