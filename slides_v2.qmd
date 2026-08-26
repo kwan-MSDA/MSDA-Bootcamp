@@ -33,7 +33,7 @@ execute:
 
 3. [Introduction to R](slides/R_introduction_v5_260826.html){download="slides/R_introduction_v5_260826.html"}
 
-4. [Data Visualization](slides/Data Visualization with R_v3_240826.html){download="slides/Data Visualization with R_v3_240826.html"}
+4. [Data Visualization](slides/Data Visualization with R_v3_260826.html){download="slides/Data Visualization with R_v3_260826.html"}
 
 5. [Data Wrangling](slides/Data Wrangling with R_v4_240826.html){download="slides/Data Wrangling with R_v4_240826.html"}
 

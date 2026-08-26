@@ -22,8 +22,8 @@ format:
       }
     self-contained-math: true
     embed-resources: true
-    show-notes: false
-    multiplex: false
+    #show-notes: false
+    multiplex: true
     slide-number: c/t
     preview-links: auto
     margin: 0.03
@@ -456,19 +456,34 @@ ggplot(mpg, aes(displ, hwy)) +
 ggplot(mpg, aes(displ, hwy)) +
   geom_point() +
   geom_smooth(span = 0.3)
+
 ```
+
+::: {.notes}
+
++ span=0.3 means that the smoother will use 30% of the data to fit each local regression
+
++ lowess is a non-parametric regression method that fits multiple regressions in local neighborhoods of the data
+
++ The default method for geom_smooth() is loess for small datasets and gam for large datasets
+  + gam is a generalized additive model that fits a smooth curve to the data using splines
+
+:::
+
+
 
 ## ggplot2 --- Boxplots and related plots
 
 + Boxplots, violin and jittered points are useful for visualizing the distribution of a continuous variable
 
++ here we use [ggpubr](https://cran.r-project.org/web/packages/ggpubr/index.html) - a package for creating publication-ready plots
 
 ```{r ggplot2f}
 #| output-location: fragment
 #| fig-height: 8
 #| out-height: 8in
 
-library(ggpubr)
+library(ggpubr) # ggpubr is a package that provides functions for creating publication-ready plots
 
 boxplot <- ggplot(mpg, aes(drv, hwy)) +
   geom_boxplot()
@@ -479,7 +494,10 @@ violin <- ggplot(mpg, aes(drv, hwy)) + geom_violin()
 jitter <- ggplot(mpg, aes(drv, hwy)) +
   geom_jitter()
 
+# use ggarrange() to arrange the three plots in a single row
+
 ggarrange(boxplot, violin, jitter, ncol = 3)
+
 ```
 
 ::: {.notes}
@@ -512,7 +530,16 @@ ggplot(mpg, aes(class, hwy)) +
     y = "Highway fuel economy (miles per gallon)"
   ) +
   coord_flip() +
-  theme_economist()
+  theme_economist() +
+  theme(
+    plot.title = element_text(size = 16, face = "bold", hjust = 0.5),
+    axis.title.x = element_text(size = 12, margin = margin(t = 10)),
+    axis.title.y = element_text(size = 12, margin = margin(r = 10)),
+    axis.text.x = element_text(size = 10, margin = margin(t = 5)),
+    axis.text.y = element_text(size = 10, margin = margin(r = 5))
+  ) +
+  scale_y_continuous(breaks = seq(10, 50, by = 5))
+
 ```
 
 
@@ -529,7 +556,26 @@ ggplot(mpg, aes(class, hwy)) +
 #| fig-width: 8
 
 ggplot(mpg, aes(class)) +
-  geom_bar()
+  geom_bar() +
+  labs(
+    title = "Number of cars by type",
+    x = "Car type",
+    y = "Count"
+  ) +
+  theme_economist() +
+  theme(
+    plot.title = element_text(size = 16, face = "bold", hjust = 0.5),
+    axis.title.x = element_text(size = 14, margin = margin(t = 10)),
+    axis.title.y = element_text(size = 14, margin = margin(r = 10)),
+    axis.text.x = element_text(size = 12, margin = margin(t = 5)),
+    axis.text.y = element_text(size = 12, margin = margin(r = 5))
+  ) +
+  scale_y_continuous(breaks = seq(0, 100, by = 10)) +
+  coord_flip()
+
+
+
+
 ```
 
 :::
@@ -541,7 +587,26 @@ ggplot(mpg, aes(class)) +
 #| fig-width: 8
 
 ggplot(mpg, aes(class, fill = drv)) +
-  geom_bar()
+  geom_bar() +
+  labs(
+    title = "Number of cars by type and drive train",
+    x = "Car type",
+    y = "Count",
+    fill = "Type of drive train"
+  ) +
+  theme_economist() +
+  theme(
+    plot.title = element_text(size = 16, face = "bold", hjust = 0.5),
+    axis.title.x = element_text(size = 14, margin = margin(t = 10)),
+    axis.title.y = element_text(size = 14, margin = margin(r = 10)),
+    axis.text.x = element_text(size = 12, margin = margin(t = 5)),
+    axis.text.y = element_text(size = 12, margin = margin(r = 5)),
+    legend.title = element_text(size = 14, face = "bold"),
+    legend.text = element_text(size = 12)
+  ) +
+  scale_y_continuous(breaks = seq(0, 100, by = 10)) +
+  coord_flip()
+
 ```
 
 :::
