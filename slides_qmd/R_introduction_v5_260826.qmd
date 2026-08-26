@@ -1,0 +1,1430 @@
+---
+title: "R - An Introduction"
+subtitle: "MSDA - Summer Bootcamp 2026"
+author: "KT Wong"
+email: "kwanto@hku.hk"
+affiliation: "Faculty of Social Sciences, HKU"
+date: "`r format(Sys.time(), '%B %d, %Y')`"
+
+abstract: |
+    The materials in this topic are drawn from @QSS, @Wickham2023, @Wickham2019 and @Wickham2016 as well as other sources, including Princeton Sociology Methods Camp 2023. The materials are for educational purposes only.
+ 
+bibliography: reference_bootcamp.bib
+format:
+  revealjs:
+    theme: clean_42_rb_revised5.scss
+    self-contained-math: true
+    embed-resources: true
+    show-notes: false
+    multiplex: false
+    slide-number: c/t
+    preview-links: auto
+    margin: 0.03
+    height: 1080
+    width: 1920
+    max-scale: 2
+    smaller: false
+    scrollable: true
+    incremental: true
+    template-partials:
+      - title-slide.html
+    controls: true
+    touch: false
+    code-fold: true
+    code-overflow: scroll
+    code-line-numbers: true
+      
+execute:
+  echo: false
+  eval: false
+  warning: false
+  message: false
+  error: false
+  cache: false
+  
+
+jupyter: python3
+engine: knitr
+
+knitr:
+  opts_chunk:
+    echo: true
+fig-cap-location: bottom
+fig-width: 9
+fig-height: 5
+#fig-dpi: 300
+lightbox: auto
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(warning = FALSE, message = FALSE)
+
+library(tidyverse)
+
+```
+
+## Introduction
+
++   R is a programming language and software environment for statistical computing and graphics
+    +   widely used in academia and industry
+    +   for data analysis, statistical modeling, and visualization
+    +   for machine learning, data mining, and big data analysis
+    +   for reproducible research and scientific computing
+    
+    
++   R is an implementation of the S programming language
+    + S was developed at Bell Laboratories by John Chambers and colleagues
+    + S was designed for data analysis and graphics
+    + S was the precursor to the commercial statistical software package S-PLUS
+
+## Introduction
+
++   R was created by Ross Ihaka and Robert Gentleman at the University of Auckland, New Zealand
+    + named partly after the first names of the first two R authors and partly as a play on the name of S
+    + a GNU project,  a free software movement initiated by Richard Stallman in 1983
+    + freely available under the GNU General Public License
+    + a large number of packages available
+
+## Introduction
+
++ [tidyverse](https://www.tidyverse.org/) is a collection of R packages designed for data science
+    + tidyverse packages share an underlying design philosophy, grammar, and data structures
+    + tidyverse packages are designed to work together
+
++  focus on the tidyverse
+    + mainly because it is easier to understand
+    + do most data manipulation we need in social science research with these tools
+    
++   A good reference for tidyverse is the book by @Wickham2019
+    + [R for Data Science](https://r4ds.had.co.nz/)
+
+## Introduction
+
++   for quick reference, visit Posit Primers on [Data Science](https://rstudio.cloud/learn/primers)
+      + R Basics
+      + Transform Tables
+      + Visualize Data
+  
++  for more specific topics, visit [Data Science](https://rstudio.cloud/learn/intermediate)
+      + Data Wrangling
+      + Data Visualization
+      + Modelling
+
++   we use cover some base R functions first, then move on to the tidyverse
+
+## Basic Arithmetic
+
++ R can be regarded as a calculator
+  + it recognizes all of the standard arithmetic operators
+
+. . .
+
+```{r}
+#| echo: true
+
+# Basic arithmetic operations in R
+
+1+2 
+
+6-7 
+
+5/2 
+
+2^3
+
+2+5*2^3
+
+3*(4+5) 
+
+(3+4)*5
+
+sqrt(4)
+
+```
+
+
++ modulo operators (integer division & remainder)
+
+. . .
+
+```{r}
+#| echo: true
+
+# Modulo operators in R
+
+5 %/% 2  # integer division
+5 %% 2   # remainder
+
+100 %/% 60 ## How many whole hours in 100 minutes?
+
+100 %% 60 ## How many minutes are left over?
+
+
+```
+
+::: notes
+
++ In RStudio, you can start a new script using the dropdown menu File > New File > R Script
+
++ use your R script to save finalized commands
+  + type in the console to practice and debug, then use the script to save what worked
+  
++ R scripts allow you to save comments, or annotations, to your code
+  +  anything following the # symbol in a script will not be treated like an R command—essentially, R will skip over it
+
+:::
+
+
+## Logic
+
++ R can also be used for logical operations
+  + it recognizes the standard logical operators
+
+. . .
+
+```{r}
+#| echo: true
+
+1 > 2
+
+1 > 2 & 1 > 0.5 # The "&" stands for "and"
+
+1 > 2 | 1 > 0.5 # The "|" stands for "or" (not a pipe a la the shell)
+
+isTRUE (1 < 2)
+
+```
+
++ Here are the [detailed list](https://stat.ethz.ch/R-manual/R-devel/library/base/html/Logic.html) of logical operators in R
+  + `&` and `|` are used for element-wise logical operations
+  + `&&` and `||` are used for short-circuit logical operations
+    + e.g. `1 > 2 && 1 > 0.5` will return `FALSE` without evaluating the second condition
+  + `!` is used for negation (i.e. "not")
+  + `==`, `!=`, `<`, `<=`, `>`, and `>=` are used for comparison
+
++ Here is further information about logical vectors in R
+  + [Logical vectors](https://stat.ethz.ch/R-manual/R-devel/library/base/html/logical.html) are vectors that contain only `TRUE`, `FALSE`, or `NA` values
+  + Logical vectors are often used for subsetting data frames or matrices
+
+## Logic
+
++ Order of precedence
+  + logic statements follow a strict order of precedence
+  + logical operators (`>`, `==`, etc) are evaluated before Boolean operators (`&` and `|`)
+    + failure to recognise this can lead to unexpected behaviour
+
+. . .
+
+```{r}
+
+1 > 0.5 & 2
+
+```
+
+. . .
+
+```{r}
+#| echo: true
+
+1 > 0.5 & 1 > 2
+
+
+```
+
++ Lesson: explicit about each component of your logic statement(s)
+
+::: notes
+
++ 2 is converted into `as.logical(2)` 
+
++ `as.logical(2)` is `TRUE` because it is not zero
+
+:::
+
++ Negation: `!`
+  + this will come in very handy when we start filtering data objects
+  
+. . .
+
+```{r}
+#| echo: true
+
+is.na(1:10)
+!is.na(1:10)
+
+Negate(is.na)(1:10)
+
+```
+
+## logical operators
+
++ Value matching: `%in%`
+   + whether an object is contained within (i.e. matches one of) a list of items, use `%in%`
+   
+. . .
+
+```{r}
+#| echo: True
+
+4 %in% 1:10
+
+4 %in% 5:10
+
+```
+
+
++ There's no equivalent "not in" command
+  + but we can create one
+
+. . .
+
+```{r}
+
+`%ni%` = Negate(`%in%`) ## The backticks (`) help to specify functions.
+
+4 %ni% 5:10
+
+```
+
+
+
++ Evaluation
+  + use two equal signs for logical evaluation
+
+. . .
+
+```{r}
+#| echo: true
+
+1 == 1 ## This does.
+
+1 != 2 ## Note the single equal sign when combined with a negation
+
+```
+
+::: notes
+
++ Evaluation caveat: Floating-point numbers
+
++ What do you think will happen if we evaluate `0.1 + 0.2 == 0.3`?
+
++ 0.1 + 0.2 == 0.3
+
++ **Problem:** Computers represent numbers as binary (i.e. base 2) floating-points
+  + More [here](https://floating-point-gui.de/basic/).
+    + Fast and memory efficient, but can lead to unexpected behaviour. 
+
++ Similar to the way that standard decimal (i.e. base 10) representation can't precisely capture certain fractions
+  + e.g. $\frac{1}{3} = 0.3333...$
+
++ **Solution:** Use `all.equal()` for evaluating floats (i.e  fractions)
+  + all.equal(0.1 + 0.2, 0.3)
+
+:::
+
+
+## Assignment operators
+
++ Assignment: `<-` or `=`
+  + use `<-` for assignment, but `=` is also acceptable
+  + `<-` is the preferred operator in R, but `=` is more common in other programming languages
+
+. . .
+
+```{r}
+#| echo: true
+
+a <- 10 + 5
+a
+```
+
++ nevertheless, we can use `=` for assignment
+
+. . .
+
+```{r}
+#| echo: true
+
+b = 10 + 10 
+
+b
+```
+
+::: notes
+
++ an arrow can point in the other direction too (i.e. `->`)
+
++ the following code chunk is equivalent to the previous one, although used much less frequently
+
+```{r}
+#| echo: true
+
+10 + 5 -> a
+
+```
+
++ Note that the assigned object *must* be on the left with "="
+
+:::
+
+
+## Help
+
++ Use `help` or `?` to get help on a function
+  + e.g. `?mean` will give you the documentation for the `mean()` function
+  
++ For more information on a (named) function or object in R, consult the "help" documentation. For example:
+
+. . .
+
+```{r}
+#| echo: true
+
+help(plot)
+
+?plot 
+
+```
+
++ Comments in R are demarcated by `#`. 
+- Hit `Ctrl+Shift+c` in RStudio to (un)comment whole sections of highlighted code
+
+
++ Vignettes
+  + for many packages, you can also try the `vignette()` function, which will provide an introduction to a package and it's purpose through a series of helpful examples
+    + e.g. `vignette("ggplot2")` will give you a detailed introduction to the `ggplot2` package
+
+::: notes
+
++ see the *Examples* section at the bottom of the help file?
+  + You can run them with the `example()` function
+  + Try it: `example(plot)`
+  
+:::
+
+## Object-oriented programming (OOP) in R
+
++ An object is a data structure that contains data and metadata about the data
+
++ R is an object-oriented programming language
+  + everything in R is an object
+  + objects can be manipulated and transformed using functions
+  + functions are also objects in R
+
+
++ R has several fundamental object classes that determine how data is organized and used
+  + vector
+    + the most basic object class in R
+    + a one-dimensional array that can contain elements of the same type
+    + can be created using the `c()` function
+    + There are four basic types of vectors in R
+      + characters, numerics, logicals, and factors
+
+::: notes
+
++ characters (i.e. strings)
++ numerics (i.e. numbers)
++ logicals (i.e. TRUE/FALSE)
++ factors (i.e. categorical variables)
+
+integer (e.g., c(1L, 2L))
+complex (e.g., c(1+2i, 3+4i))
+raw (for bytes, less common)
+
++ An object is a data structure that contains data and metadata about the data
+  + Metadata is information about the data, such as its type, length, and attributes
+  + Objects can be created using functions such as `c()`, `data.frame()`, and `matrix()`
+
++ Factor: Used for categorical data, storing levels as integers with labels. Example: factor(c("low", "high", "low")).
+
++ Tibble: A modern version of a data frame (from the tibble package), with enhanced printing and stricter behavior
+
+:::
+
+## Object-oriented programming (OOP) in R
+
++ R has several fundamental object classes that determine how data is organized and used
+  + matrix
+    + a two-dimensional array that can contain elements of the same type
+    + can be created using the `matrix()` function
+  + data frame
+    + a two-dimensional array that can contain elements of different types
+    + can be created using the `data.frame()` function
+  + list
+    + a collection of objects that can contain elements of different types
+    + can be created using the `list()` function
+    + lists can also contain other lists
+
++ R has other object classes as well - e.g. arrays, functions, and environments
+
+::: notes
+
++ Function: Objects that represent executable code (e.g., function(x) x + 1).
+
++ S3 and S4 Objects: These are used in R’s object-oriented systems:
+  + S3: Informal, attaches a class attribute to an object (e.g., lm() output has class "lm").
+  + S4: More formal, with defined slots and stricter rules (e.g., objects from packages like Bioconductor).
+
++ Environment: Objects that store variable bindings (e.g., .GlobalEnv for the global workspace).
+
++ Special Classes: Less common classes like ts (time series), formula (e.g., y ~ x), or package-specific classes (e.g., ggplot objects)
+
++ Functions are also objects in R
+
++ factors are stored as integers under the hood, but have a "label" attribute that maps the integers to the corresponding category names
+    + factors are useful for statistical modeling and data visualization
+    + they allow R to treat categorical variables appropriately
+
+:::
+
+## Object-oriented programming (OOP) in R
+
++ Each object class has its own set of rules ("methods") for determining valid operations
+  + e.g. you can perform many of the same operations on matrices and data frames
+  + But there are some operations that only work on a matrix, and vice versa
+  + At the same time, you can (usually) convert an object from one type to another
+  
+. . .
+
+```{r}
+#| echo: true
+#| class: fragment
+
+x = c(1, 2, 3)
+class(x)
+
+x=as.character(x) 
+class(x)
+
+```
+
+
+```{r d}
+#| echo: true
+#| class: fragment
+
+## Create a small data frame called "d".
+
+d = data.frame(x = 1:2, y = 3:4) 
+
+d
+
+```
+
+
+```{r m}
+#| echo: true
+#| class: fragment
+
+## Convert it to (i.e. create) a matrix call "m".
+
+m = as.matrix(d)
+
+m
+
+```
+
+::: notes
+
++ R can store information as an object with a name of our choice
+  + Once we have created an object, we just refer to it by name
+  + we are using objects as “shortcuts” to some piece of information or data
+
++ there are many different *types* (or *classes*) of objects
+
++ arithmetic operations like addition and subtraction cannot be used for character strings
+
++ Most obviously, there are actually _multiple_ OOP frameworks in R
+  + **S3**, **S4**, **R6**...
+  + Hadley Wickham's "Advanced R" provides a [very thorough overview](https://adv-r.hadley.nz/oo.html) of the main ones
+
++ But for our purposes, it is much more helpful to think about 
+  (a) the shared characteristics of these different systems and 
+  (b) the broad implications of OOP in R.
+    +  What we lose in detail, we hopefully gain in perspective
+    +  But do read Hadley's book if you get the chance
+      + It's incredibly helpful (as are all his books)
+  
+:::
+
+## More on matrices
+
+[*`Matrices in R`*]{.big}
+
++   A matrix is a two-dimensional array
+    +   all elements must be of the same type
+    +   can be created using the matrix() function
+    +   can be created from a vector using the dim() function
+
+. . .
+
+```{r create_matrix}
+#| eval: false
+
+matrix1<- matrix(1:15, nrow=3, ncol=5)
+
+matrix1
+
+```
+
+
+## More on matrices
+
+[*`Matrices in R - some basic operations`*]{.big}
+
+. . .
+
+```{r create_matrix2}
+#| eval: false
+
+dim(matrix1)
+
+```
+
+. . .
+
+```{r create_matrix1}
+#| eval: false
+
+colnames(matrix1)<- c("A", "B", "C", "D", "E")
+rownames(matrix1)<- c("X", "Y", "Z")
+
+matrix1
+
+```
+
+. . .
+
+```{r create_matrix3}
+#| eval: false
+
+matrix1[2,3]
+
+```
+
+. . .
+
+```{r create_matrix4}
+#| eval: false
+
+matrix1[2,]
+
+
+```
+
+## More on matrices
+
+[*`Matrices in R - some basic operations`*]{.big}
+
+. . .
+
+```{r create_matrix5}
+#| echo: true
+#| eval: false
+
+A<- matrix(1:6, nrow=2, ncol=3)
+B<- matrix(7:12, nrow=3, ncol=2)
+
+
+print(A %*% B)
+
+print(B %*% A)
+
+```
+
+```{r}
+#| echo: true
+#| code-summary: alternative multiplication operator
+
+C<- matrix(1:4, nrow=2, ncol=2)
+D<- matrix(5:8, nrow=2, ncol=2)
+
+print(C * D) ## element-wise multiplication
+
+```
+
+. . .
+
+```{r create_matrix6}
+#| echo: true
+#| eval: false
+#| code-summary: transpose of a matrix
+
+print(t(A))
+
+```
+
+## More on matrices
+
+[*`Matrices in R - some basic operations`*]{.big}
+
+. . . 
+
+```{r create_matrix7}
+#| eval: false
+
+C<- matrix(c(2,5,3,1,3,6,2,9,5), nrow=3, ncol=3)
+print(solve(C))
+
+```
+
+. . .
+
+```{r create_matrix8}
+#| eval: false
+
+print(det(C))
+
+```
+. . .
+
+```{r create_matrix9}
+#| eval: false
+
+print(eigen(C))
+
+```
+
+
+
+## Object class, type, and structure
+
++ Use the `class`, `typeof`, and `str` commands if you want understand more about a particular object
+
+. . .
+
+```{r}
+#| echo: True
+
+d = data.frame(x = 1:2, y = 3:4) 
+
+class(d) ## Evaluate its class
+
+typeof(d) ## Evaluate its type
+
+str(d) ## Show its structure
+
+```
+
++ we can inspect/print an object directly in the console
+  + e.g. Type `d`
+
+
++ The `View()` function is also very helpful
+  + this is the same as clicking on the object in the RStudio *Environment* pane
+  + e.g. `View(d)`
+  
+::: notes
+
++ PS — Confused by the fact that `typeof(d)` returns "list"? See [here](https://stackoverflow.com/questions/45396538/typeofdata-frame-shows-list-in-r).
+
+:::
+
+## changing data types
+
++ we might change the data type of a variable for some data analysis
+    +   as.character()
+    +   as.numeric()
+    +   as.factor()
+    +   as.integer()
+    +   as.logical()
+
+```{r}
+#| class: fragment
+
+agevec<- c(24, 22, 25, 28, 23, 20)
+
+class(agevec)
+
+```
+
+```{r}
+#| class: fragment
+#| eval: false
+#| code-summary: convert to character
+
+agevec<- as.character(agevec)
+
+class(agevec)
+
+```
+
+
+```{r}
+#| class: fragment
+#| eval: false
+#| code-summary: another example of changing data type
+
+a<- c(28, TRUE)
+
+class(a)
+
+```
+
+```{r}
+#| class: fragment
+#| eval: false
+#| code-summary: convert to 
+
+as.numeric(a)
+
+class(a)
+
+```
+
+
+```{r}
+#| class: fragment
+#| eval: false
+#| code-summary: another example of changing data type
+
+
+b<- c(1,2,3, TRUE, FALSE)
+
+as.numeric(b)
+
+```
+
+
+## changing data types
+
+```{r}
+#| class: fragment
+#| eval: false
+#| code-summary: another example of changing data type
+
+gendervec <- c("male", "female", "other", "female", "female", "male")
+
+gendervec
+
+class(gendervec)
+
+```
+
+```{r}
+#| class: fragment
+#| eval: false
+#| code-summary: convert to factor
+
+as.numeric(gendervec)
+
+```
+
+
+```{r}
+#| class: fragment
+#| eval: false
+#| code-summary: convert to factor
+
+genderfactorvec<- as.factor(gendervec)
+
+class(genderfactorvec)
+
+typeof(genderfactorvec)
+
+```
+
++ Vectors can have a factor type
+    + looks like a character vector
+    + but is actually a number under the hood (“labelled data”)
+
+
+
+## Global environment
+
++ The global environment is where all objects are stored
+  + you can see the global environment in the RStudio *Environment* pane
+  + you can also see the global environment by typing `ls()` in the console
+  
++ Working with multiple objects
+  + you can create multiple objects in the global environment
+  + you can manipulate and transform these objects using functions
+  + you can also use the `rm()` function to remove objects from the global environment
+  
++ R's ability to keep multiple objects in memory at the same time is a huge plus when it comes to effective data work 
+  +  e.g. We can copy an existing data frame, or create new one entirely from scratch - either will exist happily with our existing objects in the global environment
+
+```{r}
+#| echo: true
+#| eval: false
+#| code-summary: create two data frames
+#| class: fragment
+
+d1 = data.frame(x = 1:10, y = rnorm(10))
+d2 = data.frame(x = rnorm(10), y = runif(10))
+
+```
+
+
+## Everything has a name
+
++ Every object in R has a name
+  + you can use the name to refer to the object in the global environment
+  + object names are case sensitive
+  
++ The name of our object must follow certain restrictions
+  + it cannot begin with a number
+  + it should not contain spaces
+  + special characters such as % and $ should not be used
+
++ Reserved words
+  + we can assign objects to different names
+  + However, there are a number of special words that are "reserved" in R
+    + These are are fundamental commands, operators and relations in base R that you cannot (re)assign, even if you wanted to
+    + See [here](http://stat.ethz.ch/R-manual/R-devel/library/base/html/Reserved.html) for a full list
+
+. . .
+
+```{r}
+#| echo: false
+#| eval: false
+#| include: false
+
+
+if 
+else 
+while 
+function 
+for
+TRUE 
+FALSE 
+NULL 
+Inf 
+NaN 
+NA 
+
+```
+
+::: notes
+
++ you can also use the name to refer to the object in a function
+
++ function itself is an object
+  + e.g. `mean` is a function that calculates the mean of a vector
+  + we can assign it to a new name, e.g. `average = mean`
+  + but we cannot assign it to a reserved word, e.g. `if = mean`
+  + this will lead to an error
+
+:::
+
+
+## Everything has a name
+
++ Semi-reserved words
+  + there is a class of words and strings that are called "semi-reserved"
+
+. . .
+
+```{r}
+#| echo: true
+my_vector = c(1, 2, 5)
+my_vector
+
+```
+
++ what happens if you type the following?
+
+. . .
+
+```{r}
+#| echo: true
+
+c = 4
+c(1, 2 ,5)
+
+```
+
++ R is "smart" enough to distinguish between the variable `c = 4` that we created and the built-in function `c()` that calls for concatenation
+
++ However, R won't always be able to distinguish between conflicting definitions
+
+. . .
+
+```{r}
+#| echo: true
+
+pi
+pi = 2
+pi
+
+```
+
++ **Bottom line:** Don't use (semi-)reserved characters!
+
+::: notes
+
++ these are named functions or constants (e.g. `pi`) that you can re-assign if you really wanted to... but already come with important meanings from base R
++ The `c()` function is a good example of a semi-reserved character
++ Arguably the most important semi-reserved character is `c()`, which we use for concatenation
+    + i.e. creating vectors and binding different objects together
+
+:::
+
+
+## Namespace conflicts
+
++ R has a large number of packages, each with its own set of functions
+  + sometimes, different packages have functions with the same name
+  + this can lead to "namespace conflicts" where R doesn't know which function to use
+  
++ e.g. Look what happens we load the `dplyr` package
+
+. . .
+
+```{r}
+#| echo: true
+
+library(dplyr)
+
+```
+
+
++ The messages that you see about some object being *masked from 'package:X'* are warning you about a namespace conflict
+  + e.g. Both `dplyr` and the `stats` package have functions named "filter" and "lag"
+
++ Whenever a namespace conflict arises, the most recently loaded package will gain preference
+  + so the `filter()` function now refers specifically to the `dplyr` variant
+  + what if we want the `stats` variant? 
+
+::: notes
+
++ The potential for namespace conflicts is a result of the OOP approach
+  + Also reflects the fundamental open-source nature of R and the use of external packages
+  + People are free to call their functions whatever they want, so some overlap is only to be expected
+
++ Temporarily use `stats::filter()`
+  + Permanently assign `filter = stats::filter`
+
+:::
+
+## Namespace conflicts
+
+Two common ways to resolve namespace conflicts in R:
+
+1. Use `package::function()`
+  + We can explicitly call a conflicted function from a particular package using the `package::function()` syntax
+
+. . .
+
+```{r}
+#| echo: true
+
+stats::filter(1:10, rep(1, 2))
+
+```
+
+. . .
+
+```{r}
+#| echo: true
+
+dplyr::starwars ## Print the starwars data frame from the dplyr package
+
+scales::comma(c(1000, 1000000)) ## Use the comma function, which comes from the scales package
+
+```
+
+  
+2. Assign `function = package::function`
+  + A more permanent solution is to assign a conflicted function name to a particular package
+  + This will hold for the remainder of your current R session, or until you change it back
+    
+. . .
+
+```{r, eval=F}
+#| echo: true
+
+filter = stats::filter ## Note the lack of parentheses
+filter = dplyr::filter ## Change it back again
+
+```
+
+::: notes
+
++ + We can also use `::` for more than just conflicted cases
+  + e.g. Being explicit about where a function (or dataset) comes from can help add clarity to our code
+  + e.g. `dplyr::filter(iris, Species=="virginica")` is clearer than just `filter(iris, Species=="virginica")`
+
++ Another good rule of thumb is that you want to load your most important packages last
+  + e.g. Load the tidyverse after you've already loaded any other packages
+
++ User-side namespace conflicts
+  + A final thing to say about namespace conflicts is that they don't only arise from loading packages
+  + They can arise when users create their own functions with a conflicting name
+    + e.g. If I was naive enough to create a new function called `c()`
+    
+:::
+
+## Indexing
+
++ Indexing is a way to access specific elements of an object
+  + e.g. we can access specific elements of a vector, list, or data frame using indexing
+  
++ There are two main ways to index objects in R
+  + Option 1: `[]`
+    + This is the most common way to index objects in R
+    + It works for vectors, matrices, data frames, and lists
+    + It can be used to access specific elements of an object, or to subset an object
+  + Option 2: `$`
+    + This is a special operator that is used to access specific elements of a list or data frame by name
+    + It is often used to access columns of a data frame by name
+
+::: notes
+
++ Indexing is done using square brackets `[]`
+
++ Indexing can be done using either numeric or logical vectors
+  + Numeric indexing refers to the position of the element in the object
+  + Logical indexing refers to a logical vector that indicates which elements to keep
+  
++ Indexing can also be done using names
+  + e.g. we can access specific elements of a data frame using the column names 
+
+:::
+
+## Indexing
+
++ use `[]` to index objects that we create in R
+
+. . .
+
+```{r}
+#| echo: true
+
+a = 1:10
+a[4] ## Get the 4th element of object "a"
+a[c(4, 6)] ## Get the 4th and 6th elements
+
+```
+
++ It also works on larger arrays (vectors, matrices, data frames, and lists)
+
+. . .
+
+```{r}
+#| echo: true
+
+library(dplyr)
+starwars[1, 1] ## Show the cell corresponding to the 1st row & 1st column of the data frame
+
+```
+
++ What does `starwars[1:3, 1]` give you?
+
++ What does `starwars[-1, 1]` give you?
+
++ what if we want to get the 1st column of the data frame?
+
+. . .
+
+```{r}
+#| echo: true
+#| eval: false
+
+starwars[, 1] ## Get the 1st column of the starwars data frame
+```
+
++ we can use `$` to access the columns of a data frame by name
+
+. . .
+
+```{r}
+#| echo: true
+#| eval: false
+
+starwars$name ## Get the "name" column of the starwars data frame
+
+```
+
+
+
+::: notes
+
++ What if you want to get the names of the columns in a data frame?
+. . .
+
+```{r}
+#| echo: false
+#| eval: false
+
+names(starwars) ## Get the names of the columns in the starwars data frame
+
+```
+
+
++ [1] Indexing in R begins at 1. Not 0 like some languages (e.g. Python and JavaScript)
+
+:::
+
+
+## Indexing
+
++ **lists** are a more complex type of array object in R
+  + they can contain a random assortment of objects that don't share the same class
+    + e.g. a list can contain a vector, a data frame, and a matrix
+    + or even lists of lists
+  + lists are very flexible and can be used to store any type of object
+
++ The relevance to indexing is that lists require two square brackets `[[]]` to index the parent list item and then the standard `[]` within that parent item
++ This is different from the single square brackets that we use to index vectors, matrices, and data frames
+  + The double square brackets are used to extract the object itself, rather than a subset of the list
+
+## Indexing
+
++ Let's look at an example of a list to see how it works in practice
+  + We'll use the `my_list` object, which contains three objects: a character string, a numeric vector, and a data frame
+
++ As before, we have two options for indexing lists
+
++ Option 1: `[[ ]]`
+  + use double square brackets to index a list
+  + this will return the object itself, rather than a subset of the list
+  + e.g. `my_list[[1]]` will return the first object in the list
+  + we can also use `my_list[[2]][3]` to return the third element of the second object 
+
+. . .
+
+```{r my_list}
+#| echo: true
+
+my_list = list(a = "hello", b = c(1,2,3), c = data.frame(x = 1:5, y = 6:10))
+
+my_list[[1]] 
+
+my_list[["a"]]
+
+my_list[[2]][3]
+
+```
+
+## Indexing
+
++ Option 2: `$` 
+  + lists provide a nice segue to our other indexing operator: `$`
+  + Let's continue with the `my_list` example
+
+. . .
+
+```{r}
+#| echo: true
+
+my_list
+
+my_list$a
+
+my_list$c$x
+```
+
++ The `$` form of indexing also works (and in the manner that you probably expect) for other object types in R
+  + In some cases, you can also combine the two index options
+
+. . .
+
+```{r}
+#| echo: true
+
+my_list$b[3]
+
+starwars$name[1]
+
+```
+
+
+::: notes
+
++ note some key differences between the output from this example and that of our previous `starwars[1, 1]` example
+  + What are they?
+  + Hint: Apart from the visual cues, try wrapping each command in `str()`
+
++ The last thing that I want to say about `$` is that it provides another way to avoid the "object not found" problem that we ran into with our earlier regression example
+  + e.g. `lm(y ~ x)` will not work, but `lm(d$y ~ d$x)` will work
+
+. . .
+
+```{r, error=T}
+#| echo: true
+
+d = data.frame(x = 1:10, y = 11:20)
+
+lm(y ~ x) 
+
+lm(d$y ~ d$x) 
+
+```
+
+:::
+
+## cleaning up
+
++ Use `rm()` to remove objects from the global environment
+  + e.g. `rm(a)` will remove the object `a` from the global environment
+
+. . .
+
+```{r}
+a = "hello"
+b = "world"
+rm(a, b)
+```
+
++ use `rm(list = ls())` to remove all objects in your working environment (except packages)
+  + Better just to start a new R session
+  
+::: notes
+
++ but this is [frowned upon](https://www.tidyverse.org/articles/2017/12/workflow-vs-script/)
+
+:::
+
+
++ Detaching packages is more complicated
+  + there could be many cross-dependencies (i.e. one package depends on, and might even automatically load, another package)
+  + e.g. `detach(package:dplyr)`
+
++ still, better just to restart your R session
+  
+
+## Removing plots
+
++ Use `dev.off()` to remove the current plot
+  + e.g. `dev.off()` will remove the current plot from the plotting window
+  
++ Use `graphics.off()` to remove all plots
+
+. . .
+
+```{r, eval=F}
+#| echo: true
+
+plot(1:10)
+dev.off()
+```
+
++ RStudio has convenient buttons for clearing your workspace environment and removing (individual) plots
+
+## Data files: Loading and saving
+
++ R can read and write data files in various formats
+  + e.g. CSV, Excel, SPSS, Stata, etc.
+  + we will focus on CSV files for now
+
++ working directory
+  + R will look for files in the current working directory
+  + you can check the current working directory using `getwd()`
+  + you can change the working directory using `setwd()`
+  + e.g. `setwd("path/to/your/directory")`
+
+## Data files: Loading and saving
+
++ go to [here](https://raw.githubusercontent.com/kwan-MSDA/MSDA-Bootcamp/main/dataset/UNpop.csv){download="UNpop.csv"} to download a sample dataset
+
++ use `read.csv()` to read a CSV file into R
+  + e.g. `unpop <- read.csv("UNpop.csv")`
+  + this will read the CSV file and create a data frame called `unpop`
+
+. . .
+
+```{r}
+#| echo: true
+
+unpop <- read.csv("Downloads/UNpop.csv")
+
+```
+
+. . .
+
+```{r}
+#| echo: true
+
+class(unpop)
+
+```
+
+
++ RData can be used to save and load R objects
+  + e.g. `save(unpop, file = "unpop.RData")` will save the `unpop` data frame as an RData file
+  + you can load the RData file using `load("unpop.RData")`
+
++ RData files are useful for saving and loading multiple objects at once
+
+. . .
+
+```{r}
+#| echo: true
+
+save(unpop, file = "unpop.RData")
+
+```
+
+
+::: notes
+
++ a data frame is a special type of list where each element is a vector of the same length
+  + data frames are used to store tabular data, where each column represents a variable and each row represents an observation
+
++ R will save the entire workspace as .RData in the working directory without an explicit file name and automatically load it next time we launch  
+    + This is not recommended practice because the .RData file is invisible to users of many operating systems and R will not tell us what objects are loaded unless we explicitly issue the ls() function
+
+:::
+
+
+## Data files: Loading and saving
+
++ useful functions for exploring data frames
+  + `names()` to view the names of the columns in a data frame
+  + `nrow()` to view the number of rows in a data frame
+  + `ncol()` to view the number of columns in a data frame
+  + `dim()` to view the dimensions of a data frame (number of rows and columns)
+  + `str()` to view the structure of a data frame
+  + `head()` to view the first few rows of a data frame
+  + `tail()` to view the last few rows of a data frame
+  
+
++ use `write.csv()` to write a data frame to a CSV file
+  + e.g. `write.csv(unpop, "UNpop.csv")`
+  + this will write the `unpop` data frame to a CSV file called `UNpop.csv`
+
+## Data files: Loading and saving
+
++ load data in other formats
+
++ R can read and write data files in various formats, including SPSS, Stata, and Excel
+
++ `foreign` package can read and write data files in SPSS, Stata, and other formats
+  + it is part of the base R installation and is widely used for reading and writing data files
++ `haven` package is designed to be fast and efficient
+  + it can read and write data files in SPSS, Stata, and SAS formats
+  + it is part of the tidyverse and is designed to be fast and efficient
++ `readr` package can read and write data files in CSV, TSV, and other text formats
+  + it is part of the tidyverse and is designed to be fast and efficient
++ `readxl` package can read and write Excel files
++ `writexl` package can write data frames to Excel files
+
+. . .
+
+```{r}
+#| echo: true
+
+#install.packages("haven")
+
+library("haven")
+
+```
+
+. . .
+
+```{r}
+#| echo: true
+
+# Read Stata file
+url_stata<-"https://github.com/kwan-MSDA/MSDA-Bootcamp/blob/main/dataset/UNpop.dta?raw=true"
+unpop_stata<- read_dta(url_stata)
+
+```
+
+
+## References {visibility="uncounted"}
+
+::: {#refs}
+:::
+
