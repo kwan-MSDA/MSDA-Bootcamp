@@ -15,8 +15,8 @@ format:
     theme: clean_42_rb_revised5.scss
     self-contained-math: true
     embed-resources: true
-    show-notes: false
-    multiplex: false
+    #show-notes: false
+    multiplex: true
     slide-number: c/t
     preview-links: auto
     margin: 0.03
@@ -495,6 +495,8 @@ class(x)
 
 x=as.character(x) 
 class(x)
+typeof(x)
+
 
 ```
 
@@ -917,6 +919,8 @@ NA
 
 ```{r}
 #| echo: true
+
+
 my_vector = c(1, 2, 5)
 my_vector
 
@@ -1104,7 +1108,8 @@ a[c(4, 6)] ## Get the 4th and 6th elements
 ```{r}
 #| echo: true
 
-library(dplyr)
+data("starwars", package = "dplyr")
+
 starwars[1, 1] ## Show the cell corresponding to the 1st row & 1st column of the data frame
 
 ```
@@ -1121,7 +1126,8 @@ starwars[1, 1] ## Show the cell corresponding to the 1st row & 1st column of the
 #| echo: true
 #| eval: false
 
-starwars[, 1] ## Get the 1st column of the starwars data frame
+starwars[, 1] ## Get the 1st column of the starwar s data frame
+
 ```
 
 + we can use `$` to access the columns of a data frame by name
@@ -1243,6 +1249,7 @@ starwars$name[1]
 
 ```{r, error=T}
 #| echo: true
+#| eval: false
 
 d = data.frame(x = 1:10, y = 11:20)
 
@@ -1316,7 +1323,7 @@ dev.off()
 
 ## Data files: Loading and saving
 
-+ go to [here](https://raw.githubusercontent.com/kwan-MSDA/MSDA-Bootcamp/main/dataset/UNpop.csv){download="UNpop.csv"} to download a sample dataset
++ go to <a href="https://raw.githubusercontent.com/kwan-MSDA/MSDA-Bootcamp/main/dataset/UNpop.csv" download="UNpop.csv">here</a> to download a sample dataset
 
 + use `read.csv()` to read a CSV file into R
   + e.g. `unpop <- read.csv("UNpop.csv")`

@@ -14,7 +14,7 @@ format:
    revealjs:
     theme: clean_42_rb_revised5.scss
     embed-resources: true
-    multiplex: false
+    multiplex: true
     slide-number: c/t
     preview-links: auto
     height: 1080
@@ -504,8 +504,8 @@ $$
 + Each $n \times k$ matrix $A$ can be identified with a function $f(x) = Ax$ that maps $x \in \mathbb R ^k$ into $y = Ax \in \mathbb R ^n$
     + these kinds of functions have a special property: they are *linear*
 
-+ A function $f \colon \mathbb R ^k \to \mathbb R ^n$ is called *linear* if
-    + for all $x, y \in \mathbb R$ and all scalars $\alpha, \beta$, we have
++ A function $f \colon \mathbb R^k \to \mathbb R ^n$ is called *linear* if
+    + for all $x, y \in \mathbb R^k$ and all scalars $\alpha, \beta$, we have
 
 ::: {.fragment}
 

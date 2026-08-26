@@ -6,3 +6,5 @@
 /.quarto/
 .qmd
 **/*.quarto_ipynb
+
+/.luarc.json
