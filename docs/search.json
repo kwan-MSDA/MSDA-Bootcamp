@@ -10498,5 +10498,257 @@
     "title": "Data Visualization with R",
     "section": "References",
     "text": "References\n\n\nImai, Kosuke, and Nora Webb Williams. 2022. Quantitative Social Science : An Introduction in Tidyverse. Princeton University Press.\n\n\nScott, James. 2021. “Data Science in r: A Gentle Introduction.” https://bookdown.org/jgscott/DSGI/.\n\n\nWickham, Hadley. 2016. Ggplot2 : Elegrant Graphics for Data Analysis. Second edition. Use r! Springer.\n\n\nWickham, Hadley. 2019. Advanced r. Second edition. The r Series. CRC Press.\n\n\nWickham, Hadley, and Garrett Grolemund. 2023. R for Data Science : Import, Tidy, Transform, Visualize, and Model Data. Second edition. O’Reilly."
+  },
+  {
+    "objectID": "slides_qmd/Data Wrangling with R_v4_260826.html#introduction",
+    "href": "slides_qmd/Data Wrangling with R_v4_260826.html#introduction",
+    "title": "Data Wrangling with R",
+    "section": "Introduction",
+    "text": "Introduction\n\nData wrangling is the process of transforming and cleaning data to make it suitable for analysis\n\nit is an essential step in the data analysis process\nit involves a variety of tasks, including:\n\nloading data\nexploring data\nsubsetting data\nmanipulating data\nrecoding variables\nreshaping data\n\n\nwe use the tidyverse package - a collection of packages for data manipulation and visualization\n\nthe core of tidyverse package for data manipulation is the dplyr package\nalso use the tidyr package for reshaping data later"
+  },
+  {
+    "objectID": "slides_qmd/Data Wrangling with R_v4_260826.html#loading-data",
+    "href": "slides_qmd/Data Wrangling with R_v4_260826.html#loading-data",
+    "title": "Data Wrangling with R",
+    "section": "Loading Data",
+    "text": "Loading Data\n\nThe first step in any data analysis is to load the data into R\n\nthe data can be in a variety of formats\nthe most common formats are CSV, Excel, and SPSS\nthe readr package is part of the tidyverse and is used to read data into R\n\n\n\n\n\n\n\n\nCode\n#install.packages(\"tidyverse\")\nlibrary(tidyverse)\n\n\n# check your working directory\ngetwd()\n\n## read data file\n\naddh &lt;- read_csv(\n  \"https://raw.githubusercontent.com/kwan-MSDA/Bootcamp_2024/main/dataset/addhealthfake.csv\"\n)"
+  },
+  {
+    "objectID": "slides_qmd/Data Wrangling with R_v4_260826.html#add-health-dataset",
+    "href": "slides_qmd/Data Wrangling with R_v4_260826.html#add-health-dataset",
+    "title": "Data Wrangling with R",
+    "section": "Add health dataset",
+    "text": "Add health dataset\n\nHere are some details about the dataset\n\nThe National Longitudinal Study of Adolescent to Adult Health (Add Health)\na longitudinal study of a nationally representative sample of adolescents in grades 7-12 in the United States during the 1994-95 school year (Wave I)\nThe study has followed the same individuals into young adulthood (Wave IV) and beyond (Wave V, Wave VI)\n\nWave I: 1994-1995; Wave II: 1996; Wave III: 2001-2002; Wave IV: 2008-2009; Wave V: 2016-2018; Wave VI: 2022-2025\n\nrespondents’ social, economic, psychological, and physical well-being\n\nalong with contextual data on the family, neighborhood, community, school, friendships, peer groups, and romantic relationships\n\nstudy developmental trajectories of health and risk behaviors throughout the life course\n\nThe dataset used here is a simulated version of the Add Health dataset\n\n3000 observations and 11 variables\n\n\n\n\nexplanation of the 11 variables in the dataset\n\nid: unique identifier for each respondent\nage: age of respondent at Wave IV\ngender\nlove: importance of love in a relationship (1-10)\nmoney: importance of money in a relationship (1-10)\nnocheating: importance of no cheating in a relationship (1-10)\ndebt: debt status (nodebt, lowdebt, highdebt)\nincome: annual income in USD\npaypercent: percentage of dates paid for by respondent"
+  },
+  {
+    "objectID": "slides_qmd/Data Wrangling with R_v4_260826.html#data-manipulation",
+    "href": "slides_qmd/Data Wrangling with R_v4_260826.html#data-manipulation",
+    "title": "Data Wrangling with R",
+    "section": "Data Manipulation",
+    "text": "Data Manipulation\n\nThe dplyr package is part of the tidyverse and is used for data manipulation\ndplyr functions include:\n\nfilter(): subset rows\nselect(): subset columns\nmutate(): create new variables\nsummarise(): summarize data\narrange(): sort data\ngroup_by(): group data\n\nvery important function: pipe operator %&gt;% from the magrittr package\n\nallows you to chain functions together\n\nbasic structure of the dplyr functions\n\nfunction(dataframe, operation 1 to perform, opertaion 2 to perform,…)"
+  },
+  {
+    "objectID": "slides_qmd/Data Wrangling with R_v4_260826.html#data-manipulation-1",
+    "href": "slides_qmd/Data Wrangling with R_v4_260826.html#data-manipulation-1",
+    "title": "Data Wrangling with R",
+    "section": "Data Manipulation",
+    "text": "Data Manipulation\ndplyr - select\n\nit can be used with operations, like\n\nstarts_with()\nends_with()\ncontains()\nmatches()\netc…\n\n\n\n\n\nCode\npay_variables &lt;- select(addh, contains(\"pay\"))\n\nhead(pay_variables, 5)"
+  },
+  {
+    "objectID": "slides_qmd/Data Wrangling with R_v4_260826.html#data-manipulation-2",
+    "href": "slides_qmd/Data Wrangling with R_v4_260826.html#data-manipulation-2",
+    "title": "Data Wrangling with R",
+    "section": "Data Manipulation",
+    "text": "Data Manipulation\ndplyr - filter\n\nfilter rows based on conditions\n\n\n\n\nCode\nnodebt_income &lt;- filter(addh, debt == \"nodebt\" & income &gt;= 10000)\n\nnrow(nodebt_income)\n\n\n\n\n\n\nCode\nnomissing_income &lt;- filter(addh, !is.na(income)) # only keep obs that are NOT missing\n\nnrow(nomissing_income)\n\nnomissing_income2 &lt;- drop_na(addh, income) # alternate function from tidyr\n\nnrow(nomissing_income2)\n\n\n\n#nomissing_income &lt;- drop_na(addh, income) # alternate function from tidyr"
+  },
+  {
+    "objectID": "slides_qmd/Data Wrangling with R_v4_260826.html#data-manipulation-3",
+    "href": "slides_qmd/Data Wrangling with R_v4_260826.html#data-manipulation-3",
+    "title": "Data Wrangling with R",
+    "section": "Data Manipulation",
+    "text": "Data Manipulation\ndplyr - arrange\n\nsort data based on one or more columns\ntask: find the two observations who think money is extremely important for a relationship (10 on money) but who pay for the fewest percentage of dates (paypercent)\n\n\n\n\nCode\naddh %&gt;%\n  filter(money == 10) %&gt;%\n  arrange(paypercent) %&gt;%\n  head(2)\n\n\n\n\n\n\nCode\naddh %&gt;%\n  filter(money == 10) %&gt;%\n  arrange(paypercent, gender)"
+  },
+  {
+    "objectID": "slides_qmd/Data Wrangling with R_v4_260826.html#data-manipulation-4",
+    "href": "slides_qmd/Data Wrangling with R_v4_260826.html#data-manipulation-4",
+    "title": "Data Wrangling with R",
+    "section": "Data Manipulation",
+    "text": "Data Manipulation\ndplyr - mutate\n\ncreate new variables added to the dataset\ntask: add a variable with the average rating for nocheating, money, and love’s importance for a relationship (sum divided by 3) and another variable that logs that rating\n\n\n\n\nCode\naddh &lt;- mutate(\n  addh,\n  rateavg = (love + money + nocheating) / 3,\n  rateavglog = log(rateavg)\n)\n\nhead(addh, 5)\n\n\n\nCaution\n\nusing the same column name or same object name, you overwrite the original object or column"
+  },
+  {
+    "objectID": "slides_qmd/Data Wrangling with R_v4_260826.html#data-manipulation-5",
+    "href": "slides_qmd/Data Wrangling with R_v4_260826.html#data-manipulation-5",
+    "title": "Data Wrangling with R",
+    "section": "Data Manipulation",
+    "text": "Data Manipulation\ndplyr - group_by and summarise\n\ngroup data by one or more variables and then summarize the data according to the groups\ntask: find the average “not cheating importance” for different gender\n\n\n\n\nCode\naddh %&gt;%\n  group_by(gender) %&gt;%\n  summarize(mean_nocheating = mean(nocheating))\n\n\n\nsummarise has a number of operations for creating summary statistics\n\nmean(), median(), min(), max(), sd(), n(), n_distinct(), first, last, etc…"
+  },
+  {
+    "objectID": "slides_qmd/Data Wrangling with R_v4_260826.html#exercises",
+    "href": "slides_qmd/Data Wrangling with R_v4_260826.html#exercises",
+    "title": "Data Wrangling with R",
+    "section": "Exercises",
+    "text": "Exercises\n\nExercise one\n\nthe number of females and males by debt status\nthe percentage in each (debt x gender) category as a fraction of all observations\nthe number of distinct ratings of love’s importance in each of these debt x gender categories\n\n\n\n\n\nCode\naddh %&gt;%\n  group_by(gender, debt) %&gt;%\n  summarize(percentage = n() / nrow(addh), n_distinct_love = n_distinct(love))"
+  },
+  {
+    "objectID": "slides_qmd/Data Wrangling with R_v4_260826.html#exercises-1",
+    "href": "slides_qmd/Data Wrangling with R_v4_260826.html#exercises-1",
+    "title": "Data Wrangling with R",
+    "section": "Exercises",
+    "text": "Exercises\n\nExercise two\n\n\nGroup the data by gender and debt status first\n\nFind the average rating of love, no cheating, and money’s importance for a relationship in each group\nArrange the groups by their rating of money’s importance to a relationship from the highest to rating to the lowest rating\n\n\n\n\n\nCode\naddh %&gt;%\n  group_by(gender, debt) %&gt;%\n  summarize(\n    mean_love = mean(love),\n    mean_nocheating = mean(nocheating),\n    mean_money = mean(money)\n  ) %&gt;%\n  arrange(desc(mean_money))"
+  },
+  {
+    "objectID": "slides_qmd/Data Wrangling with R_v4_260826.html#recoding-variables",
+    "href": "slides_qmd/Data Wrangling with R_v4_260826.html#recoding-variables",
+    "title": "Data Wrangling with R",
+    "section": "Recoding Variables",
+    "text": "Recoding Variables\n\nRecoding variables is a common task in data analysis for social science research\n\nconvert a variable from one format to another\ncreate a new variable based on the values of an existing variable (or of multiple existing variables)\n\nsome typical recoding tasks\n\nconvert a continuous variable to a categorical variable\nconvert a categorical variable to a continuous variable\ncreate categorical variables based on conditions\n\n\n\n\nOur focus\n\ndata types\nlogical statements\ncase_when() function"
+  },
+  {
+    "objectID": "slides_qmd/Data Wrangling with R_v4_260826.html#recoding-variables-1",
+    "href": "slides_qmd/Data Wrangling with R_v4_260826.html#recoding-variables-1",
+    "title": "Data Wrangling with R",
+    "section": "Recoding Variables",
+    "text": "Recoding Variables\ncreate a vector\n\nthere are functions to help you create the vector more efficiently:\n\nrep: repeat the same thing multiple times\nseq: create a sequence of numbers\npaste: stick together character and numeric info\nsample: for vectors where we want to randomly sample from some larger pool\n\n\n\n\n\nCode\nrep(1, 5)\n\n\n\n\n\n\nCode\nseq(from = 1997, to = 2025, by = 5)\n\n\n\n\n\n\nCode\npaste(\"age\", seq(from = 22, to = 30, by = 1), sep = \"_\")"
+  },
+  {
+    "objectID": "slides_qmd/Data Wrangling with R_v4_260826.html#recoding-variables-2",
+    "href": "slides_qmd/Data Wrangling with R_v4_260826.html#recoding-variables-2",
+    "title": "Data Wrangling with R",
+    "section": "Recoding Variables",
+    "text": "Recoding Variables\nfrom vectors to dataframes\n\nOne way to create a dataframe\n\nuse bind_cols() to attach same-length vectors together as columns in a tibble\nVectors can be different types\n\n\n\n\n\nCode\nagevec &lt;- c(18, 21, 23, 25, 27, 30)\n\ngendervec &lt;- c(\"male\", \"female\", \"other\", \"female\", \"female\", \"male\")\n\nbind_cols(age = agevec, gender = gendervec)"
+  },
+  {
+    "objectID": "slides_qmd/Data Wrangling with R_v4_260826.html#exercises-2",
+    "href": "slides_qmd/Data Wrangling with R_v4_260826.html#exercises-2",
+    "title": "Data Wrangling with R",
+    "section": "Exercises",
+    "text": "Exercises\n\nconvert the variable gender in addh to a factor variable\nwhat happens if you try to convert the variable to character by using as.character after the factor conversion\nwhat happens if you try to convert the variable to number by using as.numeric after the factor conversion\n\n\n\n\nCode\naddh2 &lt;- addh %&gt;%\n  mutate(gender = factor(gender, levels = c(\"male\", \"female\")))\n\nstr(addh2$gender)\n\nvec1 &lt;- as.character(addh2$gender)\n\nvec2 &lt;- as.numeric(addh2$gender)"
+  },
+  {
+    "objectID": "slides_qmd/Data Wrangling with R_v4_260826.html#recoding-variables-3",
+    "href": "slides_qmd/Data Wrangling with R_v4_260826.html#recoding-variables-3",
+    "title": "Data Wrangling with R",
+    "section": "Recoding Variables",
+    "text": "Recoding Variables\nlogical statements\n\nRecap: the main logical operators used in R are:\n\n\\(==\\) (equal to)\n\\(!=\\) (not equal to)\n\\(!\\) (not)\n\\(&lt;\\) (less than)\n\\(&lt;=\\) (less than or equal to)\n\\(&gt;\\) (greater than)\n\\(&gt;=\\) (greater than or equal to)\n\\(\\&\\) (and)\n\\(|\\) (or)"
+  },
+  {
+    "objectID": "slides_qmd/Data Wrangling with R_v4_260826.html#recoding-variables-4",
+    "href": "slides_qmd/Data Wrangling with R_v4_260826.html#recoding-variables-4",
+    "title": "Data Wrangling with R",
+    "section": "Recoding Variables",
+    "text": "Recoding Variables\nlogical statements\n\nlogical statements are used to filter data, create new variables, and recode variables\n\nifelse() function\n\n\n\n\nCode\naddh2 &lt;- addh %&gt;%\n  mutate(\n    money_over_love = ifelse(money &gt; love, 1, 0),\n    .after = id\n  )\n\nhead(addh2, 5)\n\n\n\n\nCode\naddh3 &lt;- addh %&gt;%\n  mutate(\n    money_or_love = ifelse(\n      money == love,\n      \"same\",\n      ifelse(love &gt; money, \"love greater\", \"money greater\")\n    ),\n    .after = id\n  )\n\nhead(addh3, 5)"
+  },
+  {
+    "objectID": "slides_qmd/Data Wrangling with R_v4_260826.html#recoding-variables-5",
+    "href": "slides_qmd/Data Wrangling with R_v4_260826.html#recoding-variables-5",
+    "title": "Data Wrangling with R",
+    "section": "Recoding Variables",
+    "text": "Recoding Variables\nlogical statements\n\nuse case_when() if there are 3 or more conditions for creating a variable\nits syntax is the following:\n\ncase_when(logical condition ~ value assigned, logical condition 2 ~ value assigned. . . .default = value if does not fit other logical conditions)\n\n\n\n\nCode\naddh3 &lt;- addh %&gt;%\n  mutate(\n    money_or_love = case_when(\n      money == love ~ \"same\",\n      love &gt; money ~ \"love greater\",\n      TRUE ~ \"money greater\"\n    ),\n    .after = id\n  )\n\nhead(addh3, 5)"
+  },
+  {
+    "objectID": "slides_qmd/Data Wrangling with R_v4_260826.html#exercises-3",
+    "href": "slides_qmd/Data Wrangling with R_v4_260826.html#exercises-3",
+    "title": "Data Wrangling with R",
+    "section": "Exercises",
+    "text": "Exercises\n\ncreate a new variable called money_or_love in the addh dataset\n\nthe variable should have the following categories:\n\n“extreme” if person either codes love or money as 9 or 10\n“lovegreater” if love &gt; money\n“same” if love == money\n“moneygreater” if money &gt; love\nNA if none of the above\n\n\n\n\n\nCode\n# create a new variable called `money_or_love` in the `addh` dataset\n\naddh5&lt;- addh %&gt;%\n  mutate(\n    money_or_love = case_when(\n      love &gt;= 9 | money &gt;= 9 ~ \"extreme\",\n      love &gt; money ~ \"lovegreater\",\n      love == money ~ \"same\",\n      money &gt; love ~ \"moneygreater\",\n      TRUE ~ NA_character_\n    ),\n    .after = id\n  )\n\nhead(addh5, 5)"
+  },
+  {
+    "objectID": "slides_qmd/Data Wrangling with R_v4_260826.html#recoding-variables-6",
+    "href": "slides_qmd/Data Wrangling with R_v4_260826.html#recoding-variables-6",
+    "title": "Data Wrangling with R",
+    "section": "Recoding Variables",
+    "text": "Recoding Variables\ncreate a binary vector\n\ncreate a new variable called high_income in the addh dataset\n\nthe variable should be 1 if income is above the 75th percentile and 0 otherwise\nuse the quantile() function to find the 75th percentile of income\n\n\n\n\nCode\nincome_75 &lt;- quantile(addh$income)[4]\n\naddh2 &lt;- addh %&gt;%\n  mutate(high_income = ifelse(income &gt; income_75, 1, 0))\n\n\n\ncreate a new variable called income_level in the addh2 dataset\n\nthe variable should have the following categories:\n\n“low” if income is below the 25th percentile\n“high” if income is above the 75th percentile\n“medium” if income is between the 25th and 75th percentiles\n\n\n\n\n\nCode\nincome_25 &lt;- quantile(addh$income)[2]\n\naddh2 &lt;- addh2 %&gt;%\n  mutate(\n    income_level = case_when(\n      income &lt;= income_25 ~ \"low\",\n      income &gt;= income_75 ~ \"high\",\n      .default = \"medium\"\n    ),\n    .after = id\n  )\n\nhead(addh2, 5)"
+  },
+  {
+    "objectID": "slides_qmd/Data Wrangling with R_v4_260826.html#looping",
+    "href": "slides_qmd/Data Wrangling with R_v4_260826.html#looping",
+    "title": "Data Wrangling with R",
+    "section": "Looping",
+    "text": "Looping\n\nLoops are used to repeat a block of code multiple times\n\nfor loop\nwhile loop\nrepeat loop\nbreak and next statements\n\nLoops are useful for:\n\nautomating repetitive tasks\niterating over elements in a list or vector\ncreating new variables or dataframes\nrunning simulations\n\n\n\n\nLoops can be slow in R\n\nuse vectorized functions whenever possible\nuse the apply family of functions\nuse the purrr package"
+  },
+  {
+    "objectID": "slides_qmd/Data Wrangling with R_v4_260826.html#for-loops",
+    "href": "slides_qmd/Data Wrangling with R_v4_260826.html#for-loops",
+    "title": "Data Wrangling with R",
+    "section": "For loops",
+    "text": "For loops\n\nThe for loop is the most common type of loop in R\n\nit repeats a block of code a specified number of times\nit can go through every element of a vector\n\nsyntax: for (i in vector) {code to execute}\n\n\nit can iterate through a set number of elements in a vector\n\nsyntax: for (i in 1:length(vector)) {code to execute}\n\n\nThe for loop is also useful for:\n\ncreating new variables\nrunning simulations\n\n\n\n\nSteps to turn into a for loop:\n\nInitialize a vector to store results- this time it will store an entire vector of results rather than one result. Can either do: 1.1 Initialize a vector of a certain length: vec &lt;- vector(length = desired length) 1.2 Initialize an empty vector: vec &lt;- c()\nUse the for statement to tell the loop what to iterate through.\nCopy and paste the code from the single-observation case into the “meat” part of the for loop sandwich\nFor step three, make sure to add indexing where appropriate"
+  },
+  {
+    "objectID": "slides_qmd/Data Wrangling with R_v4_260826.html#for-loops-sample-means",
+    "href": "slides_qmd/Data Wrangling with R_v4_260826.html#for-loops-sample-means",
+    "title": "Data Wrangling with R",
+    "section": "For loops — sample means",
+    "text": "For loops — sample means\n\nLet us start with a simple example of a for loop\n\nwe will use the addh dataset to calculate the sample means of the variable money\nwe will take 1000 samples of size 800 with replacement and calculate the mean of each sample\n\n\n\n\nCode\nset.seed(123456)\n\nsample_means &lt;- numeric(length = 1000)\n\nfor (i in seq_along(sample_means)) {\n  samp &lt;- sample(addh3$money, size = 800, replace = TRUE)\n  sample_means[i] &lt;- mean(samp)\n}\n\nmean(sample_means)\n\n\n\nplot the distribution of sample means\n\n\n\nCode\nlibrary(tidyverse)\n\nggplot(as.data.frame(sample_means), aes(sample_means)) +\n  #geom_histogram(bins=30)+\n  geom_density() +\n  geom_vline(\n    xintercept = mean(sample_means),\n    color = \"red\",\n    linetype = \"dashed\"\n  ) +\n  labs(\n    title = \"Distribution of Sample Means\",\n    x = \"Sample Means\",\n    y = \"Frequency\"\n  ) +\n  theme_minimal()"
+  },
+  {
+    "objectID": "slides_qmd/Data Wrangling with R_v4_260826.html#write-a-function",
+    "href": "slides_qmd/Data Wrangling with R_v4_260826.html#write-a-function",
+    "title": "Data Wrangling with R",
+    "section": "Write a function",
+    "text": "Write a function\n\nFunctions are blocks of code that can be reused\n\nthey take input arguments\nthey return output\nthey can be used in loops, apply functions, and other functions\nthey can be used to create new variables, summarize data, and run simulations\n\nthe basic structure of a function is:\n\nfunction_name &lt;- function(input arguments) {code to execute}\nreturn(output)\n\nwe now touch upon some basics\n\n\n\nWhat problem is the function trying to solve?\nWhat are the function’s arguments in this case? (as a function’s inputs)\nWhat is the function doing with those arguments?\nWhat does the function return? What class is it? (check it using R)"
+  },
+  {
+    "objectID": "slides_qmd/Data Wrangling with R_v4_260826.html#functions---basics",
+    "href": "slides_qmd/Data Wrangling with R_v4_260826.html#functions---basics",
+    "title": "Data Wrangling with R",
+    "section": "functions - basics",
+    "text": "functions - basics\n\nLet us start with a simple function, z-score of a variable\n\n\n\nCode\nzscore &lt;- function(x) {\n  zscore &lt;- (x - mean(x)) / sd(x)\n  return(zscore)\n}\n\nz_income &lt;- zscore(addh$income)\n\nhead(z_income, 10)\n\n\n\nmore complicated example\n\n\n\nCode\nsample_means &lt;- function(data, n, reps) {\n  sample_means &lt;- numeric(length = reps)\n\n  for (i in seq_along(sample_means)) {\n    samp &lt;- sample(data, size = n, replace = TRUE)\n    sample_means[i] &lt;- mean(samp)\n  }\n\n  return(sample_means)\n}\n\n\n\n\nCode\nage_sample_means &lt;- sample_means(addh$age, 500, 1000)\n\nggplot(as.data.frame(age_sample_means), aes(age_sample_means)) +\n  geom_density() +\n  geom_vline(\n    xintercept = mean(age_sample_means),\n    color = \"red\",\n    linetype = \"dashed\"\n  ) +\n  labs(\n    title = \"Distribution of Sample Means\",\n    x = \"Sample Means of Age\",\n    y = \"Frequency\"\n  ) +\n  theme_bw()"
+  },
+  {
+    "objectID": "slides_qmd/Data Wrangling with R_v4_260826.html#exercises-4",
+    "href": "slides_qmd/Data Wrangling with R_v4_260826.html#exercises-4",
+    "title": "Data Wrangling with R",
+    "section": "Exercises",
+    "text": "Exercises\n\ncreate a function that incorporate both sample means functions and the density plot as above\nplot the distribution of sample means for the variable love in the addh dataset using the function"
+  },
+  {
+    "objectID": "slides_qmd/Data Wrangling with R_v4_260826.html#lists-and-map-functions-from-purrr-library",
+    "href": "slides_qmd/Data Wrangling with R_v4_260826.html#lists-and-map-functions-from-purrr-library",
+    "title": "Data Wrangling with R",
+    "section": "Lists and map functions from purrr library",
+    "text": "Lists and map functions from purrr library\n\nLists are a way to store multiple objects in R\n\ncan store vectors, dataframes, and other lists\ncan store objects of different classes\n\n\n\n\nCode\nlist1 &lt;- list(1, c(8, 9, 10, 11, 12), data.frame(x = 1:10, y = 11:20))\n\nlist1"
+  },
+  {
+    "objectID": "slides_qmd/Data Wrangling with R_v4_260826.html#lists-and-map-functions-from-purrr-library-1",
+    "href": "slides_qmd/Data Wrangling with R_v4_260826.html#lists-and-map-functions-from-purrr-library-1",
+    "title": "Data Wrangling with R",
+    "section": "Lists and map functions from purrr library",
+    "text": "Lists and map functions from purrr library\n\nThe syntax is map(mylist, myfunction, functionoptions) and can change depending on the type of output for your analysis\ncalculate the length of each element in the list above\n\n\n\nCode\nlibrary(purrr)\n\nmap(list1, length)\n\n\n\nexamine the class of each element in the list above\n\n\n\n\nCode\nmap(list1, class)\n\n\n\ndo the summary of each element in the list above\n\n\n\n\n\nCode\nmap(list1, summary)"
+  },
+  {
+    "objectID": "slides_qmd/Data Wrangling with R_v4_260826.html#tidy-approach-to-data",
+    "href": "slides_qmd/Data Wrangling with R_v4_260826.html#tidy-approach-to-data",
+    "title": "Data Wrangling with R",
+    "section": "Tidy approach to data",
+    "text": "Tidy approach to data\n\nThe tidy approach (Wickham (2014)) to data is a way to organize data in a consistent format\n\nEach variable is a column; each column is a variable\nEach observation is a row; each row is an observation\nEach value is a cell; each cell is a single value\n\nThe tidy approach is useful for:\n\ndata manipulation\ndata visualization\ndata analysis\ndata sharing\n\nThe tidy approach is implemented in the tidyr package\n\n\n\nThe tidy approach is a way to organize data in a consistent format\n\nit is based on the idea that data should be organized in a way that makes it easy to manipulate, visualize, and analyze\nit is a way to make data more accessible and easier to work with\n\nFive common problems for messy data\n\nColumn headers are values, not variable names\nMultiple variables are stored in one column\nVariables are stored in both rows and columns\nMultiple types of observational units are stored in the same table\nA single observational unit is stored in multiple tables"
+  },
+  {
+    "objectID": "slides_qmd/Data Wrangling with R_v4_260826.html#reshape-the-data",
+    "href": "slides_qmd/Data Wrangling with R_v4_260826.html#reshape-the-data",
+    "title": "Data Wrangling with R",
+    "section": "Reshape the data",
+    "text": "Reshape the data\nlet us start from a “real” example\n\n\nCode\nlibrary(tidyr)\n\nsleep_wide &lt;- tibble(\n  name = c(\"KT\", \"Wincy\", \"Xiaoyu\"),\n  day1 = c(8, 7, 6),\n  day2 = c(4, 6, 5),\n  day3 = c(5, 4, 4),\n  day4 = c(7, 7, 6)\n)\n\nsleep_wide\n\n\n\n\nCode\nsleep_long &lt;- sleep_wide %&gt;%\n  pivot_longer(cols = day1:day4, names_to = \"day\", values_to = \"sleep_hours\")\n\nsleep_long\n\n\n\n\nCode\nlibrary(stringr)\n\nsleep_long %&gt;%\n  mutate(day = stringr::str_sub(day, -1, -1))\n\n\n\n\nseparate(col = office_housing, into = c(“office”, “housing”), sep = “_“)\nsleep_united &lt;- sleep_pls_unite %&gt;% unite(col = “office”, building, floor, sep = ““)"
+  },
+  {
+    "objectID": "slides_qmd/Data Wrangling with R_v4_260826.html#reshape-the-data-1",
+    "href": "slides_qmd/Data Wrangling with R_v4_260826.html#reshape-the-data-1",
+    "title": "Data Wrangling with R",
+    "section": "Reshape the data",
+    "text": "Reshape the data\nfrom long to wide\n\n\nCode\nsleep_wide2 &lt;- sleep_long %&gt;%\n  pivot_wider(names_from = day, values_from = sleep_hours)\n\nsleep_wide2"
+  },
+  {
+    "objectID": "slides_qmd/Data Wrangling with R_v4_260826.html#execises",
+    "href": "slides_qmd/Data Wrangling with R_v4_260826.html#execises",
+    "title": "Data Wrangling with R",
+    "section": "Execises",
+    "text": "Execises\n\nThe data is in a wide format, with each day as a separate column\n\nhow to reshape the data to have each day as a separate row?\nhow to reshape the data to have each activity (sleep, play) as a separate column?\nhow to reshape the data to have each activity (sleep, play) as a separate row?\n\n\n\n\nCode\nsleep_wide2 &lt;- tibble(\n  name = c(rep(\"KT\", 2), rep(\"Wincy\", 2), rep(\"Xiaoyu\", 2)),\n  activity = rep(c(\"sleep\", \"play\"), 3),\n  day1 = c(8, 2, 7, 2, 5, 3),\n  day2 = c(6, 1, 1, 3, 6, 2),\n  day3 = c(5, 1, 4, 1, 4, 3),\n  day4 = c(7, 2, 7, 3, 6, 2)\n)\n\nsleep_wide2\n\n\n\n\nhow to express the data in a tidy format?\n\ni.e. name, day, sleep, play as columns\n\n\n\n\n\n\nCode\nsleep_tidy &lt;- sleep_wide2 %&gt;%\n  pivot_longer(cols = day1:day4, names_to = \"day\", values_to = \"hours\") %&gt;%\n  mutate(day = stringr::str_sub(day, -1, -1)) %&gt;%\n  pivot_wider(names_from = activity, values_from = hours)\n\nsleep_tidy"
+  },
+  {
+    "objectID": "slides_qmd/Data Wrangling with R_v4_260826.html#export-data---recap",
+    "href": "slides_qmd/Data Wrangling with R_v4_260826.html#export-data---recap",
+    "title": "Data Wrangling with R",
+    "section": "Export data - Recap",
+    "text": "Export data - Recap\n\nThe last step in data analysis is to export the data\n\nsave the data in a format that can be shared with others\nsave the data in a format that can be read by other software\nsave the data in a format that can be used in other software\n\nExport command depends on the type of file you are trying to write to\n\nwrite.csv for CSV\nwrite.xslx for Excel\nwrite.dta for Stata file\netc\n\nBy default, the new file will be saved in current working directory\n\nIf you want to save it elsewhere, need to specify the path\n\n\n\n\n\nCode\nwrite_csv(sleep_tidy, \"sleep_tidy.csv\")\n\nlibrary(haven)\nwrite_dta(sleep_tidy, \"c:/Users/KT/Downloads/sleep_tidy.dta\")"
+  },
+  {
+    "objectID": "slides_qmd/Data Wrangling with R_v4_260826.html#basic-merge",
+    "href": "slides_qmd/Data Wrangling with R_v4_260826.html#basic-merge",
+    "title": "Data Wrangling with R",
+    "section": "Basic merge",
+    "text": "Basic merge\n\nThe typical merge in R is left_join\n\nkeep all rows from “left” table even if observation doesn’t have matching row in “right” table\nthis will drop observations from the joining data when they are not matched to the “left” table\n\n\n\n\n\nCode\nsleep_tidy &lt;- tibble(\n  name = c(\"KT\", \"Wincy\", \"Xiaoyu\", \"Harry\", \"Haobo\"),\n  sleep = c(8, 7, 6, 5, 5),\n  play = c(2, 2, 3, 3, 2)\n)\n\nsleep_tidy2 &lt;- tibble(\n  name = c(\"KT\", \"Wincy\", \"Xiaoyu\", \"Peter\", \"Susan\"),\n  study = c(3, 4, 5, 2, 3),\n  work = c(8, 10, 9, 6, 5)\n)\n\nsleep_tidy3 &lt;- left_join(sleep_tidy, sleep_tidy2, by = \"name\")\n\nsleep_tidy3\n\n\n\nput different dataset on the left side of the join\n\n\n\n\n\nCode\nsleep_tidy4 &lt;- left_join(sleep_tidy2, sleep_tidy, by = \"name\")\n\nsleep_tidy4"
+  },
+  {
+    "objectID": "slides_qmd/Data Wrangling with R_v4_260826.html#merge-data",
+    "href": "slides_qmd/Data Wrangling with R_v4_260826.html#merge-data",
+    "title": "Data Wrangling with R",
+    "section": "Merge data",
+    "text": "Merge data\n\ninner join Only keep rows of the first data.frame that have corresponding records in the second data.frame\n\nthis will drop observations from both dataframes when they are not matched to each other\n\n\n\n\n\nCode\nsleep_tidy5 &lt;- inner_join(\n  sleep_tidy,\n  sleep_tidy2,\n  by = \"name\",\n  suffix = c(\"_sleep\", \"_work\")\n)\n\nsleep_tidy5\n\n\n\n\n\nfull join Keep all rows from both dataframes, filling in missing values with NAs\n\n\n\n\n\nCode\nsleep_tidy6 &lt;- full_join(sleep_tidy, sleep_tidy2, by = \"name\")\n\nsleep_tidy6"
+  },
+  {
+    "objectID": "slides_qmd/Data Wrangling with R_v4_260826.html#references",
+    "href": "slides_qmd/Data Wrangling with R_v4_260826.html#references",
+    "title": "Data Wrangling with R",
+    "section": "References",
+    "text": "References\n\n\nImai, Kosuke, and Nora Webb Williams. 2022. Quantitative Social Science : An Introduction in Tidyverse. Princeton University Press.\n\n\nWickham, Hadley. 2014. “Tidy Data.” Journal of Statistical Software 59 (10): 1–23.\n\n\nWickham, Hadley. 2016. Ggplot2 : Elegrant Graphics for Data Analysis. Second edition. Use r! Springer.\n\n\nWickham, Hadley. 2019. Advanced r. Second edition. The r Series. CRC Press.\n\n\nWickham, Hadley, and Garrett Grolemund. 2023. R for Data Science : Import, Tidy, Transform, Visualize, and Model Data. Second edition. O’Reilly."
   }
 ]
