@@ -474,16 +474,16 @@ ggplot(mpg, aes(displ, hwy)) +
 
 ## ggplot2 --- Boxplots and related plots
 
-+ Boxplots, violin and jittered points are useful for visualizing the distribution of a continuous variable
+:::: {.columns}
 
-+ here we use [ggpubr](https://cran.r-project.org/web/packages/ggpubr/index.html) - a package for creating publication-ready plots
+::: {.column width="50%"}
+
++ Boxplots, violin and jittered points are useful for visualizing the distribution of a continuous variable
 
 ```{r ggplot2f}
 #| output-location: fragment
 #| fig-height: 8
 #| out-height: 8in
-
-library(ggpubr) # ggpubr is a package that provides functions for creating publication-ready plots
 
 boxplot <- ggplot(mpg, aes(drv, hwy)) +
   geom_boxplot()
@@ -499,6 +499,44 @@ jitter <- ggplot(mpg, aes(drv, hwy)) +
 ggarrange(boxplot, violin, jitter, ncol = 3)
 
 ```
+
+:::
+
+::: {.column width="50%"}
+
++ here we use [ggpubr](https://cran.r-project.org/web/packages/ggpubr/index.html) - a package for creating publication-ready plots
+
+```{r}
+#| output-location: fragment
+#| fig-height: 8
+#| out-height: 8in
+#| fig-aspect-ratio: 0.618
+
+library(ggpubr) # ggpubr is a package that provides functions for creating publication-ready plots
+
+boxplot2<- ggboxplot(mpg, x = "drv", y = "hwy", 
+  color = "drv", palette = "jco",
+  ylab = "Highway fuel economy (miles per gallon)", xlab = "Drive type"
+)
+
+violin2 <- ggviolin(mpg, x = "drv", y = "hwy", 
+  fill = "drv", palette = "jco",
+  ylab = "Highway fuel economy (miles per gallon)", xlab = "Drive type"
+)
+
+jitter2<- ggscatter(mpg, x = "drv", y = "hwy", 
+  color = "drv", palette = "jco",
+  ylab = "Highway fuel economy (miles per gallon)", xlab = "Drive type"
+)
+
+ggarrange(boxplot2, violin2, jitter2, ncol = 3)
+
+
+```
+
+:::
+
+::::
 
 ::: {.notes}
 
@@ -794,8 +832,7 @@ country_total
 
 ```{r final_example0a}
 #| output-location: fragment
-#| fig-width: 12
-#| out-width: 12in
+#| out-width: 15in
 
 top5_partners <- c(
   "China",
@@ -857,9 +894,9 @@ ggplotly(p)
 
 ### The five coldest months in Rapid City from 1995 to 2011
 
-
 ```{r final_example1}
 #| output-location: fragment
+#| class: fragment
 
 library(tidyverse)
 
@@ -874,27 +911,27 @@ top_5_coldest <- rapidcity %>%
     lowest_temp = min(Temp),
     highest_temp = max(Temp)
   ) %>%
-  arrange(avg_Temp) %>%
-  round(1) %>%
-  mutate(
-    Month_Year = paste(month.abb[Month], Year, sep = "-"),
-    .after = Month
-  ) %>%
-  head(n = 5)
+    arrange(avg_Temp) %>%
+    round(1) %>%
+    mutate(
+      Month_Year = paste(month.abb[Month], Year, sep = "-"),
+      .after = Month) %>%
+      head(n = 5)
 
 top_5_coldest
 
 ```
 
-. . .
-
-
-+ Bar chart
-
-. . .
+## Interactive bar chart {.no-stretch}
 
 ```{r}
+#| echo: true
+#| fig-width: 8
+#| out-width: 8in
 #| output-location: fragment
+
+library(tidyverse)
+library(plotly)
 
 # Reshape data to long format
 top_5_long <- top_5_coldest %>%
@@ -903,13 +940,13 @@ top_5_long <- top_5_coldest %>%
     names_to = "Temp_Type",
     values_to = "Temperature"
   ) %>%
-  mutate(
-    Temp_Type = factor(
+    mutate(
+      Temp_Type = factor(
       Temp_Type,
       levels = c("lowest_temp", "avg_Temp", "highest_temp"),
       labels = c("Lowest", "Average", "Highest")
+      )
     )
-  )
 
 # Create the ggplot
 p <- ggplot(
@@ -937,10 +974,10 @@ p <- ggplot(
     axis.text.x = element_text(angle = 45, hjust = 1) # Rotate x-axis labels
   )
 
-# Convert to interactive plotly plot
-ggplotly(p, tooltip = c("x", "y", "fill"))
+# Convert to an interactive HTML widget
+p %>% 
+  ggplotly()
 
-htmlwidgets::saveWidget(ggplotly(p), "top_5_coldest_months.html")
 ```
 
 ::: {.notes}
@@ -956,8 +993,6 @@ htmlwidgets::saveWidget(ggplotly(p), "top_5_coldest_months.html")
 + mutate(Month_Name = paste(month.abb[Month], "’", str_sub(Year, 3, 4), sep = "")) # e.g., "Jan ’10"
 
 + theme(legend.position = "top")
-
-
 
 :::
 
